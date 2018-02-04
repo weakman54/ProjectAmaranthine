@@ -14,7 +14,7 @@ table.insert(fd, { name="enemy guard", quad = love.graphics.newQuad(0, 0, 313, 5
 cf = fd[#fd]
 cf.pivotX = cf.sourceWidth  / 2 - cf.sourceOffsetX
 cf.pivotY = cf.sourceHeight / 2 - cf.sourceOffsetY
-cf.frameTime = 0.1 -- (seconds) -- TODO: Fix magic number! -- TODO: set manually (if needed)
+cf.frameTime = 0.3 -- (seconds) -- TODO: Fix magic number! -- TODO: set manually (if needed)
 cf.screenPosX = 1400 -- TODO: set manually!
 cf.screenPosY = 800 -- TODO: set manually!
 

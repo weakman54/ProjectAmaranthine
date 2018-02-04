@@ -14,7 +14,7 @@ table.insert(fd, { name="enemy attack 1 startup", quad = love.graphics.newQuad(0
 cf = fd[#fd]
 cf.pivotX = cf.sourceWidth  / 2 - cf.sourceOffsetX
 cf.pivotY = cf.sourceHeight / 2 - cf.sourceOffsetY
-cf.frameTime = 0.2 -- (seconds) -- TODO: Fix magic number! -- TODO: set manually (if needed)
+cf.frameTime = 0.5 -- (seconds) -- TODO: Fix magic number! -- TODO: set manually (if needed)
 cf.screenPosX = 1400 -- TODO: set manually!
 cf.screenPosY = 800 -- TODO: set manually!
 
@@ -23,7 +23,7 @@ table.insert(fd, { name="enemy attack 2 flash", quad = love.graphics.newQuad(0, 
 cf = fd[#fd]
 cf.pivotX = cf.sourceWidth  / 2 - cf.sourceOffsetX
 cf.pivotY = cf.sourceHeight / 2 - cf.sourceOffsetY
-cf.frameTime = 0.2 -- (seconds) -- TODO: Fix magic number! -- TODO: set manually (if needed)
+cf.frameTime = 0.5 -- (seconds) -- TODO: Fix magic number! -- TODO: set manually (if needed)
 cf.screenPosX = 1400 -- TODO: set manually!
 cf.screenPosY = 800 -- TODO: set manually!
 

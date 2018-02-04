@@ -17,22 +17,25 @@ local attackBtn = "space"
 local guardBtn = "g"
 
 
-
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end
 
+  love.graphics.setNewFont(30)
+
   -- Background -----------
   background = love.graphics.newImage("animations/battle background.png")
+
+  -- Enemy ------------------
+  table.insert(updating, enemy)
+  table.insert(drawing , enemy)
+  enemy:loadAnimations()
+  enemy.enemy = player
 
   -- Player -----------------
   table.insert(updating, player)
   table.insert(drawing , player)
   player:loadAnimations()
-  
-  -- Enemy ------------------
-  table.insert(updating, enemy)
-  table.insert(drawing , enemy)
-  enemy:loadAnimations()
+  player.enemy = enemy
 end
 
 
@@ -45,10 +48,10 @@ end
 
 function love.draw()
   love.graphics.draw(background, -250, -250) 
-  
+
   for _, thing in ipairs(drawing) do
     thing:draw()
-  end
+  end 
 end
 
 
@@ -58,13 +61,17 @@ function love.keypressed(key)
     love.event.quit()
 
   elseif key == attackBtn then
-    player.animCollection:setAnimation("attack")
+    player:attack()
 
   elseif key == guardBtn then
-    player.animCollection:setAnimation("guard")
+    player:guard()
 
-  else
-    player.animCollection:setAnimation("idle")
+  end
+end
 
+
+function love.keyreleased(key)
+  if key == guardBtn then
+    player:idle()
   end
 end

@@ -33,7 +33,7 @@ function Animation:update(dt)
 
   if self.curTime >= self.curFrame.frameTime then
     self:increment()
-    self.curTime = self.curTime - self.curFrame.frameTime
+    self.curTime = 0 --self.curTime - self.curFrame.frameTime -- TODO: This needs to be looked at more properly...
   end
 end
 
@@ -42,7 +42,7 @@ function Animation:increment()
 end
 function Animation:setFrame(i)
   if i > self.numFrames and not self.looping then
-    self.curFrameI = 1
+    self.curFrameI = self.numFrames -- NOTE, this might need rethinking
     self.playing = false
   else
     self.curFrameI = ((i-1) % self.numFrames) + 1

@@ -14,7 +14,7 @@ table.insert(fd, { name="player attack", quad = love.graphics.newQuad(0, 0, 1388
 cf = fd[#fd]
 cf.pivotX = cf.sourceWidth  / 2 - cf.sourceOffsetX
 cf.pivotY = cf.sourceHeight / 2 - cf.sourceOffsetY
-cf.frameTime = 0.1 -- (seconds) -- TODO: Fix magic number! -- TODO: set manually (if needed)
+cf.frameTime = 0.2 -- (seconds) -- TODO: Fix magic number! -- TODO: set manually (if needed)
 cf.screenPosX = 300 -- TODO: set manually!
 cf.screenPosY = 1300 -- TODO: set manually!
 
