@@ -2,14 +2,18 @@
 local Animation = require "animation"
 local AnimationCollection   = require "animationCollection"
 
+local player = require "player"
+local enemy  = require "enemy"
+
+
+local updating = {}
+local drawing  = {}
+
 
 local background
-local playerAnim
-local enemyAnim
 
 
 local attackBtn = "space"
-
 local guardBtn = "g"
 
 
@@ -17,33 +21,34 @@ local guardBtn = "g"
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end
 
+  -- Background -----------
   background = love.graphics.newImage("animations/battle background.png")
 
-  playerAnim = AnimationCollection:new()
-
-  playerAnim:addAnimation("idle"  , Animation:new( "animations/player_idle"), true)
-  playerAnim:addAnimation("attack", Animation:new( "animations/player_attack"))
-  playerAnim:addAnimation("guard" , Animation:new( "animations/player_guard"))
+  -- Player -----------------
+  table.insert(updating, player)
+  table.insert(drawing , player)
+  player:loadAnimations()
   
-  
-  enemyAnim = AnimationCollection:new()
-  
-  enemyAnim:addAnimation("idle"  , Animation:new( "animations/enemy_idle"), true)
-  enemyAnim:addAnimation("attack", Animation:new( "animations/enemy_attack"))
-  enemyAnim:addAnimation("guard" , Animation:new( "animations/enemy_guard"))
-
+  -- Enemy ------------------
+  table.insert(updating, enemy)
+  table.insert(drawing , enemy)
+  enemy:loadAnimations()
 end
+
 
 function love.update(dt)
-  playerAnim:update(dt)
-  enemyAnim:update(dt)
+  for _, thing in ipairs(updating) do
+    thing:update(dt)
+  end
 end
+
 
 function love.draw()
   love.graphics.draw(background, -250, -250) 
   
-  enemyAnim:draw()
-  playerAnim:draw()
+  for _, thing in ipairs(drawing) do
+    thing:draw()
+  end
 end
 
 
@@ -53,16 +58,13 @@ function love.keypressed(key)
     love.event.quit()
 
   elseif key == attackBtn then
-    playerAnim:setAnimation("attack")
-    enemyAnim:setAnimation("guard")
+    player.animCollection:setAnimation("attack")
 
   elseif key == guardBtn then
-    playerAnim:setAnimation("guard")
-    enemyAnim:setAnimation("attack")
+    player.animCollection:setAnimation("guard")
 
   else
-    playerAnim:setAnimation("idle")
-    enemyAnim:setAnimation("idle")
+    player.animCollection:setAnimation("idle")
 
   end
 end
