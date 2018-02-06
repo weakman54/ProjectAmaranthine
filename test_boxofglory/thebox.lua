@@ -8,11 +8,17 @@ TheBox.pts   = {
   200, 900,
 }
 
-function TheBox:tl(setx, sety)
-  self.pts[1] = setx or self.pts[1]
-  self.pts[2] = sety or self.pts[2]
+--function TheBox:tl(setx, sety)
+--  self.pts[1] = setx or self.pts[1]
+--  self.pts[2] = sety or self.pts[2]
 
-  return self.pts[1], self.pts[2]
+--  return self.pts[1], self.pts[2]
+--end
+
+
+function TheBox.draw() -- HACK atm to make stencils work, should make better function for the stencildraw
+  love.graphics.setColor(TheBox.color)
+  love.graphics.polygon("fill", TheBox.pts)
 end
 
 
