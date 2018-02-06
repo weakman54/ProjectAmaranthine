@@ -1,0 +1,3 @@
+[submodule "wutil-lua"]
+	path = wutil-lua
+	url = https://bitbucket.org/weakman54/wutil-lua
