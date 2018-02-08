@@ -7,27 +7,20 @@ local WIDTH, HEIGHT = love.graphics.getDimensions()
 local DIRS = {w = vec( 0, -1), a = vec(-1,  0), s = vec( 0,  1), d = vec( 1,  0)}
 
 
-local randRects = {}
 local cam = Camera(0, 0)
 
 local speed = 200
 local rotSpeed = math.pi/2
 
-
+local curTween
 local tweenDur = 0.1
 local tweenMeth = "in-out-quad"
+
+local bg = love.graphics.newImage("End_attack_00005.png")
 
 
 function love.load()
   cam.x, cam.y = WIDTH/2, HEIGHT/2
-  
---  Timer.tween(tweenDur, cam, {x = WIDTH/2  + 100, y = HEIGHT/2 + 100} , tweenMeth)
---  Timer.tween(tweenDur, cam.y, , tweenMeth)
-  
-  for i=1, 100 do
-    table.insert(randRects, {"fill", math.random(0-100, WIDTH-100), math.random(0-100, HEIGHT-100), math.random(10, 100), math.random(10, 100)})
-    randRects[#randRects].color = {math.random(1, 255), math.random(1, 255), math.random(1, 255)}
-  end
 end
 
 
@@ -50,13 +43,11 @@ function love.update(dt)
 end
 
 
+
 function love.draw()
   cam:attach()
   
-  for _, rect in ipairs(randRects) do
-    love.graphics.setColor(rect.color)
-    love.graphics.rectangle(unpack(rect))
-  end
+  love.graphics.draw(bg, 0, 0, nil, nil, nil, 200, 200)
   
   cam:detach()
 end
@@ -64,9 +55,22 @@ end
 
 function love.mousepressed()
   local target = {}
-  target.x, target.y = cam:mousePosition()
   
-  Timer.tween(tweenDur, cam, target, tweenMeth)
+  target.x, target.y = 1277-205, 737-205
+  
+  if cam.x == target.x then
+    target.x = WIDTH/2
+    target.y = HEIGHT/2
+    
+    target.scale = 1
+    target.rot = 0
+  else
+    target.scale = 1/0.75
+    target.rot = 12 * (math.pi/180)
+  end
+  
+  if curTween then Timer.cancel(curTween) end
+  curTween = Timer.tween(tweenDur, cam, target, tweenMeth)
 end
 
 
