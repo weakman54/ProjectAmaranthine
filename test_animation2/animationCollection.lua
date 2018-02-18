@@ -1,28 +1,21 @@
 
-local Animation = require "animation"
+require "strict"
+
+local Animation = require "Animation"
+
 local AC = {}
 
-
 function AC:new()
-  obj = {}
-
+  local obj = {}
   setmetatable(obj, self)
   self.__index = self
-
-  obj.curAnim = nil
-  obj.default = nil
   
   obj.animations = {}
-
-  return obj
-end
-
--- Sets a default animation to switch to when other animations are done
--- Will always loop
-function AC:setDefault(name)
-  self:checkInCollection(name)
   
-  self.default = name
+  obj.curAnim = nil
+  obj.curName = nil
+  
+  return obj
 end
 
 
@@ -42,7 +35,7 @@ function AC:addAnimation(name, animation, setAsCurrent, looping)
     self:setAnimation(name, looping)
   end
 end
---
+
 
 function AC:setAnimation(name, looping)
   self:checkInCollection(name)
@@ -63,25 +56,26 @@ function AC:setAnimation(name, looping)
 end
 
 
-
-function AC:update(dt)
-  self.curAnim:update(dt)
-  
-  if not self.curAnim.playing and self.default then
-    self:setAnimation(self.default, true) -- Always loop default
-  end
-end
-
-
-function AC:draw()
-  self.curAnim:draw()
-end
-
-
 function AC:checkInCollection(name)
   assert(type(name) == "string", "AnimationCollection: name must be string!")
   assert(self.animations[name] ~= nil, "AnimationCollection: Animation " .. name .. " is not in the collection!")
 end
 
 
+function AC:update(dt)
+  self.curAnim:update(dt)
+end
+  
+
+function AC:loveDraw(...)
+  self.curAnim:loveDraw(...)
+end
+
+
 return AC
+
+
+
+
+
+
