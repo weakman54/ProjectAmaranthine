@@ -16,6 +16,30 @@ player = {
 }
 
 
+player.sm.states = {
+  idle = {guard = true, dodge_high = true, dodge_low = true, attack = true},
+  guard = {idle = true, attack = true},
+  dodge_high = {idle = true},
+  dodge_low = {idle = true},
+  attack = {idle = true, guard = true},
+}
+
+function player:setState(state)
+  if not self.sm:switch(state) then return end
+  self.timer:clear() -- TODO: make sure this is done proper!
+
+  self.ac:setAnimation(state)
+
+  if state == "attack" then -- TODO: implement more proper state machine!!
+    self.attackTimer = self.timer:script(player.doAttack)
+
+  elseif state == "dodge_low" or state == "dodge_high" then
+    self.dodgeTimer = self.timer:script(player.doDodge)
+
+  end
+end
+
+
 
 function player.doAttack(waitFunc) -- Globally mutating, but can't do it any other way atm =/
   enemy:receiveAttack()
@@ -30,20 +54,7 @@ end
 
 
 
-function player:setState(state)
-  if not self.sm:switch(state) then return end
-  self.timer:clear() -- TODO: make sure this is done proper!
-  self.state = state
-  self.ac:setAnimation(state)
 
-  if state == "attack" then -- TODO: implement more proper state machine!!
-    self.attackTimer = self.timer:script(player.doAttack)
-
-  elseif state == "dodge_low" or state == "dodge_high" then
-    self.dodgeTimer = self.timer:script(player.doDodge)
-
-  end
-end
 
 
 
@@ -81,7 +92,7 @@ end
 
 
 function player:keyreleased(key)
-  if key == "g" and self.state == "guard" then
+  if key == "g" then
     self:setState("idle")
   end
 end

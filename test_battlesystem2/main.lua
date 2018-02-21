@@ -1,4 +1,7 @@
 
+require "strict"
+
+
 Timer = require"hump.timer"
 
 require "enemy"
@@ -30,7 +33,7 @@ function love.load(arg)
 
   anim = Animation:new()
 --  print(Animation, getmetatable(anim))
-  enemy.ac:addAnimation("attack-windup", anim)
+  enemy.ac:addAnimation("attack_windup", anim)
 
   anim:importFrame{
     image = love.graphics.newImage("assets/enemy_attack-windup_0001.png"),
@@ -134,13 +137,7 @@ function love.load(arg)
   }
   
   
-  player.sm.states = {
-  idle = {guard = true, dodge_high = true, dodge_low = true, attack = true},
-  guard = {idle = true, attack = true},
-  dodge_high = {idle = true},
-  dodge_low = {idle = true},
-  attack = {idle = true, guard = true},
-}
+  
 
   player:setState("idle")
   enemy:setState("idle")

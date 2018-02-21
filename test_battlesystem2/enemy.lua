@@ -2,6 +2,8 @@
 local Animation = require "animation"
 local AC = require "animationCollection"
 
+local SM = require "makeshiftSM"
+
 
 enemy = {
   state = "none",
@@ -17,20 +19,42 @@ enemy = {
 
   knockbackDuration = 0.2,
   knockbackDist = 100, -- (pixels)
+  
+  sm = SM:new(),
 }
 
+enemy.sm.states = {
+  idle          = {guard  = true , attack_windup = true},
+  attack_windup = {attack = true , hurt = true},
+  guard         = {idle   = true},
+  attack        = {idle   = true , guard = true},
+}
+
+
+function enemy:setState(state)
+--  print(state, self.sm:switch(state))
+  if not self.sm:switch(state) then return end
+  
+  self.timer:clear() -- THIS MIGHT BE BROKEN  
+  
+  self.ac:setAnimation(state)
+end
+
+
+
+
 function enemy:doGuard()
-  if self.state ~= "guard" then
+  if self.sm.currentState ~= "guard" then -- If first time guarding, do knockback tweens
     self:setState("guard")
     self.timer:tween(enemy.knockbackDuration, self, {offsetPos = {x = self.knockbackDist, y = 0}}, "out-expo")
 
     self.timer:during(self.shakeDuration, function()
         self.offsetPos.x = self.offsetPos.x + math.random(-self.shakeIntensity, self.shakeIntensity)
         self.offsetPos.y = self.offsetPos.y + math.random(-self.shakeIntensity, self.shakeIntensity)
-
       end)
   end
-
+  
+  -- set timer, reset if already going
   if self.guardTimer then 
     self.timer:cancel(self.guardTimer) 
     self.guardTimer = nil 
@@ -39,7 +63,7 @@ function enemy:doGuard()
   self.guardTimer = self.timer:after(self.guardDuration, enemy.afterGuard)
 end
 function enemy.afterGuard()
-  enemy:exitGuard() -- Uh, idk even know...
+  enemy:exitGuard() -- Uh, idk even...
 end
 function enemy:exitGuard()
   self.guardTimer = nil
@@ -48,16 +72,13 @@ function enemy:exitGuard()
 end
 
 
-function enemy:setState(state)
-  self.timer:clear() -- THIS MIGHT BE BROKEN  
-  self.state = state
-  self.ac:setAnimation(state)
-end
+
 
 
 
 function enemy:receiveAttack()
-  if self.state == "idle" or self.state == "guard" then
+  print(self.sm.currentState)
+  if self.sm.currentState == "idle" or self.sm.currentState == "guard" then
     self:doGuard()
   end
 end

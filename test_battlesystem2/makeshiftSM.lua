@@ -1,4 +1,6 @@
 
+require "strict"
+
 local SM = {}
 
 function SM:new()
@@ -15,7 +17,6 @@ end
 
 function SM:switch(to)
   if self.currentState == "" then self.currentState = to return true end
-  if to == self.currentState then return false end
   
   if self.states[self.currentState][to] then
     self.currentState = to
