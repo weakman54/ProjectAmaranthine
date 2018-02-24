@@ -8,27 +8,100 @@ local SM = require "makeshiftSM"
 player = {
   state = "none",
   ac = AC:new(),
-  timer = Timer.new(),
+  timer = Timer.new(),  
+  sm = SM:new(),
+
   attackDuration = 0.5,
   dodgeDuration = 1,
-
-  sm = SM:new(),
 }
 
+function initializePlayer()
 
-player.sm.states = {
-  idle = {guard = true, dodge_high = true, dodge_low = true, attack = true},
-  guard = {idle = true, attack = true},
-  dodge_high = {idle = true},
-  dodge_low = {idle = true},
-  attack = {idle = true, guard = true},
-}
+  player.ac.name = "player"
+
+  do -- Initialize animations
+    local anim
+
+    anim = Animation:new()
+    player.ac:addAnimation("attack", anim)
+
+    anim:importFrame{
+      image = love.graphics.newImage("assets/player_attack_0001.png"),
+      duration = 0.4,
+    }
+
+
+    anim = Animation:new()
+    player.ac:addAnimation("dodge_high", anim)
+
+    anim:importFrame{
+      image = love.graphics.newImage("assets/player_dodge-high_0001.png"),
+      duration = 0.4,
+    }
+
+
+    anim = Animation:new()
+    player.ac:addAnimation("dodge_low", anim)
+
+    anim:importFrame{
+      image = love.graphics.newImage("assets/player_dodge-low_0001.png"),
+      duration = 0.4,
+    }
+
+
+    anim = Animation:new()
+    player.ac:addAnimation("guard", anim)
+
+    anim:importFrame{
+      image = love.graphics.newImage("assets/player_guard_0001.png"),
+      duration = 0.4,
+    }
+    anim:importFrame{
+      image = love.graphics.newImage("assets/player_guard_0002.png"),
+      duration = 0.4,
+    }
+
+
+    anim = Animation:new()
+    player.ac:addAnimation("idle", anim)
+
+    anim:importFrame{
+      image = love.graphics.newImage("assets/player_idle_0001.png"),
+      duration = 0.4,
+    }
+    anim:importFrame{
+      image = love.graphics.newImage("assets/player_idle_0002.png"),
+      duration = 0.4,
+    }
+  end
+  --
+  player.ac:overrideDoEvent(function(self, event, ...) 
+      local eventName = self.name .. "_" .. event
+--      print(eventName)
+      Signal.emit(eventName, ...) 
+    end)
+
+
+  player.sm.states = {
+    idle = {guard = true, dodge_high = true, dodge_low = true, attack = true},
+    guard = {idle = true, attack = true},
+    dodge_high = {idle = true},
+    dodge_low = {idle = true},
+    attack = {idle = true, guard = true},
+  }
+
+  player:setState("idle")
+end
+--
+
 
 function player:setState(state)
   if not self.sm:switch(state) then return end
   self.timer:clear() -- TODO: make sure this is done proper!
 
   self.ac:setAnimation(state)
+
+
 
   if state == "attack" then -- TODO: implement more proper state machine!!
     self.attackTimer = self.timer:script(player.doAttack)
@@ -41,21 +114,17 @@ end
 
 
 
-function player.doAttack(waitFunc) -- Globally mutating, but can't do it any other way atm =/
+function player.doAttack(waitFunc)
   enemy:receiveAttack()
   waitFunc(player.attackDuration)
   player:setState("idle") 
 end
 
 function player.doDodge(waitFunc)
+
   waitFunc(player.dodgeDuration)
   player:setState("idle")
 end
-
-
-
-
-
 
 
 
@@ -92,7 +161,7 @@ end
 
 
 function player:keyreleased(key)
-  if key == "g" then
+  if key == "g" and self.sm:is("guard") then
     self:setState("idle")
   end
 end
