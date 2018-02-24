@@ -17,6 +17,8 @@ function AC:new()
   obj.curAnim = nil
   obj.curName = nil
   
+  obj.name = ""
+  
   return obj
 end
 
@@ -32,6 +34,7 @@ function AC:addAnimation(name, animation, setAsCurrent, looping)
   --
 
   self.animations[name] = animation
+  animation.name = self.name .. "_" .. name
 
   if setAsCurrent or self.curAnim == nil then
     self:setAnimation(name, looping)
@@ -71,6 +74,15 @@ end
 
 function AC:loveDraw(...)
   self.curAnim:loveDraw(...)
+end
+
+
+
+-- Other stuff
+function AC:overrideDoEvent(newFunc)
+  for name, animation in pairs(self.animations) do
+    animation.doEvent = newFunc
+  end
 end
 
 

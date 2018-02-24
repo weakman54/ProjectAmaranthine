@@ -18,6 +18,8 @@ function Animation:new()
 
   obj._playing = false
   obj._looping = false
+  
+  obj.name = ""
 
   return obj
 end
