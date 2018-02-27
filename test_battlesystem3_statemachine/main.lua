@@ -2,6 +2,7 @@
 require "strict"
 
 
+require "minimalistSoundManager"
 Timer  = require "hump.timer"
 Signal = require "hump.signal"
 

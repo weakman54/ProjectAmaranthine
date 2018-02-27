@@ -142,13 +142,17 @@ function player:initialize()
 
   function player.sm:onhurt()
     player.hurt = true
-    
+
     player.health = player.health - 2
-    
+
     if player.health <= 0 then -- Replace with game state transition
       player.dead = true
     end
-    
+
+
+    love.audio.play("assets/hurt.wav")
+
+
     player.timer:after(player.hurtDuration, function()player.sm:doidle() end)
 
     player.timer:tween(player.knockbackDuration, player, {offsetPos = {x = player.knockbackDist, y = 0}}, "out-expo")

@@ -182,6 +182,9 @@ function enemy:initialize()
     if enemy.health <= 0 then -- Replace with game state transition
       enemy.dead = true
     end
+    
+    
+    love.audio.play("assets/hurt.wav")
 
 
     enemy.timer:clear()
