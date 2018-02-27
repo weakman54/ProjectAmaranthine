@@ -30,7 +30,10 @@ function player:initialize()
 
   self.maxhealth = 10
   self.health = self.maxhealth
-
+  
+  self.maxSP = 10
+  self.SP = self.maxSP
+  
 
   self.ac = AC:new()
   self.ac.name = "player"
