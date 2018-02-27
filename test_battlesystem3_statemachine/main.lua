@@ -17,6 +17,7 @@ local Animation = require "animation"
 local AC = require "animationCollection"
 
 
+local stateMenu   = require "stateMenu"
 local stateBattle = require "stateBattle"
 
 
@@ -42,7 +43,7 @@ function love.load(arg)
   
   
   Gamestate.registerEvents()
-  Gamestate.switch(stateBattle)
+  Gamestate.switch(stateMenu)
   
 --  bgm = love.audio.play("assets/Immortal_Feeling.flac")
 end
