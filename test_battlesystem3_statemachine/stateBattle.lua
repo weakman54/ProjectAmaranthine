@@ -18,6 +18,9 @@ function stateBattle:init()
 end
 
 function stateBattle:enter()
+  player:reset()
+  enemy:reset()
+  
   GUIPlayerHealth:setTrackTarget(player, "health", 0, player.maxhealth)
   GUIEnemyHealth:setTrackTarget(enemy, "health", 0, enemy.maxhealth)
 end

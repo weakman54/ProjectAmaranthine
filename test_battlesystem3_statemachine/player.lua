@@ -5,103 +5,72 @@ local AC = require "animationCollection"
 local SM = require "statemachine.statemachine"
 
 
+local menuState = require "stateMenu" -- TODO: make sure statechanges are better implemented
+
+
 
 player = {}
 
 
-function player:initialize()
+function player:loadAnimations()
+  local anim
 
-  self.timer = Timer.new()
+  anim = Animation:new()
+  self.ac:addAnimation("attack", anim)
 
-  self.attackDuration = 0.5
-  self.dodgeDuration = 1
-
-
-  self.hurtDuration = 1
-
-  self.shakeDuration = 0.1
-  self.shakeIntensity = 10
-
-  self.knockbackDuration = 0.2
-  self.knockbackDist = -100 -- (pixels)
-
-  self.offsetPos = {x = 0, y = 0}
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player_attack_0001.png"),
+    duration = 0.4,
+  }
 
 
-  self.maxhealth = 10
-  self.health = self.maxhealth
-  
-  self.maxSP = 10
-  self.SP = self.maxSP
-  
+  anim = Animation:new()
+  self.ac:addAnimation("dodge_high", anim)
 
-  self.ac = AC:new()
-  self.ac.name = "player"
-
-  do -- Load animations
-    local anim
-
-    anim = Animation:new()
-    self.ac:addAnimation("attack", anim)
-
-    anim:importFrame{
-      image = love.graphics.newImage("assets/player_attack_0001.png"),
-      duration = 0.4,
-    }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player_dodge-high_0001.png"),
+    duration = 0.4,
+  }
 
 
-    anim = Animation:new()
-    self.ac:addAnimation("dodge_high", anim)
+  anim = Animation:new()
+  self.ac:addAnimation("dodge_low", anim)
 
-    anim:importFrame{
-      image = love.graphics.newImage("assets/player_dodge-high_0001.png"),
-      duration = 0.4,
-    }
-
-
-    anim = Animation:new()
-    self.ac:addAnimation("dodge_low", anim)
-
-    anim:importFrame{
-      image = love.graphics.newImage("assets/player_dodge-low_0001.png"),
-      duration = 0.4,
-    }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player_dodge-low_0001.png"),
+    duration = 0.4,
+  }
 
 
-    anim = Animation:new()
-    self.ac:addAnimation("guard", anim)
+  anim = Animation:new()
+  self.ac:addAnimation("guard", anim)
 
-    anim:importFrame{
-      image = love.graphics.newImage("assets/player_guard_0001.png"),
-      duration = 0.4,
-    }
-    anim:importFrame{
-      image = love.graphics.newImage("assets/player_guard_0002.png"),
-      duration = 0.4,
-    }
-
-
-    anim = Animation:new()
-    self.ac:addAnimation("idle", anim)
-
-    anim:importFrame{
-      image = love.graphics.newImage("assets/player_idle_0001.png"),
-      duration = 0.4,
-    }
-    anim:importFrame{
-      image = love.graphics.newImage("assets/player_idle_0002.png"),
-      duration = 0.4,
-    }
-  end
-  --
-
-  self.ac:overrideDoEvent(function(self, event, ...) 
-      local eventName = self.name .. "_" .. event
---      print(eventName)
-      Signal.emit(eventName, ...) 
-    end)
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player_guard_0001.png"),
+    duration = 0.4,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player_guard_0002.png"),
+    duration = 0.4,
+  }
 
 
+  anim = Animation:new()
+  self.ac:addAnimation("idle", anim)
+
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player_idle_0001.png"),
+    duration = 0.4,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player_idle_0002.png"),
+    duration = 0.4,
+  }
+end
+--
+
+
+function player:initializeStateMachine()
   self.sm = SM.create{
     initial = "idle",
     events = {
@@ -162,14 +131,65 @@ function player:initialize()
     player.hurt = false
   end
 
-
-
-
   self.sm.owner = self
+end
+--
+
+
+function player:initialize()
+
+  self.timer = Timer.new()
+
+  self.attackDuration = 0.5
+  self.dodgeDuration = 1
+
+  self.hurtDuration = 1
+
+  self.shakeDuration = 0.1
+  self.shakeIntensity = 10
+
+  self.knockbackDuration = 0.2
+  self.knockbackDist = -100 -- (pixels)
+
+  self.offsetPos = {x = 0, y = 0}
+
+
+  self.maxhealth = 3
+  self.maxSP = 10
+
+
+  self.ac = AC:new()
+  self.ac.name = "player"
+
+  self:loadAnimations()
+
+  self.ac:overrideDoEvent(function(self, event, ...) 
+      local eventName = self.name .. "_" .. event
+--      print(eventName)
+      Signal.emit(eventName, ...) 
+    end)
+  
+  
+  self:initializeStateMachine()
+
+
+  self:reset()
+end
+--
+
+
+function player:reset()
+  self.timer:clear()
+  
+  self.health = self.maxhealth
+  self.dead = false
+  self.SP = self.maxSP
+
+  self.offsetPos.x, self.offsetPos.y = 0, 0
+
 
   self.sm:doidle()
 end
---
 
 
 
@@ -183,6 +203,9 @@ end
 function player:update(dt)
   self.timer:update(dt)
   self.ac:update(dt)
+
+  if self.dead then Gamestate.switch(menuState) end
+
 end
 
 function player:draw()
@@ -194,8 +217,7 @@ function player:draw()
 
 
   local healthStr = tostring(self.health)
-  if self.dead then healthStr = "dead" end
-  
+
   love.graphics.setColor(255, 000, 255)
   love.graphics.print(healthStr, 250, 200)
   love.graphics.setColor(255, 255, 255)
