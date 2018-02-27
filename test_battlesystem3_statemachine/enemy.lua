@@ -108,10 +108,6 @@ function enemy:initialize()
 
 
 
-
-
-
-
   self.sm = SM.create{
     initial = "idle",
     events = {
@@ -207,67 +203,8 @@ function enemy:initialize()
   self.sm.owner = self
 
   self.sm:doidle()
-
-
-
-
---  self.sm.states = {
---    idle          = {guard  = true , attack_windup = true},
---    attack_windup = {attack = true , hurt = true},
---    guard         = {idle   = true},
---    attack        = {idle   = true , guard = true},
---  }
-
---  self:setState("idle")
 end
 --
-
-
---function enemy:setState(state)
---  local previous = self.sm.currentState
-
---  self.sm:switch(state)
-
---  self.timer:clear() -- THIS MIGHT BE BROKEN  
-
-
---  -- Do "onEnter" events here for now
---  if state == "idle" then
---    self.ac:setAnimation(state)
-
---    self:setResetWindupWait()
---  end
-
---  if state == "attack" then
---    self.ac:setAnimation(state, false)
-
---    enemy.goodTiming = false
---  end
-
---  if state == "attack_windup" then
---    self.ac:setAnimation(state)
-
---    self.timer:after(self.timingWindowTime, enemy.signalGoodTiming)
---    self.timer:after(self.timingWindowTime + self.timingWindowDuration, enemy.doattack)
---  end
-
---  if state == "guard" then
---    self.ac:setAnimation(state)
-
---    self:setResetGuardTimer()
-
---    if previous ~= "guard" then
---      self.timer:tween(enemy.knockbackDuration, self, {offsetPos = {x = self.knockbackDist, y = 0}}, "out-expo")
-
---      self.timer:during(self.shakeDuration, function()
---          self.offsetPos.x = self.offsetPos.x + math.random(-self.shakeIntensity, self.shakeIntensity)
---          self.offsetPos.y = self.offsetPos.y + math.random(-self.shakeIntensity, self.shakeIntensity)
---        end)
---    end
---  end
---end
---
-
 
 
 
@@ -295,31 +232,6 @@ function enemy.signalGoodTiming()
   -- TODO: animations
   enemy.goodTiming = true
 end
-
-
-
-
-
---function enemy.doattack()
---  enemy:setState("attack")
---end
-
-
-
-
---function enemy:doguard()  
---  self:setState("guard")
---end
-
---function enemy.exitguard()
---  enemy:setState("idle")
---  -- NOTE: The reason this is not in the setState method is because this should be "onExit", not "onEnter"
---  enemy.offsetPos.x, enemy.offsetPos.y = 0, 0 -- This looks wierd, probably needs animation and/or tween, needs looking at
---end
-
-
-
-
 
 
 function enemy:receiveAttack()

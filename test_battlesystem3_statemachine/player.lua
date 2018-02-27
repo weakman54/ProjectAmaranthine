@@ -99,17 +99,6 @@ function player:initialize()
     end)
 
 
---  player.sm.states = {
---    idle = {guard = true, dodge_high = true, dodge_low = true, attack = true},
---    guard = {idle = true, attack = true},
---    dodge_high = {idle = true},
---    dodge_low = {idle = true},
---    attack = {idle = true, guard = true},
---  }
-
---  player:setState("idle")
-
-
   self.sm = SM.create{
     initial = "idle",
     events = {
@@ -184,40 +173,6 @@ end
 function player:receiveAttack()
   self.sm:dohurt()
 end
-
-
-
-
-
---function player:setState(state)
---  if not self.sm:switch(state) then return end
---  self.timer:clear() -- TODO: make sure this is done proper!
-
---  self.ac:setAnimation(state)
-
-
-
---  if state == "attack" then -- TODO: implement more proper state machine!!
---    self.attackTimer = self.timer:script(player.doattack)
-
---  elseif state == "dodge_low" or state == "dodge_high" then
---    self.dodgeTimer = self.timer:script(player.doDodge)
-
---  end
---end
-
-
-
---function player.doattack(waitFunc)
---  enemy:receiveAttack()
---  waitFunc(player.attackDuration)
---  player:setState("idle") 
---end
-
---function player.doDodge(waitFunc)
---  waitFunc(player.dodgeDuration)
---  player:setState("idle")
---end
 
 
 
