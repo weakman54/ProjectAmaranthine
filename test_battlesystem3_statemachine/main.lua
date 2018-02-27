@@ -43,7 +43,7 @@ function love.load(arg)
   
   
   Gamestate.registerEvents()
-  Gamestate.switch(stateMenu)
+  Gamestate.switch(stateBattle)
   
 --  bgm = love.audio.play("assets/Immortal_Feeling.flac")
 end
