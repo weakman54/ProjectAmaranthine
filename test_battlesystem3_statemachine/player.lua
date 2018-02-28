@@ -94,10 +94,24 @@ function player:initializeStateMachine()
 
   function player.sm:ondodge_high()
     player.timer:after(player.dodgeDuration, function() player.sm:doidle() end)
+    if player.goodTiming then
+      player.hasGoodTiming = true -- THis is hack, should think about how to improve
+    end
   end
+  function player.sm:onleavedodge_high()
+    player.hasGoodTiming = false
+  end
+
 
   function player.sm:ondodge_low()
     player.timer:after(player.dodgeDuration, function() player.sm:doidle() end)
+    
+    if player.goodTiming then
+      player.hasGoodTiming = true  -- THis is hack, should think about how to improve
+    end
+  end
+  function player.sm:onleavedodge_low()
+    player.hasGoodTiming = false
   end
 
 
@@ -155,7 +169,14 @@ function player:initialize()
 
 
   self.maxhealth = 3
+
   self.maxSP = 10
+  self.SPBaseGuardDrainRate = 1 -- (point/s)
+  self.SPDrainFunction = function(accVal) return accVal*4 end -- Used to calculate SPDrain when guarding
+  -- Calculation is: base + f(acc)
+  self.SPDrainMax = 10
+
+
 
 
   self.ac = AC:new()
@@ -168,8 +189,8 @@ function player:initialize()
 --      print(eventName)
       Signal.emit(eventName, ...) 
     end)
-  
-  
+
+
   self:initializeStateMachine()
 
 
@@ -180,13 +201,15 @@ end
 
 function player:reset()
   self.timer:clear()
-  
+
   self.health = self.maxhealth
   self.dead = false
-  self.SP = self.maxSP
+
+  self.SP = self.maxSP/2
+  self.SPDrainAcc = 0
+--  self.SPCurrentDrainRate = 0
 
   self.offsetPos.x, self.offsetPos.y = 0, 0
-
 
   self.sm:doidle()
 end
@@ -194,11 +217,32 @@ end
 
 
 function player:receiveAttack()
+  if self.sm:is("dodge_high") or self.sm:is("dodge_low") then
+    local amtRegained = self.hasGoodTiming and 3 or 1
+    self.SP = math.min(self.SP + amtRegained, self.maxSP)
+  end
+
   self.sm:dohurt()
 end
 
 
+Signal.register("goodTiming", function(isGood) player.goodTiming = isGood end)
 
+
+
+
+function player:calculateSPDrain(dt)
+  if self.sm:is("guard") then
+    self.SPDrainAcc = math.min(self.SPDrainAcc + dt, self.SPDrainMax)
+
+    local curSPDrainRate = self.SPBaseGuardDrainRate + self.SPDrainFunction(self.SPDrainAcc)
+    self.SP = self.SP - curSPDrainRate * dt 
+
+  elseif self.SPDrainAcc > 0 then -- MAGIC NUMBER: minDrainAcc (should probably just be 0 though...)
+    self.SPDrainAcc = math.max(self.SPDrainAcc - self.SPBaseGuardDrainRate * dt, 0) -- TODO: introduce separate variables for this (including function?)
+
+  end
+end
 
 function player:update(dt)
   self.timer:update(dt)
@@ -206,6 +250,11 @@ function player:update(dt)
 
   if self.dead then Gamestate.switch(menuState) end
 
+  self:calculateSPDrain(dt)
+  
+  if self.sm:is("guard") and self.SP <= 0 then -- Is there an easy way to stop a transition from happening due to a condition?
+    self.sm:doidle()
+  end
 end
 
 function player:draw()

@@ -26,8 +26,8 @@ enemy = {
 
 
   windupWaitTime = 2,
-  timingWindowTime = 1,
-  timingWindowDuration = 0.5,
+  timingWindowTime = 0.75,
+  timingWindowDuration = 0.4,
 
   hurtDuration = 1,
 }
@@ -154,6 +154,7 @@ function enemy:initializeStateMachine()
   function self.sm:onleaveattack_windup(event, from, to)
     if to == "hurt" then return end
     enemy.goodTiming = false
+    Signal.emit("goodTiming", false)
   end
 
   function self.sm:onattack()
@@ -249,6 +250,7 @@ end
 function enemy.signalGoodTiming()
   -- TODO: animations
   enemy.goodTiming = true
+  Signal.emit("goodTiming", true)
 end
 
 
