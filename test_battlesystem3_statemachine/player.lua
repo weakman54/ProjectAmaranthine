@@ -74,12 +74,12 @@ function player:initializeStateMachine()
   self.sm = SM.create{
     initial = "idle",
     events = {
-      { name = "doidle"      , from = "*"              , to = "idle" },
-      { name = "doguard"     , from = {"idle", "guard"}, to = "guard" },
-      { name = "dododge_high", from = {"idle"}         , to = "dodge_high"},
-      { name = "dododge_low" , from = {"idle"}         , to = "dodge_low" },
-      { name = "doattack"    , from = {"idle"}         , to = "attack"},
-      { name = "dohurt"      , from = {"idle"}         , to = "hurt"}
+      { name = "doidle"      , from = "*"                                , to = "idle" },
+      { name = "doguard"     , from = {"idle", "guard"}                  , to = "guard" },
+      { name = "dododge_high", from = {"idle"}                           , to = "dodge_high"},
+      { name = "dododge_low" , from = {"idle"}                           , to = "dodge_low" },
+      { name = "doattack"    , from = {"idle"}                           , to = "attack"},
+      { name = "dohurt"      , from = {"idle", "dodge_high", "dodge_low"}, to = "hurt"}
     },
     callbacks = {
       onstatechange = function(self, event, from, to, ...) if self.owner.ac:has(to) then self.owner.ac:setAnimation(to) end end,
@@ -105,7 +105,7 @@ function player:initializeStateMachine()
 
   function player.sm:ondodge_low()
     player.timer:after(player.dodgeDuration, function() player.sm:doidle() end)
-    
+
     if player.goodTiming then
       player.hasGoodTiming = true  -- THis is hack, should think about how to improve
     end
@@ -216,13 +216,15 @@ end
 
 
 
-function player:receiveAttack()
-  if self.sm:is("dodge_high") or self.sm:is("dodge_low") then
+function player:receiveAttack(highlow)
+  if (self.sm:is("dodge_high") and highlow == "low") or
+  (self.sm:is("dodge_low")  and highlow == "high") then
     local amtRegained = self.hasGoodTiming and 3 or 1
     self.SP = math.min(self.SP + amtRegained, self.maxSP)
-  end
 
-  self.sm:dohurt()
+  else
+    self.sm:dohurt()
+  end
 end
 
 
@@ -251,7 +253,7 @@ function player:update(dt)
   if self.dead then Gamestate.switch(menuState) end
 
   self:calculateSPDrain(dt)
-  
+
   if self.sm:is("guard") and self.SP <= 0 then -- Is there an easy way to stop a transition from happening due to a condition?
     self.sm:doidle()
   end

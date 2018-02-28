@@ -12,6 +12,8 @@ enemy = {
   timer = Timer.new(),  
   ac = AC:new(),
 
+  highlow = "low",
+
   offsetPos = {x = 0, y = 0},
 
   maxhealth = 5,
@@ -51,29 +53,57 @@ function enemy:loadAnimations()
 
   anim = Animation:new()
 --  print(Animation, getmetatable(anim))
-  self.ac:addAnimation("attack_windup", anim)
+  self.ac:addAnimation("attack_windup_high", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-windup_0001.png"),
+    image = love.graphics.newImage("assets/enemy_attack-windup-high_0001.png"),
     duration = 0.2,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-windup_0002.png"),
+    image = love.graphics.newImage("assets/enemy_attack-windup-high_0002.png"),
     duration = 0.2,
   }
 
 
   anim = Animation:new()
-  self.ac:addAnimation("attack", anim)
+  self.ac:addAnimation("attack_low", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack_0001.png"),
+    image = love.graphics.newImage("assets/enemy_attack-low_0001.png"),
     duration = 0.4,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack_0002.png"),
+    image = love.graphics.newImage("assets/enemy_attack-low_0002.png"),
     duration = 0.4,
   }
+
+  anim = Animation:new()
+--  print(Animation, getmetatable(anim))
+  self.ac:addAnimation("attack_windup_low", anim)
+
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_attack-windup-low_0001.png"),
+    duration = 0.2,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_attack-windup-low_0002.png"),
+    duration = 0.2,
+  }
+
+
+
+  anim = Animation:new()
+  self.ac:addAnimation("attack_high", anim)
+
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_attack-high_0001.png"),
+    duration = 0.4,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_attack-high_0002.png"),
+    duration = 0.4,
+  }
+
 
 
   anim = Animation:new()
@@ -118,12 +148,22 @@ function enemy:initializeStateMachine()
       { name = "dohurt", from = {"attack_windup"}, to = "hurt"}
     },
     callbacks = {
-      onstatechange = function(self, event, from, to, ...) if self.owner.ac:has(to) then self.owner.ac:setAnimation(to) end end,
+      onstatechange = function(self, event, from, to, ...)
+        if self.owner.ac:has(to) then 
+          self.owner.ac:setAnimation(to) 
+
+        elseif self.owner.ac:has(to .. "_" .. self.owner.highlow) then
+          self.owner.ac:setAnimation(to .. "_" .. self.owner.highlow) -- HACK!
+        end
+      end,
     },
   }
 
   function self.sm:onidle(event, from, to, ...)
     enemy.timer:clear() -- THIS MIGHT BE BROKEN
+    
+    enemy.highlow = enemy.highlow == "low" and "high" or "low"
+
     enemy:setResetWindupWait()
   end
 
@@ -147,7 +187,8 @@ function enemy:initializeStateMachine()
 
 
 
-  function self.sm:onattack_windup()
+  function self.sm:onattack_windup(event, from, to, highlow)
+
     enemy.timer:after(enemy.timingWindowTime, enemy.signalGoodTiming)
     enemy.timer:after(enemy.timingWindowTime + enemy.timingWindowDuration, function() enemy.sm:doattack() end)
   end
@@ -158,10 +199,11 @@ function enemy:initializeStateMachine()
   end
 
   function self.sm:onattack()
-    player:receiveAttack()
+    player:receiveAttack(enemy.highlow)
   end
 
-  Signal.register("enemy_attack_looped", function() enemy.sm:doidle() end)
+  Signal.register("enemy_attack_low_looped", function() enemy.sm:doidle() end)
+  Signal.register("enemy_attack_high_looped", function() enemy.sm:doidle() end)
 
 
   function self.sm:onhurt()
