@@ -43,6 +43,8 @@ function GUIBar:update(dt)
   if self.target then
     self.current = self.target[self.targetValue]
   end
+  
+  self.current = math.max(self.min, math.min(self.current, self.max))
 end
 
 function GUIBar:loveDraw()
