@@ -40,11 +40,11 @@ function love.load(arg)
 
   enemy:initialize()
   player:initialize()
-  
-  
+
+
   Gamestate.registerEvents()
   Gamestate.switch(stateBattle)
-  
+
 --  bgm = love.audio.play("assets/Immortal_Feeling.flac")
 end
 
@@ -64,6 +64,9 @@ function love.keypressed(key)
 end
 
 
+function love.joystickadded(joystick)
+  player.joystick = joystick
+end
 
 
 

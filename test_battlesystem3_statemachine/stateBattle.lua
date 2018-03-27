@@ -27,10 +27,10 @@ end
 function stateBattle:enter()
   player:reset()
   enemy:reset()
-  
+
   GUIPlayerHealth:setTrackTarget(player, "health", 0, player.maxhealth)
   GUIPlayerSP:setTrackTarget(player, "SP", 0, player.maxSP)
-  
+
   GUIEnemyHealth:setTrackTarget(enemy, "health", 0, enemy.maxhealth)
 end
 
@@ -41,7 +41,7 @@ function stateBattle:update(dt)
 
   GUIPlayerHealth:update(dt)
   GUIPlayerSP:update(dt)
-  
+
   GUIEnemyHealth:update(dt)
 end
 
@@ -54,6 +54,11 @@ function stateBattle:draw()
   GUIPlayerHealth:loveDraw()
   GUIPlayerSP:loveDraw()
   GUIEnemyHealth:loveDraw()
+
+  if player.joystick then
+    love.graphics.setColor(255, 255, 255)
+    love.graphics.print(player.joystick:getAxis(1), 10, 10) -- HACK, joystick BSs
+  end
 end
 
 function stateBattle:keypressed(key)
@@ -62,6 +67,26 @@ end
 
 function stateBattle:keyreleased(key)
   player:keyreleased(key)
+end
+
+function stateBattle:gamepadpressed(joystick, button)
+  -- HACK, use proper input lib later!
+  if button == "a" then
+    player:keypressed("g")
+
+  elseif button == "x" then
+    player:keypressed("space")
+
+  end
+end
+
+function stateBattle:gamepadreleased(joystick, button)
+  if button == "a" then
+    player:keyreleased("g")
+
+  elseif button == "x" then
+    player:keyreleased("space")
+  end
 end
 
 

@@ -12,6 +12,10 @@ local stateDodging = require "stateDodging"
 player = {}
 
 
+
+
+
+
 function player:loadAnimations()
   local anim
 
@@ -284,10 +288,10 @@ end
 function player:keypressed(key, scancode, isrepeat)
 --  if key == "" then
   if key == "g" then
-    if love.keyboard.isDown("w") then
+    if love.keyboard.isDown("w") or player.joystick:getAxis(2) < -0.5 then -- HACK! Global joystick BS, use proper lib later
       self.sm:dododge_high()
 
-    elseif love.keyboard.isDown("s") then
+    elseif love.keyboard.isDown("s") or player.joystick:getAxis(2) > 0.5 then
       self.sm:dododge_low()
 
     else
