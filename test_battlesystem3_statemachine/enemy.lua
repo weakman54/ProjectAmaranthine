@@ -28,8 +28,8 @@ enemy = {
 
 
   windupWaitTime = 2,
-  timingWindowTime = 0.75,
-  timingWindowDuration = 0.4,
+  timingWindowTime = 0.4,
+  timingWindowDuration = 0.3,
 
   hurtDuration = 1,
 }
@@ -145,7 +145,7 @@ function enemy:initializeStateMachine()
       { name = "doguard", from = {"idle", "guard"}, to = "guard" },
       { name = "dowindup", from = {"idle", "hurt"}, to = "attack_windup"},
       { name = "doattack", from = {"attack_windup"}, to = "attack"},
-      { name = "dohurt", from = {"attack_windup"}, to = "hurt"}
+      { name = "dohurt", from = {"attack_windup", "attack"}, to = "hurt"} -- Again, is there a way to only switch if a specific condition is met?
     },
     callbacks = {
       onstatechange = function(self, event, from, to, ...)
@@ -161,7 +161,7 @@ function enemy:initializeStateMachine()
 
   function self.sm:onidle(event, from, to, ...)
     enemy.timer:clear() -- THIS MIGHT BE BROKEN
-    
+
     enemy.highlow = enemy.highlow == "low" and "high" or "low"
 
     enemy:setResetWindupWait()
@@ -189,12 +189,11 @@ function enemy:initializeStateMachine()
 
   function self.sm:onattack_windup(event, from, to, highlow)
 
-    enemy.timer:after(enemy.timingWindowTime, enemy.signalGoodTiming)
+    enemy.timer:after(enemy.timingWindowTime, function() Signal.emit("goodTiming", true) end)
     enemy.timer:after(enemy.timingWindowTime + enemy.timingWindowDuration, function() enemy.sm:doattack() end)
   end
   function self.sm:onleaveattack_windup(event, from, to)
     if to == "hurt" then return end
-    enemy.goodTiming = false
     Signal.emit("goodTiming", false)
   end
 
@@ -207,13 +206,11 @@ function enemy:initializeStateMachine()
 
 
   function self.sm:onhurt()
-    enemy.hurt = true
-
+    self.owner.ac:setAnimation("idle")
     local damageTaken = 1
     if enemy.goodTiming then
-      print("ASLKDJ")
       damageTaken = 3
-      enemy.goodTiming = false
+      Signal.emit("goodTiming", false)
     end
 
     enemy.health = enemy.health - damageTaken
@@ -222,19 +219,7 @@ function enemy:initializeStateMachine()
       enemy.dead = true
     end
 
-
-    love.audio.play("assets/hurt.wav")
-
-
-    enemy.timer:clear()
-    enemy.timer:after(enemy.hurtDuration, function() enemy.sm:doidle() end)
-
-    enemy.timer:tween(enemy.knockbackDuration, enemy, {offsetPos = {x = enemy.knockbackDist, y = 0}}, "out-expo")
-
-    enemy.timer:during(enemy.shakeDuration, function()
-        enemy.offsetPos.x = enemy.offsetPos.x + math.random(-enemy.shakeIntensity, enemy.shakeIntensity)
-        enemy.offsetPos.y = enemy.offsetPos.y + math.random(-enemy.shakeIntensity, enemy.shakeIntensity)
-      end)
+    enemy:hurtFeedback()
   end
   function self.sm:onleavehurt()
     enemy.hurt = false
@@ -250,6 +235,8 @@ function enemy:reset()
 
   self.health = self.maxhealth
   self.dead = false
+  self.hurt = false
+
   self.offsetPos.x, self.offsetPos.y = 0, 0
 
   self.sm:doidle()
@@ -264,6 +251,25 @@ function enemy:initialize()
 end
 --
 
+
+
+function enemy:hurtFeedback()
+  love.audio.play("assets/hurt.wav")
+
+  enemy.hurt = true
+
+  enemy.timer:clear()
+  enemy.timer:after(enemy.hurtDuration, function() 
+      enemy.sm:doidle() 
+    end)
+
+  enemy.timer:tween(enemy.knockbackDuration, enemy, {offsetPos = {x = enemy.knockbackDist, y = 0}}, "out-expo")
+
+  enemy.timer:during(enemy.shakeDuration, function()
+      enemy.offsetPos.x = enemy.offsetPos.x + math.random(-enemy.shakeIntensity, enemy.shakeIntensity)
+      enemy.offsetPos.y = enemy.offsetPos.y + math.random(-enemy.shakeIntensity, enemy.shakeIntensity)
+    end)
+end
 
 
 
@@ -288,29 +294,30 @@ end
 
 
 
-
-function enemy.signalGoodTiming()
-  -- TODO: animations
-  enemy.goodTiming = true
-  Signal.emit("goodTiming", true)
-end
+Signal.register("goodTiming", function(value)
+    -- TODO: animations
+    enemy.goodTiming = value 
+  end)
 
 
-function enemy:receiveAttack()
+function enemy:receiveAttack(info)
   if self.sm:can("doguard") then
     self.sm:doguard()
   elseif self.sm:can("dohurt") then
     self.sm:dohurt()
   end
-end
 
+  if info and info.thing == "fromDodge" then
+    self.hurt = true
+  end
+end
 
 
 function enemy:update(dt)
   self.timer:update(dt)
   self.ac:update(dt)
 
-  if self.dead then Gamestate.switch(menuState) end
+  if self.dead then Gamestate.switch(menuState, {won=true}) end
 end
 
 

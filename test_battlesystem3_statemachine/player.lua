@@ -5,8 +5,8 @@ local AC = require "animationCollection"
 local SM = require "statemachine.statemachine"
 
 
-local menuState = require "stateMenu" -- TODO: make sure statechanges are better implemented
-
+local stateMenu    = require "stateMenu" -- TODO: make sure statechanges are better implemented
+local stateDodging = require "stateDodging"
 
 
 player = {}
@@ -29,7 +29,7 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player_dodge-high_0001.png"),
-    duration = 0.4,
+    duration = 0.4, -- NOTE: this is currently controlled by dodgeDuration
   }
 
 
@@ -38,7 +38,7 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player_dodge-low_0001.png"),
-    duration = 0.4,
+    duration = 0.4,-- NOTE: this is currently controlled by dodgeDuration
   }
 
 
@@ -128,7 +128,7 @@ function player:initializeStateMachine()
     love.audio.play("assets/hurt.wav")
 
 
-    player.timer:after(player.hurtDuration, function()player.sm:doidle() end)
+    player.timer:after(player.hurtDuration, function() player.sm:doidle() end)
 
     player.timer:tween(player.knockbackDuration, player, {offsetPos = {x = player.knockbackDist, y = 0}}, "out-expo")
 
@@ -155,7 +155,7 @@ function player:initialize()
   self.timer = Timer.new()
 
   self.attackDuration = 0.5
-  self.dodgeDuration = 1
+  self.dodgeDuration = 0.6
 
   self.hurtDuration = 1
 
@@ -204,6 +204,7 @@ function player:reset()
 
   self.health = self.maxhealth
   self.dead = false
+  self.hurt = false
 
   self.SP = self.maxSP/2
   self.SPDrainAcc = 0
@@ -221,7 +222,11 @@ function player:receiveAttack(highlow)
   (self.sm:is("dodge_low")  and highlow == "high") then
     local amtRegained = self.hasGoodTiming and 3 or 1
     self.SP = math.min(self.SP + amtRegained, self.maxSP)
-
+    
+--    Signal.emit("dodgeAttack", self.hasGoodTiming)
+    
+    Gamestate.push(stateDodging, self.hasGoodTiming)
+    
   else
     self.sm:dohurt()
   end
@@ -250,7 +255,7 @@ function player:update(dt)
   self.timer:update(dt)
   self.ac:update(dt)
 
-  if self.dead then Gamestate.switch(menuState) end
+  if self.dead then Gamestate.switch(stateMenu, {won=false}) end
 
   self:calculateSPDrain(dt)
 
@@ -259,7 +264,7 @@ function player:update(dt)
   end
 end
 
-function player:draw()
+function player:draw()  
   if self.hurt then 
     love.graphics.setColor(255, 000, 000)
   end
