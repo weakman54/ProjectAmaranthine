@@ -22,10 +22,12 @@ function SM:update(dt)
 end
 
 
-function SM:add(name, state)
+function SM:add(name, state)  
   state.parent = self
   state.owner = self.owner
   self.states[name] = state
+  
+  state.canSwitch = function() return true end -- This is a bit of a hack, but works, so eh
   
   if self.curState == nil then
     self:switch(name)
@@ -34,7 +36,9 @@ end
 
 
 function SM:switch(to)
-  if self.states[to] then
+  local target = self.states[to]
+  assert(target, "State not implemented!") -- debug for now
+  if target and target.canSwitch() then
 
     self.curState = self.states[to]
     self.curState:enter()
