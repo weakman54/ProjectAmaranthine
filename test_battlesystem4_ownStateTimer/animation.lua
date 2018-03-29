@@ -146,6 +146,18 @@ function Animation:importFrame(frame)
 end
 
 
+-- NOTE: pretty untested right now!
+function Animation:duration()
+  local ret = 0
+  
+  for _, frame in ipairs(self._frames) do
+    ret = ret + frame.duration
+  end
+  
+  return ret
+end
+
+
 function Animation:loveDraw(...)
   love.graphics.draw(self:_getCurImage(), ...)
 end
