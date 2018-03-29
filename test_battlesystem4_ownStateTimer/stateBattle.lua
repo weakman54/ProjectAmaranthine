@@ -1,5 +1,6 @@
 
 require "player"
+require "enemy"
 
 local vec = require "hump.vector" -- TODO: replace with own lib
 
@@ -28,34 +29,37 @@ end
 
 function stateBattle:enter()
   player:reset()
-----  enemy:reset()
+  enemy:reset()
 
   GUIPlayerHealth:setTrackTarget(player, "health", 0, player.maxhealth)
   GUIPlayerSP:setTrackTarget(player, "SP", 0, player.maxSP)
 
---  GUIEnemyHealth:setTrackTarget(enemy, "health", 0, enemy.maxhealth)
+  GUIEnemyHealth:setTrackTarget(enemy, "health", 0, enemy.maxhealth)
 end
 
 
 function stateBattle:update(dt)
   player:update(dt)
---  enemy:update(dt)
+  enemy:update(dt)
 
   GUIPlayerHealth:update(dt)
   GUIPlayerSP:update(dt)
 
---  GUIEnemyHealth:update(dt)
+  GUIEnemyHealth:update(dt)
 end
 
 function stateBattle:draw()
   love.graphics.draw(background, nil, nil, nil, nil, nil, 250, 250)
 
---  enemy:draw (nil, nil, nil, nil, nil, 250, 250)
+
+  enemy:draw (nil, nil, nil, nil, nil, 250, 250)
   player:draw(nil, nil, nil, nil, nil, 250, 250)
+
 
   GUIPlayerHealth:loveDraw()
   GUIPlayerSP:loveDraw()
---  GUIEnemyHealth:loveDraw()
+  
+  GUIEnemyHealth:loveDraw()
 end
 
 

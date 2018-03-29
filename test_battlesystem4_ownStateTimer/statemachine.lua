@@ -39,6 +39,10 @@ function SM:switch(to)
   local target = self.states[to]
   assert(target, "State not implemented!") -- debug for now
   if target and target.canSwitch() then
+    
+    if self.curState and self.curState.exit then
+      self.curState:exit()
+    end
 
     self.curState = self.states[to]
     self.curState:enter()

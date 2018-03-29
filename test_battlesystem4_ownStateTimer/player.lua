@@ -8,6 +8,8 @@ local Timer = require "timer"
 
 player = {}
 
+
+
 function player:loadAnimations()
   local anim
 
@@ -67,15 +69,32 @@ end
 
 function player:initSM()
   self.sm = SM:new()
-
-  local sm = self.sm -- NOTE: Closure
-  sm.owner = self
   
-  local ac = self.ac -- NOTE: Closure, might be good, might not..
+  local sm = self.sm -- NOTE: Closure, might be good, might not..
+  local ac = self.ac -- NOTE: Closure
 
   sm:add("idle", {
-      enter = function(self) ac:setAnimation("idle") end, -- ok, these are technically the closures
-      update = function(self, dt) if input:pressed("attack") then sm:switch("attack") end end,
+      enter = function(self)  -- ok, these are technically the closures
+        ac:setAnimation("idle") 
+      end,
+
+      update = function(self, dt) 
+        if input:pressed("attack") then sm:switch("attack") end
+        
+        if input:pressed("guard") then 
+          if input:down("up") then
+            sm:switch("dodge_high")
+            
+          elseif input:down("down") then
+            sm:switch("dodge_low")
+            
+          else
+            sm:switch("guard") 
+            
+          end
+        end
+        
+      end,
     })
 
   sm:add("attack", {      
@@ -83,9 +102,53 @@ function player:initSM()
         ac:setAnimation("attack")
         self.timer = Timer:new()
       end,
+
       update = function(self, dt)
         self.timer:update(dt)
         if self.timer:reached(player.attackDuration) then
+          sm:switch("idle") -- Closed var
+        end
+      end,
+    })
+
+  sm:add("guard", {
+      canSwitch = function() return player.SP > 0 end,
+
+      enter = function(self)
+        ac:setAnimation("guard")
+      end,
+
+      update = function(self, dt)
+        player.SP = math.max(player.SP - 1 * dt, 0) -- Magic number 0, minSP, should probably be 0 though
+
+        if not input:down("guard") or player.SP <= 0 then sm:switch("idle") end
+      end,
+    })
+  
+  
+  sm:add("dodge_high", {      
+      enter = function(self) 
+        ac:setAnimation("dodge_high")
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+        if self.timer:reached(player.dodgeDuration) then
+          sm:switch("idle") -- Closed var
+        end
+      end,
+    })
+  
+  sm:add("dodge_low", {      
+      enter = function(self) 
+        ac:setAnimation("dodge_low")
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+        if self.timer:reached(player.dodgeDuration) then
           sm:switch("idle") -- Closed var
         end
       end,
@@ -95,7 +158,7 @@ end
 
 function player:initialize()
   self.attackDuration = 0.5
---  self.dodgeDuration = 0.6
+  self.dodgeDuration = 0.6
 
 --  self.hurtDuration = 1
 
@@ -160,3 +223,16 @@ end
 function player:draw()
   self.ac:loveDraw(nil, nil, nil, nil, nil, 250 - self.offsetPos.x, 250 - self.offsetPos.y)
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
