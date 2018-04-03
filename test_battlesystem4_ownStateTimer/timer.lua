@@ -25,5 +25,9 @@ function Timer:reached(time)
   return self.acc >= time
 end
 
+function Timer:reset()
+  self.acc = 0
+end
+
 
 return Timer
