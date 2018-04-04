@@ -14,7 +14,7 @@ function enemy:loadAnimations()
   local anim
 
   anim = Animation:new()
-  
+
   self.ac:addAnimation("attack_windup_high", anim)
 
   anim:importFrame{
@@ -40,7 +40,7 @@ function enemy:loadAnimations()
   }
 
   anim = Animation:new()
-  
+
   self.ac:addAnimation("attack_windup_low", anim)
 
   anim:importFrame{
@@ -124,6 +124,20 @@ function enemy:loadAnimations()
     image = love.graphics.newImage("assets/enemy_idle-low_0002.png"),
     duration = 0.4,
   }
+
+
+  anim = Animation:new()
+  self.ac:addAnimation("hurt", anim)
+
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_hurt_0001.png"),
+    duration = 0.4,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_hurt_0002.png"),
+    duration = 0.4,
+  }
+
 end
 --
 
@@ -232,7 +246,7 @@ function enemy:initSM()
 
   sm:add("hurt", {
       enter = function(self)  -- ok, these are technically the closures
-        ac:setAnimation("idle_" .. enemy.stance)
+        ac:setAnimation("hurt")
         self.timer = Timer:new()
       end,
 
@@ -332,18 +346,15 @@ end
 
 
 function enemy:draw()
-  if self.sm:is("hurt") then
-    love.graphics.setColor(255, 000, 000)
-  else
-    love.graphics.setColor(255, 255, 255)
-  end
+  love.graphics.setColor(255, 255, 255)
 
+  self.ac:loveDraw(nil, nil, nil, nil, nil, 200 - self.offsetPos.x, 200 - self.offsetPos.y)
 
-  self.ac:loveDraw(nil, nil, nil, nil, nil, 250 - self.offsetPos.x, 250 - self.offsetPos.y)
 
   if self.goodTiming then
     love.graphics.circle("fill", 1000, 500, 100)
   end
+
 
   love.graphics.setColor(000, 000, 000)
   love.graphics.print(self.stance, 1500, 500)
