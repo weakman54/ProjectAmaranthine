@@ -94,6 +94,18 @@ function player:loadAnimations()
     image = love.graphics.newImage("assets/player/player_idle-low_0002.png"),
     duration = 0.4,
   }
+  
+  anim = Animation:new()
+  self.ac:addAnimation("hurt", anim)
+
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player/player_hurt_0001.png"),
+    duration = 0.4,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player/player_hurt_0002.png"),
+    duration = 0.4,
+  }
 end
 --
 
@@ -160,7 +172,7 @@ function player:initSM()
 
 
   sm:add("guard", {
-      canSwitch = function() print(player.SP) return player.SP > 0 end,
+      canSwitch = function() return player.SP > 0 end,
 
       enter = function(self)
         ac:setAnimation("guard")
@@ -230,7 +242,7 @@ function player:initSM()
 
   sm:add("hurt", {      
       enter = function(self) 
-        ac:setAnimation("idle_" .. player.stance)
+        ac:setAnimation("hurt")
 
         self.timer = Timer:new()
       end,
@@ -338,8 +350,7 @@ end
 
 
 function player:update(dt)
-
---   Update this per state instead, more clutter, but also more clear?
+--   Update this per state instead?, more clutter, but also more clear?
   if input:down("up") then
     self.stance = "high"
 
@@ -355,12 +366,7 @@ end
 
 
 function player:draw()
-  if self.sm:is("hurt") then
-    love.graphics.setColor(255, 000, 000)
-  else
-    love.graphics.setColor(255, 255, 255)
-  end
-
+  love.graphics.setColor(255, 255, 255)
   self.ac:loveDraw(nil, nil, nil, nil, nil, 200 - self.offsetPos.x, 200 - self.offsetPos.y)
 
   love.graphics.setColor(000, 000, 000)
