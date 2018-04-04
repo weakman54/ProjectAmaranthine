@@ -166,6 +166,8 @@ function enemy:initSM()
         end
       end,
     })
+  --
+
 
   sm:add("attack_windup", {
       enter = function(self)  -- ok, these are technically the closures
@@ -188,6 +190,7 @@ function enemy:initSM()
 
       exit = function(self) enemy.goodTiming = false end
     })
+  --
 
   sm:add("attack", {
       enter = function(self)  -- ok, these are technically the closures
@@ -206,11 +209,12 @@ function enemy:initSM()
         end
       end,
     })
+  --
 
 
   sm:add("parried", {
       enter = function(self)  -- ok, these are technically the closures
-        ac:setAnimation("attack_" .. enemy.stance, false)
+--        ac:setAnimation("attack_" .. enemy.stance, false)
         ac.curAnim:pause() -- NOTE: should probably implement "proxy" functions in AC
 
         -- NOTE Leaving this here to fix later, but for now I'm going with what works
@@ -227,6 +231,28 @@ function enemy:initSM()
         end
       end,
     })
+  --
+
+  sm:add("dodged", {
+      enter = function(self)  -- ok, these are technically the closures
+--        ac:setAnimation("attack_" .. enemy.stance, false)
+        ac.curAnim:pause() -- NOTE: should probably implement "proxy" functions in AC
+
+        -- NOTE Leaving this here to fix later, but for now I'm going with what works
+--        if not enemy.parriedTimer then enemy.parriedTimer = Timer:new() end
+--        enemy.parriedTimer:reset()
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if self.timer:reached(player.dodgeDuration) then -- HACK: is dependent on players dodgeDuration, should be decoupled
+          sm:switch("idle")
+        end
+      end,
+    })
+  --
 
 
   sm:add("guard", {
@@ -243,6 +269,7 @@ function enemy:initSM()
         end
       end,
     })
+  --
 
   sm:add("hurt", {
       enter = function(self)  -- ok, these are technically the closures
@@ -258,6 +285,8 @@ function enemy:initSM()
         end
       end,
     })
+  --
+
 end
 --
 
@@ -265,7 +294,7 @@ end
 function enemy:initialize()
   self.offsetPos = {x = 0, y = 0}
 
-  self.maxhealth = 3
+  self.maxhealth = 10
 
   self.stance = "low"
 
@@ -309,7 +338,15 @@ end
 
 
 function enemy:receiveAttack(playerStance)
-  -- Needs looking at, but eh
+  -- TODO: !! Needs looking over...
+
+  -- This is kindof hardcoded, but atm just want it to work xD
+  if playerStance == "dodge" then
+    self.health = self.health - 2 -- TODO: put damage dealing in more proper place (where?)
+
+    self.sm:switch("hurt")
+    return
+  end
 
   local doGuard = self.sm:is("idle")
   if doGuard then
@@ -320,20 +357,33 @@ function enemy:receiveAttack(playerStance)
 
   if self.sm:is("guard") then
     self.guardTimer:reset()
+    --return -- Should not return here, needs to check stances below (did I not fix this already??)
+  end
+
+  if self.sm:is("parried") then
+    self.health = self.health - 2 -- TODO: put damage dealing in more proper place (where?)
+
+    self.sm:switch("hurt")
     return
   end
 
 
+  if self.sm:is("hurt") then return end
+  if self.sm:is("attack_windup") then return end
+  if self.stance == playerStance then return end
+
   -- TEST PROPERLY:
-  local doHurt = false or -- Align OCD BS
+  local doHurt = true and -- Align OCD BS
+  not self.sm:is("hurt") or
+  self.sm:is("dodged") or
   (self.stance == "high" and playerStance == "low") or
   (self.stance == "low" and playerStance == "high") or
-  self.sm:is("attack_windup") or 
+--  self.sm:is("attack_windup") or 
   self.sm:is("parried")
 
 
-  if doHurt then
-    self.health = self.health - 2
+  if doHurt then    
+    self.health = self.health - 2 -- TODO: put damage dealing in more proper place (where?)
 
     self.sm:switch("hurt")
     return

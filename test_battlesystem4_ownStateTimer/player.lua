@@ -9,6 +9,9 @@ local Timer = require "timer"
 player = {}
 
 
+perfectHackCircle = false
+
+
 
 function player:loadAnimations()
   local anim
@@ -94,7 +97,8 @@ function player:loadAnimations()
     image = love.graphics.newImage("assets/player/player_idle-low_0002.png"),
     duration = 0.4,
   }
-  
+
+
   anim = Animation:new()
   self.ac:addAnimation("hurt", anim)
 
@@ -104,6 +108,19 @@ function player:loadAnimations()
   }
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_hurt_0002.png"),
+    duration = 0.4,
+  }
+
+
+  anim = Animation:new()
+  self.ac:addAnimation("heal", anim)
+
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player/player_heal_0001.png"),
+    duration = 0.4,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/player/player_heal_0002.png"),
     duration = 0.4,
   }
 end
@@ -128,25 +145,25 @@ function player:initSM()
         elseif input:down("down") then
           self.stance = "low"
 
-      end
-      
+        end
+
         ac:setAnimation("idle_" .. player.stance)
         -- ^^^^^^^
-
-
 
         if input:pressed("attack") then 
           sm:switch("attack")
         end
 
-
         if input:pressed("dodge") then 
           sm:switch("dodge")
         end
 
-
         if input:pressed("guard") then
           sm:switch("guard") 
+        end
+
+        if input:pressed("heal") then
+          sm:switch("heal") 
         end
       end,
     })
@@ -232,11 +249,48 @@ function player:initSM()
 
       update = function(self, dt)
         player.dodgeTimer:update(dt)
+
         if player.dodgeTimer:reached(player.dodgeDuration) then
-          player.dodgeTimer:reset() -- Mostly needed for proper debug output
+          -- NOTE: do not reset timer here, need it for dodging state atm
           sm:switch("idle") -- Closed var
         end
       end,
+    })
+--
+
+  sm:add("dodging", {
+      enter = function(self)
+        ac:setAnimation("dodge_" .. player.stance)
+
+        hackground = true
+
+        if player.dodgeTimer._acc <= player.perfectDodgeTreshold then -- HACK: using internal Timer state
+          perfectHackCircle = true
+        end
+
+      end,
+
+      update = function(self, dt)
+        player.dodgeTimer:update(dt)  -- ASSUMPTION: came in from dodge state, and has dodgeTimer!
+
+        if player.dodgeTimer:reached(player.dodgeDuration) then
+          sm:switch("idle")
+        end
+
+        if input:pressed("attack") then
+          if perfectHackCircle then
+            -- Do dodge attack animation
+            enemy:receiveAttack("dodge")
+          else
+            sm:switch("attack")
+          end
+        end
+      end,
+
+      exit = function()
+        hackground = false 
+        perfectHackCircle = false
+      end
     })
 --
 
@@ -256,6 +310,25 @@ function player:initSM()
       end,
     })
 --
+
+  sm:add("heal", {
+      canSwitch = function() return player.health < player.maxhealth end,
+
+      enter = function(self)
+        ac:setAnimation("heal")
+      end,
+
+      update = function(self, dt)
+        player.health = math.min(player.health + 1 * dt, player.maxhealth)
+
+        if not input:down("heal") or player.health >= player.maxhealth then 
+          sm:switch("idle")
+        end
+      end,
+    })
+--
+
+
 end
 --
 
@@ -265,7 +338,7 @@ function player:initialize()
   self.attackDuration = 0.5
 
   self.dodgeTimer = Timer:new()
-  self.perfectDodgeTreshold = 0.3
+  self.perfectDodgeTreshold = 0.2
   self.dodgeDuration = 0.6
 
   self.hurtDuration = 1
@@ -273,12 +346,12 @@ function player:initialize()
   self.offsetPos = {x = 0, y = 0}
 
   self.guardTimer = Timer:new() 
-  self.parryTreshold = 0.2 -- seconds
+  self.parryTreshold = 0.1 -- seconds
   self.parryDuration = 0.8 -- seconds
 
 
 
-  self.maxhealth = 3
+  self.maxhealth = 10
 
   self.maxSP = 10
 
@@ -313,19 +386,12 @@ end
 
 function player:receiveAttack(enemyStance)
   if self.sm:is("dodge") then
-    if false or -- Align OCD BS
+    if true and -- Align OCD BS
     (self.stance == "high" and enemyStance == "low") or
     (self.stance == "low" and enemyStance == "high") then
 
-      local amtRegained
-
-      if self.dodgeTimer._acc <= self.perfectDodgeTreshold then -- HACK, using internal value of timer, should implement properly 
-        amtRegained = 3
-      else
-        amtRegained = 1
-      end
-
-      self.SP = math.min(self.SP + amtRegained, self.maxSP)
+      self.sm:switch("dodging")
+      enemy.sm:switch("dodged")
 
       return
     end
@@ -371,6 +437,11 @@ function player:draw()
 
   love.graphics.setColor(000, 000, 000)
   love.graphics.print(self.stance, 200, 200)
+
+  if perfectHackCircle then
+    love.graphics.setColor(255, 000, 000)
+    love.graphics.circle("fill", 1000, 500, 50)
+  end
 end
 
 
