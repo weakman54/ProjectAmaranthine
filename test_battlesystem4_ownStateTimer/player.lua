@@ -78,11 +78,11 @@ function player:loadAnimations()
   self.ac:addAnimation("idle_high", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_idle-high_0001.png"),
+    image = love.graphics.newImage("assets/player/player_idle-high_0001.png"),
     duration = 0.4,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_idle-high_0002.png"),
+    image = love.graphics.newImage("assets/player/player_idle-high_0002.png"),
     duration = 0.4,
   }
 
@@ -90,11 +90,11 @@ function player:loadAnimations()
   self.ac:addAnimation("idle_low", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_idle-low_0001.png"),
+    image = love.graphics.newImage("assets/player/player_idle-low_0001.png"),
     duration = 0.4,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_idle-low_0002.png"),
+    image = love.graphics.newImage("assets/player/player_idle-low_0002.png"),
     duration = 0.4,
   }
 end
