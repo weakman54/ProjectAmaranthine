@@ -14,7 +14,7 @@ function enemy:loadAnimations()
   local anim
 
   anim = Animation:new()
---  print(Animation, getmetatable(anim))
+  
   self.ac:addAnimation("attack_windup_high", anim)
 
   anim:importFrame{
@@ -40,7 +40,7 @@ function enemy:loadAnimations()
   }
 
   anim = Animation:new()
---  print(Animation, getmetatable(anim))
+  
   self.ac:addAnimation("attack_windup_low", anim)
 
   anim:importFrame{
@@ -65,16 +65,6 @@ function enemy:loadAnimations()
     image = love.graphics.newImage("assets/enemy_attack-high_0002.png"),
     duration = 0.4,
   }
-
-
--- NOTE: Keeping this here just in case
---  anim = Animation:new()
---  self.ac:addAnimation("parry", anim)
-
---  anim:importFrame{
---    image = love.graphics.newImage("assets/enemy_parry_0001.png"),
---    duration = 0.4,
---  }
 
 
   anim = Animation:new()
@@ -239,21 +229,6 @@ function enemy:initSM()
         end
       end,
     })
-
---  sm:add("guard_low", {
---      enter = function(self)  -- ok, these are technically the closures
---        ac:setAnimation("guard_low")
---        enemy.guardTimer = Timer:new()
---      end,
-
---      update = function(self, dt)
---        enemy.guardTimer:update(dt)
-
---        if enemy.guardTimer:reached(enemy.guardDuration) then
---          sm:switch("idle")
---        end
---      end,
---    })  
 
   sm:add("hurt", {
       enter = function(self)  -- ok, these are technically the closures

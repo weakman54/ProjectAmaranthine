@@ -8,9 +8,6 @@ local Timer = require "timer"
 
 player = {}
 
-dbg_perfectDodge = false
-dbg_parryTiming = false
-
 
 
 function player:loadAnimations()
@@ -64,7 +61,7 @@ function player:loadAnimations()
     duration = 0.4,
   }
 
-  
+
   anim = Animation:new()
   self.ac:addAnimation("parry", anim)
 
@@ -112,47 +109,33 @@ function player:initSM()
       end,
 
       update = function(self, dt)
-
-        -- HACK vvvv
+        -- HACK vvvvvvvv
         if input:down("up") then
           self.stance = "high"
-          ac:setAnimation("idle_" .. player.stance)
 
         elseif input:down("down") then
           self.stance = "low"
-          ac:setAnimation("idle_" .. player.stance)
-          
-        end
-     -- ^^^^^^^
+
+      end
+      
+        ac:setAnimation("idle_" .. player.stance)
+        -- ^^^^^^^
 
 
 
         if input:pressed("attack") then 
           sm:switch("attack")
---          if input:down("up") then
---            sm:switch("attack_high")
-
---          elseif input:down("down") then
---            sm:switch("attack_low")
-
         end
 
 
         if input:pressed("dodge") then 
           sm:switch("dodge")
---          if input:down("up") then
---            sm:switch("dodge_high")
-
---          elseif input:down("down") then
---            sm:switch("dodge_low")
         end
 
 
         if input:pressed("guard") then
           sm:switch("guard") 
-
         end
-
       end,
     })
 --
@@ -175,26 +158,9 @@ function player:initSM()
     })
 --
 
---  sm:add("attack_low", {      
---      enter = function(self) 
---        ac:setAnimation("attack_low")
---        self.timer = Timer:new()
-
---        enemy:receiveAttack("low")
---      end,
-
---      update = function(self, dt)
---        self.timer:update(dt)
---        if self.timer:reached(player.attackDuration) then
---          sm:switch("idle") -- Closed var
---        end
---      end,
---    })
---
-
 
   sm:add("guard", {
-      canSwitch = function() return player.SP > 0 end,
+      canSwitch = function() print(player.SP) return player.SP > 0 end,
 
       enter = function(self)
         ac:setAnimation("guard")
@@ -262,22 +228,6 @@ function player:initSM()
     })
 --
 
---  sm:add("dodge_low", {      
---      enter = function(self) 
---        ac:setAnimation("dodge_low")
---        self.timer = Timer:new()
---      end,
-
---      update = function(self, dt)
---        self.timer:update(dt)
---        if self.timer:reached(player.dodgeDuration) then
---          sm:switch("idle") -- Closed var
---        end
---      end,
---    })
---
-
-
   sm:add("hurt", {      
       enter = function(self) 
         ac:setAnimation("idle_" .. player.stance)
@@ -338,12 +288,12 @@ end
 
 function player:reset()
   self.health = self.maxhealth
-  
+
   self.SP = self.maxSP/2
   self.SPDrainAcc = 0
 
   self.offsetPos.x, self.offsetPos.y = 0, 0
-  
+
   self.sm:switch("idle")
 end
 --
@@ -388,7 +338,7 @@ end
 
 
 function player:update(dt)
-  
+
 --   Update this per state instead, more clutter, but also more clear?
   if input:down("up") then
     self.stance = "high"
