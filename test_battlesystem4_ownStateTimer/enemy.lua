@@ -320,9 +320,11 @@ function enemy:receiveAttack(playerStance)
 
   if self.sm:is("guard") then
     self.guardTimer:reset()
+    return
   end
 
 
+  -- TEST PROPERLY:
   local doHurt = false or -- Align OCD BS
   (self.stance == "high" and playerStance == "low") or
   (self.stance == "low" and playerStance == "high") or
