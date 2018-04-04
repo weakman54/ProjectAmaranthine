@@ -56,8 +56,8 @@ function stateBattle:draw()
   end
 
 
-  enemy:draw (nil, nil, nil, nil, nil, 250, 250)
-  player:draw(nil, nil, nil, nil, nil, 250, 250)
+  enemy:draw ()
+  player:draw()
 
 
   GUIPlayerHealth:loveDraw()
