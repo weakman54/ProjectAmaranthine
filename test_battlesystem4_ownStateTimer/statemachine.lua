@@ -28,7 +28,9 @@ function SM:add(name, state)
   self.states[name] = state
   state.name = name
   
-  state.canSwitch = function() return true end -- This is a bit of a hack, but works, so eh
+  if not state.canSwitch then
+    state.canSwitch = function() return true end -- This is a bit of a hack, but works, so eh
+  end
   
   if self.curState == nil then
     self:switch(name)
