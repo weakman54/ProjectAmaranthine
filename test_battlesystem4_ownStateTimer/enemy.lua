@@ -67,20 +67,46 @@ function enemy:loadAnimations()
   }
 
 
+-- NOTE: Keeping this here just in case
+--  anim = Animation:new()
+--  self.ac:addAnimation("parry", anim)
+
+--  anim:importFrame{
+--    image = love.graphics.newImage("assets/enemy_parry_0001.png"),
+--    duration = 0.4,
+--  }
+
 
   anim = Animation:new()
-  self.ac:addAnimation("guard", anim)
+  self.ac:addAnimation("guard_high", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_guard_0001.png"),
+    image = love.graphics.newImage("assets/enemy_guard-high_0001.png"),
     duration = 0.4,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_guard_0002.png"),
+    image = love.graphics.newImage("assets/enemy_guard-high_0002.png"),
     duration = 0.4,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_guard_0003.png"),
+    image = love.graphics.newImage("assets/enemy_guard-high_0003.png"),
+    duration = 0.4,
+  }
+
+
+  anim = Animation:new()
+  self.ac:addAnimation("guard_low", anim)
+
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_guard-low_0001.png"),
+    duration = 0.4,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_guard-low_0002.png"),
+    duration = 0.4,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_guard-low_0003.png"),
     duration = 0.4,
   }
 
@@ -99,7 +125,6 @@ function enemy:loadAnimations()
 end
 --
 
-
 function enemy:initSM()
   self.sm = SM:new()
 
@@ -110,7 +135,7 @@ function enemy:initSM()
       enter = function(self)  -- ok, these are technically the closures
         ac:setAnimation("idle")
 
-        enemy.highlow = enemy.highlow == "low" and "high" or "low"
+        enemy.stance = enemy.stance == "low" and "high" or "low"
 
         self.timer = Timer:new()
       end,
@@ -126,7 +151,7 @@ function enemy:initSM()
 
   sm:add("attack_windup", {
       enter = function(self)  -- ok, these are technically the closures
-        ac:setAnimation("attack_windup_" .. enemy.highlow)
+        ac:setAnimation("attack_windup_" .. enemy.stance)
 
         self.timer = Timer:new()
       end,
@@ -136,19 +161,21 @@ function enemy:initSM()
 
         if self.timer:reached(enemy.windupDuration) then
           sm:switch("attack")
-          
+
         elseif self.timer:reached(enemy.timingWindowTime) then
           enemy.goodTiming = true
-        
+
         end
       end,
-      
+
       exit = function(self) enemy.goodTiming = false end
     })
 
   sm:add("attack", {
       enter = function(self)  -- ok, these are technically the closures
-        ac:setAnimation("attack_" .. enemy.highlow, false)
+        ac:setAnimation("attack_" .. enemy.stance, false)
+
+        player:receiveAttack(enemy.stance)
 
         self.timer = Timer:new()
       end,
@@ -157,6 +184,73 @@ function enemy:initSM()
         self.timer:update(dt)
 
         if self.timer:reached(enemy.attackDuration) then
+          sm:switch("idle")
+        end
+      end,
+    })
+  
+  
+  sm:add("parried", {
+      enter = function(self)  -- ok, these are technically the closures
+        ac:setAnimation("attack_" .. enemy.stance, false)
+        ac.curAnim:pause() -- NOTE: should probably implement "proxy" functions in AC
+    
+    -- NOTE Leaving this here to fix later, but for now I'm going with what works
+--        if not enemy.parriedTimer then enemy.parriedTimer = Timer:new() end
+--        enemy.parriedTimer:reset()
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if self.timer:reached(player.parryDuration) then -- HACK: is dependent on players parryDuration, should be decoupled
+          sm:switch("idle")
+        end
+      end,
+    })
+  
+
+  sm:add("guard", {
+      enter = function(self)  -- ok, these are technically the closures
+        ac:setAnimation("guard_" .. enemy.stance)
+        enemy.guardTimer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        enemy.guardTimer:update(dt)
+
+        if enemy.guardTimer:reached(enemy.guardDuration) then
+          sm:switch("idle")
+        end
+      end,
+    })
+
+--  sm:add("guard_low", {
+--      enter = function(self)  -- ok, these are technically the closures
+--        ac:setAnimation("guard_low")
+--        enemy.guardTimer = Timer:new()
+--      end,
+
+--      update = function(self, dt)
+--        enemy.guardTimer:update(dt)
+
+--        if enemy.guardTimer:reached(enemy.guardDuration) then
+--          sm:switch("idle")
+--        end
+--      end,
+--    })  
+
+  sm:add("hurt", {
+      enter = function(self)  -- ok, these are technically the closures
+        ac:setAnimation("idle")
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if self.timer:reached(enemy.guardDuration) then
           sm:switch("idle")
         end
       end,
@@ -170,14 +264,17 @@ function enemy:initialize()
 
   self.maxhealth = 3
 
-  self.highlow = "low"
+  self.stance = "low"
 
   self.windupWaitTime = 2
-  
-  
+
+
   self.timingWindowTime = 0.4
   self.timingWindowDuration = 0.3
   self.windupDuration = self.timingWindowTime + self.timingWindowDuration
+
+
+  self.guardDuration = 1.4
 
 
 
@@ -208,6 +305,37 @@ end
 --
 
 
+function enemy:receiveAttack(playerStance)
+  -- Needs looking at, but eh
+
+  local doGuard = self.sm:is("idle")
+  if doGuard then
+    self.stance = playerStance
+    self.sm:switch("guard")
+    return
+  end
+
+  if self.sm:is("guard") then
+    self.guardTimer:reset()
+  end
+
+
+  local doHurt = false or -- Align OCD BS
+  (self.stance == "high" and playerStance == "low") or
+  (self.stance == "low" and playerStance == "high") or
+  self.sm:is("attack_windup") or 
+  self.sm:is("parried")
+
+
+  if doHurt then
+    self.health = self.health - 2
+
+    self.sm:switch("hurt")
+    return
+  end
+end
+
+
 function enemy:update(dt)
   self.ac:update(dt)
   self.sm:update(dt)
@@ -215,11 +343,21 @@ end
 
 
 function enemy:draw()
+  if self.sm:is("hurt") then
+    love.graphics.setColor(255, 000, 000)
+  else
+    love.graphics.setColor(255, 255, 255)
+  end
+
+
   self.ac:loveDraw(nil, nil, nil, nil, nil, 250 - self.offsetPos.x, 250 - self.offsetPos.y)
-  
+
   if self.goodTiming then
     love.graphics.circle("fill", 1000, 500, 100)
   end
+  
+  love.graphics.setColor(000, 000, 000)
+  love.graphics.print(self.stance, 1500, 500)
 end
 
 

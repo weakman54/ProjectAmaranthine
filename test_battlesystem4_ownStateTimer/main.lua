@@ -21,6 +21,7 @@ input = baton.new {
     down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
     attack = {'key:space',                         'button:a'},
     guard  = {"key:g"    ,                         "button:x"},
+    dodge  = {"key:d"    ,                         "button:rightshoulder"},
   },
   pairs = {
     move = {'left', 'right', 'up', 'down'}

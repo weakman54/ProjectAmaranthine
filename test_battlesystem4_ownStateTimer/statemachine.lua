@@ -26,6 +26,7 @@ function SM:add(name, state)
   state.parent = self
   state.owner = self.owner
   self.states[name] = state
+  state.name = name
   
   state.canSwitch = function() return true end -- This is a bit of a hack, but works, so eh
   
@@ -37,7 +38,7 @@ end
 
 function SM:switch(to)
   local target = self.states[to]
-  assert(target, "State not implemented!") -- debug for now
+  assert(target, "State " .. to .. " not implemented!") -- DEBUG
   if target and target.canSwitch() then
     
     if self.curState and self.curState.exit then
@@ -47,6 +48,12 @@ function SM:switch(to)
     self.curState = self.states[to]
     self.curState:enter()
   end
+end
+
+
+function SM:is(name)
+  assert(self.states[name], "State " .. name .. " does not exist!") -- DEBUG
+  return self.curState.name == name
 end
 
 

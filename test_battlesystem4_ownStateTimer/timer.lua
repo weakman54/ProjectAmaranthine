@@ -11,22 +11,22 @@ function Timer:new()
   setmetatable(obj, self)
   self.__index = self
   
-  obj.acc = 0
+  obj._acc = 0
   
   return obj
 end
 
 
 function Timer:update(dt)
-  self.acc = self.acc + dt
+  self._acc = self._acc + dt
 end
 
 function Timer:reached(time)
-  return self.acc >= time
+  return self._acc >= time
 end
 
 function Timer:reset()
-  self.acc = 0
+  self._acc = 0
 end
 
 

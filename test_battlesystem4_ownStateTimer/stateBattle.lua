@@ -11,6 +11,8 @@ local stateBattle = {}
 
 
 local background
+hackground = false
+
 
 local GUIPlayerHealth = GUIBar:new(vec(300, 900) , vec(300, 30))
 GUIPlayerHealth.innerColor = {255, 000, 000}
@@ -49,7 +51,9 @@ function stateBattle:update(dt)
 end
 
 function stateBattle:draw()
-  love.graphics.draw(background, nil, nil, nil, nil, nil, 250, 250)
+  if not hackground then
+    love.graphics.draw(background, nil, nil, nil, nil, nil, 250, 250)
+  end
 
 
   enemy:draw (nil, nil, nil, nil, nil, 250, 250)
@@ -58,7 +62,7 @@ function stateBattle:draw()
 
   GUIPlayerHealth:loveDraw()
   GUIPlayerSP:loveDraw()
-  
+
   GUIEnemyHealth:loveDraw()
 end
 
