@@ -144,12 +144,17 @@ function Animation:importFrame(frame)
 end
 
 
+function Animation:setFramerate(fps)
+  self.frameDuration = 1/fps
+end
+
+
 -- NOTE: pretty untested right now!
 function Animation:duration()
   local ret = 0
   
   for _, frame in ipairs(self._frames) do
-    ret = ret + frame.duration
+    ret = ret + frame.duration or self.frameDuration
   end
   
   return ret

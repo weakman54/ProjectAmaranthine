@@ -15,6 +15,7 @@ function AC:new()
   
   obj.curAnim = nil
   obj.curName = nil
+  obj.frameRate = nil
   
   obj.name = ""
   
@@ -80,6 +81,18 @@ function AC:has(animation)
   return self.animations[animation] ~= nil
 end
 
+
+
+-- Proxy functions --------------
+
+-- NOTE: sets the framerate for all current and future animations until reset
+function AC:setFramerate(fps)
+  self.frameRate = 1/fps
+  
+  for _, animation in ipairs(self.animations) do
+    animation:setFramerate(fps)
+  end
+end
 
 
 -- Other stuff
