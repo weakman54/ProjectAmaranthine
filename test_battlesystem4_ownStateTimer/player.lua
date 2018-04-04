@@ -20,7 +20,7 @@ function player:loadAnimations()
   self.ac:addAnimation("attack_high", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_attack-high_0001.png"),
+    image = love.graphics.newImage("assets/player/player_attack-high_0001.png"),
     duration = 0.4,
   }
 
@@ -29,7 +29,7 @@ function player:loadAnimations()
   self.ac:addAnimation("attack_low", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_attack-low_0001.png"),
+    image = love.graphics.newImage("assets/player/player_attack-low_0001.png"),
     duration = 0.4,
   }
 
@@ -38,7 +38,7 @@ function player:loadAnimations()
   self.ac:addAnimation("dodge_high", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_dodge-high_0001.png"),
+    image = love.graphics.newImage("assets/player/player_dodge-high_0001.png"),
     duration = 0.4, -- NOTE: this is currently controlled by dodgeDuration
   }
 
@@ -47,7 +47,7 @@ function player:loadAnimations()
   self.ac:addAnimation("dodge_low", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_dodge-low_0001.png"),
+    image = love.graphics.newImage("assets/player/player_dodge-low_0001.png"),
     duration = 0.4,-- NOTE: this is currently controlled by dodgeDuration
   }
 
@@ -56,20 +56,20 @@ function player:loadAnimations()
   self.ac:addAnimation("guard", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_guard_0001.png"),
+    image = love.graphics.newImage("assets/player/player_guard_0001.png"),
     duration = 0.4,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_guard_0002.png"),
+    image = love.graphics.newImage("assets/player/player_guard_0002.png"),
     duration = 0.4,
   }
 
-
+  
   anim = Animation:new()
   self.ac:addAnimation("parry", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_parry_0001.png"),
+    image = love.graphics.newImage("assets/player/player_parry_0001.png"),
     duration = 0.4,
   }
 
@@ -78,11 +78,11 @@ function player:loadAnimations()
   self.ac:addAnimation("idle_high", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_idle-high_0001.png"),
+    image = love.graphics.newImage("assets/player/player_idle-high_0001.png"),
     duration = 0.4,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_idle-high_0002.png"),
+    image = love.graphics.newImage("assets/player/player_idle-high_0002.png"),
     duration = 0.4,
   }
 
@@ -90,11 +90,11 @@ function player:loadAnimations()
   self.ac:addAnimation("idle_low", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_idle-low_0001.png"),
+    image = love.graphics.newImage("assets/player/player_idle-low_0001.png"),
     duration = 0.4,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/player_idle-low_0002.png"),
+    image = love.graphics.newImage("assets/player/player_idle-low_0002.png"),
     duration = 0.4,
   }
 end
