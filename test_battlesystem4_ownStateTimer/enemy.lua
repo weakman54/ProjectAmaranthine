@@ -122,7 +122,7 @@ function enemy:loadAnimations()
     image = love.graphics.newImage("assets/enemy_idle-high_0002.png"),
     duration = 0.4,
   }
-  
+
   anim = Animation:new()
   self.ac:addAnimation("idle_low", anim)
 
@@ -145,9 +145,11 @@ function enemy:initSM()
 
   sm:add("idle", {
       enter = function(self)  -- ok, these are technically the closures
-        ac:setAnimation("idle")
-
         enemy.stance = enemy.stance == "low" and "high" or "low"
+
+
+        ac:setAnimation("idle_" .. enemy.stance)
+
 
         self.timer = Timer:new()
       end,
@@ -200,14 +202,14 @@ function enemy:initSM()
         end
       end,
     })
-  
-  
+
+
   sm:add("parried", {
       enter = function(self)  -- ok, these are technically the closures
         ac:setAnimation("attack_" .. enemy.stance, false)
         ac.curAnim:pause() -- NOTE: should probably implement "proxy" functions in AC
-    
-    -- NOTE Leaving this here to fix later, but for now I'm going with what works
+
+        -- NOTE Leaving this here to fix later, but for now I'm going with what works
 --        if not enemy.parriedTimer then enemy.parriedTimer = Timer:new() end
 --        enemy.parriedTimer:reset()
         self.timer = Timer:new()
@@ -221,7 +223,7 @@ function enemy:initSM()
         end
       end,
     })
-  
+
 
   sm:add("guard", {
       enter = function(self)  -- ok, these are technically the closures
@@ -255,7 +257,7 @@ function enemy:initSM()
 
   sm:add("hurt", {
       enter = function(self)  -- ok, these are technically the closures
-        ac:setAnimation("idle")
+        ac:setAnimation("idle_" .. enemy.stance)
         self.timer = Timer:new()
       end,
 
@@ -367,7 +369,7 @@ function enemy:draw()
   if self.goodTiming then
     love.graphics.circle("fill", 1000, 500, 100)
   end
-  
+
   love.graphics.setColor(000, 000, 000)
   love.graphics.print(self.stance, 1500, 500)
 end

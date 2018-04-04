@@ -85,7 +85,7 @@ function player:loadAnimations()
     image = love.graphics.newImage("assets/player_idle-high_0002.png"),
     duration = 0.4,
   }
-  
+
   anim = Animation:new()
   self.ac:addAnimation("idle_low", anim)
 
@@ -108,10 +108,25 @@ function player:initSM()
 
   sm:add("idle", {
       enter = function(self)  -- ok, these are technically the closures
-        ac:setAnimation("idle") 
+        ac:setAnimation("idle_" .. player.stance) 
       end,
 
-      update = function(self, dt) 
+      update = function(self, dt)
+
+        -- HACK vvvv
+        if input:down("up") then
+          self.stance = "high"
+          ac:setAnimation("idle_" .. player.stance)
+
+        elseif input:down("down") then
+          self.stance = "low"
+          ac:setAnimation("idle_" .. player.stance)
+          
+        end
+     -- ^^^^^^^
+
+
+
         if input:pressed("attack") then 
           sm:switch("attack")
 --          if input:down("up") then
@@ -265,7 +280,7 @@ function player:initSM()
 
   sm:add("hurt", {      
       enter = function(self) 
-        ac:setAnimation("idle")
+        ac:setAnimation("idle_" .. player.stance)
 
         self.timer = Timer:new()
       end,
@@ -443,7 +458,7 @@ function player:draw()
     love.graphics.setColor(255, 255, 255)
   end
 
-  self.ac:loveDraw(nil, nil, nil, nil, nil, 250 - self.offsetPos.x, 250 - self.offsetPos.y)
+  self.ac:loveDraw(nil, nil, nil, nil, nil, 200 - self.offsetPos.x, 200 - self.offsetPos.y)
 
   love.graphics.setColor(000, 000, 000)
   love.graphics.print(self.stance, 200, 200)
