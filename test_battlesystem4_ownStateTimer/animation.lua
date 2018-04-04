@@ -1,6 +1,4 @@
 
-require "strict"
-
 
 local Animation = {}
 

@@ -1,5 +1,4 @@
 
-require "strict"
 
 local Animation = require "animation"
 
