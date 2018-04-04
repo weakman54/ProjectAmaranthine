@@ -102,10 +102,6 @@ function player:loadAnimations()
     image = love.graphics.newImage("assets/player/player_hurt_0001.png"),
     duration = 0.4,
   }
-  anim:importFrame{
-    image = love.graphics.newImage("assets/player/player_hurt_0002.png"),
-    duration = 0.4,
-  }
 end
 --
 
