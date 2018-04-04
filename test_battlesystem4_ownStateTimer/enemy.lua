@@ -112,14 +112,26 @@ function enemy:loadAnimations()
 
 
   anim = Animation:new()
-  self.ac:addAnimation("idle", anim)
+  self.ac:addAnimation("idle_high", anim)
 
   anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_idle_0001.png"),
+    image = love.graphics.newImage("assets/enemy_idle-high_0001.png"),
     duration = 0.4,
   }
   anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_idle_0002.png"),
+    image = love.graphics.newImage("assets/enemy_idle-high_0002.png"),
+    duration = 0.4,
+  }
+  
+  anim = Animation:new()
+  self.ac:addAnimation("idle_low", anim)
+
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_idle-low_0001.png"),
+    duration = 0.4,
+  }
+  anim:importFrame{
+    image = love.graphics.newImage("assets/enemy_idle-low_0002.png"),
     duration = 0.4,
   }
 end
