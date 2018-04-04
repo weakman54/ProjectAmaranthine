@@ -298,14 +298,7 @@ end
 --
 
 function player:initialize()
---  self.shakeDuration = 0.1
---  self.shakeIntensity = 10
-
---  self.knockbackDuration = 0.2
---  self.knockbackDist = -100 -- (pixels)
-
   self.stance = "low"
-
 
   self.attackDuration = 0.5
 
@@ -314,7 +307,6 @@ function player:initialize()
   self.dodgeDuration = 0.6
 
   self.hurtDuration = 1
-
 
   self.offsetPos = {x = 0, y = 0}
 
@@ -327,10 +319,6 @@ function player:initialize()
   self.maxhealth = 3
 
   self.maxSP = 10
---  self.SPBaseGuardDrainRate = 1 -- (point/s)
---  self.SPDrainFunction = function(accVal) return accVal*4 end -- Used to calculate SPDrain when guarding
---  -- Calculation is: base + f(acc)
---  self.SPDrainMax = 10
 
 
 
@@ -349,36 +337,27 @@ end
 --
 
 function player:reset()
---  self.timer:clear()
-
   self.health = self.maxhealth
---  self.dead = false
---  self.hurt = false
-
+  
   self.SP = self.maxSP/2
   self.SPDrainAcc = 0
---  self.SPCurrentDrainRate = 0
 
   self.offsetPos.x, self.offsetPos.y = 0, 0
-
---  self.sm:doidle()
+  
+  self.sm:switch("idle")
 end
 --
 
 
 function player:receiveAttack(enemyStance)
   if self.sm:is("dodge") then
-    print("DODGE")
     if false or -- Align OCD BS
     (self.stance == "high" and enemyStance == "low") or
     (self.stance == "low" and enemyStance == "high") then
 
-      print("Actual dodge")
-
       local amtRegained
 
       if self.dodgeTimer._acc <= self.perfectDodgeTreshold then -- HACK, using internal value of timer, should implement properly 
-        print("timing")
         amtRegained = 3
       else
         amtRegained = 1
@@ -393,9 +372,7 @@ function player:receiveAttack(enemyStance)
 
 
   if self.sm:is("guard") then
-    print("GUARD")
     if self.guardTimer._acc <= self.parryTreshold then -- HACK, using internal value of timer, should implement properly 
-      print("TIMING")
       self.sm:switch("parrying")
       enemy.sm:switch("parried")
     end
@@ -407,36 +384,12 @@ function player:receiveAttack(enemyStance)
   -- ASSUMPTION: we return out before this if should not take damage
   self.health = self.health - 2
   self.sm:switch("hurt")
-
-
-
-
---  else
---    self.health = self.health - 2 -- MAGIC NUMBER: 2, health reduction, should be dependent on attack type probably, need to think about that 
---    if self.health <= 0 then
---      self.dead = true
---    end
---    self.sm:switch("hurt")
---  end
 end
 
 
 function player:update(dt)
-
--- TROLOL, needs dodge state to run the update...
---  if self.dodgeTimer._acc <= self.perfectDodgeTreshold then -- HACK, using internal value of timer, should implement properly 
---    dbg_perfectDodge = true
---  else
---    dbg_perfectDodge = false
---  end
-
---  if self.guardTimer._acc <= self.parryTreshold then -- HACK, using internal value of timer, should implement properly 
---    dbg_parryTiming = true
---  else
---    dbg_parryTiming = false
---  end
-
-
+  
+--   Update this per state instead, more clutter, but also more clear?
   if input:down("up") then
     self.stance = "high"
 
@@ -462,14 +415,6 @@ function player:draw()
 
   love.graphics.setColor(000, 000, 000)
   love.graphics.print(self.stance, 200, 200)
-
-  if dbg_parryTiming then
-    if dbg_perfectDodge then
-      love.graphics.setColor(100, 100, 255)
-    end
-
-    love.graphics.circle("fill", 1000, 500, 50)
-  end
 end
 
 
