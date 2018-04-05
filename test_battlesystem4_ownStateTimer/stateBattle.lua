@@ -67,4 +67,13 @@ function stateBattle:draw()
 end
 
 
+function stateBattle:keypressed(key)
+  print(key)
+  if key == "r" then
+    enemy:reset()
+    player:reset()
+  end
+end
+
+
 return stateBattle
