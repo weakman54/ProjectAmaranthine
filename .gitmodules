@@ -10,3 +10,6 @@
 	url = https://bitbucket.org/weakman54/wutil-lua
 [submodule "test_camera/hump"]
 	url = https://github.com/vrld/hump
+[submodule "test_VisualNovel2/hump"]
+	path = test_VisualNovel2/hump
+	url = https://github.com/vrld/hump

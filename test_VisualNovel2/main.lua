@@ -10,6 +10,8 @@ end
 -- Utility stuff ^^^^^^^^^^^^^^^^^
 
 
+local Timer = require "hump.timer"
+
 local Animation = require "animation"
 
 
@@ -21,6 +23,8 @@ local resources = {}
 local curDrawing = {} 
 
 local background
+
+executing = true -- Kinda hack atm, but eh, works
 
 local functions -- Need to declare first so I can access in functions' functions itself
 functions = {  
@@ -85,36 +89,56 @@ functions = {
     resources[handle].offset.x, resources[handle].offset.y = x, y
   end,
   --
+
+  doTween = function(handle, duration, target, method, after, ...)
+    local subject = resources[handle]
+    
+    Timer.tween(duration, subject, target, method, after, ...)
+  end,
+
+  pauseExecution = function(duration)
+    executing = false
+
+    if duration then
+      Timer.after(duration, function() executing = true end)
+    end
+  end,
+
 }
 --
 
 
 function love.load(arg)
-  -- BOILERPLATE vvvvvvvvvvv
-  love.graphics.setNewFont(48)
+  do -- BOILERPLATE vvvvvvvvvvv
+    love.graphics.setNewFont(48)
 
-  if arg[#arg] == "-debug" then
-    love.graphics.print("Debug Load...", 100, 100)
+    if arg[#arg] == "-debug" then
+      love.graphics.print("Debug Load...", 100, 100)
+      love.graphics.present()
+      require("mobdebug").start() 
+    end
+
+    love.graphics.print("Loading...", 100, 100)
     love.graphics.present()
-    require("mobdebug").start() 
-  end
-
-  love.graphics.print("Loading...", 100, 100)
-  love.graphics.present()
-  -- BOILERPLATE ^^^^^^^^
+  end -- BOILERPLATE ^^^^^^^^
 end
+--
 
 
-function love.update(dt)  
-  for i=curLine, #curScene do
-    local line = curScene[i]
-    local f = functions[line[1]]
-    assert(f, "function " .. line[1] .. ", code line " .. i .. ", does not exist, did you misspell something?")
-    local shouldBreak = f(unpack(line, 2))
+function love.update(dt)
+  Timer.update(dt)
 
-    if shouldBreak then break end
+  if executing then -- Should probably refactor to something like this
+    for i=curLine, #curScene do
+      local line = curScene[i]
+      local f = functions[line[1]]
+      assert(f, "function " .. line[1] .. ", code line " .. i .. ", does not exist, did you misspell something?")
+      local shouldBreak = f(unpack(line, 2))
 
-    curLine = curLine + 1
+      if shouldBreak then break end
+
+      curLine = curLine + 1
+    end
   end
 
   for _, handle in ipairs(curDrawing) do -- Currently updates all of em, even if they are only one frame, probably inconsequential though

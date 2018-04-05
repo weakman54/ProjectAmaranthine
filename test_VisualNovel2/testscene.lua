@@ -19,4 +19,6 @@ return {
   {"waitForInput"},
   
   {"setOffset", "dude", 40, 30},
+  
+  {"doTween", "dude", 10, {pos = {x = 200, y = 200}}, 'in-out-quad'}
 }
