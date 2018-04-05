@@ -20,8 +20,8 @@ input = baton.new {
     up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
     down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
     attack = {'key:space',                         'button:a'},
-    guard  = {"key:g"    ,                         "button:x"},
-    dodge  = {"key:d"    ,                         "button:rightshoulder"},
+    guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
+    dodge  = {"key:d"    ,                         "button:x"},
     heal   = {"key:h"    ,                         "button:y"},
   },
   pairs = {
