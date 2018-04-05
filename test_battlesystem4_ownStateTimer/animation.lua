@@ -12,7 +12,7 @@ function Animation:new()
   obj._frames = {}
   obj._curFrameI = 1
   obj._curTime = 0
-  obj.frameDuration = 0 -- This needs to be reworked, but I'll keep this as "accessible" for now
+  obj._frameDuration = 0
 
   obj._playing = false
   obj._looping = false
@@ -32,13 +32,15 @@ function Animation:update(dt)
 
   -- A bit of a hack, but keeps it generic, could probably be handled better though
   local curFrame = self:_getCurFrame()
-  if curFrame.duration then self.frameDuration = curFrame.duration end 
+  local duration
+  if curFrame.duration then duration = curFrame.duration else duration = self._frameDuration end
+  assert(duration > 0, "frameDuration or frame.duration must be >0!")
   --------
 
 
-  if self._curTime >= self.frameDuration then
+  if self._curTime >= duration then
     self:_increment()
-    self._curTime = 0 -- This needs looking at, should it be _curTime = _curTime - frameDuration?
+    self._curTime = 0 -- This needs looking at, should it be _curTime = _curTime - _frameDuration?
   end
 end
 
@@ -145,7 +147,7 @@ end
 
 
 function Animation:setFramerate(fps)
-  self.frameDuration = 1/fps
+  self._frameDuration = 1/fps
 end
 
 
@@ -154,7 +156,7 @@ function Animation:duration()
   local ret = 0
   
   for _, frame in ipairs(self._frames) do
-    ret = ret + frame.duration or self.frameDuration
+    ret = ret + frame.duration or self._frameDuration
   end
   
   return ret

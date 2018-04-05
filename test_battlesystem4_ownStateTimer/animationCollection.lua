@@ -15,7 +15,7 @@ function AC:new()
   
   obj.curAnim = nil
   obj.curName = nil
-  obj.frameRate = nil
+  obj._framerate = nil
   
   obj.name = ""
   
@@ -32,6 +32,10 @@ function AC:addAnimation(name, animation, setAsCurrent, looping)
     --return nil, "Animation already exists" -- Error?
   end 
   --
+  
+  if self._framerate and self._framerate > 0 then
+    animation:setFramerate(self._framerate)
+  end
 
   self.animations[name] = animation
   animation.name = self.name .. "_" .. name
@@ -87,7 +91,7 @@ end
 
 -- NOTE: sets the framerate for all current and future animations until reset
 function AC:setFramerate(fps)
-  self.frameRate = 1/fps
+  self._framerate = fps
   
   for _, animation in ipairs(self.animations) do
     animation:setFramerate(fps)
