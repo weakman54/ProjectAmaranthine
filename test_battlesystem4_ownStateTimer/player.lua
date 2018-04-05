@@ -21,7 +21,7 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_attack-high_0001.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
 
 
@@ -30,7 +30,7 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_attack-low_0001.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
 
 
@@ -39,7 +39,7 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_dodge-high_0001.png"),
-    --duration = 0.4, -- NOTE: this is currently controlled by dodgeDuration
+    duration = 0.4, -- NOTE: this is currently controlled by dodgeDuration
   }
 
 
@@ -48,7 +48,7 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_dodge-low_0001.png"),
-    --duration = 0.4,-- NOTE: this is currently controlled by dodgeDuration
+    duration = 0.4,-- NOTE: this is currently controlled by dodgeDuration
   }
 
 
@@ -57,11 +57,11 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_guard_0001.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_guard_0002.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
 
 
@@ -70,7 +70,7 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_parry_0001.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
 
 
@@ -79,11 +79,11 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_idle-high_0001.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_idle-high_0002.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
 
   anim = Animation:new()
@@ -91,11 +91,11 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_idle-low_0001.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_idle-low_0002.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
 
 
@@ -104,7 +104,7 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_hurt_0001.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
 
 
@@ -113,11 +113,11 @@ function player:loadAnimations()
 
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_heal_0001.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
   anim:importFrame{
     image = love.graphics.newImage("assets/player/player_heal_0002.png"),
-    --duration = 0.4,
+    duration = 0.4,
   }
 end
 --

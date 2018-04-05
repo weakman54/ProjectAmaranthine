@@ -1,5 +1,8 @@
 
 
+dbg_animation_prefer_Animation_frameduration = true
+
+
 local Animation = {}
 
 
@@ -33,7 +36,7 @@ function Animation:update(dt)
   -- A bit of a hack, but keeps it generic, could probably be handled better though
   local curFrame = self:_getCurFrame()
   local duration
-  if curFrame.duration then duration = curFrame.duration else duration = self._frameDuration end
+  if curFrame.duration and not dbg_animation_prefer_Animation_frameduration then duration = curFrame.duration else duration = self._frameDuration end
   assert(duration > 0, "frameDuration or frame.duration must be >0!")
   --------
 
