@@ -355,6 +355,7 @@ function player:initialize()
 
   self.ac = AC:new()
   self.ac.name = "player"
+  self.ac:setFramerate(30)
 
   self:loadAnimations()
 
