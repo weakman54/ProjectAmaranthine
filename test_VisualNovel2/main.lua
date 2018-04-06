@@ -54,11 +54,13 @@ functions = {
 
 
     resources[handle] = {
+      type = "animation",
       data = anim,
       pos = args.pos or {x = 0, y = 0},
       offset = args.offset or {x = 0, y = 0},
       rot = args.rot or 0,
       scale = args.scale or {x = 1, y = 1},
+      color = args.color or {255, 255, 255},
     }
   end,
   loadImage = function(handle, filename, args)
@@ -92,7 +94,7 @@ functions = {
 
   doTween = function(handle, duration, target, method, after, ...)
     local subject = resources[handle]
-    
+
     Timer.tween(duration, subject, target, method, after, ...)
   end,
 
@@ -100,10 +102,35 @@ functions = {
     executing = false
 
     if duration then
-      Timer.after(duration, function() executing = true end)
+      Timer.after(duration, function() executing = true curLine = curLine + 1 end)
     end
+
+    return true
   end,
 
+  text = function(handle, string, args)  
+    assert(resources[handle] == nil, "You can't load a resource with the same name twice!")
+    args = args or {}
+
+--    if args.color then
+--      string = {{100, 100, 100}, string}
+--    end
+
+    resources[handle] = {
+      type = "string",
+      data = string,
+      pos = args.pos or {x = 0, y = 0},
+      offset = args.offset or {x = 0, y = 0},
+      rot = args.rot or 0,
+      scale = args.scale or {x = 1, y = 1},
+      color = args.color or {255, 255, 255},
+
+      width = args.width or 200, -- MAGIC NUMBER: default width, arbitrary choice, could probably find a better default
+      align = args.align or "left",
+    }
+
+    table.insert(curDrawing, handle)
+  end,
 }
 --
 
@@ -142,8 +169,10 @@ function love.update(dt)
   end
 
   for _, handle in ipairs(curDrawing) do -- Currently updates all of em, even if they are only one frame, probably inconsequential though
-    local anim = resources[handle].data
-    anim:update(dt)
+    local thing = resources[handle]
+    if thing.type == "animation" then
+      thing.data:update(dt) -- TODO: clean this up a bit, in fact, proably should clean the entire resource manager up a bit once I'm done hacking in all the features..
+    end
   end    
 end
 
@@ -151,6 +180,7 @@ end
 function love.draw()
   if background then
     local thing = resources[background]
+    love.graphics.setColor(thing.color)
     thing.data:loveDraw(thing.pos.x, thing.pos.y, thing.rot, thing.scale.x, thing.scale.y, thing.offset.x, thing.offset.y)
   end
 
@@ -158,7 +188,14 @@ function love.draw()
 
   for _, handle in ipairs(curDrawing) do
     local thing = resources[handle]
-    thing.data:loveDraw(thing.pos.x, thing.pos.y, thing.rot, thing.scale.x, thing.scale.y, thing.offset.x, thing.offset.y)
+
+    love.graphics.setColor(thing.color)
+
+    if thing.type == "string" then
+      love.graphics.printf(thing.data, thing.pos.x, thing.pos.y, thing.width--[[?]], thing.align, thing.rot, thing.scale.x, thing.scale.y, thing.offset.x, thing.offset.y)
+    else
+      thing.data:loveDraw(thing.pos.x, thing.pos.y, thing.rot, thing.scale.x, thing.scale.y, thing.offset.x, thing.offset.y)
+    end
   end
 end
 
