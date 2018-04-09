@@ -12,7 +12,7 @@ function love.audio.update()
   end
 
   for i,s in ipairs(remove) do
-    sources[s] = nil
+--    sources[s]:
   end
 end
 
@@ -36,5 +36,5 @@ local stop = love.audio.stop
 function love.audio.stop(src)
   if not src then return end
   stop(src)
-  sources[src] = nil
+--  sources[src] = nil
 end
