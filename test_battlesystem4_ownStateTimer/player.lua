@@ -167,7 +167,8 @@ function player:initSM()
 
 
   sm:add("attack", {      
-      enter = function(self) 
+      enter = function(self)
+        love.audio.play("assets/sounds/Absorb1.ogg")
         ac:setAnimation("attack_" .. player.stance)
         self.timer = Timer:new()
 
