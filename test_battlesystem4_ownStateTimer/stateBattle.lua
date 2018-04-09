@@ -41,6 +41,10 @@ end
 
 
 function stateBattle:update(dt)
+  -- SCALE HACK
+  scale.x = love.graphics.getWidth()/1920
+  scale.y = love.graphics.getHeight()/1080
+
   player:update(dt)
   enemy:update(dt)
 
@@ -51,6 +55,8 @@ function stateBattle:update(dt)
 end
 
 function stateBattle:draw()
+  love.graphics.scale(scale.x,scale.y)
+  
   if not hackground then
     love.graphics.draw(background, nil, nil, nil, nil, nil, 250, 250)
   end

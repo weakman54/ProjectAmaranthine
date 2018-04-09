@@ -1,4 +1,8 @@
 
+-- Scaling HACK
+scale = {}
+
+
 require "miniSoundManager"
 
 baton = require"baton"  
