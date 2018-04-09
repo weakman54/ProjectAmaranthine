@@ -1,6 +1,6 @@
 
 
-dbg_animation_prefer_Animation_frameduration = true
+dbg_animation_prefer_Animation_frameduration = false
 
 
 local Animation = {}
