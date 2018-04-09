@@ -43,7 +43,6 @@ functions = {
     anim:setFramerate(args.framerate or 30)
     anim:play(args.startFrom)
     anim:setLooping(args.looping)
---    anim:setFramerate(args.framerate or 30):play(args.startFrom):setLooping(args.looping)
 
     for _, filename in ipairs(filenames) do
 
@@ -108,16 +107,39 @@ functions = {
     return true
   end,
 
-  text = function(handle, string, args)  
-    assert(resources[handle] == nil, "You can't load a resource with the same name twice!")
-    args = args or {}
 
---    if args.color then
---      string = {{100, 100, 100}, string}
---    end
+  loadSoundEffect = function(handle, filename)
+    assert(resources[handle] == nil, "You can't load a resource with the same name twice!")
 
     resources[handle] = {
-      type = "string",
+      type = "soundEffect",
+      data = love.audio.newSource(filename, "static")
+    }
+  end,
+--
+
+  play = function(handle)
+    resources[handle].data:play()
+  end,
+  pause = function(handle)
+    resources[handle].data:pause()
+  end,
+  stop = function(handle)
+    resources[handle].data:stop()
+  end,
+  --
+
+
+  addText = function(handle, string, args)  
+    assert(resources[handle] == nil, "You can't load a resource with the same name twice!") -- Keeping this for now, but will remove it if feels like other (below) works better
+    args = args or {}
+    
+    if resources[handle] ~= nil then -- Feels like this would work better?
+      functions["removeText"](handle)
+    end
+
+    resources[handle] = {
+      type = "text",
       data = string,
       pos = args.pos or {x = 0, y = 0},
       offset = args.offset or {x = 0, y = 0},
@@ -131,6 +153,23 @@ functions = {
 
     table.insert(curDrawing, handle)
   end,
+  removeText = function(handle)
+    assert(resources[handle].type == "text", "You can't 'removeText' something that is not text!")
+    removeValue(curDrawing, handle)
+    resources[handle] = nil
+  end,
+  --
+
+  setFont = function(handle, filename, size) -- TODO: research speed of this, should not be very heavy, but is not a "lightweight" resource either...
+    assert(resources[handle] == nil, "You can't load a resource with the same name twice!")
+    resources[handle] = {
+      type = "font",
+      data = filename,
+    }
+
+    love.graphics.setNewFont(filename, size)
+  end,
+
 }
 --
 
@@ -191,7 +230,7 @@ function love.draw()
 
     love.graphics.setColor(thing.color)
 
-    if thing.type == "string" then
+    if thing.type == "text" then
       love.graphics.printf(thing.data, thing.pos.x, thing.pos.y, thing.width--[[?]], thing.align, thing.rot, thing.scale.x, thing.scale.y, thing.offset.x, thing.offset.y)
     else
       thing.data:loveDraw(thing.pos.x, thing.pos.y, thing.rot, thing.scale.x, thing.scale.y, thing.offset.x, thing.offset.y)

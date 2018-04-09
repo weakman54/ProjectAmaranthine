@@ -31,23 +31,28 @@ return {
   {"loadAnim", "dude", {"assets/thing.png", "assets/thing2.png"}, { color = {000, 255, 000} } }, -- Load an animation, the third item in the list is a list of filenames for the individual frames, will be simplified later
 --  {"text", "dude", "this is text"}, -- If you comment the above line out (put -- infront of it), and use this line in instead (remove the -- infront of it), it will still work below
 
+  {"loadSoundEffect", "absorb1", "assets/sounds/Absorb1.ogg"},
+  {"loadSoundEffect", "absorb2", "assets/sounds/Absorb2.ogg"},
+
+
 
   {"setBG", "bg1"}, -- setBG, sets/switches the bg image (can be any animation (images are just one frame animations)
   {"waitForInput"}, -- waitForInput, pauses execution of the "script", to actually be able to show what we've put on screen
-  
+
+  {"play", "absorb2"},
   {"show", "dude"}, -- show, adds an animation or text to the list of stuff that is being drawn, note that order matters, the list is drawn "bottom-up", so stuff that is added first is draw at the "bottom-layer"
   {"waitForInput"},
-  
+
   {"setBG", "bg2"},
   {"hide", "dude"}, -- hide, removes animation or text from the list of stuff being drawn
   {"waitForInput"},
-  
+
   {"setPosition", "dude", 100, 100}, -- setPosition, changes the position of the thing
   {"show", "dude"},
   {"waitForInput"},
-  
+
   {"setOffset", "dude", 40, 30}, -- setOffset, changes the offset of the thing
-  
+
   --[[
   doTween:
     starts a tween for the thing
@@ -65,7 +70,13 @@ return {
       http://www.gizma.com/easing/
   ]]
   {"doTween", "dude", dudeTweenDuration, {pos = {x = 200, y = 200}}, 'in-out-quad'},
+  {"play", "absorb1"},
   {"pauseExecution", dudeTweenDuration}, -- Stops executing for an amount of time, this is useful for making sure a bunch of stuff doesn't happen while your tweens are running for example
   {"setPosition", "dude", 100, 100}, -- This won't happen until the tween is done
-  {"text", "temp", "You don't have to 'load' text, since it's not a 'heavy' resource like images or animations!", {width = 800, pos = {x = 400, y = 400}, color = {255, 000, 000} } }
+  {"setFont", "condition", "assets/fonts/Condition-Regular.ttf", 40},  -- Load and set font
+  {"addText", "temp", "You don't have to 'load' text, since it's not a 'heavy' resource like images or animations!", {width = 800, pos = {x = 400, y = 400}, color = {255, 000, 000} } },
+  {"waitForInput"},
+  
+  {"removeText", "temp"},
+  
 }
