@@ -10,30 +10,12 @@ Gamestate = require "hump.gamestate"
 SM = require "statemachine"
 
 require "player"
-
+require "enemy"
 
 local stateBattle = require "stateBattle"
 
 
 
--- HACK FOR NOW!
--- Put input stuff in better order later!
-input = baton.new {
-  controls = {
-    left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},
-    right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
-    up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
-    down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
-    attack = {'key:space',                         'button:a'},
-    guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
-    dodge  = {"key:d"    ,                         "button:x"},
-    heal   = {"key:h"    ,                         "button:y"},
-  },
-  pairs = {
-    move = {'left', 'right', 'up', 'down'}
-  },
-  joystick = love.joystick.getJoysticks()[1],
-}
 
 
 
@@ -59,6 +41,24 @@ function love.load(arg)
   Gamestate.switch(stateBattle)
 end
 
+-- HACK FOR NOW!
+-- Put input stuff in better order later!
+input = baton.new {
+  controls = {
+    left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},
+    right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
+    up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
+    down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
+    attack = {'key:space',                         'button:a'},
+    guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
+    dodge  = {"key:d"    ,                         "button:x"},
+    heal   = {"key:h"    ,                         "button:y"},
+  },
+  pairs = {
+    move = {'left', 'right', 'up', 'down'}
+  },
+  joystick = love.joystick.getJoysticks()[1],
+}
 
 
 

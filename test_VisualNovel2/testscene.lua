@@ -78,5 +78,8 @@ return {
   {"waitForInput"},
   
   {"removeText", "temp"},
+  {"waitForInput"},
+  
+  {"changeScene", "fooscene"}
   
 }
