@@ -1,4 +1,5 @@
 
+require "miniSoundManager"
 
 baton = require"baton"  
 Gamestate = require "hump.gamestate"
@@ -58,6 +59,7 @@ end
 
 
 function love.update(dt)
+  love.audio.update()
   input:update()
 --  someSM:update(dt)
 end
