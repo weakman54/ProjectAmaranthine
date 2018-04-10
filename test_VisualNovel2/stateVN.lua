@@ -207,6 +207,14 @@ function stateVN:init()
       functions["loadImage"](handle, fn, {scale = {x = 3.23, y = 3.23}})
     end
   end
+
+  for i, filename in ipairs(dir) do
+    if filename:sub(-4) == ".ogg" then
+      local fn = "assets/sounds/" .. filename
+      local handle = filename:sub(1, -5)
+      functions["loadSoundEffect"](handle, fn)
+    end
+  end
 end
 
 
