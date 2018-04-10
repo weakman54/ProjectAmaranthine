@@ -199,12 +199,13 @@ functions = {
 
 function stateVN:init()
   local dir = love.filesystem.getDirectoryItems("/assets/storyboards")
-  
+
   for i, filename in ipairs(dir) do
-    local fn = "assets/storyboards/" .. filename
-    local handle = filename:sub(1, -5)
---    print(, )
+    if filename:sub(-4) == ".png" then
+      local fn = "assets/storyboards/" .. filename
+      local handle = filename:sub(1, -5)
       functions["loadImage"](handle, fn, {scale = {x = 3.23, y = 3.23}})
+    end
   end
 end
 
