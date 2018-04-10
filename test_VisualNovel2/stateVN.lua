@@ -5,7 +5,7 @@ local stateVN = {}
 local Animation = require "animation"
 
 
-local curScene = require "testscene"
+local curScene = require "scene1"
 local curLine = 1
 local waitForInput = false
 
@@ -25,7 +25,7 @@ functions = {
   --
 
   loadAnim = function (handle, filenames, args)    
-    assert(resources[handle] == nil, "You can't load a resource with the same name twice!")
+    assert(resources[handle] == nil, "You can't load the resource " .. filenames[1] .. " as " .. handle .. ", something is already loaded with that name!")
     args = args or {}
 
 
@@ -53,6 +53,7 @@ functions = {
     }
   end,
   loadImage = function(handle, filename, args)
+    args = args or {}
     args.looping = false
     functions.loadAnim(handle, {filename}, args)
   end,
@@ -60,11 +61,13 @@ functions = {
 
 
   setBG = function(handle)
+    assert(resources[handle], "background " .. handle .. " was not found! did you load it?")
     background = handle
   end,
   --
 
   show = function(handle) -- args?
+    assert(resources[handle], "Tried to show " .. handle .. " but it didn't exist! did you load it?")
     table.insert(curDrawing, handle)    
   end,
   hide = function(handle)
@@ -130,7 +133,7 @@ functions = {
 
 
   addText = function(handle, string, args)  
-    assert(resources[handle] == nil, "You can't load a resource with the same name twice!") -- Keeping this for now, but will remove it if feels like other (below) works better
+--    assert(resources[handle] == nil, "You can't load a resource with the same name twice!") -- Keeping this for now, but will remove it if feels like other (below) works better
     args = args or {}
 
     if resources[handle] ~= nil then -- Feels like this would work better?
@@ -177,11 +180,18 @@ functions = {
     return true
   end,
   --
-  
+
   gotoBattle = function(battleState)
     Gamestate.switch(stateBattle)
   end,
   --
+
+  clear = function(nextBG)
+    if nextBG then functions["setBG"](nextBG) end
+    clearTable(curDrawing)
+  end,
+  --
+
 }
 --
 
@@ -218,8 +228,6 @@ function stateVN:draw()
     thing.data:loveDraw(thing.pos.x, thing.pos.y, thing.rot, thing.scale.x, thing.scale.y, thing.offset.x, thing.offset.y)
   end
 
-  love.graphics.circle("fill", 100, 100, 10)
-
   for _, handle in ipairs(curDrawing) do
     local thing = resources[handle]
 
@@ -242,6 +250,11 @@ function stateVN:keypressed(key)
 
   if key == "escape" then
     love.event.quit()
+
+  elseif key == "p" then
+    curLine = curLine + 1
+    executing = true
+    Timer.clear()
 
   elseif key == "" then
 

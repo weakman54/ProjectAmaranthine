@@ -7,6 +7,11 @@ function removeValue(array, value)
     end 
   end 
 end
+
+function clearTable(t)
+  local count = #t
+  for i=0, count do t[i]=nil end
+end
 -- Utility stuff ^^^^^^^^^^^^^^^^^
 
 
@@ -56,6 +61,8 @@ input = baton.new {
 function love.load(arg)
   do -- BOILERPLATE vvvvvvvvvvv
     love.graphics.setNewFont(48)
+    
+    love.graphics.clear(000, 000, 000)
 
     if arg[#arg] == "-debug" then
       love.graphics.print("Debug Load...", 100, 100)
@@ -67,10 +74,7 @@ function love.load(arg)
     love.graphics.present()
   end -- BOILERPLATE ^^^^^^^^
   --
-  
-  player:initialize()
-  enemy:initialize()
-  
+
   Gamestate.registerEvents()
   Gamestate.switch(stateVN)
 end

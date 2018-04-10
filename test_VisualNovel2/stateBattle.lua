@@ -26,7 +26,14 @@ GUIEnemyHealth.innerColor = {255, 000, 000}
 
 
 function stateBattle:init()
+  love.graphics.clear(000, 000, 000)
+  love.graphics.print("Loading...", 100, 100)
+  love.graphics.present()
+
   background = love.graphics.newImage("assets/background.png")
+
+  player:initialize()
+  enemy:initialize()
 end
 
 function stateBattle:enter()
@@ -56,7 +63,7 @@ end
 
 function stateBattle:draw()
   love.graphics.scale(scale.x,scale.y)
-  
+
   if not hackground then
     love.graphics.draw(background, nil, nil, nil, nil, nil, 250, 250)
   end

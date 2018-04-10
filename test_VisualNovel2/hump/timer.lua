@@ -129,6 +129,15 @@ Timer.tween = setmetatable({
 		amp, period = amp and math.max(1, amp) or 1, period or .3
 		return (-amp * math.sin(2*math.pi/period * (s-1) - math.asin(1/amp))) * 2^(10*(s-1))
 	end,
+  
+  ----------------------------------------------------------------------------
+  -- MY ADDED STUFF, couldn't remember how I did it before...
+  ----------------------------------------------------------------------------
+  sin = function(s)
+    return math.sin(math.pi*2 * s)
+  end,
+  
+  
 }, {
 
 -- register new tween
