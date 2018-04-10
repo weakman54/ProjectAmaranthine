@@ -81,228 +81,296 @@ return {
   {"waitForInput"},
   
 
+
   {"clear", "p10-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p11-bg"},
   {"waitForInput"},
 
 
+
   {"clear", "p12-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p13-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p14-bg"},
+  {"show", "p14-s1"},
   {"waitForInput"},
+
 
 
   {"clear", "p15-bg"},
+  {"show", "p15-s1"},
   {"waitForInput"},
+  
   
   
   {"clear", "p16-bg"},
+  {"show", "p16-s1"},
   {"waitForInput"},
+  
   
   
   {"clear", "p17-bg"},
+  {"show", "p17-s1"},
   {"waitForInput"},
+  
   
   
   {"clear", "p18-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p19-bg"},
+  {"show", "p19-s1"},
   {"waitForInput"},
+  
   
   
   {"clear", "p20-bg"},
+  {"show", "p20-s1"},
   {"waitForInput"},
+
 
 
   {"clear", "p21-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p22-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p23-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p24-bg"},
+  {"show", "p24-s1"},
   {"waitForInput"},
+  
   
   
   {"clear", "p25-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p26-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p27-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p28-bg"},
+  {"show", "p28-s1"},
   {"waitForInput"},
+  
   
   
   {"clear", "p29-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p30-bg"},
+  {"show", "p30-s1"},
   {"waitForInput"},
+  
   
   
   {"clear", "p31-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p32-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p33-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p34-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p35-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p36-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p37-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p38-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p39-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p40-bg"},
+  {"show", "p40-s1"},
   {"waitForInput"},
+  
   
   
   {"clear", "p41-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p42-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p43-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p44-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p45-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p46-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p47-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p48-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p49-bg"},
+  {"show", "p49-s1"},
   {"waitForInput"},
+  
   
   
   {"clear", "p50-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p51-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p52-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p53-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p54-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p55-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p56-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p57-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p58-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p59-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p60-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p61-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p62-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p63-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p64-bg"},
   {"waitForInput"},
   
   
+  
   {"clear", "p65-bg"},
   {"waitForInput"},
+  
   
   
   {"clear", "p66-bg"},
