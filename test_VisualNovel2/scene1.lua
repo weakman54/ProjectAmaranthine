@@ -320,8 +320,6 @@ return {
   {"waitForInput"},
   
   
-  {"clear", "p67-bg"},
-  {"waitForInput"},
   
   
 
