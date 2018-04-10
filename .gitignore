@@ -39,3 +39,5 @@ luac.out
 *.x86_64
 *.hex
 
+
+test_VisualNovel2/assets/storyboards/\.DS_Store

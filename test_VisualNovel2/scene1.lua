@@ -90,8 +90,240 @@ return {
   {"clear", "p9-bg"},
   {"addText", "t", "wooah!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
+  
+
+  {"clear", "p10-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p11-bg"},
+  {"waitForInput"},
 
 
+  {"clear", "p12-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p13-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p14-bg"},
+  {"waitForInput"},
+
+
+  {"clear", "p15-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p16-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p17-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p18-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p19-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p20-bg"},
+  {"waitForInput"},
+
+
+  {"clear", "p21-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p22-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p23-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p24-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p25-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p26-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p27-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p28-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p29-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p30-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p31-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p32-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p33-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p34-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p35-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p36-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p37-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p38-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p39-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p40-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p41-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p42-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p43-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p44-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p45-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p46-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p47-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p48-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p49-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p50-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p51-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p52-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p53-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p54-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p55-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p56-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p57-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p58-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p59-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p60-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p61-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p62-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p63-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p64-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p65-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p66-bg"},
+  {"waitForInput"},
+  
+  
+  {"clear", "p67-bg"},
+  {"waitForInput"},
+  
+  
 
   {"loadImage", "endMarker", "assets/storyboards/endMarker.png", {scale = {x = 3.23, y = 3.23}}},
   {"clear", "endMarker"},
