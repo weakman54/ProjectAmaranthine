@@ -1,15 +1,4 @@
-[submodule "test_battlesystem2/hump"]
-	url = https://github.com/vrld/hump
-[submodule "test_battlesystem3_statemachine/hump"]
-	url = https://github.com/vrld/hump
 [submodule "test_battlesystem3_statemachine/statemachine"]
 	url = https://github.com/kyleconroy/lua-state-machine
-[submodule "test_battlesystem4_ownStateTimer/hump"]
-	url = https://github.com/vrld/hump
 [submodule "test_boxofglory/wutil-lua"]
 	url = https://bitbucket.org/weakman54/wutil-lua
-[submodule "test_camera/hump"]
-	url = https://github.com/vrld/hump
-[submodule "test_VisualNovel2/hump"]
-	path = test_VisualNovel2/hump
-	url = https://github.com/vrld/hump
