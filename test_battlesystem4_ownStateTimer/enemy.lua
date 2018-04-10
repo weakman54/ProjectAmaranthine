@@ -279,7 +279,6 @@ function enemy:initSM()
 		  love.audio.play("assets/sounds/Attack3.ogg")
 		  love.audio.play("assets/sounds/Ice2.ogg")
 		  love.audio.play("assets/sounds/Sword1.ogg")
-		  love.audio.play("assets/sounds/Scream.ogg")
         ac:setAnimation("hurt")
         self.timer = Timer:new()
       end,
