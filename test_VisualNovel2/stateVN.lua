@@ -53,6 +53,7 @@ functions = {
     }
   end,
   loadImage = function(handle, filename, args)
+--    print(filename, U
     args = args or {}
     args.looping = false
     functions.loadAnim(handle, {filename}, args)
@@ -61,7 +62,7 @@ functions = {
 
 
   setBG = function(handle)
-    assert(resources[handle], "background " .. handle .. " was not found! did you load it?")
+    assert(resources[handle], "background " .. handle .. " was not found! did you load it?" .. curLine)
     background = handle
   end,
   --
@@ -194,6 +195,18 @@ functions = {
 
 }
 --
+
+
+function stateVN:init()
+  local dir = love.filesystem.getDirectoryItems("/assets/storyboards")
+  
+  for i, filename in ipairs(dir) do
+    local fn = "assets/storyboards/" .. filename
+    local handle = filename:sub(1, -5)
+--    print(, )
+      functions["loadImage"](handle, fn, {scale = {x = 3.23, y = 3.23}})
+  end
+end
 
 
 function stateVN:update(dt)
