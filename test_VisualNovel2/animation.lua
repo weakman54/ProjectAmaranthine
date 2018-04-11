@@ -73,7 +73,7 @@ function Animation:_setFrameI(index)
 end
 
 function Animation:_getFrame(index) 
-  return assert(self._frames[index], "Animation:_getFrame(): tried to index a non-existent frame: " .. index)
+  return assert(self._frames[index], "Animation:_getFrame(): tried to index a non-existent frame: " .. index .. " " .. self.name)
 end
 function Animation:_getCurFrame()
   return self:_getFrame(self._curFrameI)
@@ -149,6 +149,7 @@ function Animation:importFrame(frame)
 end
 
 function Animation:importFrames(prefix, duration, postfix)
+	assert(type(self) == "table", "did you miss a colon?")
   postfix = postfix or ".png"
   local i = 1
 
@@ -162,6 +163,8 @@ function Animation:importFrames(prefix, duration, postfix)
       print(i, t, filename, duration, self._frameDuration)
       self:importFrame{image = image_or_msg, duration = duration}
       i = i + 1
+	else
+		print("could not load frame (4 digits): ", i, t, filename)
     end
 
 
@@ -179,6 +182,9 @@ function Animation:importFrames(prefix, duration, postfix)
       print(i, t, filename, duration, self._frameDuration)
       self:importFrame{image = image_or_msg, duration = duration}
       i = i + 1
+	  else
+		print("could not load frame (5 digits): ", i, t, filename)
+		
     end
 
 
