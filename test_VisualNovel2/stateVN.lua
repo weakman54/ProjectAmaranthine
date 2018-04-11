@@ -208,11 +208,17 @@ function stateVN:init()
       functions["loadImage"](handle, fn, {scale = {x = 3.23, y = 3.23}})
     end
   end
-
+  
+  dir = love.filesystem.getDirectoryItems("/assets/sounds")
+  
+--  print(dir, #dir)
+  
   for i, filename in ipairs(dir) do
+--    print(filename)
     if filename:sub(-4) == ".ogg" then
       local fn = "assets/sounds/" .. filename
       local handle = filename:sub(1, -5)
+--      print(handle)
       functions["loadSoundEffect"](handle, fn)
     end
   end
