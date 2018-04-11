@@ -93,12 +93,17 @@ function love.draw()
 end
 
 
-function love.keypressed(key)
+function love.keypressed(key, scancode)
+  print(key, scancode)
   if key == "escape" then
     love.event.quit()
 
   elseif Gamestate.current() ~= stateMain and Gamestate.current() ~= statePause and key == 'p' then
     return Gamestate.push(statePause)
+    
+  elseif scancode == "`" then
+--    print("AD")
+    love._openConsole()
 
   end
 end

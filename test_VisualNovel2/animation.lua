@@ -73,7 +73,7 @@ function Animation:_setFrameI(index)
 end
 
 function Animation:_getFrame(index) 
-  return assert(self._frames[index], "Animation:_getFrame(): tried to index a non-existent frame")
+  return assert(self._frames[index], "Animation:_getFrame(): tried to index a non-existent frame: " .. index)
 end
 function Animation:_getCurFrame()
   return self:_getFrame(self._curFrameI)
