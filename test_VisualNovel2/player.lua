@@ -55,14 +55,16 @@ function player:loadAnimations()
   anim = Animation:new()
   self.ac:addAnimation("guard", anim)
 
-  anim:importFrame{
-    image = love.graphics.newImage("assets/player/player_guard_0001.png"),
-    duration = 0.4,
-  }
-  anim:importFrame{
-    image = love.graphics.newImage("assets/player/player_guard_0002.png"),
-    duration = 0.4,
-  }
+  anim:importFrames("assets/player/player_guard_", 0.4)
+
+--  anim:importFrame{
+--    image = love.graphics.newImage("assets/player/player_guard_0001.png"),
+--    duration = 0.4,
+--  }
+--  anim:importFrame{
+--    image = love.graphics.newImage("assets/player/player_guard_0002.png"),
+--    duration = 0.4,
+--  }
 
 
   anim = Animation:new()
@@ -189,8 +191,8 @@ function player:initSM()
       canSwitch = function() return player.SP > 0 end,
 
       enter = function(self)
-		 love.audio.play("assets/sounds/Open1.ogg")
-		 love.audio.play("assets/sounds/Crossbow.ogg") 
+        love.audio.play("assets/sounds/Open1.ogg")
+        love.audio.play("assets/sounds/Crossbow.ogg") 
         ac:setAnimation("guard")
 
         player.guardTimer:reset()
@@ -212,7 +214,7 @@ function player:initSM()
 
   sm:add("parrying", {
       enter = function(self)
-		  love.audio.play("assets/sounds/Flash1.ogg")
+        love.audio.play("assets/sounds/Flash1.ogg")
         ac:setAnimation("parry")
 
         if not player.parryTimer then player.parryTimer = Timer:new() end
@@ -242,7 +244,7 @@ function player:initSM()
 
   sm:add("dodge", {      
       enter = function(self) 
-		  love.audio.play("assets/sounds/Evasion1.ogg")
+        love.audio.play("assets/sounds/Evasion1.ogg")
         ac:setAnimation("dodge_" .. player.stance)
 
         player.dodgeTimer:reset()
@@ -297,11 +299,11 @@ function player:initSM()
 
   sm:add("hurt", {      
       enter = function(self) 
-		  love.audio.play("assets/sounds/Damage4.ogg")
-		  love.audio.play("assets/sounds/Damage2.ogg")
-		  love.audio.play("assets/sounds/Damage3.ogg")
-		  love.audio.play("assets/sounds/Slash2.ogg")
-		  love.audio.play("assets/sounds/Grunt.ogg")
+        love.audio.play("assets/sounds/Damage4.ogg")
+        love.audio.play("assets/sounds/Damage2.ogg")
+        love.audio.play("assets/sounds/Damage3.ogg")
+        love.audio.play("assets/sounds/Slash2.ogg")
+        love.audio.play("assets/sounds/Grunt.ogg")
         ac:setAnimation("hurt")
 
         self.timer = Timer:new()
@@ -321,7 +323,7 @@ function player:initSM()
       canSwitch = function() return player.health < player.maxhealth end,
 
       enter = function(self)
-		  love.audio.play("assets/sounds/Absorb2.ogg")
+        love.audio.play("assets/sounds/Absorb2.ogg")
         ac:setAnimation("heal")
       end,
 
@@ -411,12 +413,12 @@ function player:receiveAttack(enemyStance)
     if self.guardTimer._acc <= self.parryTreshold then -- HACK, using internal value of timer, should implement properly 
       self.sm:switch("parrying")
       enemy.sm:switch("parried")
-	  love.audio.play("assets/sounds/Flash1.ogg")
-	  love.audio.play("assets/sounds/Saint3.ogg")
-  else
-	  love.audio.play("assets/sounds/Saint3.ogg")
-	  love.audio.play("assets/sounds/Parry.ogg")
-	  love.audio.play("assets/sounds/Sword2.ogg")
+      love.audio.play("assets/sounds/Flash1.ogg")
+      love.audio.play("assets/sounds/Saint3.ogg")
+    else
+      love.audio.play("assets/sounds/Saint3.ogg")
+      love.audio.play("assets/sounds/Parry.ogg")
+      love.audio.play("assets/sounds/Sword2.ogg")
     end
     return
   end
@@ -428,7 +430,7 @@ function player:receiveAttack(enemyStance)
   if self.health <= 0 then
     Gamestate.switch(stateMain, {playerDeath = true})
   end
-  
+
   self.sm:switch("hurt")
 end
 

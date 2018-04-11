@@ -19,7 +19,7 @@ function Animation:new()
 
   obj._playing = false
   obj._looping = false
-  
+
   obj.name = ""
 
   return obj
@@ -94,7 +94,7 @@ function Animation:play(from)
     self:_setFrameI(from)
     self._curTime = 0 -- NOTE: this might need changing
   end
-  
+
   self._playing = true
 
   self:doEvent("played", from or self._curFrameI)
@@ -131,7 +131,7 @@ end
 
 function Animation:setLooping(value)
   if value == nil then value = true end
-  
+
   self._looping = value
 
   return self
@@ -148,6 +148,42 @@ function Animation:importFrame(frame)
   -- TODO: initialization?
 end
 
+function Animation:importFrames(prefix, duration, postfix)
+  postfix = postfix or ".png"
+  local i = 1
+
+  repeat
+    local t = string.format("%04d", i)
+    local filename = prefix .. t .. postfix
+
+    local success, image_or_msg = pcall(love.graphics.newImage, filename)
+
+    if success then
+      self:importFrame{image = image_or_msg, duration = duration}
+      print(i, t, filename)
+    end
+
+    i = i + 1
+
+  until not success
+
+  repeat
+    local t = string.format("%05d", i)
+    local filename = prefix .. t .. postfix
+
+    local success, image_or_msg = pcall(love.graphics.newImage, filename)
+
+    if success then
+      print(i, t, filename)
+      self:importFrame{image = image_or_msg, duration = duration}
+    end
+
+    i = i + 1
+
+  until not success
+end
+
+
 
 function Animation:setFramerate(fps)
   self._frameDuration = 1/fps
@@ -157,11 +193,11 @@ end
 -- NOTE: pretty untested right now!
 function Animation:duration()
   local ret = 0
-  
+
   for _, frame in ipairs(self._frames) do
     ret = ret + frame.duration or self._frameDuration
   end
-  
+
   return ret
 end
 
