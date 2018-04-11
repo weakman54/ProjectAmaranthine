@@ -161,12 +161,14 @@ function Animation:importFrames(prefix, duration, postfix)
     if success then
       print(i, t, filename, duration, self._frameDuration)
       self:importFrame{image = image_or_msg, duration = duration}
+      i = i + 1
     end
 
-    i = i + 1
 
   until not success
 
+
+  i = 1 -- God dsamnit...
   repeat
     local t = string.format("%05d", i)
     local filename = prefix .. t .. postfix
@@ -176,9 +178,9 @@ function Animation:importFrames(prefix, duration, postfix)
     if success then
       print(i, t, filename, duration, self._frameDuration)
       self:importFrame{image = image_or_msg, duration = duration}
+      i = i + 1
     end
 
-    i = i + 1
 
   until not success
 end
