@@ -301,6 +301,7 @@ function player:initSM()
 		  love.audio.play("assets/sounds/Damage2.ogg")
 		  love.audio.play("assets/sounds/Damage3.ogg")
 		  love.audio.play("assets/sounds/Slash2.ogg")
+		  love.audio.play("assets/sounds/Grunt.ogg")
         ac:setAnimation("hurt")
 
         self.timer = Timer:new()
