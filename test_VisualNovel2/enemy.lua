@@ -14,57 +14,29 @@ function enemy:loadAnimations()
   local anim
 
   anim = Animation:new()
-
   self.ac:addAnimation("attack_windup_high", anim)
 
-  anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-windup-high_0001.png"),
-    duration = 0.2,
-  }
-  anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-windup-high_0002.png"),
-    duration = 0.2,
-  }
+  anim:importFrames("assets/Quit/Quit_attack-high1-windup_", 1/30)
 
 
   anim = Animation:new()
   self.ac:addAnimation("attack_low", anim)
 
-  anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-low_0001.png"),
-    duration = 0.4,
-  }
-  anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-low_0002.png"),
-    duration = 0.4,
-  }
+anim:importFrames("assets/Quit/Quit_attack-low1_", 1/30)
+
 
   anim = Animation:new()
 
   self.ac:addAnimation("attack_windup_low", anim)
 
-  anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-windup-low_0001.png"),
-    duration = 0.2,
-  }
-  anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-windup-low_0002.png"),
-    duration = 0.2,
-  }
+anim.importFrames("assets/Quit/Quit_attack-low1-windup_", 1/30)
 
 
 
   anim = Animation:new()
   self.ac:addAnimation("attack_high", anim)
 
-  anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-high_0001.png"),
-    duration = 0.4,
-  }
-  anim:importFrame{
-    image = love.graphics.newImage("assets/enemy_attack-high_0002.png"),
-    duration = 0.4,
-  }
+anim:importFrames("assets/Quit/Quit_attack-high1", 1/30)
 
 
   anim = Animation:new()
