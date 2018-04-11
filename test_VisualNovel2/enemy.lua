@@ -28,15 +28,16 @@ anim:importFrames("assets/Quit/Quit_attack-low1_", 1/30)
   anim = Animation:new()
 
   self.ac:addAnimation("attack_windup_low", anim)
+  
+  anim:importFrames("assets/Quit/Quit_attack-low1-windup_", 1/30)
 
-anim.importFrames("assets/Quit/Quit_attack-low1-windup_", 1/30)
 
 
 
   anim = Animation:new()
   self.ac:addAnimation("attack_high", anim)
 
-anim:importFrames("assets/Quit/Quit_attack-high1", 1/30)
+anim:importFrames("assets/Quit/Quit_attack-high1_", 1/30)
 
 
   anim = Animation:new()
@@ -295,7 +296,7 @@ function enemy:initialize()
 
 
   self.ac = AC:new()
-  self.ac.name = "player"
+  self.ac.name = "enemy"
 
   self:loadAnimations()
 
