@@ -171,6 +171,8 @@ function enemy:initSM()
 
   sm:add("attack_windup", {
       enter = function(self)  -- ok, these are technically the closures
+		  love.audio.play("assets/sounds/Cancel2.ogg")
+		  love.audio.play("assets/sounds/Shot2.ogg")
         ac:setAnimation("attack_windup_" .. enemy.stance)
 
         self.timer = Timer:new()
@@ -194,6 +196,7 @@ function enemy:initSM()
 
   sm:add("attack", {
       enter = function(self)  -- ok, these are technically the closures
+		  love.audio.play("assets/sounds/Wind7E.ogg")
         ac:setAnimation("attack_" .. enemy.stance, false)
 
         player:receiveAttack(enemy.stance)
@@ -273,6 +276,9 @@ function enemy:initSM()
 
   sm:add("hurt", {
       enter = function(self)  -- ok, these are technically the closures
+		  love.audio.play("assets/sounds/Attack3.ogg")
+		  love.audio.play("assets/sounds/Ice2.ogg")
+		  love.audio.play("assets/sounds/Sword1.ogg")
 
         if enemy.health <= 0 then -- HACK, fix better "take damage thing"!
           Gamestate.switch(stateMain, {playerDeath = false})
@@ -357,12 +363,16 @@ function enemy:receiveAttack(playerStance)
 
   local doGuard = self.sm:is("idle")
   if doGuard then
+	  love.audio.play("assets/sounds/Hammer.ogg")
+	  love.audio.play("assets/sounds/Sword2.ogg")
     self.stance = playerStance
     self.sm:switch("guard")
     return
   end
 
   if self.sm:is("guard") then
+	  love.audio.play("assets/sounds/Hammer.ogg")
+	  love.audio.play("assets/sounds/Sword2.ogg")
     self.guardTimer:reset()
     --return -- Should not return here, needs to check stances below (did I not fix this already??)
   end
