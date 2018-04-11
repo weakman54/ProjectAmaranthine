@@ -195,7 +195,7 @@ function Animation:duration()
   local ret = 0
 
   for _, frame in ipairs(self._frames) do
-    ret = ret + frame.duration or self._frameDuration
+    ret = ret + (frame.duration or self._frameDuration)
   end
 
   return ret
