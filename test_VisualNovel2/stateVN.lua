@@ -103,7 +103,8 @@ functions = {
 
 
   loadSoundEffect = function(handle, filename)
-    assert(resources[handle] == nil, "You can't load a resource with the same name twice!")
+--    assert(resources[handle] == nil, "You can't load a resource with the same name twice! " .. curLine)
+    if resources[handle] then return end -- Kindof HACK, should look at closer
 
     resources[handle] = {
       type = "soundEffect",
@@ -183,7 +184,7 @@ functions = {
   --
 
   gotoBattle = function(battleState)
-    Gamestate.switch(stateBattle)
+    Gamestate.switch(battleState)
   end,
   --
 
@@ -215,6 +216,16 @@ function stateVN:init()
       functions["loadSoundEffect"](handle, fn)
     end
   end
+end
+
+
+function stateVN:enter(previous, data)
+  if data then
+    curScene = data.scene
+    curLine  = data.line
+  end
+  
+  curLine = 1
 end
 
 

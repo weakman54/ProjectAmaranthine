@@ -21,18 +21,19 @@ scale = {}
 
 require "miniSoundManager"
 
-baton = require"baton"  
+baton     = require "baton"  
 Gamestate = require "hump.gamestate"
-SM = require "statemachine"
-Timer = require "hump.timer"
+SM        = require "statemachine"
+Timer     = require "hump.timer"
 
 
 require "player"
 require "enemy"
 
 
+stateMain   = require "stateMain"
 stateBattle = require "stateBattle"
-stateVN = require "stateVN"
+stateVN     = require "stateVN"
 
 
 
@@ -76,7 +77,7 @@ function love.load(arg)
   --
 
   Gamestate.registerEvents()
-  Gamestate.switch(stateVN)
+  Gamestate.switch(stateMain)
 end
 --
 
@@ -84,7 +85,6 @@ end
 function love.update(dt)
   love.audio.update()
   input:update()
---  someSM:update(dt)
 end
 
 

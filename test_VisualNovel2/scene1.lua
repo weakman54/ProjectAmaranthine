@@ -2,10 +2,6 @@
 local elevatorDoorDuration = 3
 
 return {
-  --{"loadImage", "p1-bg", "assets/storyboards/p1-bg.png", {scale = {x = 3.23, y = 3.23}}},
-  --{"loadImage", "p1-s1", "assets/storyboards/p1-s1.png", {scale = {x = 3.23, y = 3.23}}},
-  --{"loadImage", "p1-s2", "assets/storyboards/p1-s2.png", {scale = {x = 3.23, y = 3.23}}},
-  --{"loadImage", "p1-s3", "assets/storyboards/p1-s3.png", {scale = {x = 3.23, y = 3.23}}},
   {"loadSoundEffect", "lift-open", "assets/sounds/lift-open.wav"},
 
   {"setBG", "p1-bg"},
@@ -377,6 +373,7 @@ return {
   {"waitForInput"},
   
   
+  {"gotoBattle", stateBattle},
   
   
   {"clear", "endMarker"},
