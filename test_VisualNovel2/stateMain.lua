@@ -3,6 +3,12 @@
 local stateMain = {}
 
 local playerDeath
+local logo
+
+function stateMain:init()
+  logo = love.graphics.newImage("assets/EveREnd logo.png")
+end
+
 
 
 function stateMain:enter(previous, data)
@@ -18,14 +24,18 @@ end
 
 
 function stateMain:draw()
+  local W, H = love.graphics.getWidth(), love.graphics.getHeight()
+--    love.graphics.printf('PAUSE', 0, H/2, W, 'center')
+
+  love.graphics.draw(logo, 0, -200)
   if playerDeath ~= nil then
     if playerDeath then
-      love.graphics.print("You were defeated! Press r to try again, or space to restart entirely")
+      love.graphics.print("You were defeated! Press r to try again, or space to restart entirely", 0, H - 200, W, 'center')
     else
-      love.graphics.print("You won! Press space to play again")
+      love.graphics.print("You won! Press space to play again", 0, H - 200, W, 'center')
     end
   else
-    love.graphics.print("press space to start", 100, 100)
+    love.graphics.printf("press space to start, escape to exit", 0, H - 200, W, 'center')
   end
 end
 

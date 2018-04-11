@@ -34,6 +34,7 @@ require "enemy"
 stateMain   = require "stateMain"
 stateBattle = require "stateBattle"
 stateVN     = require "stateVN"
+statePause  = require "statePause"
 
 
 
@@ -62,7 +63,7 @@ input = baton.new {
 function love.load(arg)
   do -- BOILERPLATE vvvvvvvvvvv
     love.graphics.setNewFont(48)
-    
+
     love.graphics.clear(000, 000, 000)
 
     if arg[#arg] == "-debug" then
@@ -95,6 +96,10 @@ end
 function love.keypressed(key)
   if key == "escape" then
     love.event.quit()
+
+  elseif Gamestate.current() ~= stateMain and Gamestate.current() ~= statePause and key == 'p' then
+    return Gamestate.push(statePause)
+
   end
 end
 

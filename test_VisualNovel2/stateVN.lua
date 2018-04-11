@@ -123,6 +123,7 @@ functions = {
   --
 
   play = function(handle)
+    assert(resources[handle], "The handle " .. handle .. " does not have a resource associated with it. did you misspell?")
     resources[handle].data:play()
   end,
   pause = function(handle)
@@ -232,6 +233,8 @@ function stateVN:enter(previous, data)
   end
   
   curLine = 1
+  
+  functions["clear"]()
 end
 
 
@@ -290,12 +293,15 @@ function stateVN:keypressed(key)
   if key == "escape" then
     love.event.quit()
 
-  elseif key == "p" then
+  elseif key == "'" then
     curLine = curLine + 1
     executing = true
     Timer.clear()
 
-  elseif key == "" then
+--elseif key == "p" then
+--  Gamestate.push(statePause)
+  
+elseif key == "" then
 
   end
 end
