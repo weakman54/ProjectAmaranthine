@@ -108,7 +108,8 @@ functions = {
 
     resources[handle] = {
       type = "soundEffect",
-      data = love.audio.newSource(filename, "static")
+      data = love.audio.newSource(filename, "static"),
+      filename = filename, -- HACK to make simultaneaous sounds work
     }
   end,
 --
@@ -124,6 +125,13 @@ functions = {
 
   play = function(handle)
     assert(resources[handle], "The handle " .. handle .. " does not have a resource associated with it. did you misspell?")
+    
+    -- HACK^vvvv
+    if resources[handle].data:isPlaying() then
+      love.audio.play(resources[handle].filename)
+    end
+    -- HACK ^^^^
+    
     resources[handle].data:play()
   end,
   pause = function(handle)
