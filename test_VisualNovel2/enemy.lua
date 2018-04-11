@@ -279,6 +279,11 @@ function enemy:initSM()
 		  love.audio.play("assets/sounds/Attack3.ogg")
 		  love.audio.play("assets/sounds/Ice2.ogg")
 		  love.audio.play("assets/sounds/Sword1.ogg")
+
+        if enemy.health <= 0 then -- HACK, fix better "take damage thing"!
+          Gamestate.switch(stateMain, {playerDeath = false})
+        end
+
         ac:setAnimation("hurt")
         self.timer = Timer:new()
       end,
@@ -339,6 +344,8 @@ function enemy:reset()
   self.offsetPos.x, self.offsetPos.y = 0, 0
 
   self.health = self.maxhealth
+  
+  self.sm:switch("idle")
 end
 --
 
