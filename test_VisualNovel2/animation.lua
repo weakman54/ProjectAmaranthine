@@ -159,8 +159,8 @@ function Animation:importFrames(prefix, duration, postfix)
     local success, image_or_msg = pcall(love.graphics.newImage, filename)
 
     if success then
+      print(i, t, filename, duration, self._frameDuration)
       self:importFrame{image = image_or_msg, duration = duration}
-      print(i, t, filename)
     end
 
     i = i + 1
@@ -174,7 +174,7 @@ function Animation:importFrames(prefix, duration, postfix)
     local success, image_or_msg = pcall(love.graphics.newImage, filename)
 
     if success then
-      print(i, t, filename)
+      print(i, t, filename, duration, self._frameDuration)
       self:importFrame{image = image_or_msg, duration = duration}
     end
 
