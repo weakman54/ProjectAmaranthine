@@ -94,7 +94,7 @@ end
 
 
 function love.keypressed(key, scancode)
-  print(key, scancode)
+--  print(key, scancode)
   if key == "escape" then
     love.event.quit()
 
