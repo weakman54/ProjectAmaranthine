@@ -32,7 +32,7 @@ function stateMain:draw()
     if playerDeath then
       love.graphics.printf("You were defeated! Press r to try again, or space to restart entirely", 0, H - 200, W, 'center')
     else
-      love.graphics.print("You won! Press space to play again", 0, H - 200, W, 'center')
+      love.graphics.printf("You won! Press space to play again", 0, H - 200, W, 'center')
     end
   else
     love.graphics.printf("press space to start, escape to exit", 0, H - 200, W, 'center')
