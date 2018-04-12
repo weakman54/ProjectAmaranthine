@@ -144,8 +144,7 @@ function enemy:initSM()
 
   sm:add("attack_windup", {
       enter = function(self)  -- ok, these are technically the closures
-		  love.audio.play("assets/sounds/Cancel2.ogg")
-		  love.audio.play("assets/sounds/Shot2.ogg")
+		  love.audio.play("assets/sounds/Flash2.ogg")
         ac:setAnimation("attack_windup_" .. enemy.stance)
 
         self.timer = Timer:new()
