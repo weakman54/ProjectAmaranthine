@@ -1,6 +1,7 @@
 
 -- Lib
 local Gamestate = require "hump.gamestate"
+local ResourceManager = require "resourceManager.resourceManager"
 
 
 -- States
@@ -10,6 +11,9 @@ local baton = require "baton.baton"
 
 -- Other stuff:
 local scale = {x = 1, y = 1} -- scale hack
+
+
+local anim -- TEST
 
 input = baton.new { -- Should be global
   controls = {
@@ -49,6 +53,13 @@ function love.load(arg)
   end
 --
 
+  -- TEST
+  anim = ResourceManager:loadAnimation("assets/Quit/Quit_attack-high1-windup_") -- TEST
+  anim.data:setFramerate(30)
+  anim.data:play()
+  anim.data:setLooping()
+  --TEST
+
   Gamestate.switch(stateMain)
 end
 
@@ -57,7 +68,8 @@ function love.update(dt)
   input:update()
 
   if input:pressed("systemStart") then love.event.quit() end
-  
+
+  anim.data:update(dt) -- TESTs
 
   Gamestate.update(dt)
 end
@@ -65,6 +77,8 @@ end
 
 function love.draw()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
+
+  anim.data:loveDraw() --  TEST
 
   Gamestate.draw()
 end

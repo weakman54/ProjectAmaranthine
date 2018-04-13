@@ -59,7 +59,7 @@ function Animation:_setFrameI(index)
 
   if self._curFrameI <= #self._frames then return end -- Within [1, #_frames], no additional fixing needed
 
-  if self._looping then -- (And above #_frames)
+  if self._looping then -- Above #_frames
     self._curFrameI = 1
 
     self:doEvent("looped")
@@ -73,7 +73,7 @@ function Animation:_setFrameI(index)
 end
 
 function Animation:_getFrame(index) 
-  return assert(self._frames[index], "Animation:_getFrame(): tried to index a non-existent frame: " .. index .. " " .. self.name)
+  return assert(self._frames[index], "Animation:_getFrame(): " ..  " " .. self.name .. " tried to index a non-existent frame: " .. index)
 end
 function Animation:_getCurFrame()
   return self:_getFrame(self._curFrameI)
