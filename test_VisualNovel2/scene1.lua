@@ -19,9 +19,6 @@ return {
 
 
   {"clear", "p2-bg"},
-  
-  {"play", "Move1"},
-  
   {"pauseExecution", 2}, -- MAGIC NUMBER
 
 
@@ -48,10 +45,10 @@ return {
 
 
   {"clear", "p4-bg"},
+  {"show", "p4-s1"},
   
   {"play", "Jump1"},
   
-  {"show", "p4-s1"},
   {"addText", "t", "hey!", {pos = {x = 1000, y = 50}, color = {000, 000, 000}} },
   {"pauseExecution", 2},
 
@@ -74,9 +71,6 @@ return {
 
 
   {"clear", "p7-bg"},
-  
-  {"play", "Wind1"},
-  
   {"addText", "t", "That thing she is saying here...", {pos = {x = 0, y = 1080 - 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
 
@@ -106,9 +100,6 @@ return {
   
   
   {"clear", "p11-bg"},
-  
-  {"play", "Equip2"},
-  
   {"waitForInput"},
 
 
@@ -119,9 +110,6 @@ return {
   
   
   {"clear", "p13-bg"},
-  
-  {"play", "Equip2"},
-  
   {"waitForInput"},
   
   
@@ -143,9 +131,6 @@ return {
   
   {"clear", "p16-bg"},
   {"show", "p16-s1"},
-  
-  {"play", "Saint4"},
-  
   {"waitForInput"},
   
   
@@ -304,34 +289,24 @@ return {
   {"clear", "p38-bg"},
   
   {"play", "Equip2"},
-  {"play", "Fire1"},
+  {"play", "Wind1"},
   
   {"waitForInput"},
   
   
   
   {"clear", "p39-bg"},  
-  
-  {"play", "Earth2"},
-  
   {"waitForInput"},
   
   
   
   {"clear", "p40-bg"},
   {"show", "p40-s1"},
-  
-  {"play", "Move1"},
-  {"play", "Fire2"},
-  
   {"waitForInput"},
   
   
   
   {"clear", "p41-bg"},
-  
-  {"play", "Fire1"},
-  
   {"waitForInput"},
   
   
@@ -346,18 +321,11 @@ return {
   
   
   {"clear", "p43-bg"},
-  
-  {"play", "Equip2"},
-  {"play", "Earth2"},
-  
   {"waitForInput"},
   
   
   
   {"clear", "p44-bg"},
-  
-  {"play", "Fire2"},
-  
   {"waitForInput"},
   
   
@@ -378,18 +346,12 @@ return {
   
   
   {"clear", "p48-bg"},
-  
-  {"play", "Equip2"},
-  
   {"waitForInput"},
   
   
   
   {"clear", "p49-bg"},
   {"show", "p49-s1"},
-  
-  {"play", "Move1"},
-  
   {"waitForInput"},
   
   
@@ -400,17 +362,13 @@ return {
   
   
   {"clear", "p51-bg"},
-  
-  {"play", "Move5"},
-  
   {"waitForInput"},
   
   
   
   {"clear", "p52-bg"},
   
-  {"play", "Fire2"},
-  {"play", "Explosion1"},
+  {"play", "Bam"},
   
   {"waitForInput"},
   
@@ -422,28 +380,19 @@ return {
   
   
   {"clear", "p54-bg"},
-  
-  {"play", "Wind1"},
-  
   {"waitForInput"},
   
   
   
   {"clear", "p55-bg"},
   
-  {"play", "Earth2"},
-  {"play", "Explosion1"},
+  {"play", "Bam"},
   
   {"waitForInput"},
   
   
   
   {"clear", "p56-bg"},
-  
-  {"play", "Earth2"},
-  {"play", "Explosion1"},
-  {"play", "Wind1"},
-  
   {"waitForInput"},
   
   
@@ -464,9 +413,6 @@ return {
   
   
   {"clear", "p60-bg"},
-  
-  {"play", "Earth2"},
-  
   {"waitForInput"},
   
   
@@ -487,37 +433,21 @@ return {
   
   
   {"clear", "p63-bg"},
-  
-  {"play", "Move1"},
-  {"play", "Equip2"},
-  
   {"waitForInput"},
   
   
   
   {"clear", "p64-bg"},
-  
-  {"play", "Wind1"},
-  {"play", "Equip2"},
-  
   {"waitForInput"},
   
   
   
   {"clear", "p65-bg"},
-  
-  {"play", "Earth2"},
-  {"play", "Explosion1"},
-  
   {"waitForInput"},
   
   
   
   {"clear", "p66-bg"},
-  
-  {"play", "Earth2"},
-  {"play", "Stare"},
-  
   {"waitForInput"},
   
   
