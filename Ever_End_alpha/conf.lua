@@ -1,7 +1,7 @@
 
 
 function love.conf(t)
-  t.version = "0.10.2" -- Testing versions for people...
+  t.version = "11.0"
   
   t.window.resizable = true
   t.window.width  = 1920

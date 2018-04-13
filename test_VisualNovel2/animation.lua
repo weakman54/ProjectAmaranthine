@@ -160,11 +160,11 @@ function Animation:importFrames(prefix, duration, postfix)
     local success, image_or_msg = pcall(love.graphics.newImage, filename)
 
     if success then
-      print(i, t, filename, duration, self._frameDuration)
+--      print(i, t, filename, duration, self._frameDuration)
       self:importFrame{image = image_or_msg, duration = duration}
       i = i + 1
 	else
-		print("could not load frame (4 digits): ", i, t, filename)
+--		print("could not load frame (4 digits): ", i, t, filename)
     end
 
 
@@ -179,11 +179,11 @@ function Animation:importFrames(prefix, duration, postfix)
     local success, image_or_msg = pcall(love.graphics.newImage, filename)
 
     if success then
-      print(i, t, filename, duration, self._frameDuration)
+--      print(i, t, filename, duration, self._frameDuration)
       self:importFrame{image = image_or_msg, duration = duration}
       i = i + 1
 	  else
-		print("could not load frame (5 digits): ", i, t, filename)
+--		print("could not load frame (5 digits): ", i, t, filename)
 		
     end
 

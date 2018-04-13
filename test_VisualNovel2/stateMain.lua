@@ -25,18 +25,22 @@ end
 
 function stateMain:draw()
   local W, H = love.graphics.getWidth(), love.graphics.getHeight()
+--  print(W, H)
 --    love.graphics.printf('PAUSE', 0, H/2, W, 'center')
-
+--love.graphics.scale(1)
   love.graphics.draw(logo, 0, -200)
+  
+  love.graphics.scale(1, 1)
   if playerDeath ~= nil then
     if playerDeath then
       love.graphics.printf("You were defeated! Press r to try again, or space to restart entirely", 0, H - 200, W, 'center')
     else
-      love.graphics.print("You won! Press space to play again", 0, H - 200, W, 'center')
+      love.graphics.printf("You won! Press space to play again", 0, H - 200, W, 'center')
     end
   else
-    love.graphics.printf("press space to start, escape to exit", 0, H - 200, W, 'center')
+    love.graphics.printf("press space to start, escape to exit", 0, H - 100, W, 'center')
   end
+  love.graphics.scale(scale.x, scale.y)
 end
 
 
