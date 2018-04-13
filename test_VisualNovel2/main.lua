@@ -106,7 +106,6 @@ function love.keypressed(key, scancode)
     return Gamestate.push(statePause)
 
   elseif scancode == "`" then
---    print("AD")
     love._openConsole()
 
   end
@@ -114,8 +113,8 @@ end
 
 
 function love.resize(w, h)
-  scale.x = love.graphics.getWidth()/1920
-  scale.y = love.graphics.getHeight()/1080
+  scale.x = love.graphics.getWidth()/1920  -- Scale hack
+  scale.y = love.graphics.getHeight()/1080 -- scale hack
 end
 
 
