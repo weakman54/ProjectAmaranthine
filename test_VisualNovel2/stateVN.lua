@@ -294,6 +294,7 @@ end
 
 function stateVN:keypressed(key)
   if waitForInput then
+	  	  love.audio.play("assets/sounds/Textbox.ogg")
     curLine = curLine + 1
     waitForInput = false
   end
