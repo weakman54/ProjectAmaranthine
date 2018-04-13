@@ -23,8 +23,12 @@ end
 
 
 function SM:add(name, state)  
-  state.parent = self
+  -- These were used to refer to these things, which is useful info, but made it into closures instead, which is "cleaner"
+  -- However, having this info available is probably not a bad idea
+  -- Maybe add them as underscore vars?
+--  state.parent = self 
 --  state.owner = self.owner
+
   self.states[name] = state
   state.name = name
   

@@ -16,7 +16,10 @@ end
 
 
 -- Scaling HACK
-scale = {}
+scale = {x = 1, y = 1}
+function setScale()
+  love.graphics.scale(scale.x, scale.y)
+end
 
 
 require "miniSoundManager"
@@ -27,8 +30,8 @@ SM        = require "statemachine"
 Timer     = require "hump.timer"
 
 
-require "player"
-require "enemy"
+--require "player"
+--require "enemy"
 
 
 stateMain   = require "stateMain"
@@ -90,6 +93,7 @@ end
 
 
 function love.draw()
+  love.graphics.scale(scale.x, scale.y)
 end
 
 
@@ -100,7 +104,7 @@ function love.keypressed(key, scancode)
 
   elseif Gamestate.current() ~= stateMain and Gamestate.current() ~= statePause and key == 'p' then
     return Gamestate.push(statePause)
-    
+
   elseif scancode == "`" then
 --    print("AD")
     love._openConsole()
@@ -108,6 +112,11 @@ function love.keypressed(key, scancode)
   end
 end
 
+
+function love.resize(w, h)
+  scale.x = love.graphics.getWidth()/1920
+  scale.y = love.graphics.getHeight()/1080
+end
 
 
 
