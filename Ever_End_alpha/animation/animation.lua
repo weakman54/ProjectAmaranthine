@@ -16,7 +16,7 @@ function Animation:new(framerate)
   obj._playing = false
   obj._looping = false
 
-  obj.name = ""
+  obj._name = ""
 
 
 
@@ -26,8 +26,8 @@ end
 
 
 function Animation:update(dt)
-  assert(#self._frames > 0, "Animation:update(): The Animation " .. self.name .. " does not have any frames!") 
-  assert(self._frameDuration > 0, "Animation:update(): The Animation " .. self.name .. " does not have a set framerate!")
+  assert(#self._frames > 0      , "Animation:update(): The Animation " .. self._name .. " does not have any frames!") 
+  assert(self._frameDuration > 0, "Animation:update(): The Animation " .. self._name .. " does not have a set framerate!")
 
   if not self._playing then return end
 
@@ -50,8 +50,8 @@ end
 -- Frame import ---------------
 function Animation:_importFrame(resource)
   -- TODO: Better ERROR
-  assert(type(resource) == "table", "Animation:_importFrame(resource): resource must be table!")
-  assert(resource.data:type() == "Image", "Animation:_importFrame(resource): resource.data must be image!")
+  assert(type(resource) == "table"      , "Animation:_importFrame(resource): Animation " .. self._name .. ": resource must be table!")
+  assert(resource.data:type() == "Image", "Animation:_importFrame(resource): Animation " .. self._name .. " resource.data must be image!")
   
   table.insert(self._frames, resource)  
 end
@@ -62,7 +62,7 @@ function Animation:_increment()
   self:_setFrameI(self._curFrameI + 1)
 end
 function Animation:_setFrameI(index)
-  assert(index > 0, "Animation:setFrame(): Tried to set a negative frame index")
+  assert(index > 0, "Animation:setFrame(): " .. self._name .. ": Tried to set a negative frame index")
 
   self._curFrameI = index
 
@@ -82,7 +82,7 @@ function Animation:_setFrameI(index)
 end
 
 function Animation:_getFrame(index) 
-  return assert(self._frames[index], "Animation:_getFrame(): " ..  " " .. self.name .. " tried to index a non-existent frame: " .. index)
+  return assert(self._frames[index], "Animation:_getFrame(): " .. self._name .. " tried to index a non-existent frame: " .. index)
 end
 function Animation:_getCurFrame()
   return self:_getFrame(self._curFrameI)
@@ -163,6 +163,12 @@ end
 function Animation:type()
   return "Animation"
 end
+
+
+function Animation:setName(name)
+  self._name = name
+end
+
 
 
 -- Event Callback caller

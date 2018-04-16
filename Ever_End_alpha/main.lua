@@ -13,7 +13,11 @@ local baton = require "baton.baton"
 local scale = {x = 1, y = 1} -- scale hack
 
 
+-- TEST vvvvvvv
+local AnimationCollection = require "animation.animationCollection"
+local ac = AnimationCollection:new()
 local anim -- TEST
+
 
 input = baton.new { -- Should be global
   controls = {
@@ -53,12 +57,16 @@ function love.load(arg)
   end
 --
 
-  -- TEST
+  -- TEST vvvvvvvvvvvvvvvvvv
   anim = ResourceManager:loadAnimation("assets/Quit/Quit_attack-high1-windup_") -- TEST
-  anim.data:setFramerate(30)
-  anim.data:play()
-  anim.data:setLooping()
-  --TEST
+  
+  ac:addAnimation("attack_high1_windup", anim)
+  ac:addAnimation("attack_low1_windup", ResourceManager:loadAnimation("assets/Quit/Quit_attack-low1-windup_"))
+  
+  ac:setFramerate(30)
+--  anim.data:play()
+--  anim.data:setLooping()
+  --TEST ^^^^^^^^^^^
 
   Gamestate.switch(stateMain)
 end
@@ -69,7 +77,7 @@ function love.update(dt)
 
   if input:pressed("systemStart") then love.event.quit() end
 
-  anim.data:update(dt) -- TESTs
+  ac:update(dt) -- TESTs
 
   Gamestate.update(dt)
 end
@@ -78,13 +86,16 @@ end
 function love.draw()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
 
-  anim.data:loveDraw() --  TEST
+  ac:loveDraw() --  TEST
 
   Gamestate.draw()
 end
 
 
 function love.keypressed(key, scancode, isrepeat)
+    
+  ac:setAnimation("attack_low1_windup")
+  
   -- NOTE: cannot use input library in keypressed! use it in update instead!
   if scancode == "`" then
     love._openConsole()

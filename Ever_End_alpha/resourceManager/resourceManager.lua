@@ -29,12 +29,13 @@ local function walkDirectory(path, stuff)
 
     else
       table.insert(stuff, targetPath)
-      print(targetPath)
+      if dbg_print then print(targetPath) end
 
 
     end
   end
 end
+--
 
 walkDirectory("assets")
 
@@ -67,6 +68,8 @@ function resourceManager:loadAnimation(filenameprefix, postfix) -- TODO: general
 
   postfix = postfix or ".png"
   local i = 1
+  
+  if dbg_print then print("\nresourceManager: loading animation") end
 
   while true do
     local t = string.format("%05d", i)

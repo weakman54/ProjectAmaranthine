@@ -44,6 +44,7 @@ function AC:addAnimation(name, animation, setAsCurrent, looping)
     self:setAnimation(name, looping)
   end
 end
+--
 
 
 function AC:setAnimation(name, looping)
@@ -58,7 +59,7 @@ function AC:setAnimation(name, looping)
   if self.curAnim then self.curAnim:stop() end-- NOTE: this might actually be better to not have here, double check when doing QA on animation switching
   
   self.curName = name
-  self.curAnim = self.animations[self.curName]
+--  self.curAnim = self.animations[self.curName] -- the fuck?
   
   self.curAnim = self.animations[name]
   self.curAnim:play():setLooping(looping)
@@ -69,6 +70,7 @@ function AC:checkInCollection(name)
   assert(type(name) == "string", "AnimationCollection: name must be string!")
   assert(self.animations[name] ~= nil, "AnimationCollection: Animation " .. name .. " is not in the collection!")
 end
+--
 
 
 function AC:update(dt)
