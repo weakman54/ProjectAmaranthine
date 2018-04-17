@@ -1,0 +1,7 @@
+
+
+local enemy = {}
+
+
+
+return enemy

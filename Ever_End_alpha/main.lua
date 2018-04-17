@@ -1,7 +1,8 @@
 
+require "util"
+
 -- Lib
 local Gamestate = require "hump.gamestate"
-local ResourceManager = require "resourceManager.resourceManager"
 
 
 -- States
@@ -14,9 +15,15 @@ local scale = {x = 1, y = 1} -- scale hack
 
 
 -- TEST vvvvvvv
+local RM = require "resourceManager.resourceManager"
+
 local AnimationCollection = require "animation.animationCollection"
-local ac = AnimationCollection:new()
-local anim -- TEST
+local ac = AnimationCollection:new()  
+ac:setFramerate(30)
+
+
+local Sound = require "resourceManager.soundManager"
+-- TEST ^^^^^^^^
 
 
 input = baton.new { -- Should be global
@@ -44,28 +51,29 @@ function love.load(arg)
   do -- Starting loadscreens
     love.graphics.setNewFont(48)
 
-    love.graphics.clear{0, 0, 0}
-
     if arg[#arg] == "-debug" then
-      love.graphics.print("Debug Load...")
-      love.graphics.present()
+      debugPrint("Loading: Debug", 100, 100)
       require("mobdebug").start() 
     end
 
-    love.graphics.print("Loading...", 150, 100)
-    love.graphics.present()
+    debugPrint("Loading: ", 100, 100)
   end
 --
 
   -- TEST vvvvvvvvvvvvvvvvvv
-  anim = ResourceManager:loadAnimation("assets/Quit/Quit_attack-high1-windup_") -- TEST
+  debugPrint("Loading: Sounds", 100, 100)
+  Sound:init()
   
-  ac:addAnimation("attack_high1_windup", anim)
-  ac:addAnimation("attack_low1_windup", ResourceManager:loadAnimation("assets/Quit/Quit_attack-low1-windup_"))
-  
-  ac:setFramerate(30)
---  anim.data:play()
---  anim.data:setLooping()
+  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
+  print(test)
+  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
+  print(test)
+
+--  debugPrint("Loading: Animations", 100, 100)
+--  RM.prefix = "assets/Quit/Quit_"
+
+--  ac:addAnimation("attack_high1_windup", RM:loadAnimation("attack-high1-windup_"))
+--  ac:addAnimation("attack_low1_windup", RM:loadAnimation("attack-low1-windup_"))
   --TEST ^^^^^^^^^^^
 
   Gamestate.switch(stateMain)
@@ -77,7 +85,10 @@ function love.update(dt)
 
   if input:pressed("systemStart") then love.event.quit() end
 
-  ac:update(dt) -- TESTs
+  -- TEST vvvvvvvvvvvvvv
+--  ac:update(dt)
+  Sound:update(dt)
+  -- TEST ^^^^^^^^^^
 
   Gamestate.update(dt)
 end
@@ -86,15 +97,19 @@ end
 function love.draw()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
 
-  ac:loveDraw() --  TEST
+--  ac:loveDraw() --  TEST
 
   Gamestate.draw()
 end
 
 
 function love.keypressed(key, scancode, isrepeat)
-    
-  ac:setAnimation("attack_low1_windup")
+  -- TEST vvvvvvvvvvvvv
+--  ac:setAnimation("attack_low1_windup") -- 
+  Sound:play("Collapse4")
+  -- TEST ^^^^^^^^^^^^^^^¨
+  
+--  test:play()
   
   -- NOTE: cannot use input library in keypressed! use it in update instead!
   if scancode == "`" then
