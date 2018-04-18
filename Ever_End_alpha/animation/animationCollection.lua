@@ -101,6 +101,10 @@ function AC:setFramerate(fps)
   end
 end
 
+function AC:pause()
+  self._curAnim.data:pause()
+end
+
 
 
 
