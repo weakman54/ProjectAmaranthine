@@ -40,6 +40,6 @@ luac.out
 *.hex
 
 
-test_VisualNovel2/assets/storyboards/\.DS_Store
+# MAC stuff
+.DS_Store
 
-test_VisualNovel2/assets/sounds/\.DS_Store
