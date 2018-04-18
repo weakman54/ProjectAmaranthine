@@ -13,37 +13,80 @@ local enemy = {}
 function enemy:initialize()
   self.name = "Quit" -- TODO: load properly
 --  self.stance = "low"
-  
-  self.attackTime = 3 -- seconds
-  
-  
-  self:initializeAttacks()
+
+  self.attackTime = 1 -- seconds
+
+
   self:initializeAC()
+  self:initializeAttacks()
   self:initializeSM()
 
   self.sm:switch("idle")
 end
 
 
-function enemy:initializeAttacks()
-  self.attacks = {}
+function enemy:loadAttack(name, framerate)
+  assert(name, "must pass name")
+  assert(framerate, "must pass framerate") -- TODO: cleanup error messages
   
   local atks = self.attacks
+  local ac = self.ac
+  
+
+  RM.prefix = "assets/" .. self.name .. "/" .. self.name .. "_"
+
+  local anim = RM:loadAnimation(name .. "_")
+
+  ac:addAnimation(name, anim)
+  anim.data:setFramerate(framerate) -- HACK atm to fix framerate for old animation
+  
   
   table.insert(atks, {
       -- name
-      name = "high_attack01",
+      name = name,
       -- animation (how load?)
---      animation = RM:
-      
+      animation = anim,
+
       -- nextAttack (implies combo) function
       -- timing info (read when loading frames)
       -- stance
       -- rand weight
       -- inv. frames
     })
-    
+end
+
+function enemy:initializeAttacks()
+  self.attacks = {}
+
+
+
+  self:loadAttack("high_attack01", 30)
+  self:loadAttack("low_attack01", 30)
   
+
+
+--  name = "low_attack01"
+--  anim = RM:loadAnimation(name .. "_")
+
+--  table.insert(atks, {
+--      -- name
+--      name = name,
+--      -- animation (how load?)
+--      animation = anim,
+
+--      -- timing info (read when loading frames)
+--      -- inv. frames
+
+
+--      -- nextAttack (implies combo) function
+--      -- rand weight
+--      -- stance
+
+--    })
+--  ac:addAnimation(name, anim)
+--  anim.data:setFramerate(30) -- HACK atm to fix framerate for old animation
+
+
 end
 
 
@@ -74,38 +117,42 @@ function enemy:initializeSM()
         ac:setAnimation("idle")
         self.attackTimer = Timer:new()
       end,
-      
+
       update = function(self, dt)
         -- TODO: put in reaction to attack
-          -- TODO: get hurt
-          -- TODO: or switch to defensive
-          -- TODO: counter attack ( if been attacked multiple times)
-          -- TODO: BETTER FEEDBACK FOR COUNTER ATTACK
-        
+        -- TODO: get hurt
+        -- TODO: or switch to defensive
+        -- TODO: counter attack ( if been attacked multiple times)
+        -- TODO: BETTER FEEDBACK FOR COUNTER ATTACK
+
         self.attackTimer:update(dt)
-        
+
         if self.attackTimer:reached(enemy.attackTime) then
           sm:switch("offensive")
         end
       end,
       --
-        
+
 
     })
 
   sm:add("offensive", {
       enter = function(self)
         -- TODO: choose action
-        
+        local attack = enemy.attacks[2]
+        ac:setAnimation(attack.name)
+
+        -- TODO: set animation
+
+
         -- TODO: combo?
         -- TODO: set stance depending on action
         -- TODO: perform action
-        -- TODO: set animation
-        
+
         -- TODO: implement attack format
-        
+
       end,
-      
+
       update = function(self)
         -- TODO: check animation for "ended"
         -- TODO: switch to correct state (combo?)
@@ -116,9 +163,9 @@ function enemy:initializeSM()
       enter = function(self)
         -- TODO: figure out which reaction
       end,
-      
+
       update = function(self, dt)
-        
+
       end,
 
     })
@@ -132,7 +179,8 @@ end
 
 
 function enemy:draw()
-  self.ac:loveDraw()
+  self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
+  love.graphics.print(self.sm.curState.name, 1400, 200)
 end
 
 
