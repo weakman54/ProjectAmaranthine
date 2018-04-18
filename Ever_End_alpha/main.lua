@@ -1,5 +1,6 @@
 
 require "util"
+require "global_consts"
 
 -- Lib
 local Gamestate = require "hump.gamestate"

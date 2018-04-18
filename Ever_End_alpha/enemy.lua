@@ -1,5 +1,9 @@
 
 
+local dbg_render_timingCircles = true
+local dbg_timingCircles = 0
+
+
 local RM = require "resourceManager.resourceManager"
 local AC = require "animation.animationCollection"
 local SM = require "statemachine.statemachine"
@@ -64,6 +68,10 @@ function enemy:loadAttack(attack, framerate)
   local frameDuration = 1/framerate
   print("FD", frameDuration)
 
+  attack.parryTreshold     = attack.parryTreshold     or PARRY_TRESHOLD
+  attack.perfDodgeTreshold = attack.perfDodgeTreshold or PERFDODGE_TRESHOLD
+  attack.normDodgeTreshold = attack.normDodgeTreshold or NORMDODGE_TRESHOLD
+
   for i, frame in ipairs(anim.data._frames) do
     local imgData = frame.imgData
     local r, g, b, a = imgData:getPixel(0, 0)
@@ -74,6 +82,10 @@ function enemy:loadAttack(attack, framerate)
     end
   end
 
+  attack.parryTime     = attack.damageImpact - attack.parryTreshold
+  attack.perfDodgeTime = attack.damageImpact - attack.perfDodgeTreshold
+  attack.normDodgeTime = attack.damageImpact - attack.normDodgeTreshold
+
   table.insert(self.attacks, attack)
 end
 
@@ -81,13 +93,10 @@ end
 function enemy:initializeAttacks()
   self.attacks = {}
 
-
-
   self:loadAttack({name = "high_attack01"}, 30)
---  self.attacks[#self.attacks].animation.data.dbg_render = false
+--  self.attacks[#self.attacks].animation.data.dbg_render = 
+
 --  self:loadAttack("low_attack01", 30)
-
-
 end
 
 
@@ -98,9 +107,6 @@ function enemy:initializeAC()
 
   ac:setFramerate(12)
   RM.prefix = "assets/" .. self.name .. "/" .. self.name .. "_"
-
---  name = "high_idle"
---  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
   name = "idle"
   ac:addAnimation(name, RM:loadAnimation("low_" .. name .. "_"))
@@ -142,7 +148,7 @@ function enemy:initializeSM()
         -- TODO: choose action
         self.curAttack = enemy.attacks[1]
         ac:setAnimation(self.curAttack.name, false)
-        
+
         self.timer = Timer:new()
 
         -- TODO: set animation
@@ -158,16 +164,29 @@ function enemy:initializeSM()
 
       update = function(self, dt)
         self.timer:update(dt)
-        
+
         if self.timer:reached(self.curAttack.damageImpact) then
           -- TODO: do damage things
         end
-        
+
+        -- TODO: check animation for "ended"
         if self.curAttack.animation.data.event == "ended" then
+          -- TODO: switch to correct state (combo?)
           sm:switch("idle")
         end
-        -- TODO: check animation for "ended"
-        -- TODO: switch to correct state (combo?)
+
+        if dbg_render_timingCircles then 
+          dbg_timingCircles = 0
+          if self.timer:between(self.curAttack.parryTime    , self.curAttack.damageImpact) then
+            dbg_timingCircles = dbg_timingCircles + 1
+          end
+          if self.timer:between(self.curAttack.perfDodgeTime, self.curAttack.damageImpact) then
+            dbg_timingCircles = dbg_timingCircles + 1
+          end
+          if self.timer:between(self.curAttack.normDodgeTime, self.curAttack.damageImpact) then
+            dbg_timingCircles = dbg_timingCircles + 1
+          end
+        end
       end,
     })
 
@@ -193,6 +212,14 @@ end
 function enemy:draw()
   self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
   love.graphics.print(self.sm.curState.name, 1400, 200)
+
+  
+  for i=1, dbg_timingCircles do -- don't need to check bool here..s
+    local r = i/3
+    love.graphics.setColor(r, r, 255)
+    love.graphics.circle("fill", 1000, 500, (4 - i) * 50)
+    love.graphics.setColor(255, 255, 255)
+  end
 end
 
 

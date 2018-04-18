@@ -25,6 +25,14 @@ function Timer:reached(time)
   return self._acc >= time
 end
 
+function Timer:before(time)
+  return self._acc < time
+end
+
+function Timer:between(min, max)
+  return self:reached(min) and not self:reached(max)
+end
+
 function Timer:reset()
   self._acc = 0
 end
