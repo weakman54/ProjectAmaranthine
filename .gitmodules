@@ -1,4 +1,2 @@
-[submodule "test_battlesystem3_statemachine/statemachine"]
-	url = https://github.com/kyleconroy/lua-state-machine
 [submodule "test_boxofglory/wutil-lua"]
 	url = https://bitbucket.org/weakman54/wutil-lua
