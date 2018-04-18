@@ -25,20 +25,22 @@ function enemy:initialize()
 end
 
 
-function enemy:initializeAttacks()
-  self.attacks = {}
-
+function enemy:loadAttack(name, framerate)
+  assert(name, "must pass name")
+  assert(framerate, "must pass framerate") -- TODO: cleanup error messages
+  
   local atks = self.attacks
   local ac = self.ac
-
-  local name
-  local anim
+  
 
   RM.prefix = "assets/" .. self.name .. "/" .. self.name .. "_"
 
-  name = "high_attack01"
-  anim = RM:loadAnimation(name .. "_")
+  local anim = RM:loadAnimation(name .. "_")
 
+  ac:addAnimation(name, anim)
+  anim.data:setFramerate(framerate) -- HACK atm to fix framerate for old animation
+  
+  
   table.insert(atks, {
       -- name
       name = name,
@@ -51,29 +53,38 @@ function enemy:initializeAttacks()
       -- rand weight
       -- inv. frames
     })
+end
 
-  ac:addAnimation(name, anim)
-  anim.data:setFramerate(30) -- HACK atm to fix framerate for old animation
+function enemy:initializeAttacks()
+  self.attacks = {}
 
 
 
-  name = "low_attack01"
-  anim = RM:loadAnimation(name .. "_")
+  self:loadAttack("high_attack01", 30)
+  self:loadAttack("low_attack01", 30)
+  
 
-  table.insert(atks, {
-      -- name
-      name = name,
-      -- animation (how load?)
-      animation = anim,
 
-      -- nextAttack (implies combo) function
-      -- timing info (read when loading frames)
-      -- stance
-      -- rand weight
-      -- inv. frames
-    })
-  ac:addAnimation(name, anim)
-  anim.data:setFramerate(30) -- HACK atm to fix framerate for old animation
+--  name = "low_attack01"
+--  anim = RM:loadAnimation(name .. "_")
+
+--  table.insert(atks, {
+--      -- name
+--      name = name,
+--      -- animation (how load?)
+--      animation = anim,
+
+--      -- timing info (read when loading frames)
+--      -- inv. frames
+
+
+--      -- nextAttack (implies combo) function
+--      -- rand weight
+--      -- stance
+
+--    })
+--  ac:addAnimation(name, anim)
+--  anim.data:setFramerate(30) -- HACK atm to fix framerate for old animation
 
 
 end
@@ -128,7 +139,7 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self)
         -- TODO: choose action
-        local attack = enemy.attacks[1]
+        local attack = enemy.attacks[2]
         ac:setAnimation(attack.name)
 
         -- TODO: set animation
