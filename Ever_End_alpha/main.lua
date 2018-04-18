@@ -3,11 +3,12 @@ require "util"
 
 -- Lib
 local Gamestate = require "hump.gamestate"
+local baton = require "baton.baton"
 
 
 -- States
-local stateMain = require "gamestates.stateMain"
-local baton = require "baton.baton"
+--local stateMain = require "gamestates.stateMain"
+local stateBattle = require "gamestates.stateBattle"
 
 
 -- Other stuff:
@@ -23,6 +24,9 @@ ac:setFramerate(30)
 
 
 local Sound = require "resourceManager.soundManager"
+
+
+--local enemy = require "enemy"
 -- TEST ^^^^^^^^
 
 
@@ -61,22 +65,24 @@ function love.load(arg)
 --
 
   -- TEST vvvvvvvvvvvvvvvvvv
-  debugPrint("Loading: Sounds", 100, 100)
-  Sound:init()
+--  debugPrint("Loading: Sounds", 100, 100)
+--  Sound:init()
   
-  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
-  print(test)
-  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
-  print(test)
+--  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
+--  print(test)
+--  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
+--  print(test)
 
 --  debugPrint("Loading: Animations", 100, 100)
 --  RM.prefix = "assets/Quit/Quit_"
 
 --  ac:addAnimation("attack_high1_windup", RM:loadAnimation("attack-high1-windup_"))
 --  ac:addAnimation("attack_low1_windup", RM:loadAnimation("attack-low1-windup_"))
+
+--  enemy:initialize()
   --TEST ^^^^^^^^^^^
 
-  Gamestate.switch(stateMain)
+  Gamestate.switch(stateBattle)
 end
 
 
@@ -97,7 +103,9 @@ end
 function love.draw()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
 
+-- TEST vvvvvvvvvvv
 --  ac:loveDraw() --  TEST
+  -- ^^^^^^
 
   Gamestate.draw()
 end

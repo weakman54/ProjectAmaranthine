@@ -40,9 +40,9 @@ end
 
 function SM:switch(to)
   local target = self.states[to]
-  assert(target, "Statemachine:switchc(): State " .. to .. " does not exist in the Statemachine")
+  assert(target, "Statemachine:switch(): State " .. to .. " does not exist in the Statemachine")
 
-  if not target.canSwitch() then return 
+  if not target.canSwitch() then return end
   
   
   if self.curState.exit then self.curState:exit() end

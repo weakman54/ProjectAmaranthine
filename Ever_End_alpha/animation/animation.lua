@@ -174,7 +174,9 @@ end
 -- Event Callback caller
 -- This is it's own function to help make this more generic,
 -- overwrite it to work the way you want
-function Animation:doEvent(event, ...) end
+function Animation:doEvent(event, ...) 
+  self.event = event
+end
 
 
 
