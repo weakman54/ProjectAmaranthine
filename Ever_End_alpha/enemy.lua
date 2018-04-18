@@ -33,14 +33,14 @@ function enemy:initializeAttacks()
       -- name
       name = "high_attack01",
       -- animation (how load?)
-      animation = RM:
+--      animation = RM:
       
       -- nextAttack (implies combo) function
       -- timing info (read when loading frames)
       -- stance
       -- rand weight
       -- inv. frames
-    }
+    })
     
   
 end
