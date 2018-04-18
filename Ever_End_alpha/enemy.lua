@@ -25,13 +25,29 @@ function enemy:initialize()
 end
 
 
-function enemy:loadAttack(name, framerate)
-  assert(name, "must pass name")
+function enemy:loadAttack(attack, framerate)
+  assert(attack and attack.name, "must pass attack, attack must have name")
   assert(framerate, "must pass framerate") -- TODO: cleanup error messages
-  
-  local atks = self.attacks
+
+
+  local name = attack.name
+--  local attack = {}
+--  attack.name = name
+  -- name
+--      name = name,
+  -- animation (how load?)
+--      animation = anim,
+
+  -- nextAttack (implies combo) function
+  -- timing info (read when loading frames)
+  -- stance
+  -- rand weight
+  -- inv. frames
+--    }
+
+
+  -- Load animation --------
   local ac = self.ac
-  
 
   RM.prefix = "assets/" .. self.name .. "/" .. self.name .. "_"
 
@@ -39,52 +55,37 @@ function enemy:loadAttack(name, framerate)
 
   ac:addAnimation(name, anim)
   anim.data:setFramerate(framerate) -- HACK atm to fix framerate for old animation
-  
-  
-  table.insert(atks, {
-      -- name
-      name = name,
-      -- animation (how load?)
-      animation = anim,
+  anim.data:setLooping(false)
 
-      -- nextAttack (implies combo) function
-      -- timing info (read when loading frames)
-      -- stance
-      -- rand weight
-      -- inv. frames
-    })
+  attack.animation = anim
+
+
+  -- Load timings --------
+  local frameDuration = 1/framerate
+  print("FD", frameDuration)
+
+  for i, frame in ipairs(anim.data._frames) do
+    local imgData = frame.imgData
+    local r, g, b, a = imgData:getPixel(0, 0)
+
+    if a == 1 and r == 1 then -- Corner marker for attack start
+      attack.damageImpact = (i - 1) * frameDuration -- Using i - 1 to account for the fact that Timer only checks wether the set time has _passed_
+      print((i - 1), (i - 1) * frameDuration)
+    end
+  end
+
+  table.insert(self.attacks, attack)
 end
+
 
 function enemy:initializeAttacks()
   self.attacks = {}
 
 
 
-  self:loadAttack("high_attack01", 30)
-  self:loadAttack("low_attack01", 30)
-  
-
-
---  name = "low_attack01"
---  anim = RM:loadAnimation(name .. "_")
-
---  table.insert(atks, {
---      -- name
---      name = name,
---      -- animation (how load?)
---      animation = anim,
-
---      -- timing info (read when loading frames)
---      -- inv. frames
-
-
---      -- nextAttack (implies combo) function
---      -- rand weight
---      -- stance
-
---    })
---  ac:addAnimation(name, anim)
---  anim.data:setFramerate(30) -- HACK atm to fix framerate for old animation
+  self:loadAttack({name = "high_attack01"}, 30)
+--  self.attacks[#self.attacks].animation.data.dbg_render = false
+--  self:loadAttack("low_attack01", 30)
 
 
 end
@@ -139,8 +140,10 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self)
         -- TODO: choose action
-        local attack = enemy.attacks[2]
-        ac:setAnimation(attack.name)
+        self.curAttack = enemy.attacks[1]
+        ac:setAnimation(self.curAttack.name, false)
+        
+        self.timer = Timer:new()
 
         -- TODO: set animation
 
@@ -153,7 +156,16 @@ function enemy:initializeSM()
 
       end,
 
-      update = function(self)
+      update = function(self, dt)
+        self.timer:update(dt)
+        
+        if self.timer:reached(self.curAttack.damageImpact) then
+          -- TODO: do damage things
+        end
+        
+        if self.curAttack.animation.data.event == "ended" then
+          sm:switch("idle")
+        end
         -- TODO: check animation for "ended"
         -- TODO: switch to correct state (combo?)
       end,
