@@ -43,3 +43,6 @@ luac.out
 # MAC stuff
 .DS_Store
 
+# include love folder
+!love-11.1.0-win64/*
+
