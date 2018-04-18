@@ -12,7 +12,7 @@ local enemy = {}
 
 function enemy:initialize()
   self.name = "Quit" -- TODO: load properly
-  self.stance = "low"
+--  self.stance = "low"
   
   self.attackTime = 3 -- seconds
   
@@ -23,6 +23,7 @@ function enemy:initialize()
 
   self.sm:switch("idle")
 end
+
 
 function enemy:initializeAttacks()
   self.attacks = {}
@@ -54,11 +55,11 @@ function enemy:initializeAC()
   ac:setFramerate(12)
   RM.prefix = "assets/" .. self.name .. "/" .. self.name .. "_"
 
-  name = "high_idle"
-  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+--  name = "high_idle"
+--  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
-  name = "low_idle"
-  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  name = "idle"
+  ac:addAnimation(name, RM:loadAnimation("low_" .. name .. "_"))
 end
 
 
@@ -70,7 +71,7 @@ function enemy:initializeSM()
 
   sm:add("idle", {
       enter = function(self)
-        ac:setAnimation(enemy.stance .. "_idle")
+        ac:setAnimation("idle")
         self.attackTimer = Timer:new()
       end,
       
