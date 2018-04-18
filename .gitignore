@@ -45,5 +45,5 @@ luac.out
 
 # include love folders
 !love-11.1.0-win64/*
-!love-11.1.0-macos/*
+!love-11.1.0-macos.app/*
 
