@@ -69,12 +69,12 @@ function enemy:initializeSM()
   local ac = self.ac
 
   sm:add("idle", {
-      enter = function()
+      enter = function(self)
         ac:setAnimation(enemy.stance .. "_idle")
         self.attackTimer = Timer:new()
       end,
       
-      update = function(dt)
+      update = function(self, dt)
         -- TODO: put in reaction to attack
           -- TODO: get hurt
           -- TODO: or switch to defensive
@@ -83,7 +83,7 @@ function enemy:initializeSM()
         
         self.attackTimer:update(dt)
         
-        if self.attackTimer:reached(enemy.attackTimer) then
+        if self.attackTimer:reached(enemy.attackTime) then
           sm:switch("offensive")
         end
       end,
@@ -93,7 +93,7 @@ function enemy:initializeSM()
     })
 
   sm:add("offensive", {
-      enter = function()
+      enter = function(self)
         -- TODO: choose action
         
         -- TODO: combo?
@@ -105,18 +105,18 @@ function enemy:initializeSM()
         
       end,
       
-      update = function()
+      update = function(self)
         -- TODO: check animation for "ended"
         -- TODO: switch to correct state (combo?)
       end,
     })
 
   sm:add("defensive", {
-      enter = function()
+      enter = function(self)
         -- TODO: figure out which reaction
       end,
       
-      update = function(dt)
+      update = function(self, dt)
         
       end,
 
