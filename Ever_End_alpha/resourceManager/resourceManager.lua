@@ -101,7 +101,8 @@ function resourceManager:loadAnimation(filenameprefix, postfix) -- TODO: general
       anim:_importFrame(self:loadImage(filename))
       i = i + 1
 
-    else 
+  else
+    assert( i > 1, "resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename .. " at all!")
       if dbg_print then print("resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename)
         break
       end

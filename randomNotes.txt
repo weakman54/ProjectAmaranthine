@@ -1,0 +1,62 @@
+
+
+Animations list:
+player-idle
+enemy-idle
+
+player-guard
+enemy-guard
+
+player-parry
+enemy-parried
+
+player-hurt(s)
+enemy-hurt
+
+enemy-taunt
+enemy-counter-attack
+
+
+player-charge-attack-charge
+player-charge-attack-ready-fx
+player-charge-attack-attack
+
+
+player-dodge-start
+player-dodge-middle-normal
+player-dodge-middle-perfect
+player-dodge-end
+
+player-gun-attack-normal
+player-gun-attack-perfect
+
+enemy-gun-combo-hurt(s)
+
+
+player-attack-startup
+player-attack-guarded
+(player-attack-countered) (same as guarded but with "!" fx)
+
+
+player-combo-windup(s)
+player-combo-attack(s)
+
+enemy-sword-combo-hurt(s)
+
+
+player-regen
+
+
+
+(enemy-attack-animation) (defined per attack)
+
+
+
+
+think about how to do effects (separate from player/enemy)
+
+
+
+
+
+Test regen

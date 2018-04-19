@@ -96,7 +96,7 @@ function enemy:initializeAttacks()
   self:loadAttack({name = "high_attack01"}, 30)
 --  self.attacks[#self.attacks].animation.data.dbg_render = 
 
---  self:loadAttack("low_attack01", 30)
+--  self:loadAttack("low_attack01", 30) -- NOTE: left out to reduce loading times
 end
 
 
@@ -109,7 +109,7 @@ function enemy:initializeAC()
   RM.prefix = "assets/" .. self.name .. "/" .. self.name .. "_"
 
   name = "idle"
-  ac:addAnimation(name, RM:loadAnimation("low_" .. name .. "_"))
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 end
 
 
