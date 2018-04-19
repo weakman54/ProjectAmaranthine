@@ -32,6 +32,10 @@ function player:initializeAC()
 
   name = "idle"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+  
+  name = "guard"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 end
 
 
@@ -44,21 +48,11 @@ function player:initializeSM()
   sm:add("idle", {
       enter = function(self)
         ac:setAnimation("idle")
-        self.attackTimer = Timer:new()
       end,
       
       update = function(self, dt)
-          -- TODO: put in reaction to attack
-          -- TODO: get hurt
-          -- TODO: or switch to defensive
-          -- TODO: counter attack ( if been attacked multiple times)
-          -- TODO: BETTER FEEDBACK FOR COUNTER ATTACK
+
         
-        self.attackTimer:update(dt)
-        
-        if self.attackTimer:reached(player.attackTime) then
-          sm:switch("offensive")
-        end
       end,
       --
         
@@ -67,6 +61,13 @@ function player:initializeSM()
 end
 
 function player:update(dt)
+  -- Aimation testing: vvvvvv
+  if input:down("guard") then
+    self.ac:setAnimation("guard")
+  end
+-- Animation testing ^^^^^^
+  
+  
   self.ac:update(dt)
   self.sm:update(dt)
 end
@@ -75,6 +76,8 @@ end
 function player:draw()
   self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
 end
+
+
 
 
 return player
