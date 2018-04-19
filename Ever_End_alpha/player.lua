@@ -87,6 +87,10 @@ function player:initializeAC()
       ac:addAnimation(name, RM:loadAnimation(name .. "_"))
     end
   end
+  
+  
+  name = "heal"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 end
 
 
