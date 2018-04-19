@@ -73,7 +73,7 @@ end
 
 
 function player:draw()
-  self.ac:loveDraw()
+  self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
 end
 
 
