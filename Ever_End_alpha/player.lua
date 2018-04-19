@@ -12,9 +12,9 @@ local player = {}
 function player:initialize()
   self.name = "Player" -- NOTE: This probably shouldn't be needed 
   self.stance = "low"
-  
+
   self.attackTime = 3 -- seconds
-  
+
   self:initializeAC()
   self:initializeSM()
 
@@ -32,28 +32,35 @@ function player:initializeAC()
 
   name = "idle"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-  
+
+
   name = "guard"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-  
+
+
   name = "parry"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-  
+
+
   name = "hurt_mild"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   name = "hurt_intense"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-  
+
+
   name = "charge_attack_charging"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   name = "charge_attack_ready"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   name = "charge_attack_attack"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+
+  for _, stance in ipairs{"low", "high"} do
+    for _, timing in ipairs{"normal", "perfect"} do
+      name = "dodge_" .. stance .. "_" .. timing
+      ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+    end
+  end
 end
 
 
@@ -67,29 +74,29 @@ function player:initializeSM()
       enter = function(self)
         ac:setAnimation("idle")
       end,
-      
+
       update = function(self, dt)
 
-        
+
       end,
       --
-        
 
-})
+
+    })
 end
 
 function player:update(dt)
   -- Aimation testing: vvvvvv
   if input:down("guard") then
     self.ac:setAnimation("hurt_mild")
-    
+
   elseif input:down("attack") then
     self.ac:setAnimation("hurt_intense")
-    
+
   end
 -- Animation testing ^^^^^^
-  
-  
+
+
   self.ac:update(dt)
   self.sm:update(dt)
 end
