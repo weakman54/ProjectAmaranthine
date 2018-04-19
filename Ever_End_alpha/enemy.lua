@@ -110,6 +110,10 @@ function enemy:initializeAC()
 
   name = "idle"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+  
+  name = "guard"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 end
 
 
