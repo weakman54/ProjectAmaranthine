@@ -46,6 +46,14 @@ function player:initializeAC()
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   name = "hurt_intense"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+  
+  name = "charge_attack_charging"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  name = "charge_attack_ready"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  name = "charge_attack_attack"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 end
 
 
