@@ -50,13 +50,25 @@ for _, thing in ipairs(dir) do
 end
 
 
+local nFD = love.filesystem.newFileData
+local nID = love.image.newImageData
+
 
 function resourceManager:genericLoader(f, filename, ...)
   filename = self.prefix .. filename
 --  if dbg_print then print("GENERIC: trying to load resource: " .. filename) end
 
-  if not cache[filename] then 
-    cache[filename] = {filename = filename, data = f(filename, ...)}
+  if not cache[filename] then
+    local resource = {filename = filename}
+    
+    if filename:sub(-3) == "png" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
+      resource.imgData = nID(nFD(filename))
+      filename = resource.imgData
+    end
+    
+    resource.data = f(filename, ...)
+      
+    cache[filename] = resource
   end
 
   return cache[filename]

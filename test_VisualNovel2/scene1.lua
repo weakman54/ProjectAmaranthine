@@ -49,7 +49,7 @@ return {
   
   {"play", "Jump1"},
   
-  {"addText", "t", "hey!", {pos = {x = 1000, y = 50}, color = {000, 000, 000}} },
+  {"addText", "E1", "Huh...?!", {pos = {x = 1000, y = 50}, color = {000, 000, 000}} },
   {"pauseExecution", 2},
 
 
@@ -66,12 +66,15 @@ return {
 
 
   {"clear", "p6-bg"},
+  
   {"pauseExecution", 2},
 
 
 
   {"clear", "p7-bg"},
-  {"addText", "t", "That thing she is saying here...", {pos = {x = 0, y = 1080 - 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"addText", "E1", "(Oh.)", {pos = {x = 0, y = 1080 - 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"pauseExecution", 1},
+  {"addText", "E2", "(That's Quit...)", {pos = {x = 0, y = 1080 - 100}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
 
 
@@ -80,18 +83,22 @@ return {
   
   {"play", "Jump2"},
   
-  {"addText", "t", "The other thing she is saying there...", {pos = {x = 0, y = 1080 - 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"addText", "E1", "(... all the more reason to leave as quickly as possible.)", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"pauseExecution", 1},
+  {"addText", "E2", "Let's go, Zero.", {pos = {x = 0, y =1080 - 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
 
 
 
   {"clear", "p9-bg"},
-  {"addText", "t", "wooah!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"addText", "Z1", "Z: Wooah!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  
   {"waitForInput"},
   
 
 
   {"clear", "p10-bg"},
+  {"addText", "E1", "...", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   
   {"play", "Miss"},
   
@@ -100,6 +107,7 @@ return {
   
   
   {"clear", "p11-bg"},
+  {"addText", "Z1", "She looks happy, End!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
 
 
@@ -110,6 +118,9 @@ return {
   
   
   {"clear", "p13-bg"},
+  {"addText", "E1", "Stop messing around, we need to get out of here.", {pos = {x = 0, y = 300}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"pauseExecution", 1},
+  {"addText", "Z1", "...Okay.", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
   
   
@@ -124,6 +135,7 @@ return {
 
 
   {"clear", "p15-bg"},
+  {"addText", "E1", "Ooh...", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"show", "p15-s1"},
   {"waitForInput"},
   
@@ -142,21 +154,26 @@ return {
   
   
   {"clear", "p18-bg"},
-  
+  {"addText", "Z1", "End! Its a kitty!", {pos = {x = 0, y = 300}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"play", "Miss"},
-  
+  {"pauseExecution", 1},
+  {"addText", "E1", "End: Tsk", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
   
   
   
   {"clear", "p19-bg"},
+  {"addText", "Z1", "Why is kitty not moving?", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"show", "p19-s1"},
   {"waitForInput"},
   
   
   
   {"clear", "p20-bg"},
+  {"addText", "E1", "It's just a stuffed animal.", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"pauseExecution", 1},
   {"show", "p20-s1"},
+  {"addText", "E2", "Come on, let's leave.", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
 
 
@@ -269,7 +286,7 @@ return {
   
   
   {"clear", "p35-bg"},
-  
+  {"addText", "Z1", "AAAAAAAAAAaaaaaahh!!!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"play", "Scream"},
   
   {"waitForInput"},
@@ -277,17 +294,25 @@ return {
   
   
   {"clear", "p36-bg"},
+  {"addText", "E1", "Huh!?", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"pauseExecution", 1},
+  {"addText", "E2", "What happened!?", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  
   {"waitForInput"},
   
   
   
   {"clear", "p37-bg"},
+  {"addText", "Z1", "*Whimper*", {pos = {x = 0, y = 300}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"pauseExecution", 1},
+  {"addText", "E1", "*Sigh*", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  
   {"waitForInput"},
   
   
   
   {"clear", "p38-bg"},
-  
+  {"addText", "E1", "We SERIOUSLY don't have time for this!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"play", "Equip2"},
   {"play", "Wind1"},
   
@@ -295,18 +320,23 @@ return {
   
   
   
-  {"clear", "p39-bg"},  
+  {"clear", "p39-bg"}, 
+  {"addText", "Z1", "Let me go!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
   
   
   
   {"clear", "p40-bg"},
+  
   {"show", "p40-s1"},
   {"waitForInput"},
   
   
   
   {"clear", "p41-bg"},
+  {"addText", "E1", "End!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
+  {"pauseExecution", 0.5},
+  {"addText", "E1", "STOP IT!!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
   
   
@@ -321,26 +351,31 @@ return {
   
   
   {"clear", "p43-bg"},
+  {"addText", "E1", "OW! What the hell!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
   
   
   
   {"clear", "p44-bg"},
+  {"addText", "E1", "I dont want to go anymore, End! Lets go back!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
   
   
   
   {"clear", "p45-bg"},
+  {"addText", "E1", "I cant do that, Zero!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
   
   
   
   {"clear", "p46-bg"},
+  
   {"waitForInput"},
   
   
   
   {"clear", "p47-bg"},
+  
   {"waitForInput"},
   
   
@@ -357,11 +392,13 @@ return {
   
   
   {"clear", "p50-bg"},
+  {"addText", "E1", "It hurts people when you hit them, End!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
   
   
   
   {"clear", "p51-bg"},
+  {"addText", "E1", "I know!", {pos = {x = 0, y = 200}, color = {000, 000, 000}, width = 1920, align = "center"} },
   {"waitForInput"},
   
   

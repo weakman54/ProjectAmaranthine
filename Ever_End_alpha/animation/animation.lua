@@ -1,4 +1,5 @@
 
+
 local Animation = {}
 
 
@@ -19,6 +20,9 @@ function Animation:new(framerate)
   obj._name = ""
 
 
+  obj.dbg_render = false
+
+
 
   return obj
 end
@@ -36,13 +40,17 @@ function Animation:update(dt)
 
   if self._curTime >= self._frameDuration then
     self:_increment()
-    self._curTime = 0
+    self._curTime = self._curTime - self._frameDuration -- NOTE: This feels "bad" but it seems like we're losing a lot of time if this is set to 0 every frame...
   end
 end
 
 
 function Animation:loveDraw(...)
   love.graphics.draw(self:_getCurImage(), ...)
+  if self.dbg_render then 
+    local frame = self:_getCurFrame()
+    love.graphics.print("Animation: " .. self._name .. ": " .. self._curFrameI .. ": " .. frame.filename)
+  end
 end
 
 
@@ -52,7 +60,7 @@ function Animation:_importFrame(resource)
   -- TODO: Better ERROR
   assert(type(resource) == "table"      , "Animation:_importFrame(resource): Animation " .. self._name .. ": resource must be table!")
   assert(resource.data:type() == "Image", "Animation:_importFrame(resource): Animation " .. self._name .. " resource.data must be image!")
-  
+
   table.insert(self._frames, resource)  
 end
 
