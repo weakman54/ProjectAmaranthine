@@ -61,6 +61,17 @@ function player:initializeAC()
       ac:addAnimation(name, RM:loadAnimation(name .. "_"))
     end
   end
+  name = "dodge_hurt"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+  
+  
+  for _, stance in ipairs{"low", "high"} do
+    for _, timing in ipairs{"normal", "perfect"} do
+      name = "gun_attack_" .. stance .. "_" .. timing
+      ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+    end
+  end
 end
 
 
