@@ -36,6 +36,10 @@ function player:initializeAC()
   
   name = "guard"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+  
+  name = "parry"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 end
 
 
@@ -63,7 +67,7 @@ end
 function player:update(dt)
   -- Aimation testing: vvvvvv
   if input:down("guard") then
-    self.ac:setAnimation("guard")
+    self.ac:setAnimation("parry")
   end
 -- Animation testing ^^^^^^
   
