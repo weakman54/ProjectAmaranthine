@@ -13,12 +13,18 @@ function player:initialize()
   self.name = "Player" -- NOTE: This probably shouldn't be needed 
   self.stance = "low"
 
-  self.attackTime = 3 -- seconds
+
+  self.hurtDuration = 1 -- seconds
+
+
+  self.maxHP = 10
+  self.maxSP = 10
+
 
   self:initializeAC()
   self:initializeSM()
 
-  self.sm:switch("idle")
+  self:reset()
 end
 
 
@@ -55,6 +61,7 @@ function player:initializeAC()
   name = "charge_attack_attack"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
+
   for _, stance in ipairs{"low", "high"} do
     for _, timing in ipairs{"start", "end", "normal", "perfect"} do
       name = "dodge_" .. stance .. "_" .. timing
@@ -87,11 +94,12 @@ function player:initializeAC()
       ac:addAnimation(name, RM:loadAnimation(name .. "_"))
     end
   end
-  
-  
+
+
   name = "heal"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 end
+--
 
 
 function player:initializeSM()
@@ -106,27 +114,54 @@ function player:initializeSM()
       end,
 
       update = function(self, dt)
+        if player.damaged then
+          sm:switch("hurt")
 
+        elseif false then
 
+        end
       end,
-      --
-
-
     })
+  --
+
+  sm:add("hurt", {
+      enter = function(self)
+        if player.damaged >= INTENSE_DAMAGE_TRESHOLD then
+          ac:setAnimation("hurt_intense")
+        else
+          ac:setAnimation("hurt_mild")
+        end
+
+        player.HP = player.HP - player.damaged
+        player.damaged = false
+
+        self.hurtTimer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.hurtTimer:update(dt)
+        
+        if self.hurtTimer:reached(player.hurtDuration) then
+          sm:switch("idle")
+        end
+
+      end
+    })
+  --
+end
+--
+
+
+function player:reset()
+  self.HP = self.maxHP
+  self.SP = self.maxSP/2
+
+  self.sm:switch("idle")
 end
 
+
+
 function player:update(dt)
-  -- Aimation testing: vvvvvv
-  if input:down("guard") then
-    self.ac:setAnimation("hurt_mild")
-
-  elseif input:down("attack") then
-    self.ac:setAnimation("hurt_intense")
-
-  end
--- Animation testing ^^^^^^
-
-
   self.ac:update(dt)
   self.sm:update(dt)
 end

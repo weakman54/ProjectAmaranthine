@@ -1,7 +1,7 @@
 
 -- TODO: make it possible to load image data and so on, atm only loading through filename is possible
 
-local dbg_print = true
+local dbg_print = false
 local dbg_render = true
 
 local Animation = require "animation.animation"
@@ -60,14 +60,14 @@ function resourceManager:genericLoader(f, filename, ...)
 
   if not cache[filename] then
     local resource = {filename = filename}
-    
+
     if filename:sub(-3) == "png" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
       resource.imgData = nID(nFD(filename))
       filename = resource.imgData
     end
-    
+
     resource.data = f(filename, ...)
-      
+
     cache[filename] = resource
   end
 
@@ -97,17 +97,17 @@ function resourceManager:loadAnimation(filenameprefix, postfix) -- TODO: general
     if love.filesystem.getInfo(self.prefix .. filename) then -- NOTE: need prefix here as well, getting a bit cluttered..
       if dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
       if dbg_render then debugPrint("loading animation frame:\n[" .. self.prefix .. "]" .. filename, 100, 100) end
-      
+
       anim:_importFrame(self:loadImage(filename))
       i = i + 1
 
-  else
-    assert( i > 1, "resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename .. " at all!")
-      if dbg_print then print("resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename)
-        break
-      end
+    else
+      assert( i > 1, "resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename .. " at all!")
+--      if dbg_print then print("resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename) end
+      break
     end
   end
+
 
   return {filename = self.prefix .. filenameprefix, data = anim} -- NOTE: uses filenameprefix as filename here, might be wierd. NOTE2: Also, need to add path prefix manually here as well
 end

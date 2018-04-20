@@ -11,6 +11,9 @@ local SM = require "statemachine.statemachine"
 local Timer = require "timer.timer"
 
 
+local player = require "player"
+
+
 local enemy = {}
 
 
@@ -18,14 +21,19 @@ function enemy:initialize()
   self.name = "Quit" -- TODO: load properly
 --  self.stance = "low"
 
-  self.attackTime = 1 -- seconds
+  self.attackTime = 2 -- seconds
+  
+  
+  -- TODO: think about how to load all of these
+  self.HP = 0
+  self.maxHP = 10
 
 
   self:initializeAC()
   self:initializeAttacks()
   self:initializeSM()
 
-  self.sm:switch("idle")
+  self:reset()
 end
 
 
@@ -66,7 +74,7 @@ function enemy:loadAttack(attack, framerate)
 
   -- Load timings --------
   local frameDuration = 1/framerate
-  print("FD", frameDuration)
+--  print("FD", frameDuration)
 
   attack.parryTreshold     = attack.parryTreshold     or PARRY_TRESHOLD
   attack.perfDodgeTreshold = attack.perfDodgeTreshold or PERFDODGE_TRESHOLD
@@ -78,9 +86,11 @@ function enemy:loadAttack(attack, framerate)
 
     if a == 1 and r == 1 then -- Corner marker for attack start
       attack.damageImpact = (i - 1) * frameDuration -- Using i - 1 to account for the fact that Timer only checks wether the set time has _passed_
-      print((i - 1), (i - 1) * frameDuration)
+--      print((i - 1), (i - 1) * frameDuration)
     end
   end
+  
+  assert(attack.damageImpact, "There was no marked attack frame in the attack animation: " .. attack.name)
 
   attack.parryTime     = attack.damageImpact - attack.parryTreshold
   attack.perfDodgeTime = attack.damageImpact - attack.perfDodgeTreshold
@@ -88,16 +98,18 @@ function enemy:loadAttack(attack, framerate)
 
   table.insert(self.attacks, attack)
 end
+--
 
 
 function enemy:initializeAttacks()
   self.attacks = {}
 
-  self:loadAttack({name = "high_attack01"}, 30)
+  self:loadAttack({name = "high_attack01", damage = 1}, 30)
 --  self.attacks[#self.attacks].animation.data.dbg_render = 
 
---  self:loadAttack("low_attack01", 30) -- NOTE: left out to reduce loading times
+  self:loadAttack({name = "low_attack01", damage = 4}, 30)
 end
+--
 
 
 function enemy:initializeAC()
@@ -134,6 +146,7 @@ function enemy:initializeAC()
     ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   end
 end
+--
 
 
 function enemy:initializeSM()
@@ -169,10 +182,14 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self)
         -- TODO: choose action
-        self.curAttack = enemy.attacks[1]
+        local attackI = math.random(2)
+--        print("#", attackI)
+        self.curAttack = enemy.attacks[attackI]
         ac:setAnimation(self.curAttack.name, false)
 
         self.timer = Timer:new()
+        
+        self.didDamage = false
 
         -- TODO: set animation
 
@@ -188,8 +205,9 @@ function enemy:initializeSM()
       update = function(self, dt)
         self.timer:update(dt)
 
-        if self.timer:reached(self.curAttack.damageImpact) then
-          -- TODO: do damage things
+        if self.timer:reached(self.curAttack.damageImpact) and not self.didDamage then
+          self.didDamage = true
+          player.damaged = self.curAttack.damage
         end
 
         -- TODO: check animation for "ended"
@@ -223,6 +241,14 @@ function enemy:initializeSM()
       end,
 
     })
+end
+--
+
+
+function enemy:reset()
+  self.HP = self.maxHP
+  
+  self.sm:switch("idle")
 end
 
 

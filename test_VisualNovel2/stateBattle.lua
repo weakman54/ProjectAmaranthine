@@ -27,7 +27,7 @@ GUIEnemyHealth.innerColor = {255, 000, 000}
 
 function stateBattle:init()
   love.graphics.clear(000, 000, 000)
-  love.graphics.print("Loading...", 100, 100)
+  love.graphics.print("Loading Battle...", 100, 100)
   love.graphics.present()
 
   background = love.graphics.newImage("assets/background.png")
