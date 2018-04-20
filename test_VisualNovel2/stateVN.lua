@@ -125,13 +125,13 @@ functions = {
 
   play = function(handle)
     assert(resources[handle], "The handle " .. handle .. " does not have a resource associated with it. did you misspell?")
-    
+
     -- HACK^vvvv
     if resources[handle].data:isPlaying() then
       love.audio.play(resources[handle].filename)
     end
     -- HACK ^^^^
-    
+
     resources[handle].data:play()
   end,
   pause = function(handle)
@@ -208,20 +208,22 @@ functions = {
 
 
 function stateVN:init()
-  local dir = love.filesystem.getDirectoryItems("/assets/storyboards")
-
-  for i, filename in ipairs(dir) do
-    if filename:sub(-4) == ".png" then
-      local fn = "assets/storyboards/" .. filename
-      local handle = filename:sub(1, -5)
-      functions["loadImage"](handle, fn, {scale = {x = 3.23, y = 3.23}})
+  local dir1 = love.filesystem.getDirectoryItems("/assets/storyboards")
+  for _,folder in ipairs(dir1) do
+    local dir = love.filesystem.getDirectoryItems("/assets/storyboards/" .. folder)
+    for i, filename in ipairs(dir) do
+      if filename:sub(-4) == ".png" then
+        local fn = "assets/storyboards/" .. folder .. "/" .. filename
+        local handle = filename:sub(1, -5)
+        functions["loadImage"](handle, fn, {scale = {x = 3.23, y = 3.23}})
+      end
     end
   end
-  
+
   dir = love.filesystem.getDirectoryItems("/assets/sounds")
-  
+
 --  print(dir, #dir)
-  
+
   for i, filename in ipairs(dir) do
 --    print(filename)
     if filename:sub(-4) == ".ogg" then
@@ -239,9 +241,9 @@ function stateVN:enter(previous, data)
     curScene = data.scene
     curLine  = data.line
   end
-  
+
   curLine = 1
-  
+
   functions["clear"]()
 end
 
@@ -294,7 +296,7 @@ end
 
 function stateVN:keypressed(key)
   if waitForInput then
-	  	  love.audio.play("assets/sounds/Textbox.ogg")
+    love.audio.play("assets/sounds/Textbox.ogg")
     curLine = curLine + 1
     waitForInput = false
   end
@@ -309,8 +311,8 @@ function stateVN:keypressed(key)
 
 --elseif key == "p" then
 --  Gamestate.push(statePause)
-  
-elseif key == "" then
+
+  elseif key == "" then
 
   end
 end
