@@ -63,12 +63,14 @@ function love.load(arg)
 
     debugPrint("Loading: ", 100, 100)
   end
+
+  math.randomseed( os.time() )
 --
 
   -- TEST vvvvvvvvvvvvvvvvvv
 --  debugPrint("Loading: Sounds", 100, 100)
 --  Sound:init()
-  
+
 --  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
 --  print(test)
 --  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
@@ -117,9 +119,9 @@ function love.keypressed(key, scancode, isrepeat)
 --  ac:setAnimation("attack_low1_windup") -- 
   Sound:play("Collapse4")
   -- TEST ^^^^^^^^^^^^^^^¨
-  
+
 --  test:play()
-  
+
   -- NOTE: cannot use input library in keypressed! use it in update instead!
   if scancode == "`" then
     love._openConsole()
