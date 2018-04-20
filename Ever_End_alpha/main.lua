@@ -1,4 +1,37 @@
 
+
+--local hotRod = {}
+
+--hotRod._cache = {}
+----  package.loaded[name]
+
+--function hotRod:load(filename, as)
+--  if not self._cache[as] then
+--    local ok, chunk = pcall(love.filesystem.load, filename)
+--    if not ok then return ok, chunk end
+
+--    self._cache[as] = {chunk = chunk, modtime = 0, filename = filename}
+--  end
+
+
+
+--  local ok, res = pcall(self.cache[filename].chunk)
+
+--  return ok, res
+--end
+
+
+-- LASKDJLASKDJLASKJD
+reloaded = true
+
+function reload(thing)
+  package.loaded[thing] = nil
+  reloaded = true
+  return require(thing)
+end
+-- ALSKDJLAKSJD
+
+
 require "util"
 require "global_consts"
 
@@ -6,10 +39,11 @@ require "global_consts"
 local Gamestate = require "hump.gamestate"
 local baton = require "baton.baton"
 local Sound = require "resourceManager.soundManager"
+local RM = require "resourceManager.resourceManager"
 
 
 -- States
---local stateMain = require "gamestates.stateMain"
+local stateMain = require "gamestates.stateMain"
 local stateBattle = require "gamestates.stateBattle"
 
 
@@ -18,7 +52,9 @@ local scale = {x = 1, y = 1} -- scale hack
 
 
 -- TEST vvvvvvvvvvvvvvvvvv
-local enemy = require "enemy"
+local enemy = require("enemy")
+
+flipHack = false
 -- TEST ^^^^^^^^^^^^^^^^^^
 
 
@@ -57,16 +93,24 @@ function love.load(arg)
   --
 
   math.randomseed( os.time() )
-  
+
+  enemy:initialize()
+
 
   Gamestate.switch(stateBattle)
+
 end
 
 
 function love.update(dt)
+  if reloaded then 
+    reloaded = false 
+    return 
+  end
+
   input:update()
 
-  if input:pressed("systemStart") then love.event.quit() end
+--  if input:pressed("systemStart") then love.event.quit() end
 
   -- TEST vvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^
@@ -77,12 +121,24 @@ end
 
 
 function love.draw()
-  love.graphics.scale(scale.x, scale.y) -- Scale hack
+  if flipHack then
+    love.graphics.scale(-scale.x, scale.y) -- Scale hack
+    love.graphics.translate(-1920, 0)
+
+  else
+    love.graphics.scale(scale.x, scale.y) -- Scale hack
+  end
 
   -- TEST vvvvvvvvvvv
   -- ^^^^^^^^^^^^^^^^
 
   Gamestate.draw()
+
+
+--  if not ok then love.graphics.print("Error loading enemy: " .. enemy) end
+  if enemy.dbg_trigger_offensive_action then
+    love.graphics.circle("fill", 300, 300, 100)
+  end
 end
 
 
@@ -94,9 +150,14 @@ function love.keypressed(key, scancode, isrepeat)
   if scancode == "`" then
     love._openConsole()
   end
-  
+
   if key == "t" then
-    enemy.dbg_trigger_offensive_action = true
+    enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
+
+  elseif key == "+" then
+    stateBattle = reload("gamestates.stateBattle")
+    RM.dbg_render = false
+    Gamestate.switch(stateBattle)
   end
 end
 
