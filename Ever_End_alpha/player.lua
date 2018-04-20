@@ -137,6 +137,8 @@ function player:initializeSM()
       enter = function(self)
         ac:setAnimation("guard")
         if enemy.sm:is("offensive") then
+          -- TODO: get attack timing
+        end
           
     end,
     
