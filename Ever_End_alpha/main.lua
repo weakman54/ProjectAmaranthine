@@ -5,6 +5,7 @@ require "global_consts"
 -- Lib
 local Gamestate = require "hump.gamestate"
 local baton = require "baton.baton"
+local Sound = require "resourceManager.soundManager"
 
 
 -- States
@@ -16,19 +17,9 @@ local stateBattle = require "gamestates.stateBattle"
 local scale = {x = 1, y = 1} -- scale hack
 
 
--- TEST vvvvvvv
-local RM = require "resourceManager.resourceManager"
-
-local AnimationCollection = require "animation.animationCollection"
-local ac = AnimationCollection:new()  
-ac:setFramerate(30)
-
-
-local Sound = require "resourceManager.soundManager"
-
-
---local enemy = require "enemy"
--- TEST ^^^^^^^^
+-- TEST vvvvvvvvvvvvvvvvvv
+local enemy = require "enemy"
+-- TEST ^^^^^^^^^^^^^^^^^^
 
 
 input = baton.new { -- Should be global
@@ -63,27 +54,10 @@ function love.load(arg)
 
     debugPrint("Loading: ", 100, 100)
   end
+  --
 
   math.randomseed( os.time() )
---
-
-  -- TEST vvvvvvvvvvvvvvvvvv
---  debugPrint("Loading: Sounds", 100, 100)
---  Sound:init()
-
---  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
---  print(test)
---  test = love.audio.newSource("assets/sound/Collapse4.ogg", "static")
---  print(test)
-
---  debugPrint("Loading: Animations", 100, 100)
---  RM.prefix = "assets/Quit/Quit_"
-
---  ac:addAnimation("attack_high1_windup", RM:loadAnimation("attack-high1-windup_"))
---  ac:addAnimation("attack_low1_windup", RM:loadAnimation("attack-low1-windup_"))
-
---  enemy:initialize()
-  --TEST ^^^^^^^^^^^
+  
 
   Gamestate.switch(stateBattle)
 end
@@ -95,10 +69,9 @@ function love.update(dt)
   if input:pressed("systemStart") then love.event.quit() end
 
   -- TEST vvvvvvvvvvvvvv
---  ac:update(dt)
-  Sound:update(dt)
-  -- TEST ^^^^^^^^^^
+  -- TEST ^^^^^^^^^^^^^^
 
+  Sound:update(dt)  -- NOTE: not quite fully tested, but should work fine
   Gamestate.update(dt)
 end
 
@@ -106,21 +79,16 @@ end
 function love.draw()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
 
--- TEST vvvvvvvvvvv
---  ac:loveDraw() --  TEST
-  -- ^^^^^^
+  -- TEST vvvvvvvvvvv
+  -- ^^^^^^^^^^^^^^^^
 
   Gamestate.draw()
 end
 
 
 function love.keypressed(key, scancode, isrepeat)
-  -- TEST vvvvvvvvvvvvv
---  ac:setAnimation("attack_low1_windup") -- 
-  Sound:play("Collapse4")
-  -- TEST ^^^^^^^^^^^^^^^¨
-
---  test:play()
+  -- TEST vvvvvvvvvvvvvvv
+  -- TEST ^^^^^^^^^^^^^^^
 
   -- NOTE: cannot use input library in keypressed! use it in update instead!
   if scancode == "`" then
