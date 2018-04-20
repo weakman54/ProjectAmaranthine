@@ -1,7 +1,7 @@
 
 
 local RM = require "resourceManager.resourceManager"
-local AC = require "animation.animationCollection"
+local AC = reload( "animation.animationCollection")
 local SM = require "statemachine.statemachine"
 
 local Timer = require "timer.timer"
@@ -117,18 +117,21 @@ function player:initializeSM()
         if player.damaged then
           sm:switch("hurt")
 
-      elseif input:down("guard") then
-        sm:switch("guard")
+        elseif input:down("guard") then
+          sm:switch("guard")
+
+        elseif input:down("dodge") then
+          sm:switch("dodge")
 
         end
       end,
     })
   --
-  
+
 --  sm:add("name",  {
 --      enter = function(self)
 --    end,
-    
+
 --    update = function(self, dt)
 --    end,
 --    })
@@ -136,16 +139,49 @@ function player:initializeSM()
   sm:add("guard",  {
       enter = function(self)
         ac:setAnimation("guard")
-        if enemy.sm:is("offensive") then
-          -- TODO: get attack timing
+--        if enemy.sm:is("offensive") then
+--          -- TODO: get attack timing
+--        end
+
+      end,
+
+      update = function(self, dt)
+        player.damaged = false -- HACK! TODO: figure timing stuff here!
+        if not input:down("guard") then
+          sm:switch("idle")
         end
-          
-    end,
-    
-    update = function(self, dt)
-    end,
+      end,
     })
-  
+
+
+  sm:add("dodge",  {
+      enter = function(self)
+        ac:setAnimation("dodge_low_start", false)
+--        if enemy.sm:is("offensive") then
+--          -- TODO: get attack timing
+--        end
+
+      end,
+
+      update = function(self, dt)
+        player.damaged = false -- HACK TODO: figure timings here
+        if ac:curEvent() == "ended" then
+          if ac:curName() == "dodge_low_start" then
+            ac:setAnimation("dodge_low_normal", false)
+
+          elseif ac:curName() == "dodge_low_normal" then
+            ac:setAnimation("dodge_low_end", false)
+            
+          elseif ac:curName() == "dodge_low_end" then
+            sm:switch("idle")
+            flipHack = not flipHack
+
+          end
+        end
+
+      end,
+    })
+
   sm:add("hurt", {
       enter = function(self)
         if player.damaged >= INTENSE_DAMAGE_TRESHOLD then
@@ -162,7 +198,7 @@ function player:initializeSM()
 
       update = function(self, dt)
 --        self.hurtTimer:update(dt)
-        
+
 --        if self.hurtTimer:reached(player.hurtDuration) then
         if ac:curEvent() == "ended" then
           sm:switch("idle")

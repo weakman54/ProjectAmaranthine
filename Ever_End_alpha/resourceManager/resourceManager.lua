@@ -1,17 +1,19 @@
 
 -- TODO: make it possible to load image data and so on, atm only loading through filename is possible
 
-local dbg_print = false
-local dbg_render = true
+
 
 local Animation = require "animation.animation"
 
 
 local resourceManager = {}
 
+resourceManager.dbg_print = false
+resourceManager.dbg_render = true
+
 
 resourceManager.cache = {}
-local cache = resourceManager.cache
+--local cache = resourceManager.cache
 
 
 resourceManager.prefix = "assets/"
@@ -33,7 +35,7 @@ local function walkDirectory(path, stuff)
 
     else
       table.insert(stuff, targetPath)
-      if dbg_print then print(targetPath) end
+      if self.dbg_print then print(targetPath) end
 
 
     end
@@ -56,22 +58,21 @@ local nID = love.image.newImageData
 
 function resourceManager:genericLoader(f, filename, ...)
   filename = self.prefix .. filename
---  if dbg_print then print("GENERIC: trying to load resource: " .. filename) end
+--  if self.dbg_print then print("GENERIC: trying to load resource: " .. filename) end
 
-  if not cache[filename] then
+  if not self.cache[filename] then
     local resource = {filename = filename}
 
     if filename:sub(-3) == "png" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
       resource.imgData = nID(nFD(filename))
-      filename = resource.imgData
     end
 
-    resource.data = f(filename, ...)
+    resource.data = f(resource.imgData, ...)
 
-    cache[filename] = resource
+    self.cache[filename] = resource
   end
 
-  return cache[filename]
+  return self.cache[filename]
 end
 
 
@@ -86,24 +87,24 @@ function resourceManager:loadAnimation(filenameprefix, postfix) -- TODO: general
   postfix = postfix or ".png"
   local i = 1
 
-  if dbg_print then print("\nresourceManager: loading animation") end
+  if self.dbg_print then print("\nresourceManager: loading animation") end
 
   while true do
     local t = string.format("%05d", i)
     local filename = filenameprefix .. t .. postfix
 
---    if dbg_print then print("resourceManager: trying to load frame: [" .. self.prefix .. "]" .. filename) end
+--    if self.dbg_print then print("resourceManager: trying to load frame: [" .. self.prefix .. "]" .. filename) end
 
     if love.filesystem.getInfo(self.prefix .. filename) then -- NOTE: need prefix here as well, getting a bit cluttered..
-      if dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
-      if dbg_render then debugPrint("loading animation frame:\n[" .. self.prefix .. "]" .. filename, 100, 100) end
+      if self.dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
+      if self.dbg_render then debugPrint("loading animation frame:\n[" .. self.prefix .. "]" .. filename, 100, 100) end
 
       anim:_importFrame(self:loadImage(filename))
       i = i + 1
 
     else
       assert( i > 1, "resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename .. " at all!")
---      if dbg_print then print("resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename) end
+--      if self.dbg_print then print("resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename) end
       break
     end
   end
