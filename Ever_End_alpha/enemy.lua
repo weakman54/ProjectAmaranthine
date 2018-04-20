@@ -114,6 +114,16 @@ function enemy:initializeAC()
   
   name = "guard"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+  
+  name = "hurt"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+  
+  for i=1, 1 do
+    name = "taunt" .. string.format("%02d", i)
+    ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  end
 end
 
 
