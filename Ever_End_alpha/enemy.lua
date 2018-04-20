@@ -110,10 +110,29 @@ function enemy:initializeAC()
 
   name = "idle"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-  
+
+
   name = "guard"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+
+
+  name = "hurt"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+
+  for _, comboType in ipairs{"sword", "gun"} do
+    for i=1, 2 do
+      name = comboType .. "_hurt" .. string.format("%02d", i)
+      ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+    end
+  end
+
+
+
+
+  for i=1, 1 do
+    name = "taunt" .. string.format("%02d", i)
+    ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  end
 end
 
 
@@ -217,7 +236,7 @@ function enemy:draw()
   self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
   love.graphics.print(self.sm.curState.name, 1400, 200)
 
-  
+
   for i=1, dbg_timingCircles do -- don't need to check bool here..s
     local r = i/3
     love.graphics.setColor(r, r, 255)
