@@ -94,6 +94,10 @@ function love.keypressed(key, scancode, isrepeat)
   if scancode == "`" then
     love._openConsole()
   end
+  
+  if key == "t" then
+    enemy.dbg_trigger_offensive_action = true
+  end
 end
 
 

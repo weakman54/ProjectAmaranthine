@@ -16,14 +16,16 @@ local player = require "player"
 
 local enemy = {}
 
+enemy.dbg_trigger_offensive_action = false
+
 
 function enemy:initialize()
   self.name = "Quit" -- TODO: load properly
 --  self.stance = "low"
 
-  self.attackTime = 2 -- seconds
-  
-  
+  self.attackTime = 6 -- seconds
+
+
   -- TODO: think about how to load all of these
   self.HP = 0
   self.maxHP = 10
@@ -89,7 +91,7 @@ function enemy:loadAttack(attack, framerate)
 --      print((i - 1), (i - 1) * frameDuration)
     end
   end
-  
+
   assert(attack.damageImpact, "There was no marked attack frame in the attack animation: " .. attack.name)
 
   attack.parryTime     = attack.damageImpact - attack.parryTreshold
@@ -170,7 +172,7 @@ function enemy:initializeSM()
 
         self.attackTimer:update(dt)
 
-        if self.attackTimer:reached(enemy.attackTime) then
+        if self.attackTimer:reached(enemy.attackTime) or enemy.dbg_trigger_offensive_action then
           sm:switch("offensive")
         end
       end,
@@ -181,6 +183,8 @@ function enemy:initializeSM()
 
   sm:add("offensive", {
       enter = function(self)
+        enemy.dbg_trigger_offensive_action = false
+        
         -- TODO: choose action
         local attackI = math.random(2)
 --        print("#", attackI)
@@ -188,7 +192,7 @@ function enemy:initializeSM()
         ac:setAnimation(self.curAttack.name, false)
 
         self.timer = Timer:new()
-        
+
         self.didDamage = false
 
         -- TODO: set animation
@@ -211,7 +215,9 @@ function enemy:initializeSM()
         end
 
         -- TODO: check animation for "ended"
-        if self.curAttack.animation.data.event == "ended" then
+--        if self.curAttack.animation.data.event == "ended" then 
+        if ac:curEvent() == "ended" then
+
           -- TODO: switch to correct state (combo?)
           sm:switch("idle")
         end
@@ -247,7 +253,7 @@ end
 
 function enemy:reset()
   self.HP = self.maxHP
-  
+
   self.sm:switch("idle")
 end
 

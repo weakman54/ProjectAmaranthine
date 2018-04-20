@@ -14,7 +14,7 @@ function player:initialize()
   self.stance = "low"
 
 
-  self.hurtDuration = 1 -- seconds
+  self.hurtDuration = 5 -- seconds
 
 
   self.maxHP = 10
@@ -117,31 +117,52 @@ function player:initializeSM()
         if player.damaged then
           sm:switch("hurt")
 
-        elseif false then
+      elseif input:down("guard") then
+        sm:switch("guard")
 
         end
       end,
     })
   --
+  
+--  sm:add("name",  {
+--      enter = function(self)
+--    end,
+    
+--    update = function(self, dt)
+--    end,
+--    })
 
+  sm:add("guard",  {
+      enter = function(self)
+        ac:setAnimation("guard")
+        if enemy.sm:is("offensive") then
+          
+    end,
+    
+    update = function(self, dt)
+    end,
+    })
+  
   sm:add("hurt", {
       enter = function(self)
         if player.damaged >= INTENSE_DAMAGE_TRESHOLD then
-          ac:setAnimation("hurt_intense")
+          ac:setAnimation("hurt_intense", false)
         else
-          ac:setAnimation("hurt_mild")
+          ac:setAnimation("hurt_mild", false)
         end
 
         player.HP = player.HP - player.damaged
         player.damaged = false
 
-        self.hurtTimer = Timer:new()
+--        self.hurtTimer = Timer:new()
       end,
 
       update = function(self, dt)
-        self.hurtTimer:update(dt)
+--        self.hurtTimer:update(dt)
         
-        if self.hurtTimer:reached(player.hurtDuration) then
+--        if self.hurtTimer:reached(player.hurtDuration) then
+        if ac:curEvent() == "ended" then
           sm:switch("idle")
         end
 
