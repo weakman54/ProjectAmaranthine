@@ -5,13 +5,13 @@ local dbg_timingCircles = 0
 
 
 local RM = require "resourceManager.resourceManager"
-local AC = require "animation.animationCollection"
-local SM = require "statemachine.statemachine"
+local AC = reload( "animation.animationCollection")
+local SM = reload( "statemachine.statemachine")
 
 local Timer = require "timer.timer"
 
 
-local player = require "player"
+--local player = require "player"
 
 
 local enemy = {}
@@ -24,6 +24,9 @@ function enemy:initialize()
 --  self.stance = "low"
 
   self.attackTime = 6 -- seconds
+  
+  
+  self.timingStage = 0
 
 
   -- TODO: think about how to load all of these
@@ -106,10 +109,10 @@ end
 function enemy:initializeAttacks()
   self.attacks = {}
 
-  self:loadAttack({name = "high_attack01", damage = 1}, 30)
+  self:loadAttack({name = "high_attack01", damage = 1, stance = "high"}, 30)
 --  self.attacks[#self.attacks].animation.data.dbg_render = 
 
-  self:loadAttack({name = "low_attack01", damage = 4}, 30)
+  self:loadAttack({name = "low_attack01", damage = 4, stance = "low"}, 30)
 end
 --
 
@@ -189,6 +192,7 @@ function enemy:initializeSM()
         local attackI = math.random(2)
 --        print("#", attackI)
         self.curAttack = enemy.attacks[attackI]
+        enemy.stance = self.curAttack.stance
         ac:setAnimation(self.curAttack.name, false)
 
         self.timer = Timer:new()
@@ -205,6 +209,7 @@ function enemy:initializeSM()
         -- TODO: implement attack format
 
       end,
+
 
       update = function(self, dt)
         self.timer:update(dt)
@@ -223,17 +228,23 @@ function enemy:initializeSM()
         end
 
         if dbg_render_timingCircles then 
-          dbg_timingCircles = 0
+          enemy.timingStage = 0
           if self.timer:between(self.curAttack.parryTime    , self.curAttack.damageImpact) then
-            dbg_timingCircles = dbg_timingCircles + 1
+            enemy.timingStage = enemy.timingStage + 1
           end
           if self.timer:between(self.curAttack.perfDodgeTime, self.curAttack.damageImpact) then
-            dbg_timingCircles = dbg_timingCircles + 1
+            enemy.timingStage = enemy.timingStage + 1
           end
           if self.timer:between(self.curAttack.normDodgeTime, self.curAttack.damageImpact) then
-            dbg_timingCircles = dbg_timingCircles + 1
+            enemy.timingStage = enemy.timingStage + 1
           end
         end
+      end,
+      
+      
+      exit = function(self)
+        enemy.timingStage = 0
+        enemy.stance = ""
       end,
     })
 
@@ -269,7 +280,7 @@ function enemy:draw()
   love.graphics.print(self.sm.curState.name, 1400, 200)
 
 
-  for i=1, dbg_timingCircles do -- don't need to check bool here..s
+  for i=1, self.timingStage do -- don't need to check bool here..
     local r = i/3
     love.graphics.setColor(r, r, 255)
     love.graphics.circle("fill", 1000, 500, (4 - i) * 50)

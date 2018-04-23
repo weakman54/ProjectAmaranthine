@@ -1,10 +1,18 @@
 
+flipHack = false
+
 local vec = require "hump.vector" -- TODO: replace with own vector
 local GUIBar = require "gui.bar"
 
 
-local player = require "player"
-local enemy = require "enemy"
+player = reload("player")
+enemy = reload("enemy")
+
+
+local statemachine = reload("statemachine.statemachine") -- slight hack to reload statemachine 
+
+--player.enemy = enemy
+--enemy.player = player
 
 
 local stateBattle = {}
@@ -25,17 +33,22 @@ local GUIEnemyHealth  = GUIBar:new(vec(1200, 200), vec(300, 30))
 GUIEnemyHealth.innerColor = {255, 000, 000}
 -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+local reloaded = true
+
 
 function stateBattle:init()
+  reloaded = true
+
   debugPrint("Loading battle...")
   player:initialize()
   enemy:initialize()
 
   background = love.graphics.newImage("assets/background.png")
+  loading = false
 end
 
 function stateBattle:enter()
-
+  reloaded = true
   -- TODO: make reset conditional (or push states, not sure which atm)
   player:reset()
   enemy:reset()
@@ -69,12 +82,12 @@ end
 function stateBattle:draw()
   love.graphics.draw(background, x, y, r, sx, sy, 200, 200)
   love.graphics.print("Battle state", 100, 100)
-  
-  
+
+
   enemy:draw()
   player:draw()
-  
-  
+
+
   -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
   GUIPlayerHealth:loveDraw()
   GUIPlayerSP:loveDraw()
