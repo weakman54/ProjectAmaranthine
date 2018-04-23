@@ -11,7 +11,7 @@ local SM = require "statemachine.statemachine"
 local Timer = require "timer.timer"
 
 
-local player = require "player"
+--local player = require "player"
 
 
 local enemy = {}
@@ -24,6 +24,9 @@ function enemy:initialize()
 --  self.stance = "low"
 
   self.attackTime = 6 -- seconds
+  
+  
+  self.timingStage = 0
 
 
   -- TODO: think about how to load all of these
@@ -223,15 +226,15 @@ function enemy:initializeSM()
         end
 
         if dbg_render_timingCircles then 
-          dbg_timingCircles = 0
+          enemy.timingStage = 0
           if self.timer:between(self.curAttack.parryTime    , self.curAttack.damageImpact) then
-            dbg_timingCircles = dbg_timingCircles + 1
+            enemy.timingStage = enemy.timingStage + 1
           end
           if self.timer:between(self.curAttack.perfDodgeTime, self.curAttack.damageImpact) then
-            dbg_timingCircles = dbg_timingCircles + 1
+            enemy.timingStage = enemy.timingStage + 1
           end
           if self.timer:between(self.curAttack.normDodgeTime, self.curAttack.damageImpact) then
-            dbg_timingCircles = dbg_timingCircles + 1
+            enemy.timingStage = enemy.timingStage + 1
           end
         end
       end,
@@ -269,7 +272,7 @@ function enemy:draw()
   love.graphics.print(self.sm.curState.name, 1400, 200)
 
 
-  for i=1, dbg_timingCircles do -- don't need to check bool here..s
+  for i=1, self.timingStage do -- don't need to check bool here..
     local r = i/3
     love.graphics.setColor(r, r, 255)
     love.graphics.circle("fill", 1000, 500, (4 - i) * 50)

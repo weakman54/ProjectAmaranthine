@@ -6,6 +6,8 @@ local SM = require "statemachine.statemachine"
 
 local Timer = require "timer.timer"
 
+--local enemy = require "enemy"
+
 
 local player = {}
 
@@ -15,6 +17,7 @@ function player:initialize()
 
 
   self.hurtDuration = 5 -- seconds
+  self.parryDuration = 2
 
 
   self.maxHP = 10
@@ -26,6 +29,7 @@ function player:initialize()
 
   self:reset()
 end
+--
 
 
 function player:initializeAC()
@@ -139,19 +143,49 @@ function player:initializeSM()
   sm:add("guard",  {
       enter = function(self)
         ac:setAnimation("guard")
---        if enemy.sm:is("offensive") then
---          -- TODO: get attack timing
---        end
+        if enemy.sm:is("offensive") then
+          player.guardTiming = enemy.timingStage
+        end
 
       end,
 
       update = function(self, dt)
-        player.damaged = false -- HACK! TODO: figure timing stuff here!
+        if player.damaged then
+--          print(player.guardTiming)
+          player.damaged = false
+          sm:switch("parry")
+        end
+        
         if not input:down("guard") then
           sm:switch("idle")
         end
       end,
+      
+      exit = function(self)
+        player.guardTiming = 0
+      end
     })
+  --
+  
+  
+  sm:add("parry",  {
+      enter = function(self)
+        ac:setAnimation("parry")
+        enemy.ac:pause()
+        
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+        
+        if self.timer:reached(player.parryDuration) then
+          enemy.sm:switch("idle") -- TODO: separate into enemy
+          sm:switch("idle")
+        end
+      end,
+    })
+--
 
 
   sm:add("dodge",  {
