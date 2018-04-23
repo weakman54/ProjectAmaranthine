@@ -18,6 +18,7 @@ function player:initialize()
 
   self.hurtDuration = 5 -- seconds
   self.parryDuration = 2
+  self.dodgeDuration = 2
 
 
   self.maxHP = 10
@@ -72,8 +73,8 @@ function player:initializeAC()
       ac:addAnimation(name, RM:loadAnimation(name .. "_"))
     end
   end
-  name = "dodge_hurt"
-  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  name = "hurt_dodge"
+  ac:addAnimation("hurt_dodge", RM:loadAnimation("dodge_hurt_")) -- NOTE: hardcoded values here to consolidate with other "hurts"
 
 
 
@@ -126,7 +127,7 @@ function player:initializeSM()
 
         elseif input:down("down") then
           sm:switch("dodge", "low")
-          
+
         elseif input:down("up") then
           sm:switch("dodge", "high")
 
@@ -158,30 +159,30 @@ function player:initializeSM()
           player.damaged = false
           sm:switch("parry")
         end
-        
+
         if not input:down("guard") then
           sm:switch("idle")
         end
       end,
-      
+
       exit = function(self)
         player.guardTiming = 0
       end
     })
   --
-  
-  
+
+
   sm:add("parry",  {
       enter = function(self)
         ac:setAnimation("parry")
         enemy.ac:pause()
-        
+
         self.timer = Timer:new()
       end,
 
       update = function(self, dt)
         self.timer:update(dt)
-        
+
         if self.timer:reached(player.parryDuration) then
           enemy.sm:switch("idle") -- TODO: separate into enemy
           sm:switch("idle")
@@ -195,30 +196,52 @@ function player:initializeSM()
       enter = function(self, stance)
         self.stance = stance
         ac:setAnimation("dodge_" .. self.stance .. "_start", false)
+
         if enemy.sm:is("offensive") then
           player.dodgeTiming = enemy.timingStage
         end
 
+        self.timer = Timer:new()
       end,
 
+
       update = function(self, dt)
-        player.damaged = false -- HACK TODO: figure timings here
+        if player.damaged then
+          if enemy.stance == self.stance then
+            sm:switch("hurt", "dodge")
+          else
+            enemy.ac:pause()
+          end
+          player.damaged = false
+        end
+
+
+        if ac:curName() == "dodge_" .. self.stance .. "_normal" then
+          self.timer:update(dt)
+
+          if self.timer:reached(player.dodgeDuration) then
+            ac:setAnimation("dodge_" .. self.stance .. "_end", false)
+          end
+        end
+
+
         if ac:curEvent() == "ended" then
           if ac:curName() == "dodge_" .. self.stance .. "_start" then
-            ac:setAnimation("dodge_" .. self.stance .. "_normal", false)
+            ac:setAnimation("dodge_" .. self.stance .. "_normal", true)
 
-          elseif ac:curName() == "dodge_" .. self.stance .. "_normal" then
-            ac:setAnimation("dodge_" .. self.stance .. "_end", false)
-            
+--          elseif ac:curName() == "dodge_" .. self.stance .. "_normal" then
+--            ac:setAnimation("dodge_" .. self.stance .. "_end", false)
+
           elseif ac:curName() == "dodge_" .. self.stance .. "_end" then
             sm:switch("idle")
+            enemy.sm:switch("idle")
             flipHack = not flipHack
 
           end
         end
+      end,
 
-    end,
-    
+
     exit = function(self)
       player.dodgeTiming = 0
     end,
@@ -226,31 +249,35 @@ function player:initializeSM()
 --
 
 
-  sm:add("hurt", {
-      enter = function(self)
+sm:add("hurt", {
+    enter = function(self, kind)
+      if not kind then
         if player.damaged >= INTENSE_DAMAGE_TRESHOLD then
           ac:setAnimation("hurt_intense", false)
         else
           ac:setAnimation("hurt_mild", false)
         end
+      else
+        ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
+      end
 
-        player.HP = player.HP - player.damaged
-        player.damaged = false
+      player.HP = player.HP - player.damaged
+      player.damaged = false
 
 --        self.hurtTimer = Timer:new()
-      end,
+    end,
 
-      update = function(self, dt)
+    update = function(self, dt)
 --        self.hurtTimer:update(dt)
 
 --        if self.hurtTimer:reached(player.hurtDuration) then
-        if ac:curEvent() == "ended" then
-          sm:switch("idle")
-        end
-
+      if ac:curEvent() == "ended" then
+        sm:switch("idle")
       end
-    })
-  --
+
+    end
+  })
+--
 end
 --
 

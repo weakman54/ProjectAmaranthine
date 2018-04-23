@@ -192,6 +192,7 @@ function enemy:initializeSM()
         local attackI = math.random(2)
 --        print("#", attackI)
         self.curAttack = enemy.attacks[attackI]
+        enemy.stance = self.curAttack.stance
         ac:setAnimation(self.curAttack.name, false)
 
         self.timer = Timer:new()
@@ -208,6 +209,7 @@ function enemy:initializeSM()
         -- TODO: implement attack format
 
       end,
+
 
       update = function(self, dt)
         self.timer:update(dt)
@@ -237,6 +239,12 @@ function enemy:initializeSM()
             enemy.timingStage = enemy.timingStage + 1
           end
         end
+      end,
+      
+      
+      exit = function(self)
+        enemy.timingStage = 0
+        enemy.stance = ""
       end,
     })
 
