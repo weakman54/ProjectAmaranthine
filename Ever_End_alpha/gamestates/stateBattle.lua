@@ -8,6 +8,9 @@ local GUIBar = require "gui.bar"
 player = reload("player")
 enemy = reload("enemy")
 
+
+local statemachine = reload("statemachine.statemachine") -- slight hack to reload statemachine 
+
 --player.enemy = enemy
 --enemy.player = player
 

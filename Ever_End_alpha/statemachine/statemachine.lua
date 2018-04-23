@@ -38,7 +38,7 @@ function SM:add(name, state)
   end
 end
 
-function SM:switch(to)
+function SM:switch(to, ...)
   local target = self.states[to]
   assert(target, "Statemachine:switch(): State " .. to .. " does not exist in the Statemachine")
 
@@ -49,7 +49,7 @@ function SM:switch(to)
 
   self.curState = self.states[to]
 
-  if self.curState.enter then self.curState:enter() end
+  if self.curState.enter then self.curState:enter(...) end
 
 end
 

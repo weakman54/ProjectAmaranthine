@@ -5,8 +5,8 @@ local dbg_timingCircles = 0
 
 
 local RM = require "resourceManager.resourceManager"
-local AC = require "animation.animationCollection"
-local SM = require "statemachine.statemachine"
+local AC = reload( "animation.animationCollection")
+local SM = reload( "statemachine.statemachine")
 
 local Timer = require "timer.timer"
 
@@ -109,10 +109,10 @@ end
 function enemy:initializeAttacks()
   self.attacks = {}
 
-  self:loadAttack({name = "high_attack01", damage = 1}, 30)
+  self:loadAttack({name = "high_attack01", damage = 1, stance = "high"}, 30)
 --  self.attacks[#self.attacks].animation.data.dbg_render = 
 
-  self:loadAttack({name = "low_attack01", damage = 4}, 30)
+  self:loadAttack({name = "low_attack01", damage = 4, stance = "low"}, 30)
 end
 --
 

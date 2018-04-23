@@ -2,7 +2,7 @@
 
 local RM = require "resourceManager.resourceManager"
 local AC = reload( "animation.animationCollection")
-local SM = require "statemachine.statemachine"
+local SM = reload( "statemachine.statemachine")
 
 local Timer = require "timer.timer"
 
@@ -124,8 +124,11 @@ function player:initializeSM()
         elseif input:down("guard") then
           sm:switch("guard")
 
-        elseif input:down("dodge") then
-          sm:switch("dodge")
+        elseif input:down("down") then
+          sm:switch("dodge", "low")
+          
+        elseif input:down("up") then
+          sm:switch("dodge", "high")
 
         end
       end,
@@ -189,32 +192,39 @@ function player:initializeSM()
 
 
   sm:add("dodge",  {
-      enter = function(self)
-        ac:setAnimation("dodge_low_start", false)
---        if enemy.sm:is("offensive") then
---          -- TODO: get attack timing
---        end
+      enter = function(self, stance)
+        self.stance = stance
+        ac:setAnimation("dodge_" .. self.stance .. "_start", false)
+        if enemy.sm:is("offensive") then
+          player.dodgeTiming = enemy.timingStage
+        end
 
       end,
 
       update = function(self, dt)
         player.damaged = false -- HACK TODO: figure timings here
         if ac:curEvent() == "ended" then
-          if ac:curName() == "dodge_low_start" then
-            ac:setAnimation("dodge_low_normal", false)
+          if ac:curName() == "dodge_" .. self.stance .. "_start" then
+            ac:setAnimation("dodge_" .. self.stance .. "_normal", false)
 
-          elseif ac:curName() == "dodge_low_normal" then
-            ac:setAnimation("dodge_low_end", false)
+          elseif ac:curName() == "dodge_" .. self.stance .. "_normal" then
+            ac:setAnimation("dodge_" .. self.stance .. "_end", false)
             
-          elseif ac:curName() == "dodge_low_end" then
+          elseif ac:curName() == "dodge_" .. self.stance .. "_end" then
             sm:switch("idle")
             flipHack = not flipHack
 
           end
         end
 
-      end,
-    })
+    end,
+    
+    exit = function(self)
+      player.dodgeTiming = 0
+    end,
+  })
+--
+
 
   sm:add("hurt", {
       enter = function(self)
