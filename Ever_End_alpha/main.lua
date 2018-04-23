@@ -1,26 +1,5 @@
 
 
---local hotRod = {}
-
---hotRod._cache = {}
-----  package.loaded[name]
-
---function hotRod:load(filename, as)
---  if not self._cache[as] then
---    local ok, chunk = pcall(love.filesystem.load, filename)
---    if not ok then return ok, chunk end
-
---    self._cache[as] = {chunk = chunk, modtime = 0, filename = filename}
---  end
-
-
-
---  local ok, res = pcall(self.cache[filename].chunk)
-
---  return ok, res
---end
-
-
 -- LASKDJLASKDJLASKJD
 reloaded = true
 
