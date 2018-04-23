@@ -5,8 +5,11 @@ local vec = require "hump.vector" -- TODO: replace with own vector
 local GUIBar = require "gui.bar"
 
 
-local player = reload("player")
-local enemy = reload("enemy")
+player = reload("player")
+enemy = reload("enemy")
+
+--player.enemy = enemy
+--enemy.player = player
 
 
 local stateBattle = {}
