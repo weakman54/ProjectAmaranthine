@@ -34,7 +34,7 @@ local scale = {x = 1, y = 1} -- scale hack
 
 
 -- TEST vvvvvvvvvvvvvvvvvv
-local enemy = require("enemy")
+enemy = require("enemy")
 
 flipHack = false
 -- TEST ^^^^^^^^^^^^^^^^^^
@@ -126,7 +126,7 @@ end
 function love.keypressed(key, scancode, isrepeat)
   -- TEST vvvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^^
-  
+
   Gamestate.keypressed(key, scancode, isrepeat) -- TODO: remove this later
 
   -- NOTE: cannot use input library in keypressed! use it in update instead!
@@ -138,10 +138,11 @@ function love.keypressed(key, scancode, isrepeat)
     enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
 
   elseif key == "+" then
+    print("RELOADING\n-------------------------------------------------------------\n")
     stateBattle = reload("gamestates.stateBattle")
     statePause = reload("gamestates.statePause")
     stateMain = reload("gamestates.stateMain")
-    
+
     RM.dbg_render = false
     Gamestate.switch(stateMain) -- Easier to switch to the one you want from here
   end

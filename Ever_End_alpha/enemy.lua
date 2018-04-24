@@ -24,8 +24,8 @@ function enemy:initialize()
 --  self.stance = "low"
 
   self.attackTime = 6 -- seconds
-  
-  
+
+
   self.timingStage = 0
 
 
@@ -187,7 +187,7 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self)
         enemy.dbg_trigger_offensive_action = false
-        
+
         -- TODO: choose action
         local attackI = math.random(2)
 --        print("#", attackI)
@@ -212,7 +212,20 @@ function enemy:initializeSM()
 
 
       update = function(self, dt)
-        self.timer:update(dt)
+        if enemy.dodged or enemy.parried then
+          ac:pause()
+          
+          if enemy.playerDoneDodge or enemy.playerDoneParry then
+            ac:play()
+            enemy.dodged = false
+            enemy.parried = false
+            enemy.playerDoneDodge = false
+            enemy.playerDoneParry = false
+          end
+
+        else
+          self.timer:update(dt)
+        end
 
         if self.timer:reached(self.curAttack.damageImpact) and not self.didDamage then
           self.didDamage = true
@@ -239,16 +252,16 @@ function enemy:initializeSM()
             enemy.timingStage = enemy.timingStage + 1
           end
         end
-        
-        
-        if enemy.damaged then
+
+
+        if enemy.damaged then -- TODO: needs reworking, will always be hurt during offensive atm...
           enemy.HP = enemy.HP - enemy.damaged.damage
           enemy.damaged = false
           enemy.sm:switch("hurt", enemy.damaged.kind)
         end
       end,
-      
-      
+
+
       exit = function(self)
         enemy.timingStage = 0
 --        enemy.stance = ""
@@ -264,27 +277,27 @@ function enemy:initializeSM()
 
       end,
 
-  })
+    })
 --
 
 
-sm:add("hurt", {
+  sm:add("hurt", {
       enter = function(self, kind)
         ac:setAnimation(kind .. "_hurt" .. "01") -- NOTE: need to handle differing numbers of hurt here
-        
+
         self.timer = Timer:new()
       end,
 
       update = function(self, dt)
         self.timer:update(dt)
-        
+
         if self.timer:reached(2) then -- HARDCODED hurtDuration
           sm:switch("idle")
         end
 
       end,
 
-  })
+    })
 --
 end
 --
