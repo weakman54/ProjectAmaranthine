@@ -9,10 +9,12 @@ function player:initialize()
   self.name = "Player" -- NOTE: This probably shouldn't be needed 
   self.stance = "low"
 
-
-  self.hurtDuration = 5 -- seconds
+  -- durations in seconds vvv
+  self.hurtDuration = 5
   self.parryDuration = 2
-  self.dodgeDuration = 2
+  
+  self.dodgeStartDuration = NORMDODGE_TRESHOLD + 0.0 -- MAGIC NUMBER: additional time on dodge start
+  self.dodgeDuration = 2 
 
 
   self.maxHP = 10
@@ -113,6 +115,7 @@ function player:initializeSM()
   sm:add("idle", {
       enter = function(self)
         ac:setAnimation("idle")
+        player.damaged = false
       end,
 
       update = function(self, dt)
@@ -206,7 +209,6 @@ function player:initializeSM()
   sm:add("dodge",  reload("playerDodgeState"))
 --
 
-  sm:add("dodge_minigame", reload("playerDodgeMinigame"))
 
 
   sm:add("hurt", {

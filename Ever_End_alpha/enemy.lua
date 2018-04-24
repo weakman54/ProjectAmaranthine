@@ -296,7 +296,7 @@ function enemy:initializeSM()
     })
 --
 
-  sm:add("dodge_minigame", reload("enemyDodgeMinigame"))
+  sm:add("dodgeMinigame", reload("enemyDodgeMinigame"))
 end
 --
 
