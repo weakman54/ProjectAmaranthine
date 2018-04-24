@@ -15,16 +15,18 @@ require "util"
 require "global_consts"
 
 -- Lib
-local Gamestate = require "hump.gamestate"
+Gamestate = require "hump.gamestate"
+Sound = require "resourceManager.soundManager"
+
+
 local baton = require "baton.baton"
-local Sound = require "resourceManager.soundManager"
 local RM = require "resourceManager.resourceManager"
 
 
 -- States
-local stateMain   = require "gamestates.stateMain"
-local stateBattle = require "gamestates.stateBattle"
-local statePause  = require "gamestates.statePause"
+stateMain   = require "gamestates.stateMain"
+stateBattle = require "gamestates.stateBattle"
+statePause  = require "gamestates.statePause"
 
 
 -- Other stuff:
@@ -60,6 +62,7 @@ input = baton.new { -- Should be global
 
 
 function love.load(arg)
+  reloaded = true
   do -- Starting loadscreens
     love.graphics.setNewFont(48)
 
@@ -136,8 +139,11 @@ function love.keypressed(key, scancode, isrepeat)
 
   elseif key == "+" then
     stateBattle = reload("gamestates.stateBattle")
+    statePause = reload("gamestates.statePause")
+    stateMain = reload("gamestates.stateMain")
+    
     RM.dbg_render = false
-    Gamestate.switch(stateBattle)
+    Gamestate.switch(stateMain) -- Easier to switch to the one you want from here
   end
 end
 

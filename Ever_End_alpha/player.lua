@@ -49,6 +49,9 @@ function player:initializeAC()
 
   name = "guard"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+    name = "guard_hit"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
   name = "parry"
@@ -164,6 +167,16 @@ function player:initializeSM()
 
           if player.guardTiming == 3 then
             sm:switch("parry")
+            
+          else
+            ac:setAnimation("guard_hit", false)
+          end
+        end
+        
+        
+        if ac:curName() == "guard_hit" then
+          if ac:curEvent() == "ended" then
+            ac:setAnimation("guard")
           end
         end
 
