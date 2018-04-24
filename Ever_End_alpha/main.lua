@@ -33,6 +33,7 @@ local RM = require "resourceManager.resourceManager"
 stateMain   = require "gamestates.stateMain"
 stateBattle = require "gamestates.stateBattle"
 statePause  = require "gamestates.statePause"
+stateVN     = require "gamestates.stateVN"
 
 -- player/enemy
 player = require "player"
@@ -132,19 +133,27 @@ function love.draw()
   Gamestate.draw()
 
   if dbg_print_animation_frames and player.ac and enemy.ac then
-    love.graphics.reset() -- Scale hack  
+    love.graphics.push()
+    love.graphics.reset() -- RESETS Font as well, not documented? might be mistaken
     love.graphics.scale(scale.x, scale.y) -- Scale hack
 
     love.graphics.setColor(1.0, 1.0, 1.0)
 
-    love.graphics.rectangle("fill", 0, 0, W, 100)
+
+    local t = 40
+
+    love.graphics.rectangle("fill", 0, 0, W, t)
 
     love.graphics.setColor(0.0, 0.0, 0.0)
+    
 
     love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
 
-    love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, 50)
+    love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
 
+    love.graphics.pop()
+    
+    love.graphics.setNewFont(48)
 
     love.graphics.setColor(1.0, 1.0, 1.0)
   end
@@ -171,12 +180,16 @@ function love.keypressed(key, scancode, isrepeat)
     SM = reload "statemachine.statemachine"
     AC = reload "animation.animationCollection"
 
-    stateBattle = reload("gamestates.stateBattle")
-    statePause = reload("gamestates.statePause")
-    stateMain = reload("gamestates.stateMain")
-
+    -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
     player = reload("player")
     enemy = reload("enemy")
+
+    stateBattle = reload("gamestates.stateBattle")
+    statePause  = reload("gamestates.statePause")
+    stateMain   = reload("gamestates.stateMain")
+    stateVN     = reload("gamestates.stateVN")
+
+
 
 
     RM.dbg_render = false -- Don't show loading screens, they take long to just render...
