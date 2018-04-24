@@ -8,6 +8,7 @@ local Animation = require "animation"
 local curScene = require "scene1"
 local curLine = 1
 local waitForInput = false
+local wabDecisionHax = false
 
 local resources = {}
 local curDrawing = {} 
@@ -23,6 +24,14 @@ functions = {
     return true 
   end,
   --
+
+
+  wabDecisionHax = function()
+    wabDecisionHax = true
+    return true
+  end,
+  --
+
 
   loadAnim = function (handle, filenames, args)    
     assert(resources[handle] == nil, "You can't load the resource " .. filenames[1] .. " as " .. handle .. ", something is already loaded with that name!")
@@ -237,12 +246,12 @@ end
 
 
 function stateVN:enter(previous, data)
-  if data then
-    curScene = data.scene
-    curLine  = data.line
-  end
+--  if data then
+--    curScene = data.scene
+--    curLine  = data.line
+--  end
 
-  curLine = 1
+--  curLine = 1
 
   functions["clear"]()
 end
@@ -301,6 +310,22 @@ function stateVN:keypressed(key)
     waitForInput = false
   end
 
+
+
+  if wabDecisionHax then
+    love.audio.play("assets/sounds/Textbox.ogg")
+    if key == "k" then
+      curScene = require "scene4_killOption"
+      curLine = 1
+      wabDecisionHax = false
+
+    elseif key == "s" then
+      wabDecisionHax = false
+      curLine = curLine + 1
+    end
+  end
+
+
   if key == "escape" then
     love.event.quit()
 
@@ -317,6 +342,5 @@ function stateVN:keypressed(key)
   end
 end
 
-
-return stateVN
+  return stateVN
 
