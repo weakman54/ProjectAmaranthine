@@ -32,14 +32,18 @@ stateMain   = require "gamestates.stateMain"
 stateBattle = require "gamestates.stateBattle"
 statePause  = require "gamestates.statePause"
 
+-- player/enemy
+player = require "player"
+enemy = require "enemy"
+
+
+
 
 -- Other stuff:
 local scale = {x = 1, y = 1} -- scale hack
 
 
 -- TEST vvvvvvvvvvvvvvvvvv
-enemy = require("enemy")
-
 flipHack = false
 -- TEST ^^^^^^^^^^^^^^^^^^
 
@@ -150,9 +154,13 @@ function love.keypressed(key, scancode, isrepeat)
     stateBattle = reload("gamestates.stateBattle")
     statePause = reload("gamestates.statePause")
     stateMain = reload("gamestates.stateMain")
+    
+    player = reload("player")
+    enemy = reload("enemy")
+    
 
-    RM.dbg_render = false
-    Gamestate.switch(stateMain) -- Easier to switch to the one you want from here
+    RM.dbg_render = false -- Don't show loading screens, they take long to just render...
+    Gamestate.switch(stateMain)
   end
 end
 

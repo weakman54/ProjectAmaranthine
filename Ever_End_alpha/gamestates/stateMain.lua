@@ -1,10 +1,6 @@
 
 
 local RM = require "resourceManager.resourceManager"
-local Gamestate = require "hump.gamestate"
-
-local stateVN = require "gamestates.stateVN"
-local stateBattle = require "gamestates.stateBattle"
 
 
 local stateMain = {}
