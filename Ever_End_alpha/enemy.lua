@@ -192,7 +192,7 @@ function enemy:initializeSM()
         local attackI = math.random(2)
 --        print("#", attackI)
         self.curAttack = enemy.attacks[attackI]
-        enemy.stance = self.curAttack.stance
+--        enemy.stance = self.curAttack.stance
         ac:setAnimation(self.curAttack.name, false)
 
         self.timer = Timer:new()
@@ -216,7 +216,7 @@ function enemy:initializeSM()
 
         if self.timer:reached(self.curAttack.damageImpact) and not self.didDamage then
           self.didDamage = true
-          player.damaged = self.curAttack.damage
+          player.damaged = {attack = self.curAttack, timing = enemy.timingStage}
         end
 
         -- TODO: check animation for "ended"
@@ -242,16 +242,16 @@ function enemy:initializeSM()
         
         
         if enemy.damaged then
-          enemy.HP = enemy.HP - enemy.damaged
+          enemy.HP = enemy.HP - enemy.damaged.damage
           enemy.damaged = false
-          enemy.sm:switch("hurt", "gun")
+          enemy.sm:switch("hurt", enemy.damaged.kind)
         end
       end,
       
       
       exit = function(self)
         enemy.timingStage = 0
-        enemy.stance = ""
+--        enemy.stance = ""
       end,
     })
 

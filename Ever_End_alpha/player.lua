@@ -49,8 +49,8 @@ function player:initializeAC()
 
   name = "guard"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-    name = "guard_hit"
+
+  name = "guard_hit"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
@@ -135,9 +135,9 @@ function player:initializeSM()
 
         elseif input:down("up") then
           sm:switch("dodge", "high")
-          
+
         elseif input:down("attack") then
-          
+
 
         end
       end,
@@ -163,17 +163,18 @@ function player:initializeSM()
 
       update = function(self, dt)
         if player.damaged then
-          player.damaged = false
-
-          if player.guardTiming == 3 then
+          print(player.damaged.timing)
+          
+          if player.damaged.timing == 3 then
             sm:switch("parry")
-            
           else
             ac:setAnimation("guard_hit", false)
           end
+
+          player.damaged = false
         end
-        
-        
+
+
         if ac:curName() == "guard_hit" then
           if ac:curEvent() == "ended" then
             ac:setAnimation("guard")
@@ -216,6 +217,10 @@ function player:initializeSM()
   sm:add("dodge",  {
       enter = function(self, stance)
         self.stance = stance
+        self.timing = 1
+
+        
+
         ac:setAnimation("dodge_" .. self.stance .. "_start", false)
 
         if enemy.sm:is("offensive") then
@@ -228,11 +233,12 @@ function player:initializeSM()
 
       update = function(self, dt)
         if player.damaged then
-          if enemy.stance == self.stance then
+          if player.damaged.attack.stance == self.stance then
             sm:switch("hurt", "dodge")
           else
             enemy.ac:pause()
           end
+          
           player.damaged = false
         end
 
@@ -253,7 +259,7 @@ function player:initializeSM()
         if ac:curName() == "gun_attack_" .. self.stance .. "_normal" then
           -- TODO: keep track of timing and damage
           if not self.didDamage then
-            enemy.damaged = 1
+            enemy.damaged = {damage = 1, kind = "gun"}
             self.didDamage = true
           end
 
@@ -293,7 +299,7 @@ function player:initializeSM()
   sm:add("hurt", {
       enter = function(self, kind)
         if not kind then
-          if player.damaged >= INTENSE_DAMAGE_TRESHOLD then
+          if player.damaged.attack.damage >= INTENSE_DAMAGE_TRESHOLD then
             ac:setAnimation("hurt_intense", false)
           else
             ac:setAnimation("hurt_mild", false)
@@ -302,7 +308,7 @@ function player:initializeSM()
           ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
         end
 
-        player.HP = player.HP - player.damaged
+        player.HP = player.HP - player.damaged.attack.damage
         player.damaged = false
 
 --        self.hurtTimer = Timer:new()
