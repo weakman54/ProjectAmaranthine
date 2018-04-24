@@ -32,9 +32,9 @@ function SM:add(name, state)
     state.canSwitch = function() return true end -- This is a bit of a hack, but works, so eh
   end
 
-  if self.curState == NULLSTATE then
-    self:switch(name)
-  end
+--  if self.curState == NULLSTATE then
+--    self:switch(name)
+--  end
 end
 
 function SM:switch(to, ...)
