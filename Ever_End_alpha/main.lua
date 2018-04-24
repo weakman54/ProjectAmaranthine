@@ -1,5 +1,7 @@
 
 
+local dbg_print_animation_frames = true
+
 -- LASKDJLASKDJLASKJD
 reloaded = true
 
@@ -15,15 +17,28 @@ require "util"
 require "global_consts"
 
 -- Lib
-local Gamestate = require "hump.gamestate"
+Gamestate = require "hump.gamestate"
+Sound = require "resourceManager.soundManager"
+Timer = require "timer.timer"
+
+SM = require "statemachine.statemachine"
+AC = require "animation.animationCollection"
+
+
 local baton = require "baton.baton"
-local Sound = require "resourceManager.soundManager"
 local RM = require "resourceManager.resourceManager"
 
 
 -- States
-local stateMain = require "gamestates.stateMain"
-local stateBattle = require "gamestates.stateBattle"
+stateMain   = require "gamestates.stateMain"
+stateBattle = require "gamestates.stateBattle"
+statePause  = require "gamestates.statePause"
+
+-- player/enemy
+player = require "player"
+enemy = require "enemy"
+
+
 
 
 -- Other stuff:
@@ -31,8 +46,6 @@ local scale = {x = 1, y = 1} -- scale hack
 
 
 -- TEST vvvvvvvvvvvvvvvvvv
-local enemy = require("enemy")
-
 flipHack = false
 -- TEST ^^^^^^^^^^^^^^^^^^
 
@@ -59,6 +72,7 @@ input = baton.new { -- Should be global
 
 
 function love.load(arg)
+  reloaded = true
   do -- Starting loadscreens
     love.graphics.setNewFont(48)
 
@@ -73,11 +87,7 @@ function love.load(arg)
 
   math.randomseed( os.time() )
 
-  enemy:initialize()
-
-
-  Gamestate.switch(stateBattle)
-
+  Gamestate.switch(stateMain)
 end
 
 
@@ -89,7 +99,15 @@ function love.update(dt)
 
   input:update()
 
---  if input:pressed("systemStart") then love.event.quit() end
+  if input:pressed("systemStart") then 
+    if Gamestate.current() == stateMain then
+      love.event.quit() 
+    elseif Gamestate.current() ~= statePause then
+      return Gamestate.push(statePause)
+    end
+  end
+
+
 
   -- TEST vvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^
@@ -113,10 +131,22 @@ function love.draw()
 
   Gamestate.draw()
 
+  if dbg_print_animation_frames and player.ac and enemy.ac then
+    love.graphics.reset() -- Scale hack  
+    love.graphics.scale(scale.x, scale.y) -- Scale hack
 
---  if not ok then love.graphics.print("Error loading enemy: " .. enemy) end
-  if enemy.dbg_trigger_offensive_action then
-    love.graphics.circle("fill", 300, 300, 100)
+    love.graphics.setColor(1.0, 1.0, 1.0)
+
+    love.graphics.rectangle("fill", 0, 0, W, 100)
+
+    love.graphics.setColor(0.0, 0.0, 0.0)
+
+    love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
+
+    love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, 50)
+
+
+    love.graphics.setColor(1.0, 1.0, 1.0)
   end
 end
 
@@ -124,6 +154,8 @@ end
 function love.keypressed(key, scancode, isrepeat)
   -- TEST vvvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^^
+
+  Gamestate.keypressed(key, scancode, isrepeat) -- TODO: remove this later
 
   -- NOTE: cannot use input library in keypressed! use it in update instead!
   if scancode == "`" then
@@ -134,9 +166,21 @@ function love.keypressed(key, scancode, isrepeat)
     enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
 
   elseif key == "+" then
+    print("RELOADING\n-------------------------------------------------------------\n")
+    Timer = reload("timer.timer")
+    SM = reload "statemachine.statemachine"
+    AC = reload "animation.animationCollection"
+
     stateBattle = reload("gamestates.stateBattle")
-    RM.dbg_render = false
-    Gamestate.switch(stateBattle)
+    statePause = reload("gamestates.statePause")
+    stateMain = reload("gamestates.stateMain")
+
+    player = reload("player")
+    enemy = reload("enemy")
+
+
+    RM.dbg_render = false -- Don't show loading screens, they take long to just render...
+    Gamestate.switch(stateMain)
   end
 end
 

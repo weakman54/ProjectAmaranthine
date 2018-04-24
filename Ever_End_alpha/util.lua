@@ -1,7 +1,7 @@
 
-function clear() love.graphics.clear(0, 0, 0) end
-lprint = love.graphics.print
-lpresent = love.graphics.present
+--function clear() love.graphics.clear(0, 0, 0) end
+--lprint = love.graphics.print
+--lpresent = love.graphics.present
 
 function debugPrint(str, x, y, keep)
   if not keep then love.graphics.clear(0, 0, 0) end

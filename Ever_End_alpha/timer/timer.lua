@@ -1,7 +1,5 @@
 
 
--- TODO: make persistent to avoid creating new one all the time, needs reset() + pause state
-
 local Timer = {}
 
 

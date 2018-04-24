@@ -37,6 +37,7 @@ end
 
 
 function VNSystem:loadScene(scene, line)
+  assert(scene, "VNSystem: You must supply which scene to switch to!")
   -- TODO: require scene.lua
   -- TODO: load all images
   self.curScene = scene
