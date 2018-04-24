@@ -46,5 +46,11 @@ return {
   
   {"waitForInput"},
   
+  
+  
+  {"clear", "s04_final_bg"},
+  
+  {"waitForInput"},
+  
   {"clear", "endMarker"},  
   }
