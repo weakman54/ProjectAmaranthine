@@ -113,6 +113,10 @@ function AC:curEvent()
   return self._curAnim.data.event
 end
 
+function AC:curFrame()
+  return self._curAnim.data._curFrameI
+end
+
 function AC:curName()
   return self._curName
 end

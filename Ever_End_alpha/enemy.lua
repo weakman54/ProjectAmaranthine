@@ -5,13 +5,6 @@ local dbg_timingCircles = 0
 
 
 local RM = require "resourceManager.resourceManager"
---local AC = reload( "animation.animationCollection")
---local SM = reload( "statemachine.statemachine")
-
---local Timer = require "timer.timer"
-
-
---local player = require "player"
 
 
 local enemy = {}
