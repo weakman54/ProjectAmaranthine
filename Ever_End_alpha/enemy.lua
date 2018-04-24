@@ -209,9 +209,12 @@ function enemy:initializeSM()
           ac:pause()
 
           if enemy.damaged then
-            enemy.HP = enemy.HP - enemy.damaged.damage
-            enemy.sm:switch("hurt", enemy.damaged)
+            enemy.HP = enemy.HP - enemy.damaged.damage 
+
+            local t = enemy.damaged
+
             enemy.damaged = false
+            enemy.sm:switch("hurt", t)
           end
 
           if enemy.playerDoneDodge or enemy.playerDoneParry then
@@ -256,6 +259,7 @@ function enemy:initializeSM()
 
       exit = function(self)
         enemy.timingStage = 0
+--        assert(enemy.damaged == false, "Sanity check: Enemy is still damaged when leaving offensive")
 --        enemy.stance = ""
       end,
     })
@@ -291,12 +295,16 @@ function enemy:initializeSM()
 
     })
 --
+
+  sm:add("dodge_minigame", reload("enemyDodgeMinigame"))
 end
 --
 
 
 function enemy:reset()
   self.HP = self.maxHP
+
+  self.damaged = false
 
   self.sm:switch("idle")
 end

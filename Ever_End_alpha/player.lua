@@ -1,14 +1,6 @@
 
 
 local RM = require "resourceManager.resourceManager"
---local AC = reload( "animation.animationCollection")
---local SM = reload( "statemachine.statemachine")
-
---local HUMPTimer = require "hump.timer"
-
---local Timer = require "timer.timer"
-
---local enemy = require "enemy"
 
 
 local player = {}
@@ -155,7 +147,7 @@ function player:initializeSM()
   sm:add("guard",  {
       enter = function(self)
         ac:setAnimation("guard")
-        
+
         if enemy.sm:is("offensive") then
           self.parryTiming = enemy.timingStage == 3
         end
@@ -213,6 +205,8 @@ function player:initializeSM()
 
   sm:add("dodge",  reload("playerDodgeState"))
 --
+
+  sm:add("dodge_minigame", reload("playerDodgeMinigame"))
 
 
   sm:add("hurt", {
