@@ -5,10 +5,10 @@ local dbg_timingCircles = 0
 
 
 local RM = require "resourceManager.resourceManager"
-local AC = reload( "animation.animationCollection")
-local SM = reload( "statemachine.statemachine")
+--local AC = reload( "animation.animationCollection")
+--local SM = reload( "statemachine.statemachine")
 
-local Timer = require "timer.timer"
+--local Timer = require "timer.timer"
 
 
 --local player = require "player"
@@ -214,7 +214,13 @@ function enemy:initializeSM()
       update = function(self, dt)
         if enemy.dodged or enemy.parried then
           ac:pause()
-          
+
+          if enemy.damaged then
+            enemy.HP = enemy.HP - enemy.damaged.damage
+            enemy.sm:switch("hurt", enemy.damaged)
+            enemy.damaged = false
+          end
+
           if enemy.playerDoneDodge or enemy.playerDoneParry then
             ac:play()
             enemy.dodged = false
@@ -252,13 +258,6 @@ function enemy:initializeSM()
             enemy.timingStage = enemy.timingStage + 1
           end
         end
-
-
-        if enemy.damaged then -- TODO: needs reworking, will always be hurt during offensive atm...
-          enemy.HP = enemy.HP - enemy.damaged.damage
-          enemy.damaged = false
-          enemy.sm:switch("hurt", enemy.damaged.kind)
-        end
       end,
 
 
@@ -282,8 +281,8 @@ function enemy:initializeSM()
 
 
   sm:add("hurt", {
-      enter = function(self, kind)
-        ac:setAnimation(kind .. "_hurt" .. "01") -- NOTE: need to handle differing numbers of hurt here
+      enter = function(self, data)
+        ac:setAnimation(data.kind .. "_hurt" .. "01") -- NOTE: need to handle differing numbers of hurt here
 
         self.timer = Timer:new()
       end,

@@ -17,6 +17,10 @@ require "global_consts"
 -- Lib
 Gamestate = require "hump.gamestate"
 Sound = require "resourceManager.soundManager"
+Timer = require "timer.timer"
+
+SM = require "statemachine.statemachine"
+AC = require "animation.animationCollection"
 
 
 local baton = require "baton.baton"
@@ -139,6 +143,10 @@ function love.keypressed(key, scancode, isrepeat)
 
   elseif key == "+" then
     print("RELOADING\n-------------------------------------------------------------\n")
+    Timer = reload("timer.timer")
+    SM = reload "statemachine.statemachine"
+    AC = reload "animation.animationCollection"
+
     stateBattle = reload("gamestates.stateBattle")
     statePause = reload("gamestates.statePause")
     stateMain = reload("gamestates.stateMain")
