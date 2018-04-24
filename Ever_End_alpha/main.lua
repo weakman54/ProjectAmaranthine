@@ -1,5 +1,7 @@
 
 
+local dbg_print_animation_frames = true
+
 -- LASKDJLASKDJLASKJD
 reloaded = true
 
@@ -128,6 +130,24 @@ function love.draw()
   -- ^^^^^^^^^^^^^^^^
 
   Gamestate.draw()
+
+  if dbg_print_animation_frames and player.ac and enemy.ac then
+    love.graphics.reset() -- Scale hack  
+    love.graphics.scale(scale.x, scale.y) -- Scale hack
+
+    love.graphics.setColor(1.0, 1.0, 1.0)
+
+    love.graphics.rectangle("fill", 0, 0, W, 100)
+
+    love.graphics.setColor(0.0, 0.0, 0.0)
+
+    love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
+
+    love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, 50)
+
+
+    love.graphics.setColor(1.0, 1.0, 1.0)
+  end
 end
 
 
@@ -154,10 +174,10 @@ function love.keypressed(key, scancode, isrepeat)
     stateBattle = reload("gamestates.stateBattle")
     statePause = reload("gamestates.statePause")
     stateMain = reload("gamestates.stateMain")
-    
+
     player = reload("player")
     enemy = reload("enemy")
-    
+
 
     RM.dbg_render = false -- Don't show loading screens, they take long to just render...
     Gamestate.switch(stateMain)
