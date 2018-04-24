@@ -2,13 +2,16 @@
 
 local statePause = {}
 
+
 local printScreenMode = false
+
 
 function statePause:init()
 end
+
 function statePause:enter(from)
   self.from = from -- record previous state
---  self.pausedSounds = love.audio.pause() -- Fix for love 11 
+  self.pausedSounds = love.audio.pause()
 end
 
 
@@ -17,7 +20,7 @@ function statePause:update(dt)
 end
 
 function statePause:draw()
-  local W, H = love.graphics.getWidth(), love.graphics.getHeight()
+  local w, h = love.graphics.getWidth(), love.graphics.getHeight()
   -- draw previous screen
   self.from:draw()
 

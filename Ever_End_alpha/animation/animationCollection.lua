@@ -105,8 +105,16 @@ function AC:pause()
   self._curAnim.data:pause()
 end
 
+function AC:play()
+  self._curAnim.data:play()
+end
+
 function AC:curEvent()
   return self._curAnim.data.event
+end
+
+function AC:curFrame()
+  return self._curAnim.data._curFrameI
 end
 
 function AC:curName()

@@ -5,13 +5,6 @@ local dbg_timingCircles = 0
 
 
 local RM = require "resourceManager.resourceManager"
-local AC = reload( "animation.animationCollection")
-local SM = reload( "statemachine.statemachine")
-
-local Timer = require "timer.timer"
-
-
---local player = require "player"
 
 
 local enemy = {}
@@ -24,8 +17,8 @@ function enemy:initialize()
 --  self.stance = "low"
 
   self.attackTime = 6 -- seconds
-  
-  
+
+
   self.timingStage = 0
 
 
@@ -187,12 +180,12 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self)
         enemy.dbg_trigger_offensive_action = false
-        
+
         -- TODO: choose action
         local attackI = math.random(2)
 --        print("#", attackI)
         self.curAttack = enemy.attacks[attackI]
-        enemy.stance = self.curAttack.stance
+--        enemy.stance = self.curAttack.stance
         ac:setAnimation(self.curAttack.name, false)
 
         self.timer = Timer:new()
@@ -212,11 +205,33 @@ function enemy:initializeSM()
 
 
       update = function(self, dt)
-        self.timer:update(dt)
+        if enemy.dodged or enemy.parried then
+          ac:pause()
+
+          if enemy.damaged then
+            enemy.HP = enemy.HP - enemy.damaged.damage 
+
+            local t = enemy.damaged
+
+            enemy.damaged = false
+            enemy.sm:switch("hurt", t)
+          end
+
+          if enemy.playerDoneDodge or enemy.playerDoneParry then
+            ac:play()
+            enemy.dodged = false
+            enemy.parried = false
+            enemy.playerDoneDodge = false
+            enemy.playerDoneParry = false
+          end
+
+        else
+          self.timer:update(dt)
+        end
 
         if self.timer:reached(self.curAttack.damageImpact) and not self.didDamage then
           self.didDamage = true
-          player.damaged = self.curAttack.damage
+          player.damaged = {attack = self.curAttack, timing = enemy.timingStage}
         end
 
         -- TODO: check animation for "ended"
@@ -240,11 +255,12 @@ function enemy:initializeSM()
           end
         end
       end,
-      
-      
+
+
       exit = function(self)
         enemy.timingStage = 0
-        enemy.stance = ""
+--        assert(enemy.damaged == false, "Sanity check: Enemy is still damaged when leaving offensive")
+--        enemy.stance = ""
       end,
     })
 
@@ -258,12 +274,37 @@ function enemy:initializeSM()
       end,
 
     })
+--
+
+
+  sm:add("hurt", {
+      enter = function(self, data)
+        ac:setAnimation(data.kind .. "_hurt" .. "01") -- NOTE: need to handle differing numbers of hurt here
+
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if self.timer:reached(2) then -- HARDCODED hurtDuration
+          sm:switch("idle")
+        end
+
+      end,
+
+    })
+--
+
+  sm:add("dodge_minigame", reload("enemyDodgeMinigame"))
 end
 --
 
 
 function enemy:reset()
   self.HP = self.maxHP
+
+  self.damaged = false
 
   self.sm:switch("idle")
 end

@@ -11,7 +11,7 @@ function stateVN:init()
 end
 
 function stateVN:enter(data)
-  VNSystem:loadScene(data.scene, data.line)
+--  VNSystem:loadScene(data.scene, data.line)
 end
 
 function stateVN:leave()
@@ -20,7 +20,7 @@ end
 
 
 function stateVN:update(dt)
-  VNSystem:update(dt)
+--  VNSystem:update(dt)
 end
 
 function stateVN:draw()
