@@ -428,7 +428,7 @@ function player:receiveAttack(enemyStance)
   -- ASSUMPTION: we return out before this if should not take damage
   self.health = self.health - 2
   if self.health <= 0 then
-    Gamestate.switch(stateMain, {playerDeath = true})
+    Gamestate.switch(stateVN, {playerDeath = true})
   end
 
   self.sm:switch("hurt")

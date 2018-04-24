@@ -253,7 +253,7 @@ function enemy:initSM()
 		  love.audio.play("assets/sounds/Sword1.ogg")
 
         if enemy.health <= 0 then -- HACK, fix better "take damage thing"!
-          Gamestate.switch(stateMain, {playerDeath = false})
+          Gamestate.switch(stateVN, {playerDeath = false})
         end
 
         ac:setAnimation("hurt")
