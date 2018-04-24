@@ -239,6 +239,13 @@ function enemy:initializeSM()
             enemy.timingStage = enemy.timingStage + 1
           end
         end
+        
+        
+        if enemy.damaged then
+          enemy.HP = enemy.HP - enemy.damaged
+          enemy.damaged = false
+          enemy.sm:switch("hurt", "gun")
+        end
       end,
       
       
@@ -257,7 +264,28 @@ function enemy:initializeSM()
 
       end,
 
-    })
+  })
+--
+
+
+sm:add("hurt", {
+      enter = function(self, kind)
+        ac:setAnimation(kind .. "_hurt" .. "01") -- NOTE: need to handle differing numbers of hurt here
+        
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+        
+        if self.timer:reached(2) then -- HARDCODED hurtDuration
+          sm:switch("idle")
+        end
+
+      end,
+
+  })
+--
 end
 --
 

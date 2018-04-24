@@ -22,8 +22,9 @@ local RM = require "resourceManager.resourceManager"
 
 
 -- States
-local stateMain = require "gamestates.stateMain"
+local stateMain   = require "gamestates.stateMain"
 local stateBattle = require "gamestates.stateBattle"
+local statePause  = require "gamestates.statePause"
 
 
 -- Other stuff:
@@ -73,11 +74,7 @@ function love.load(arg)
 
   math.randomseed( os.time() )
 
-  enemy:initialize()
-
-
-  Gamestate.switch(stateBattle)
-
+  Gamestate.switch(stateMain)
 end
 
 
@@ -89,7 +86,15 @@ function love.update(dt)
 
   input:update()
 
---  if input:pressed("systemStart") then love.event.quit() end
+  if input:pressed("systemStart") then 
+    if Gamestate.current() == stateMain then
+      love.event.quit() 
+    elseif Gamestate.current() ~= statePause then
+      return Gamestate.push(statePause)
+    end
+  end
+
+
 
   -- TEST vvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^
@@ -112,18 +117,14 @@ function love.draw()
   -- ^^^^^^^^^^^^^^^^
 
   Gamestate.draw()
-
-
---  if not ok then love.graphics.print("Error loading enemy: " .. enemy) end
-  if enemy.dbg_trigger_offensive_action then
-    love.graphics.circle("fill", 300, 300, 100)
-  end
 end
 
 
 function love.keypressed(key, scancode, isrepeat)
   -- TEST vvvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^^
+  
+  Gamestate.keypressed(key, scancode, isrepeat) -- TODO: remove this later
 
   -- NOTE: cannot use input library in keypressed! use it in update instead!
   if scancode == "`" then

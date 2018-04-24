@@ -4,6 +4,8 @@ local RM = require "resourceManager.resourceManager"
 local AC = reload( "animation.animationCollection")
 local SM = reload( "statemachine.statemachine")
 
+local HUMPTimer = require "hump.timer"
+
 local Timer = require "timer.timer"
 
 --local enemy = require "enemy"
@@ -130,6 +132,9 @@ function player:initializeSM()
 
         elseif input:down("up") then
           sm:switch("dodge", "high")
+          
+        elseif input:down("attack") then
+          
 
         end
       end,
@@ -155,10 +160,13 @@ function player:initializeSM()
 
       update = function(self, dt)
         if player.damaged then
---          print(player.guardTiming)
           player.damaged = false
-          sm:switch("parry")
+
+          if player.guardTiming == 3 then
+            sm:switch("parry")
+          end
         end
+
 
         if not input:down("guard") then
           sm:switch("idle")
@@ -222,12 +230,31 @@ function player:initializeSM()
           if self.timer:reached(player.dodgeDuration) then
             ac:setAnimation("dodge_" .. self.stance .. "_end", false)
           end
+
+          if input:pressed("attack") then
+            ac:setAnimation("gun_attack_" .. self.stance .. "_normal", false)
+          end
         end
+
+
+        if ac:curName() == "gun_attack_" .. self.stance .. "_normal" then
+          -- TODO: keep track of timing and damage
+          if not self.didDamage then
+            enemy.damaged = 1
+            self.didDamage = true
+          end
+
+          if ac:curEvent() == "ended" then
+            ac:setAnimation("dodge_" .. self.stance .. "_normal")
+          end
+        end          
 
 
         if ac:curEvent() == "ended" then
           if ac:curName() == "dodge_" .. self.stance .. "_start" then
             ac:setAnimation("dodge_" .. self.stance .. "_normal", true)
+
+--            HUMPTimer.tween(player.dodgeDuration, 
 
 --          elseif ac:curName() == "dodge_" .. self.stance .. "_normal" then
 --            ac:setAnimation("dodge_" .. self.stance .. "_end", false)
@@ -242,41 +269,42 @@ function player:initializeSM()
       end,
 
 
-    exit = function(self)
-      player.dodgeTiming = 0
-    end,
-  })
+      exit = function(self)
+        player.dodgeTiming = 0
+        self.didDamage = false
+      end,
+    })
 --
 
 
-sm:add("hurt", {
-    enter = function(self, kind)
-      if not kind then
-        if player.damaged >= INTENSE_DAMAGE_TRESHOLD then
-          ac:setAnimation("hurt_intense", false)
+  sm:add("hurt", {
+      enter = function(self, kind)
+        if not kind then
+          if player.damaged >= INTENSE_DAMAGE_TRESHOLD then
+            ac:setAnimation("hurt_intense", false)
+          else
+            ac:setAnimation("hurt_mild", false)
+          end
         else
-          ac:setAnimation("hurt_mild", false)
+          ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
         end
-      else
-        ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
-      end
 
-      player.HP = player.HP - player.damaged
-      player.damaged = false
+        player.HP = player.HP - player.damaged
+        player.damaged = false
 
 --        self.hurtTimer = Timer:new()
-    end,
+      end,
 
-    update = function(self, dt)
+      update = function(self, dt)
 --        self.hurtTimer:update(dt)
 
 --        if self.hurtTimer:reached(player.hurtDuration) then
-      if ac:curEvent() == "ended" then
-        sm:switch("idle")
-      end
+        if ac:curEvent() == "ended" then
+          sm:switch("idle")
+        end
 
-    end
-  })
+      end
+    })
 --
 end
 --
