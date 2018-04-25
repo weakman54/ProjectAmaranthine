@@ -16,6 +16,7 @@ function enemy:initialize()
 --  self.stance = "low"
 
   self.attackTime = 6 -- seconds
+  self.guardDuration = 2
 
 
   self.timingStage = 0
@@ -156,6 +157,8 @@ function enemy:initializeSM()
       enter = function(self)
         ac:setAnimation("idle")
         self.attackTimer = Timer:new()
+
+        enemy.attacked = false -- HACK: entire attack stuff needs looking at...
       end,
 
       update = function(self, dt)
@@ -169,6 +172,12 @@ function enemy:initializeSM()
 
         if self.attackTimer:reached(enemy.attackTime) or enemy.dbg_trigger_offensive_action then
           sm:switch("offensive")
+        end
+
+        if enemy.attacked then
+          player.guarded = true
+          enemy.attacked = false
+          return sm:switch("guard")
         end
       end,
       --
@@ -275,13 +284,19 @@ function enemy:initializeSM()
       end,
     })
 
-  sm:add("defensive", {
+  sm:add("guard", { -- NOTE: renamed this from "defensive", that was basically phased out anyway...
       enter = function(self)
-        -- TODO: figure out which reaction
+        ac:setAnimation("guard")
+
+        self.timer = Timer:new()
       end,
 
       update = function(self, dt)
+        self.timer:update(dt)
 
+        if self.timer:reached(enemy.guardDuration) then
+          return sm:switch("idle")
+        end
       end,
 
     })

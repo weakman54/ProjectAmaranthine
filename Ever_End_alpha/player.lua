@@ -192,6 +192,40 @@ function player:initializeSM()
   sm:add("dodge",  reload("playerDodgeState"))
 
 
+sm:add("attack",  { -- Kindof hacky atm, but will probably work well enough??
+      enter = function(self)
+        ac:setAnimation("attack_start")
+        
+        self.timer = Timer:new()
+        self.target = 0.1
+        
+        enemy.attacked = true
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+        
+        if self.timer:reached(self.target) then
+          if self.attacked then
+            return sm:switch("idle")
+          end
+          
+          self.attacked = true
+          if player.guarded then -- If this is not true, timer is still reached, and will reset to idle (yeah... hacks)
+            player.guarded = false
+            ac:setAnimation("attack_guarded", false)
+            self.target = ac:curDuration() + 0.1
+            self.timer:reset()
+          end
+        end
+      end,
+      
+      exit = function(self)
+        self.attacked = false
+      end,
+    })
+
+
 
   sm:add("hurt", {
       enter = function(self, kind)
