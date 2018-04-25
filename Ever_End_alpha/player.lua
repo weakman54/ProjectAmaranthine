@@ -14,7 +14,9 @@ function player:initialize()
   self.parryDuration = 2
   
   self.dodgeStartDuration = NORMDODGE_TRESHOLD + 0.0 -- MAGIC NUMBER: additional time on dodge start
-  self.dodgeDuration = 2 
+  self.dodgeDuration = 2
+  
+  self.gunAttackDuration = 0.1
 
 
   self.maxHP = 10
@@ -223,7 +225,7 @@ function player:initializeSM()
           ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
         end
 
-        player.HP = player.HP - player.damaged.attack.damage
+        player:changeHP(-player.damaged.attack.damage)
         player.damaged = false
 
 --        self.hurtTimer = Timer:new()
@@ -251,6 +253,12 @@ function player:reset()
   self.sm:switch("idle")
 end
 
+
+function player:changeHP(offset)
+  self.HP = self.HP + offset
+  
+  -- TODO: handle death
+end
 
 
 function player:update(dt)

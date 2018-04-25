@@ -22,7 +22,6 @@ function statePause:update(dt)
 end
 
 function statePause:draw()
-  local w, h = love.graphics.getWidth(), love.graphics.getHeight()
   -- draw previous screen
   self.from:draw()
 
