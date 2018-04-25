@@ -209,7 +209,7 @@ function love.keypressed(key, scancode, isrepeat)
   -- TEST vvvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^^
 
-  Gamestate.keypressed(key, scancode, isrepeat) -- TODO: remove this later
+  callOrError(Gamestate.keypressed, key, scancode, isrepeat) -- TODO: remove this later
 
   -- NOTE: cannot use input library in keypressed! use it in update instead!
   if scancode == "`" then

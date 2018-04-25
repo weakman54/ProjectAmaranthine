@@ -7,8 +7,9 @@ function stateError:enter(prev, err)
   self.from = prev
   self.err = err
 
-  debugPrint("Loading: Debug. Error: " .. err, 100, 100)
-  require("mobdebug").start() 
+-- Use the assigned button instead
+--  debugPrint("Loading: Debug. Error: " .. err, 100, 100)
+--  require("mobdebug").start() 
 
   print("Error: " .. self.err)
 end
