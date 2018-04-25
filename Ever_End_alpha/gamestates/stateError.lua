@@ -21,15 +21,15 @@ function stateError:update(dt)
 end
 
 function stateError:draw()
-  local w, h = love.graphics.getWidth(), love.graphics.getHeight()
-  -- draw previous screen
---  self.from:draw()
-
   love.graphics.clear(0, 0, 0)
+  
   love.graphics.setColor(1, 1, 1)
   love.graphics.printf('Error', 0, 50, W, 'center')
-
+  
+  love.graphics.setNewFont(32)
   love.graphics.printf("Error: " .. self.err .. "\nescape - return\n+ - reload\nx - propagate error (crash 'properly')", 0, 100, W, "center")
+  
+  love.graphics.setNewFont(48)
 end
 
 
