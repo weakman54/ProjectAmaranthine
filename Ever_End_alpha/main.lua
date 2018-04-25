@@ -152,7 +152,7 @@ function love.draw()
 
   callOrError(Gamestate.draw)
 
-  if dbg_print_animation_frames then
+  if dbg_print_animation_frames and player.ac and enemy.ac then
     love.graphics.push()
     love.graphics.reset() -- RESETS Font as well, not documented? might be mistaken
     love.graphics.scale(scale.x, scale.y) -- Scale hack
@@ -171,8 +171,6 @@ function love.draw()
 
     love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
     love.graphics.pop() -- does not re-reset font?
-
-    love.graphics.pop()
     
     love.graphics.setNewFont(48)
 
