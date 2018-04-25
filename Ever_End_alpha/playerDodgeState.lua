@@ -13,17 +13,11 @@ local data = {}
 
 local dodgeStart = {
   enter = function(self)
---    print("dodgeStart")
     ac:setAnimation("dodge_" .. data.stance .. "_start", false)
 
     self.timer = Timer:new()
 
-    if enemy.sm:is("offensive") then
-      data.timing = (enemy.timingStage >= 2) and "perfect" or "normal"
---      print("1", data.timing)
-    else
-      data.timing = "none" -- This needs to have a value, but should still work
-    end
+    data.timing = (enemy.timingStage >= 2) and "perfect" or "normal"
   end,
 
   update = function(self, dt)
@@ -31,8 +25,6 @@ local dodgeStart = {
 
     -- Attacked during dodge:
     if player.damaged then
-
---      print("2", data.timing)
       if player.damaged.attack.stance == data.stance then
         player.sm:switch("hurt", "dodge")
 
@@ -47,33 +39,43 @@ local dodgeStart = {
       end
     end
 
-
+    -- If not attacked, just switch to the end animation. ASSUMPTION: we didn't switch state before this
     if self.timer:reached(player.dodgeStartDuration) then
-      sm:switch("dodgeEnd") -- If not attacked, just switch to the end animation. ASSUMPTION: we didn't switch state before this
+      sm:switch("dodgeEnd") 
     end
   end,
 }
 
-RM.prefix = "assets/GUI/"
 
-local combos = {
-  {name = "up"   , anim = RM:loadAnimation("gun_combo_up_"   , nil, 12), x = 1*W/2, y = 1*H/4, },
-  {name = "down" , anim = RM:loadAnimation("gun_combo_down_" , nil, 12), x = 1*W/2, y = 3*H/4, },
-  {name = "left" , anim = RM:loadAnimation("gun_combo_left_" , nil, 12), x = 1*W/4, y = 1*H/2, },
-  {name = "right", anim = RM:loadAnimation("gun_combo_right_", nil, 12), x = 3*W/4, y = 1*H/2, },
+
+-- Load combo stuff: -----------------------
+RM.prefix = "assets/GUI/"
+local combos = { -- HACK TODO: fix the readabilty of the m thing here...
+  {name = "up"   , anim = RM:loadAnimation("gun_combo_up_"   , nil, 12), xm = 0, ym = -1},-- x = 1*W/2, y = 1*H/4, },
+  {name = "down" , anim = RM:loadAnimation("gun_combo_down_" , nil, 12), xm = 0, ym = 1},-- x = 1*W/2, y = 3*H/4, },
+  {name = "left" , anim = RM:loadAnimation("gun_combo_left_" , nil, 12), xm = -1, ym = 0},-- x = 1*W/4, y = 1*H/2, },
+  {name = "right", anim = RM:loadAnimation("gun_combo_right_", nil, 12), xm = 1, ym = 0},-- x = 3*W/4, y = 1*H/2, },
 }
 
-for _, combo in ipairs(combos) do
-  local w, h =  combo.anim.data._frames[1].data:getDimensions()
-  combo.ox, combo.oy = w/2, h/2
+
+local t = {x = 2*W/3, y = 1*H/2} -- Center point for the combo graphics
+
+for _, c in ipairs(combos) do
+  local w, h =  c.anim.data._frames[1].data:getDimensions()
+  c.ox, c.oy = w/2, h/2
+  c.x, c.y = t.x + c.ox * c.xm, t.y + c.oy * c.ym
+--  print(c.name, c.x, c.y, c.ox * c.m, c.oy * c.m, c.ox, c.oy, c.m)
+
 --  print("#", w, h, combo.ox, combo.oy)
 end
+
+
 
 local dodgeMinigame = {
   enter = function(self)
 --    print("dodgeMini")
     enemy.ac:pause()
-    ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing)
+    ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing) -- ASSUMPTION: data.timing should have a correct value here since we're in this state
 
 
     self.combo = combos[math.random(4)]
@@ -95,10 +97,9 @@ local dodgeMinigame = {
 
   draw = function(self)
     for i=1, 4 do
-      local c = combos[i]
---    local c = self.combo
+--      local c = combos[i]
+      local c = self.combo
       c.anim.data:loveDraw(c.x, c.y, r, sx, sy, c.ox, c.oy)
---      love.graphics.draw(c.anim.data, c.x, c.y)
     end
   end,
 }
@@ -107,12 +108,11 @@ local dodgeMinigame = {
 
 local dodgeEnd = {
   enter = function(self, stance)
---    print("dodgeEnd")
     ac:setAnimation("dodge_" .. data.stance .. "_end", false)
   end,
 
   update = function(self, dt)
-    -- TODO: A bunch of stuff here is animation timing dependent...
+    -- TODO: is animation timing dependent...
 
     if player.damaged then
       player.sm:switch("hurt", "dodge")
@@ -128,9 +128,6 @@ local dodgeEnd = {
     player.damaged = false -- HACK atm, needs more looking at!
   end,
 }
-
-
-
 
 
 
