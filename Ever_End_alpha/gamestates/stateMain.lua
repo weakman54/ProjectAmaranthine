@@ -28,7 +28,7 @@ end
 function stateMain:draw()
   love.graphics.draw(logo.data, 0, -200)
   
-  love.graphics.printf("press space to start, escape to exit", 0, H - 100, W, 'center')
+  love.graphics.printf("press space to start, escape to exit\nr - start battlesystem", 0, H - 100, W, 'center')
 end
 
 function stateMain:keypressed(key, scancode, isrepeat)
