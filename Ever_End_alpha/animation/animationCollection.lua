@@ -121,6 +121,9 @@ function AC:curName()
   return self._curName
 end
 
+function AC:curDuration()
+  return self._curAnim.data:duration()
+end
 
 
 
