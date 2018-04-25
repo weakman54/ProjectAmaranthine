@@ -26,7 +26,7 @@ local dodgeStart = {
     -- Attacked during dodge:
     if player.damaged then
       if player.damaged.attack.stance == data.stance then
-        player.sm:switch("hurt", "dodge")
+        return player.sm:switch("hurt", "dodge")
 
       else
 
@@ -35,13 +35,13 @@ local dodgeStart = {
         player.damaged = false
 
         enemy.sm:switch("dodgeMinigame")
-        sm:switch("dodgeMinigame")
+        return sm:switch("dodgeMinigame")
       end
     end
 
     -- If not attacked, just switch to the end animation. ASSUMPTION: we didn't switch state before this
     if self.timer:reached(player.dodgeStartDuration) then
-      sm:switch("dodgeEnd") 
+      return sm:switch("dodgeEnd") 
     end
   end,
 }
@@ -51,11 +51,10 @@ local dodgeStart = {
 -- Load combo stuff: -----------------------
 RM.prefix = "assets/GUI/"
 local combos = { -- HACK TODO: fix the readabilty of the m thing here...
-  {name = "up"   , anim = RM:loadAnimation("gun_combo_up_"   , nil, 12), xm = 0, ym = -1},-- x = 1*W/2, y = 1*H/4, },
-  {name = "down" , anim = RM:loadAnimation("gun_combo_down_" , nil, 12), xm = 0, ym = 1},-- x = 1*W/2, y = 3*H/4, },
-  {name = "left" , anim = RM:loadAnimation("gun_combo_left_" , nil, 12), xm = -1, ym = 0},-- x = 1*W/4, y = 1*H/2, },
-  {name = "right", anim = RM:loadAnimation("gun_combo_right_", nil, 12), xm = 1, ym = 0},-- x = 3*W/4, y = 1*H/2, },
-}
+  {name = "Up"   , anim = RM:loadAnimation("gun_combo_up_"   , nil, 12), xm =  0, ym = -1, }, -- x = 1*W/2, y = 1*H/4, },
+  {name = "Down" , anim = RM:loadAnimation("gun_combo_down_" , nil, 12), xm =  0, ym =  1, }, -- x = 1*W/2, y = 3*H/4, },
+  {name = "Left" , anim = RM:loadAnimation("gun_combo_left_" , nil, 12), xm = -1, ym =  0, }, -- x = 1*W/4, y = 1*H/2, },
+  {name = "Right", anim = RM:loadAnimation("gun_combo_right_", nil, 12), xm =  1, ym =  0, }, -- x = 3*W/4, y = 1*H/2, },
 
 
 local t = {x = 2*W/3, y = 1*H/2} -- Center point for the combo graphics
@@ -70,10 +69,10 @@ end
 
 local dodgeMinigame = {
   enter = function(self)
---    print("dodgeMini")
     enemy.ac:pause()
     ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing) -- ASSUMPTION: data.timing should have a correct value here since we're in this state
 
+    self.hurtI = 1
 
     self.combo = combos[math.random(4)]
 
@@ -83,18 +82,43 @@ local dodgeMinigame = {
 
   update = function(self, dt)
     self.timer:update(dt)
-    self.combo.anim.data:update(dt)
+    if self.combo then self.combo.anim.data:update(dt) end -- update the combo GUI animations TODO: clean a bit?
 
     if self.timer:reached(player.dodgeDuration) then
-      enemy.ac:play() -- This will probably not be needed?
-      enemy.sm:switch("idle") -- NOTE: not quite good yet
-      sm:switch("dodgeEnd")
+--      enemy.ac:play() -- This will probably not be needed?
+--      enemy.sm:switch("idle") -- NOTE: not quite good yet
+      return sm:switch("dodgeEnd")
+    end
+
+
+    -- Attack stuff: -----------
+    if self.attackTimer then
+      self.attackTimer:update(dt)
+
+
+      if self.attackTimer:reached(player.gunAttackDuration) then
+        ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing)
+        enemy.ac:setAnimation("idle") -- TODO: look into this 
+        
+        self.attackTimer = nil
+        self.combo = combos[math.random(4)]
+      end
+
+    elseif input:pressed("combo" .. self.combo.name) then
+      self.hurtI = (self.hurtI % 2) + 1
+      print("#" .. self.hurtI)
+      enemy.ac:setAnimation("gun_hurt" .. string.format("%02d", self.hurtI))
+      enemy:changeHP(-1) -- HARDCODED: -1, health amount
+      
+      ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing)
+      self.attackTimer = Timer:new()
+
+      self.combo = nil
     end
   end,
 
   draw = function(self)
-    for i=1, 4 do
---      local c = combos[i]
+    if self.combo then
       local c = self.combo
       c.anim.data:loveDraw(c.x, c.y, r, sx, sy, c.ox, c.oy)
     end
@@ -112,12 +136,12 @@ local dodgeEnd = {
     -- TODO: is animation timing dependent...
 
     if player.damaged then
-      player.sm:switch("hurt", "dodge")
+      return player.sm:switch("hurt", "dodge")
     end
 
     -- If not attacked, just switch to the end animation
     if ac:curEvent() == "ended" then
-      player.sm:switch("idle")
+      return player.sm:switch("idle")
     end
   end,
 
@@ -138,7 +162,7 @@ dodgeMain.sm:add("dodgeEnd", dodgeEnd)
 
 function dodgeMain:enter(stance)
   data.stance = stance
-  self.sm:switch("dodgeStart", stance)
+  return self.sm:switch("dodgeStart")
 end
 
 function dodgeMain:update(dt)
@@ -151,8 +175,9 @@ end
 
 function dodgeMain:exit()
   data = {}
+
   if enemy.sm:is("dodgeMinigame") then
-    enemy.sm:switch("idle") -- Non-tested HACK...
+    return enemy.sm:switch("idle") -- Non-tested HACK...
   end
 end
 
