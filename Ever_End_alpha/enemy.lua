@@ -129,7 +129,7 @@ function enemy:initializeAC()
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
   for _, comboType in ipairs{"sword", "gun"} do
-    for i=1, 2 do
+    for i=1, 3 do
       name = comboType .. "_hurt" .. string.format("%02d", i)
       ac:addAnimation(name, RM:loadAnimation(name .. "_"))
     end

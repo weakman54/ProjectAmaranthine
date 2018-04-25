@@ -94,9 +94,9 @@ function player:initializeAC()
   name = "attack_guarded"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
-  for i = 1, 2 do -- NOTE: hardcoed number of combo attacks
+  for i = 1, 3 do -- NOTE: hardcoed number of combo attacks
     for _, thing in ipairs{"windup", "attack"} do
-      name = "sword_combo" .. string.format("%02d", i) .. "_" .. thing
+      name = string.format("sword_combo%02d_%s", i, thing)
       ac:addAnimation(name, RM:loadAnimation(name .. "_"))
     end
   end
