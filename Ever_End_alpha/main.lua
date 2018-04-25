@@ -77,6 +77,11 @@ input = baton.new { -- Should be global
     dodge  = {"key:d"    ,                         "button:x"},
     heal   = {"key:h"    ,                         "button:y"},
 
+    comboLeft    = {"key:a"    ,                         "button:x"},
+    comboRight   = {"key:d"    ,                         "button:b"},
+    comboUp      = {"key:w"    ,                         "button:y"},
+    comboDown    = {"key:s"    ,                         "button:a"},
+
     systemStart = {"key:escape",                   "button:start"},                      
   },
   pairs = {
