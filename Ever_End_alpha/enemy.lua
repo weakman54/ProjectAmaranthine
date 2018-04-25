@@ -13,10 +13,10 @@ enemy.dbg_trigger_offensive_action = false
 
 function enemy:initialize()
   self.name = "Quit" -- TODO: load properly
---  self.stance = "low"
 
-  self.attackTime = 6 -- seconds
+  self.attackTime    = 6 -- seconds
   self.guardDuration = 2
+  self.hurtDuration  = 2
 
 
   self.timingStage = 0
@@ -33,6 +33,16 @@ function enemy:initialize()
 
   self:reset()
 end
+--
+
+function enemy:reset()
+  self.HP = self.maxHP
+
+  self.damaged = false
+
+  self.sm:switch("idle")
+end
+--
 
 
 function enemy:loadAttack(attack, framerate)
@@ -84,7 +94,6 @@ function enemy:loadAttack(attack, framerate)
 
     if a == 1 and r == 1 then -- Corner marker for attack start
       attack.damageImpact = (i - 1) * frameDuration -- Using i - 1 to account for the fact that Timer only checks wether the set time has _passed_
---      print((i - 1), (i - 1) * frameDuration)
     end
   end
 
@@ -162,9 +171,9 @@ function enemy:initializeSM()
       end,
 
       update = function(self, dt)
-        -- TODO: put in reaction to attack
-        -- TODO: get hurt
-        -- TODO: or switch to defensive
+        -- TODO: put in reaction to attack X
+        -- TODO: get hurt (?)
+        -- TODO: or switch to defensive X (just guard atm, not sure if more is needed?)
         -- TODO: counter attack ( if been attacked multiple times)
         -- TODO: BETTER FEEDBACK FOR COUNTER ATTACK
 
@@ -189,60 +198,34 @@ function enemy:initializeSM()
       enter = function(self)
         enemy.dbg_trigger_offensive_action = false
 
-        -- TODO: choose action
+        -- TODO: choose action X (ish)
         local attackI = math.random(2)
 --        print("#", attackI)
         self.curAttack = enemy.attacks[attackI]
 --        enemy.stance = self.curAttack.stance
+        -- TODO: set animation
         ac:setAnimation(self.curAttack.name, false)
 
         self.timer = Timer:new()
 
         self.didDamage = false
 
-        -- TODO: set animation
-
-
         -- TODO: combo?
-        -- TODO: set stance depending on action
-        -- TODO: perform action
-
-        -- TODO: implement attack format
+        -- TODO: perform action X
+        -- TODO: implement attack format (ish)
 
       end,
 
 
       update = function(self, dt)
---        if enemy.dodged or enemy.parried then
---          ac:pause()
-
---          if enemy.damaged then
---            enemy:changeHP(-enemy.damaged.damage)
-
---            local t = enemy.damaged
-
---            enemy.damaged = false
---            enemy.sm:switch("hurt", t)
---          end
-
---          if enemy.playerDoneDodge or enemy.playerDoneParry then
---            ac:play()
---            enemy.dodged = false
---            enemy.parried = false
---            enemy.playerDoneDodge = false
---            enemy.playerDoneParry = false
---          end
-
---        else
         self.timer:update(dt)
---        end
 
         if self.timer:reached(self.curAttack.damageImpact) and not self.didDamage then
           self.didDamage = true
           player.damaged = {attack = self.curAttack, timing = enemy.timingStage}
         end
 
-        -- TODO: check animation for "ended"
+        -- TODO: Fix so that this is not animation timing dependent
 --        if self.curAttack.animation.data.event == "ended" then 
         if ac:curEvent() == "ended" then
           -- if nextAttack, switch back to offensive with the info (sm:switch("offensive", data))
@@ -279,8 +262,6 @@ function enemy:initializeSM()
 
       exit = function(self)
         enemy.timingStage = 0
---        assert(enemy.damaged == false, "Sanity check: Enemy is still damaged when leaving offensive")
---        enemy.stance = ""
       end,
     })
 
@@ -314,7 +295,7 @@ function enemy:initializeSM()
       update = function(self, dt)
         self.timer:update(dt)
 
-        if self.timer:reached(2) then -- HARDCODED hurtDuration
+        if self.timer:reached(enemy.hurtDuration) then -- HARDCODED: hurtDuration
           sm:switch("idle")
         end
 
@@ -322,19 +303,13 @@ function enemy:initializeSM()
 
     })
 --
+
+
   sm:add("parryMinigame", reload("enemyParryMinigame"))
   sm:add("dodgeMinigame", reload("enemyDodgeMinigame"))
 end
 --
 
-
-function enemy:reset()
-  self.HP = self.maxHP
-
-  self.damaged = false
-
-  self.sm:switch("idle")
-end
 
 
 function enemy:changeHP(offset)
@@ -342,6 +317,7 @@ function enemy:changeHP(offset)
 
   -- TODO: handle death
 end
+
 
 
 function enemy:update(dt)
@@ -352,10 +328,9 @@ end
 
 function enemy:draw()
   self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
-  love.graphics.print(self.sm.curState.name, 2*W/3, H/4)
+--  love.graphics.print(self.sm.curState.name, 2*W/3, H/4)
 
   self.sm:draw()
-
 end
 
 
