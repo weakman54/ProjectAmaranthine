@@ -1,4 +1,6 @@
 
+local RM = require "resourceManager.resourceManager"
+
 local dodgeMain = {
   sm = SM:new(),
 }
@@ -52,14 +54,25 @@ local dodgeStart = {
   end,
 }
 
+RM.prefix = "assets/GUI/"
 
+local combos = {
+  {name = "up"   , image = RM:loadAnimation("comboUp_"   ), x = W/2, y = H/1, },
+  {name = "down" , image = RM:loadAnimation("comboDown_" ), x = W/2, y = H/1, },
+  {name = "left" , image = RM:loadAnimation("comboLeft_" ), x = W/1, y = H/2, },
+  {name = "right", image = RM:loadAnimation("comboRight_"), x = W/1, y = H/2, },
+}
 
-
+--{"decisionState", {s = {"changeScene", "sceneSpare", 4}, k = {"changeScene", "sceneKill"}}}
 local dodgeMinigame = {
   enter = function(self)
     print("dodgeMini")
     enemy.ac:pause()
     ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing)
+
+  
+    self.combo = combos[math.random(4)]
+
 
     self.timer = Timer:new()
   end,
@@ -123,8 +136,15 @@ function dodgeMain:update(dt)
   self.sm:update(dt)
 end
 
+function dodgeMain:draw(dt)
+  self.sm:draw()
+end
+
 function dodgeMain:exit()
   data = {}
+  if enemy.sm:is("dodgeMinigame") then
+    enemy.sm:switch("idle") -- Non-tested HACK...
+  end
 end
 
 
