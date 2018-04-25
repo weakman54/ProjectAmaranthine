@@ -210,7 +210,11 @@ function love.keypressed(key, scancode, isrepeat)
   -- TEST vvvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^^
 
-  callOrError(Gamestate.keypressed, key, scancode, isrepeat) -- TODO: remove this later
+  if Gamestate.current() ~= stateError then
+    callOrError(Gamestate.keypressed, key, scancode, isrepeat) -- TODO: remove this later
+  else
+    Gamestate.keypressed(key, scancode, isrepeat)
+  end
 
   -- NOTE: cannot use input library in keypressed! use it in update instead!
   if scancode == "`" then
