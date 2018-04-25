@@ -76,6 +76,7 @@ input = baton.new { -- Should be global
     guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
     dodge  = {"key:d"    ,                         "button:x"},
     heal   = {"key:h"    ,                         "button:y"},
+    -- TODO: choices = keys:
 
     comboLeft    = {"key:a"    ,                         "button:x"},
     comboRight   = {"key:d"    ,                         "button:b"},

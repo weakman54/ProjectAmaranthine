@@ -10,8 +10,10 @@ local curLine = 1
 local waitForInput = false
 local wabDecisionHax = false
 
+
 local resources = {}
 local curDrawing = {} 
+local tableOfChoices = {} 
 
 local background
 
@@ -19,18 +21,19 @@ executing = true -- Kinda hack atm, but eh, works
 
 local functions -- Need to declare first so I can access in functions' functions itself
 functions = {  
-  waitForInput = function()
+  waitForInput = function() -- TODO: change this
     waitForInput = true
     return true 
   end,
   --
 
 
-  wabDecisionHax = function()
+  wabDecisionHax = function() -- TODO: change this
     wabDecisionHax = true
     return true
   end,
   --
+
 
 
   loadAnim = function (handle, filenames, args)    
@@ -310,8 +313,6 @@ function stateVN:keypressed(key)
     waitForInput = false
   end
 
-
-
   if wabDecisionHax then
     love.audio.play("assets/sounds/Textbox.ogg")
     if key == "k" then
@@ -342,5 +343,5 @@ function stateVN:keypressed(key)
   end
 end
 
-  return stateVN
+return stateVN
 
