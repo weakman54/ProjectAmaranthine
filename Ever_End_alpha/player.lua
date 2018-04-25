@@ -188,28 +188,8 @@ function player:initializeSM()
   --
 
 
-  sm:add("parry",  {
-      enter = function(self)
-        ac:setAnimation("parry", false)
-        enemy.parried = true
-
-        self.timer = Timer:new()
-      end,
-
-      update = function(self, dt)
-        self.timer:update(dt)
-
-        if self.timer:reached(player.parryDuration) then
-          enemy.playerDoneParry = true
-          sm:switch("idle")
-        end
-      end,
-    })
---
-
-
+  sm:add("parry",  reload("playerParry"))
   sm:add("dodge",  reload("playerDodgeState"))
---
 
 
 

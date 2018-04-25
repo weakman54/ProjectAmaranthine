@@ -204,29 +204,29 @@ function enemy:initializeSM()
 
 
       update = function(self, dt)
-        if enemy.dodged or enemy.parried then
-          ac:pause()
+--        if enemy.dodged or enemy.parried then
+--          ac:pause()
 
-          if enemy.damaged then
-            enemy:changeHP(-enemy.damaged.damage)
+--          if enemy.damaged then
+--            enemy:changeHP(-enemy.damaged.damage)
 
-            local t = enemy.damaged
+--            local t = enemy.damaged
 
-            enemy.damaged = false
-            enemy.sm:switch("hurt", t)
-          end
+--            enemy.damaged = false
+--            enemy.sm:switch("hurt", t)
+--          end
 
-          if enemy.playerDoneDodge or enemy.playerDoneParry then
-            ac:play()
-            enemy.dodged = false
-            enemy.parried = false
-            enemy.playerDoneDodge = false
-            enemy.playerDoneParry = false
-          end
+--          if enemy.playerDoneDodge or enemy.playerDoneParry then
+--            ac:play()
+--            enemy.dodged = false
+--            enemy.parried = false
+--            enemy.playerDoneDodge = false
+--            enemy.playerDoneParry = false
+--          end
 
-        else
-          self.timer:update(dt)
-        end
+--        else
+        self.timer:update(dt)
+--        end
 
         if self.timer:reached(self.curAttack.damageImpact) and not self.didDamage then
           self.didDamage = true
@@ -288,6 +288,7 @@ function enemy:initializeSM()
 --
 
 
+
   sm:add("hurt", {
       enter = function(self, data)
         ac:setAnimation(data.kind .. "_hurt" .. "01") -- NOTE: need to handle differing numbers of hurt here
@@ -306,7 +307,7 @@ function enemy:initializeSM()
 
     })
 --
-  
+  sm:add("parryMinigame", reload("enemyParryMinigame"))
   sm:add("dodgeMinigame", reload("enemyDodgeMinigame"))
 end
 --
@@ -323,7 +324,7 @@ end
 
 function enemy:changeHP(offset)
   self.HP = self.HP + offset
-  
+
   -- TODO: handle death
 end
 
