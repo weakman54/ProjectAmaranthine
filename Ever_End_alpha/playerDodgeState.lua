@@ -64,9 +64,6 @@ for _, c in ipairs(combos) do
   local w, h =  c.anim.data._frames[1].data:getDimensions()
   c.ox, c.oy = w/2, h/2
   c.x, c.y = t.x + c.ox * c.xm, t.y + c.oy * c.ym
---  print(c.name, c.x, c.y, c.ox * c.m, c.oy * c.m, c.ox, c.oy, c.m)
-
---  print("#", w, h, combo.ox, combo.oy)
 end
 
 
@@ -166,96 +163,5 @@ return dodgeMain
 
 
 
-
---if enemy.sm:is("offensive") then
---      data.timing = (enemy.timingStage >= 2) and "perfect" or "normal"
---    else
---      data.timing = "none" -- This needs to have a value, but should still work
---    end
-
-
-
-
-
---  update = function(self, dt)
---    -- TODO: A bunch of stuff here is animation timing dependent...
-
---    if player.damaged then
-
---      if player.damaged.attack.stance == data.stance then
---        sm:switch("hurt", "dodge")
---      else
---        local t = {
---          enemyAttack = player.damaged,
---          stance = self.stance,
---          timing = self.timing
---        }
---        player.damaged = false
---        enemy.sm:switch("dodge_minigame")
---        sm:switch("dodge_minigame", t)
-
-
-------            sm:switch("dodging")??
-----        ac:setAnimation("dodge_" .. self.stance .. "_" .. self.timing)
-
-----        enemy.dodged = true
---      end
---    end
-
-----    -- If actually dodged, update timer and check for attack
-----    if ac:curName() == "dodge_" .. self.stance .. "_" .. self.timing then
-----      self.timer:update(dt)
-
-----      if input:pressed("attack") then
-----        ac:setAnimation("gun_attack_" .. self.stance .. "_" .. self.timing, false)
-----      end
-----    end
-
-
-----    -- If attacking, Deal damage
-----    if ac:curName() == "gun_attack_" .. self.stance .. "_" .. self.timing then
-----      self.timer:update(dt) -- NOTE: This still counts against timer, should it?
-
-----      -- TODO: keep track of timing and damage
-----      if not self.didDamage then
-----        enemy.damaged = {damage = 1, kind = "gun", timing = self.timing}
-----        self.didDamage = true
-----      end
-
-----      if ac:curEvent() == "ended" then
-----        ac:setAnimation("dodge_" .. self.stance .. "_" .. self.timing)
-----      end
-----    end
-----    --
-
-----    -- Timer check is here atm cause testing if should count time regardless if attacking or not
-----    if self.timer:reached(player.dodgeDuration) and not self.done then
-----      self.done = true
-----      ac:setAnimation("dodge_" .. self.stance .. "_end", false)
-----    end
-
-
---    -- If not attacked, just switch to the end animation
---    if ac:curEvent() == "ended" then
---      if ac:curName() == "dodge_" .. self.stance .. "_start" then
---        ac:setAnimation("dodge_" .. self.stance .. "_end", false) -- NOTE: This assumes we have already switched to "middle" before this if an attack was actually dodged
-
---      elseif ac:curName() == "dodge_" .. self.stance .. "_end" then
---        sm:switch("idle")
---        flipHack = not flipHack
-
---      end
---    end
---  end,
-----
-
-
---  exit = function(self)
-----        self.timing = "none"
---    enemy.playerDoneDodge = true
---    self.done = false
---    self.didDamage = false
---  end,
---}
 
 
