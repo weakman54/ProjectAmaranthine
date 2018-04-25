@@ -165,13 +165,13 @@ function love.draw()
     love.graphics.rectangle("fill", 0, 0, W, t)
 
     love.graphics.setColor(0.0, 0.0, 0.0)
-    
+
 
     love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
 
     love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
     love.graphics.pop() -- does not re-reset font?
-    
+
     love.graphics.setNewFont(48)
 
     love.graphics.setColor(1.0, 1.0, 1.0)
@@ -214,6 +214,12 @@ function love.keypressed(key, scancode, isrepeat)
   -- NOTE: cannot use input library in keypressed! use it in update instead!
   if scancode == "`" then
     love._openConsole()
+  end
+
+  if key == "-" then
+    debugPrint("Loading: Debug", 100, 100)
+    require("mobdebug").start() 
+    print("debug ---------------")
   end
 
   if key == "t" then
