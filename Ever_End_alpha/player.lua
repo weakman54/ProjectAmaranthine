@@ -12,10 +12,10 @@ function player:initialize()
   -- durations in seconds vvv
   self.hurtDuration = 5
   self.parryDuration = 2
-  
+
   self.dodgeStartDuration = NORMDODGE_TRESHOLD + 0.0 -- MAGIC NUMBER: additional time on dodge start
   self.dodgeDuration = 2
-  
+
   self.gunAttackDuration = 0.1
 
 
@@ -124,17 +124,17 @@ function player:initializeSM()
         if player.damaged then
           sm:switch("hurt")
 
-        elseif input:down("guard") then
+        elseif input:pressed("guard") then
           sm:switch("guard")
 
-        elseif input:down("down") then
+        elseif input:pressed("down") then
           sm:switch("dodge", "low")
 
-        elseif input:down("up") then
+        elseif input:pressed("up") then
           sm:switch("dodge", "high")
 
-        elseif input:down("attack") then
-
+        elseif input:pressed("attack") then
+          sm:switch("attack")
 
         end
       end,
