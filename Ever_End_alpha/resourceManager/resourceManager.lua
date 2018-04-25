@@ -80,8 +80,8 @@ function resourceManager:loadImage(filename)
   return self:genericLoader(love.graphics.newImage, filename)
 end
 
-function resourceManager:loadAnimation(filenameprefix, postfix) -- TODO: generalize this function with patterns or something
-  local anim = Animation:new()
+function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TODO: generalize this function with patterns or something
+  local anim = Animation:new(framerate)
 
 
   postfix = postfix or ".png"

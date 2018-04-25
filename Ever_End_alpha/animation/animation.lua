@@ -21,8 +21,9 @@ function Animation:new(framerate)
 
 
   obj.dbg_render = false
-
-
+  
+  if framerate then obj:setFramerate(framerate) end
+  
 
   return obj
 end
