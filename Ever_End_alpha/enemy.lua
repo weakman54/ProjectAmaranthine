@@ -1,7 +1,6 @@
 
 
 local dbg_render_timingCircles = true
-local dbg_timingCircles = 0
 
 
 local RM = require "resourceManager.resourceManager"
@@ -242,16 +241,28 @@ function enemy:initializeSM()
           sm:switch("idle")
         end
 
-        if dbg_render_timingCircles then 
-          enemy.timingStage = 0
-          if self.timer:between(self.curAttack.parryTime    , self.curAttack.damageImpact) then
-            enemy.timingStage = enemy.timingStage + 1
-          end
-          if self.timer:between(self.curAttack.perfDodgeTime, self.curAttack.damageImpact) then
-            enemy.timingStage = enemy.timingStage + 1
-          end
-          if self.timer:between(self.curAttack.normDodgeTime, self.curAttack.damageImpact) then
-            enemy.timingStage = enemy.timingStage + 1
+        enemy.timingStage = 0
+        if self.timer:between(self.curAttack.parryTime    , self.curAttack.damageImpact) then
+          enemy.timingStage = enemy.timingStage + 1
+        end
+
+        if self.timer:between(self.curAttack.perfDodgeTime, self.curAttack.damageImpact) then
+          enemy.timingStage = enemy.timingStage + 1
+        end
+
+        if self.timer:between(self.curAttack.normDodgeTime, self.curAttack.damageImpact) then
+          enemy.timingStage = enemy.timingStage + 1
+        end
+      end,
+
+
+      draw = function(self)
+        if dbg_render_timingCircles then
+          for i=1, enemy.timingStage do -- don't need to check bool here..
+            local r = i/3
+            love.graphics.setColor(r, r, 255)
+            love.graphics.circle("fill", W/2, H/2, (4 - i) * 50)
+            love.graphics.setColor(255, 255, 255)
           end
         end
       end,
@@ -295,7 +306,7 @@ function enemy:initializeSM()
 
     })
 --
-
+  
   sm:add("dodgeMinigame", reload("enemyDodgeMinigame"))
 end
 --
@@ -318,17 +329,11 @@ end
 
 function enemy:draw()
   self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
-  love.graphics.print(self.sm.curState.name, 1400, 200)
+  love.graphics.print(self.sm.curState.name, 2*W/3, H/4)
 
+  self.sm:draw()
 
-  for i=1, self.timingStage do -- don't need to check bool here..
-    local r = i/3
-    love.graphics.setColor(r, r, 255)
-    love.graphics.circle("fill", 1000, 500, (4 - i) * 50)
-    love.graphics.setColor(255, 255, 255)
-  end
 end
-
 
 
 return enemy

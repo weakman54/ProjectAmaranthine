@@ -23,6 +23,10 @@ function SM:update(dt)
   self.curState:update(dt)
 end
 
+function SM:draw()
+  if self.curState.draw then self.curState:draw() end
+end
+
 
 function SM:add(name, state)  
   self.states[name] = state
