@@ -13,14 +13,14 @@ local data = {}
 
 local dodgeStart = {
   enter = function(self)
-    print("dodgeStart")
+--    print("dodgeStart")
     ac:setAnimation("dodge_" .. data.stance .. "_start", false)
 
     self.timer = Timer:new()
 
     if enemy.sm:is("offensive") then
       data.timing = (enemy.timingStage >= 2) and "perfect" or "normal"
-      print("1", data.timing)
+--      print("1", data.timing)
     else
       data.timing = "none" -- This needs to have a value, but should still work
     end
@@ -32,7 +32,7 @@ local dodgeStart = {
     -- Attacked during dodge:
     if player.damaged then
 
-      print("2", data.timing)
+--      print("2", data.timing)
       if player.damaged.attack.stance == data.stance then
         player.sm:switch("hurt", "dodge")
 
@@ -47,7 +47,7 @@ local dodgeStart = {
       end
     end
 
-    
+
     if self.timer:reached(player.dodgeStartDuration) then
       sm:switch("dodgeEnd") -- If not attacked, just switch to the end animation. ASSUMPTION: we didn't switch state before this
     end
@@ -57,20 +57,25 @@ local dodgeStart = {
 RM.prefix = "assets/GUI/"
 
 local combos = {
-  {name = "up"   , image = RM:loadAnimation("comboUp_"   ), x = W/2, y = H/1, },
-  {name = "down" , image = RM:loadAnimation("comboDown_" ), x = W/2, y = H/1, },
-  {name = "left" , image = RM:loadAnimation("comboLeft_" ), x = W/1, y = H/2, },
-  {name = "right", image = RM:loadAnimation("comboRight_"), x = W/1, y = H/2, },
+  {name = "up"   , anim = RM:loadAnimation("gun_comboUp_"   , nil, 12), x = 1*W/2, y = 1*H/4, },
+  {name = "down" , anim = RM:loadAnimation("gun_comboDown_" , nil, 12), x = 1*W/2, y = 3*H/4, },
+  {name = "left" , anim = RM:loadAnimation("gun_comboLeft_" , nil, 12), x = 1*W/4, y = 1*H/2, },
+  {name = "right", anim = RM:loadAnimation("gun_comboRight_", nil, 12), x = 3*W/4, y = 1*H/2, },
 }
 
---{"decisionState", {s = {"changeScene", "sceneSpare", 4}, k = {"changeScene", "sceneKill"}}}
+for _, combo in ipairs(combos) do
+  local w, h =  combo.anim.data._frames[1].data:getDimensions()
+  combo.ox, combo.oy = w/2, h/2
+--  print("#", w, h, combo.ox, combo.oy)
+end
+
 local dodgeMinigame = {
   enter = function(self)
-    print("dodgeMini")
+--    print("dodgeMini")
     enemy.ac:pause()
     ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing)
 
-  
+
     self.combo = combos[math.random(4)]
 
 
@@ -79,11 +84,21 @@ local dodgeMinigame = {
 
   update = function(self, dt)
     self.timer:update(dt)
+    self.combo.anim.data:update(dt)
 
     if self.timer:reached(player.dodgeDuration) then
       enemy.ac:play() -- This will probably not be needed?
       enemy.sm:switch("idle") -- NOTE: not quite good yet
       sm:switch("dodgeEnd")
+    end
+  end,
+
+  draw = function(self)
+    for i=1, 4 do
+      local c = combos[i]
+--    local c = self.combo
+      c.anim.data:loveDraw(c.x, c.y, r, sx, sy, c.ox, c.oy)
+--      love.graphics.draw(c.anim.data, c.x, c.y)
     end
   end,
 }
@@ -92,7 +107,7 @@ local dodgeMinigame = {
 
 local dodgeEnd = {
   enter = function(self, stance)
-    print("dodgeEnd")
+--    print("dodgeEnd")
     ac:setAnimation("dodge_" .. data.stance .. "_end", false)
   end,
 
