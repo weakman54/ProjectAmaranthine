@@ -1,5 +1,20 @@
 
 
+-- ATTACK FORMAT "scratchpad" TODO: move somewhere else
+--  local attack = {}
+--  attack.name = name
+-- name
+--      name = name,
+-- animation (how load?)
+--      animation = anim,
+
+-- nextAttack (implies combo) function
+-- timing info (read when loading frames)
+-- stance
+-- rand weight
+-- inv. frames
+--    }
+
 local dbg_render_timingCircles = true
 
 
@@ -14,7 +29,7 @@ enemy.dbg_trigger_offensive_action = false
 function enemy:initialize()
   self.name = "Quit" -- TODO: load properly
 
-  self.attackTime    = 6 -- seconds
+  self.attackTime    = 6 -- seconds, TODO: figure better name for this
   self.guardDuration = 2
   self.hurtDuration  = 2
 
@@ -35,6 +50,7 @@ function enemy:initialize()
 end
 --
 
+
 function enemy:reset()
   self.HP = self.maxHP
 
@@ -46,30 +62,17 @@ end
 
 
 function enemy:loadAttack(attack, framerate)
+  -- TODO: look this over (though should finalize attack format first)
   assert(attack and attack.name, "must pass attack, attack must have name")
   assert(framerate, "must pass framerate") -- TODO: cleanup error messages
 
 
   local name = attack.name
---  local attack = {}
---  attack.name = name
-  -- name
---      name = name,
-  -- animation (how load?)
---      animation = anim,
 
-  -- nextAttack (implies combo) function
-  -- timing info (read when loading frames)
-  -- stance
-  -- rand weight
-  -- inv. frames
---    }
-
-
-  -- Load animation --------
+  -- Load animation ---------------------
   local ac = self.ac
 
-  RM.prefix = "assets/" .. self.name .. "/" .. self.name .. "_"
+  RM.prefix = string.format("assets/%s/%s_", self.name, self.name)
 
   local anim = RM:loadAnimation(name .. "_")
 
@@ -80,13 +83,8 @@ function enemy:loadAttack(attack, framerate)
   attack.animation = anim
 
 
-  -- Load timings --------
+  -- Load timings -------------------------------------
   local frameDuration = 1/framerate
---  print("FD", frameDuration)
-
-  attack.parryTreshold     = attack.parryTreshold     or PARRY_TRESHOLD
-  attack.perfDodgeTreshold = attack.perfDodgeTreshold or PERFDODGE_TRESHOLD
-  attack.normDodgeTreshold = attack.normDodgeTreshold or NORMDODGE_TRESHOLD
 
   for i, frame in ipairs(anim.data._frames) do
     local imgData = frame.imgData
@@ -99,9 +97,15 @@ function enemy:loadAttack(attack, framerate)
 
   assert(attack.damageImpact, "There was no marked attack frame in the attack animation: " .. attack.name)
 
+
+  attack.parryTreshold     = attack.parryTreshold     or PARRY_TRESHOLD
+  attack.perfDodgeTreshold = attack.perfDodgeTreshold or PERFDODGE_TRESHOLD
+  attack.normDodgeTreshold = attack.normDodgeTreshold or NORMDODGE_TRESHOLD
+
   attack.parryTime     = attack.damageImpact - attack.parryTreshold
   attack.perfDodgeTime = attack.damageImpact - attack.perfDodgeTreshold
   attack.normDodgeTime = attack.damageImpact - attack.normDodgeTreshold
+
 
   table.insert(self.attacks, attack)
 end
@@ -112,7 +116,6 @@ function enemy:initializeAttacks()
   self.attacks = {}
 
   self:loadAttack({name = "high_attack01", damage = 1, stance = "high"}, 30)
---  self.attacks[#self.attacks].animation.data.dbg_render = 
 
   self:loadAttack({name = "low_attack01", damage = 4, stance = "low"}, 30)
 end
@@ -121,11 +124,13 @@ end
 
 function enemy:initializeAC()
   self.ac = AC:new()
+
   local ac = self.ac
-  local name = ""
+  local name
 
   ac:setFramerate(12)
-  RM.prefix = "assets/" .. self.name .. "/" .. self.name .. "_"
+  RM.prefix = string.format("assets/%s/%s_", self.name, self.name)
+
 
   name = "idle"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
@@ -138,18 +143,17 @@ function enemy:initializeAC()
   name = "hurt"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
+  -- Combo hurts
   for _, comboType in ipairs{"sword", "gun"} do
     for i=1, 3 do
-      name = comboType .. "_hurt" .. string.format("%02d", i)
+      name = string.format("%s_hurt%02d", comboType, i)
       ac:addAnimation(name, RM:loadAnimation(name .. "_"))
     end
   end
 
-
-
-
+  -- taunts
   for i=1, 1 do
-    name = "taunt" .. string.format("%02d", i)
+    name = string.format("taunt%02d", i)
     ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   end
 end
@@ -162,27 +166,30 @@ function enemy:initializeSM()
   local sm = self.sm
   local ac = self.ac
 
+
   sm:add("idle", {
       enter = function(self)
         ac:setAnimation("idle")
+
         self.attackTimer = Timer:new()
 
         enemy.attacked = false -- HACK: entire attack stuff needs looking at...
       end,
 
       update = function(self, dt)
-        -- TODO: put in reaction to attack X
+        self.attackTimer:update(dt)
+
+        -- TODO: put in reaction to attack #
         -- TODO: get hurt (?)
-        -- TODO: or switch to defensive X (just guard atm, not sure if more is needed?)
+        -- TODO: or switch to defensive # (just guard atm, not sure if more is needed?)
         -- TODO: counter attack ( if been attacked multiple times)
         -- TODO: BETTER FEEDBACK FOR COUNTER ATTACK
-
-        self.attackTimer:update(dt)
 
         if self.attackTimer:reached(enemy.attackTime) or enemy.dbg_trigger_offensive_action then
           sm:switch("offensive")
         end
 
+        -- HACK Stuff:
         if enemy.attacked then
           player.guarded = true
           enemy.attacked = false
@@ -190,19 +197,17 @@ function enemy:initializeSM()
         end
       end,
       --
-
-
     })
+  --
 
   sm:add("offensive", {
       enter = function(self)
         enemy.dbg_trigger_offensive_action = false
 
-        -- TODO: choose action X (ish)
+        -- TODO: choose action #
         local attackI = math.random(2)
---        print("#", attackI)
         self.curAttack = enemy.attacks[attackI]
---        enemy.stance = self.curAttack.stance
+
         -- TODO: set animation
         ac:setAnimation(self.curAttack.name, false)
 
@@ -213,7 +218,6 @@ function enemy:initializeSM()
         -- TODO: combo?
         -- TODO: perform action X
         -- TODO: implement attack format (ish)
-
       end,
 
 
@@ -226,9 +230,8 @@ function enemy:initializeSM()
         end
 
         -- TODO: Fix so that this is not animation timing dependent
---        if self.curAttack.animation.data.event == "ended" then 
         if ac:curEvent() == "ended" then
-          -- if nextAttack, switch back to offensive with the info (sm:switch("offensive", data))
+          -- TODO: if nextAttack, switch back to offensive with the info (sm:switch("offensive", data))
           -- TODO: switch to correct state (combo?)
           sm:switch("idle")
         end
@@ -287,7 +290,7 @@ function enemy:initializeSM()
 
   sm:add("hurt", {
       enter = function(self, data)
-        ac:setAnimation(data.kind .. "_hurt" .. "01") -- NOTE: need to handle differing numbers of hurt here
+        ac:setAnimation(string.format("%s_hurt%02d", data.kind, 1)) -- NOTE: need to handle differing numbers of hurt here
 
         self.timer = Timer:new()
       end,
@@ -298,9 +301,7 @@ function enemy:initializeSM()
         if self.timer:reached(enemy.hurtDuration) then -- HARDCODED: hurtDuration
           sm:switch("idle")
         end
-
       end,
-
     })
 --
 
@@ -328,7 +329,6 @@ end
 
 function enemy:draw()
   self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
---  love.graphics.print(self.sm.curState.name, 2*W/3, H/4)
 
   self.sm:draw()
 end

@@ -6,11 +6,10 @@ local RM = require "resourceManager.resourceManager"
 local player = {}
 
 function player:initialize()
-  self.name = "Player" -- NOTE: This probably shouldn't be needed 
-  self.stance = "low"
+  self.name = "Player"
 
   -- durations in seconds vvv
-  self.hurtDuration = 5
+  self.hurtDuration  = 2 -- just works value: plays the two hurt animations pretty nicely even though they get cut off =P
   self.parryDuration = 2
 
   self.dodgeStartDuration = NORMDODGE_TRESHOLD + 0.0 -- MAGIC NUMBER: additional time on dodge start
@@ -31,13 +30,24 @@ end
 --
 
 
+function player:reset()
+  self.HP = self.maxHP
+  self.SP = self.maxSP/2
+
+  self.sm:switch("idle")
+end
+--
+
+
 function player:initializeAC()
   self.ac = AC:new()
+  
   local ac = self.ac
-  local name = ""
+  local name
 
   ac:setFramerate(12)
-  RM.prefix = "assets/" .. self.name .. "/" .. self.name .. "_"
+  RM.prefix = string.format("assets/%s/%s_", self.name, self.name)
+
 
   name = "idle"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
@@ -68,9 +78,10 @@ function player:initializeAC()
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
+  -- Dodge 
   for _, stance in ipairs{"low", "high"} do
     for _, timing in ipairs{"start", "end", "normal", "perfect"} do
-      name = "dodge_" .. stance .. "_" .. timing
+      name = string.format("dodge_%s_%s", stance, timing)
       ac:addAnimation(name, RM:loadAnimation(name .. "_"))
     end
   end
@@ -78,10 +89,10 @@ function player:initializeAC()
   ac:addAnimation("hurt_dodge", RM:loadAnimation("dodge_hurt_")) -- NOTE: hardcoded values here to consolidate with other "hurts"
 
 
-
+  -- Gun attack
   for _, stance in ipairs{"low", "high"} do
     for _, timing in ipairs{"normal", "perfect"} do
-      name = "gun_attack_" .. stance .. "_" .. timing
+      name = string.format("gun_attack_%s_%s", stance, timing)
       ac:addAnimation(name, RM:loadAnimation(name .. "_"))
     end
   end
@@ -94,6 +105,7 @@ function player:initializeAC()
   name = "attack_guarded"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
+  -- Sword Comboss
   for i = 1, 3 do -- NOTE: hardcoed number of combo attacks
     for _, thing in ipairs{"windup", "attack"} do
       name = string.format("sword_combo%02d_%s", i, thing)
@@ -114,9 +126,11 @@ function player:initializeSM()
   local sm = self.sm
   local ac = self.ac
 
+
   sm:add("idle", {
       enter = function(self)
         ac:setAnimation("idle")
+        
         player.damaged = false
       end,
 
@@ -141,13 +155,6 @@ function player:initializeSM()
     })
   --
 
---  sm:add("name",  {
---      enter = function(self)
---    end,
-
---    update = function(self, dt)
---    end,
---    })
 
   sm:add("guard",  {
       enter = function(self)
@@ -188,28 +195,24 @@ function player:initializeSM()
   --
 
 
-  sm:add("parry",  reload("playerParry"))
-  sm:add("dodge",  reload("playerDodgeState"))
-
-
-sm:add("attack",  { -- Kindof hacky atm, but will probably work well enough??
+  sm:add("attack",  { -- HACK: Entire "normal" attack stuff is hack atm, but it's in for playtesting/demo
       enter = function(self)
         ac:setAnimation("attack_start")
-        
+
         self.timer = Timer:new()
         self.target = 0.1
-        
+
         enemy.attacked = true
       end,
 
       update = function(self, dt)
         self.timer:update(dt)
-        
+
         if self.timer:reached(self.target) then
           if self.attacked then
             return sm:switch("idle")
           end
-          
+
           self.attacked = true
           if player.guarded then -- If this is not true, timer is still reached, and will reset to idle (yeah... hacks)
             player.guarded = false
@@ -219,12 +222,12 @@ sm:add("attack",  { -- Kindof hacky atm, but will probably work well enough??
           end
         end
       end,
-      
+
       exit = function(self)
         self.attacked = false
       end,
     })
-
+--
 
 
   sm:add("hurt", {
@@ -242,37 +245,34 @@ sm:add("attack",  { -- Kindof hacky atm, but will probably work well enough??
         player:changeHP(-player.damaged.attack.damage)
         player.damaged = false
 
---        self.hurtTimer = Timer:new()
+        self.timer = Timer:new()
+--        player.hurtDuration = ac:curDuration() -- HACK: This needs to be set properly later!
       end,
 
       update = function(self, dt)
---        self.hurtTimer:update(dt)
+        self.timer:update(dt)
 
---        if self.hurtTimer:reached(player.hurtDuration) then
-        if ac:curEvent() == "ended" then
+        if self.timer:reached(player.hurtDuration) then
           sm:switch("idle")
         end
 
       end
     })
 --
+
+  sm:add("parry",  reload("playerParry"))
+  sm:add("dodge",  reload("playerDodgeState"))
 end
 --
 
 
-function player:reset()
-  self.HP = self.maxHP
-  self.SP = self.maxSP/2
-
-  self.sm:switch("idle")
-end
-
 
 function player:changeHP(offset)
   self.HP = self.HP + offset
-  
+
   -- TODO: handle death
 end
+
 
 
 function player:update(dt)
