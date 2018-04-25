@@ -208,7 +208,7 @@ function enemy:initializeSM()
           ac:pause()
 
           if enemy.damaged then
-            enemy.HP = enemy.HP - enemy.damaged.damage 
+            enemy:changeHP(-enemy.damaged.damage)
 
             local t = enemy.damaged
 
@@ -236,7 +236,7 @@ function enemy:initializeSM()
         -- TODO: check animation for "ended"
 --        if self.curAttack.animation.data.event == "ended" then 
         if ac:curEvent() == "ended" then
-
+          -- if nextAttack, switch back to offensive with the info (sm:switch("offensive", data))
           -- TODO: switch to correct state (combo?)
           sm:switch("idle")
         end
@@ -318,6 +318,13 @@ function enemy:reset()
   self.damaged = false
 
   self.sm:switch("idle")
+end
+
+
+function enemy:changeHP(offset)
+  self.HP = self.HP + offset
+  
+  -- TODO: handle death
 end
 
 
