@@ -221,18 +221,30 @@ function love.keypressed(key, scancode, isrepeat)
     love._openConsole()
   end
 
-  if key == "-" then
-    debugPrint("Loading: Debug", 100, 100)
-    require("mobdebug").start() 
-    print("debug ---------------")
-  end
+
 
   if key == "t" then
     enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
 
-  elseif key == "+" then
+  elseif key == "1" then
+    debugPrint("Loading: Debug", 100, 100)
+    require("mobdebug").start() 
+    print("debug ---------------")
+
+
+  elseif key == "2" then
 --    Gamestate.switch(stateMain) -- stack overflow test
     callOrError(GameReload)
+
+  elseif key == "3" then
+    if player.sm then
+      player.sm:switch("idle")
+    end
+
+    if enemy.sm then
+      enemy.sm:switch("idle")
+    end
+
   end
 end
 
