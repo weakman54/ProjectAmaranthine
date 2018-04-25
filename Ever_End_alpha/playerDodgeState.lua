@@ -57,10 +57,10 @@ local dodgeStart = {
 RM.prefix = "assets/GUI/"
 
 local combos = {
-  {name = "up"   , anim = RM:loadAnimation("gun_comboUp_"   , nil, 12), x = 1*W/2, y = 1*H/4, },
-  {name = "down" , anim = RM:loadAnimation("gun_comboDown_" , nil, 12), x = 1*W/2, y = 3*H/4, },
-  {name = "left" , anim = RM:loadAnimation("gun_comboLeft_" , nil, 12), x = 1*W/4, y = 1*H/2, },
-  {name = "right", anim = RM:loadAnimation("gun_comboRight_", nil, 12), x = 3*W/4, y = 1*H/2, },
+  {name = "up"   , anim = RM:loadAnimation("gun_combo_up_"   , nil, 12), x = 1*W/2, y = 1*H/4, },
+  {name = "down" , anim = RM:loadAnimation("gun_combo_down_" , nil, 12), x = 1*W/2, y = 3*H/4, },
+  {name = "left" , anim = RM:loadAnimation("gun_combo_left_" , nil, 12), x = 1*W/4, y = 1*H/2, },
+  {name = "right", anim = RM:loadAnimation("gun_combo_right_", nil, 12), x = 3*W/4, y = 1*H/2, },
 }
 
 for _, combo in ipairs(combos) do
