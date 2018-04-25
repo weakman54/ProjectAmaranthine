@@ -10,6 +10,21 @@ function reload(thing)
   reloaded = true
   return require(thing)
 end
+
+
+local stateError = require "gamestates.stateError"
+
+-- NOTE: This function does not work well with multiple returns atm
+function callOrError(f, ...)
+  local ok, ret = pcall(f, ...)
+
+  if not ok then
+    Gamestate.switch(stateError, ret)
+    return ok, ret
+  end
+
+  return ret
+end
 -- ALSKDJLAKSJD
 
 
@@ -61,6 +76,11 @@ input = baton.new { -- Should be global
     guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
     dodge  = {"key:d"    ,                         "button:x"},
     heal   = {"key:h"    ,                         "button:y"},
+
+    comboLeft    = {"key:a"    ,                         "button:x"},
+    comboRight   = {"key:d"    ,                         "button:b"},
+    comboUp      = {"key:w"    ,                         "button:y"},
+    comboDown    = {"key:s"    ,                         "button:a"},
 
     systemStart = {"key:escape",                   "button:start"},                      
   },
@@ -114,7 +134,7 @@ function love.update(dt)
   -- TEST ^^^^^^^^^^^^^^
 
   Sound:update(dt)  -- NOTE: not quite fully tested, but should work fine
-  Gamestate.update(dt)
+  callOrError(Gamestate.update, dt)
 end
 
 
@@ -130,7 +150,7 @@ function love.draw()
   -- TEST vvvvvvvvvvv
   -- ^^^^^^^^^^^^^^^^
 
-  Gamestate.draw()
+  callOrError(Gamestate.draw)
 
   if dbg_print_animation_frames and player.ac and enemy.ac then
     love.graphics.push()
@@ -150,14 +170,39 @@ function love.draw()
     love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
 
     love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
-
-    love.graphics.pop()
+    love.graphics.pop() -- does not re-reset font?
     
     love.graphics.setNewFont(48)
 
     love.graphics.setColor(1.0, 1.0, 1.0)
   end
 end
+
+
+
+function GameReload()
+  print("RELOADING\n-------------------------------------------------------------\n")
+  Timer = reload("timer.timer")
+  SM    = reload("statemachine.statemachine")
+  AC    = reload("animation.animationCollection")
+
+  -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
+  player = reload("player")
+  enemy  = reload("enemy")
+
+  stateBattle = reload("gamestates.stateBattle")
+  statePause  = reload("gamestates.statePause")
+  stateMain   = reload("gamestates.stateMain")
+  stateVN     = reload("gamestates.stateVN")
+  -- NOTE: probably should not reload stateError here, since its called in callOrError
+
+
+
+  RM.dbg_render = false -- Don't show loading screens, they take long to just render...
+  Gamestate.switch(stateMain)
+end
+
+
 
 
 function love.keypressed(key, scancode, isrepeat)
@@ -175,25 +220,8 @@ function love.keypressed(key, scancode, isrepeat)
     enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
 
   elseif key == "+" then
-    print("RELOADING\n-------------------------------------------------------------\n")
-    Timer = reload("timer.timer")
-    SM = reload "statemachine.statemachine"
-    AC = reload "animation.animationCollection"
-
-    -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
-    player = reload("player")
-    enemy = reload("enemy")
-
-    stateBattle = reload("gamestates.stateBattle")
-    statePause  = reload("gamestates.statePause")
-    stateMain   = reload("gamestates.stateMain")
-    stateVN     = reload("gamestates.stateVN")
-
-
-
-
-    RM.dbg_render = false -- Don't show loading screens, they take long to just render...
-    Gamestate.switch(stateMain)
+--    Gamestate.switch(stateMain) -- stack overflow test
+    callOrError(GameReload)
   end
 end
 
