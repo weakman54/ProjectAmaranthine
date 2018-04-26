@@ -123,7 +123,8 @@ function love.update(dt)
 
   if input:pressed("systemStart") then 
     if Gamestate.current() == stateMain then
-      love.event.quit() 
+--      love.event.quit() 
+      Gamestate.switch(stateBattle)
     elseif Gamestate.current() ~= statePause then
       return Gamestate.push(statePause)
     end

@@ -82,7 +82,7 @@ sm:add("parryAttack", {
     enter = function(self, stage)
       self.stage = stage
 
-      ac:setAnimation(string.format("sword_combo%02d_attack", self.stage))
+      ac:setAnimation(string.format("sword_combo%02d_attack", self.stage), false)
       enemy.ac:setAnimation(string.format("sword_hurt%02d", self.stage))
 
       self.timer = Timer:new()

@@ -29,7 +29,7 @@ enemy.dbg_trigger_offensive_action = false
 function enemy:initialize()
   self.name = "Quit" -- TODO: load properly
 
-  self.attackTime    = 6 -- seconds, TODO: figure better name for this
+  self.attackTime    = 3 -- seconds, TODO: figure better name for this
   self.guardDuration = 2
   self.hurtDuration  = 2
 
@@ -280,6 +280,12 @@ function enemy:initializeSM()
 
         if self.timer:reached(enemy.guardDuration) then
           return sm:switch("idle")
+        end
+        
+        if enemy.attacked then
+          player.guarded = true
+          enemy.attacked = false
+          return sm:switch("guard")
         end
       end,
 

@@ -118,10 +118,13 @@ local dodgeMinigame = {
   end,
 
   draw = function(self)
+    love.graphics.push()
+    love.graphics.origin()
     if self.combo then
       local c = self.combo
       c.anim.data:loveDraw(c.x, c.y, r, sx, sy, c.ox, c.oy)
     end
+    love.graphics.pop()
   end,
 }
 
@@ -175,6 +178,8 @@ end
 
 function dodgeMain:exit()
   data = {}
+  
+  flipHack = not flipHack
 
   if enemy.sm:is("dodgeMinigame") then
     return enemy.sm:switch("idle") -- Non-tested HACK...
