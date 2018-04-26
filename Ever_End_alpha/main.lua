@@ -58,7 +58,7 @@ enemy = require "enemy"
 
 
 -- Other stuff:
-local scale = {x = 1, y = 1} -- scale hack
+scale = {x = 1, y = 1} -- scale hack
 
 
 -- TEST vvvvvvvvvvvvvvvvvv
