@@ -71,7 +71,7 @@ sm:add("parryWindup", {
     update = function(self, dt)
       self.timer:update(dt)
 
-      if self.timer:reached(1) then -- HARDCODED for now
+      if self.timer:reached(1) or input:pressed("attack") then -- HARDCODED for now
        return sm:switch("parryAttack", self.stage)
       end
     end,
@@ -84,6 +84,8 @@ sm:add("parryAttack", {
 
       ac:setAnimation(string.format("sword_combo%02d_attack", self.stage), false)
       enemy.ac:setAnimation(string.format("sword_hurt%02d", self.stage))
+      
+      enemy:changeHP(-1) -- MAGIC VALUE: damage
 
       self.timer = Timer:new()
     end,
