@@ -120,6 +120,7 @@ local dodgeMinigame = {
   draw = function(self)
     love.graphics.push()
     love.graphics.origin()
+    love.graphics.scale(scale.x, scale.y)
     if self.combo then
       local c = self.combo
       c.anim.data:loveDraw(c.x, c.y, r, sx, sy, c.ox, c.oy)
