@@ -35,6 +35,7 @@ require "global_consts"
 Gamestate = require "hump.gamestate"
 Sound = require "resourceManager.soundManager"
 Timer = require "timer.timer"
+HUMPTimer = require "hump.timer"
 
 SM = require "statemachine.statemachine"
 AC = require "animation.animationCollection"
@@ -134,6 +135,8 @@ function love.update(dt)
 
   -- TEST vvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^
+  
+  HUMPTimer.update(dt)
 
   Sound:update(dt)  -- NOTE: not quite fully tested, but should work fine
   callOrError(Gamestate.update, dt)
