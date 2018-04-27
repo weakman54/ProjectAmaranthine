@@ -15,7 +15,7 @@
 -- inv. frames
 --    }
 
-local dbg_render_timingCircles = true
+local dbg_render_timingCircles = false
 
 
 local RM = require "resourceManager.resourceManager"

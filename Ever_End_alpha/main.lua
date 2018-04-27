@@ -1,6 +1,6 @@
 
 
-local dbg_print_animation_frames = true
+local dbg_print_animation_frames = false
 
 -- LASKDJLASKDJLASKJD
 reloaded = true
