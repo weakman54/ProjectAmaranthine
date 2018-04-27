@@ -16,9 +16,12 @@ function player:initialize()
   self.dodgeDuration = 2
 
   self.gunAttackDuration = 0.1
-  
-  
+
+  self.chargeDuration = 1
+
+
   self.SPDrainRate = 0.1 -- points per second
+  self.SPChargeDrainRate = 1
 
 
   self.maxHP = 10
@@ -44,7 +47,7 @@ end
 
 function player:initializeAC()
   self.ac = AC:new()
-  
+
   local ac = self.ac
   local name
 
@@ -133,7 +136,7 @@ function player:initializeSM()
   sm:add("idle", {
       enter = function(self)
         ac:setAnimation("idle")
-        
+
         player.damaged = false
       end,
 
@@ -151,7 +154,7 @@ function player:initializeSM()
           sm:switch("dodge", "high")
 
         elseif input:pressed("attack") then
-          sm:switch("attack")
+          sm:switch("charge")
 
         end
       end,
@@ -163,7 +166,7 @@ function player:initializeSM()
       canSwitch = function(self)
         return player.SP > 0
       end,
-      
+
       enter = function(self)
         ac:setAnimation("guard")
 
@@ -178,7 +181,7 @@ function player:initializeSM()
             sm:switch("parry")
           else
             ac:setAnimation("guard_hit", false)
-            
+
             player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
           end
 
@@ -196,7 +199,7 @@ function player:initializeSM()
         if not input:down("guard") or player.SP <= 0 then
           sm:switch("idle")
         end
-        
+
         player.SP = player.SP - player.SPDrainRate * dt
       end,
 
@@ -204,6 +207,65 @@ function player:initializeSM()
       end
     })
   --
+
+
+  sm:add("charge",  {
+      enter = function(self)
+        ac:setAnimation("charge_attack_charging")
+
+        self.chargeReady = false
+
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+        
+        if player.damaged then          
+          sm:switch("hurt")
+        end
+
+
+        if input:released("attack") or player.SP <= 0 then
+          if self.chargeReady then
+            sm:switch("chargeAttack")
+          else
+            sm:switch("attack")
+          end
+        end
+
+        player.SP = player.SP - player.SPChargeDrainRate * dt
+
+        if self.timer:reached(player.chargeDuration) then
+          self.chargeReady = true
+          ac:setAnimation("charge_attack_ready")
+        end
+      end,
+    })
+  --
+
+
+
+  sm:add("chargeAttack",  { 
+      enter = function(self)
+        ac:setAnimation("charge_attack_attack", false)
+
+        self.timer = Timer:new()
+        self.target = 0.1 -- HARDCODED duration
+        
+        enemy.sm:switch("hurt")
+        enemy:changeHP(-3)
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if self.timer:reached(self.target) then
+          sm:switch("idle")
+        end
+      end,
+    })
+--
 
 
   sm:add("attack",  { -- HACK: Entire "normal" attack stuff is hack atm, but it's in for playtesting/demo
