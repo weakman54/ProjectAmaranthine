@@ -14,31 +14,24 @@ function stateMain:init()
   logo = RM:loadImage("assets/EveREnd logo.png")
 end
 
-function stateMain:enter()
-end
-
-function stateMain:leave()
-end
-
-
 
 function stateMain:update(dt)
+  if input:pressed("attack") then
+    Gamestate.switch(stateBattle)
+    
+  elseif input:pressed("guard") then
+    Gamestate.switch(stateVN)
+    
+  elseif input:pressed("systemBack") then
+    love.event.quit()
+    
+  end
 end
 
 function stateMain:draw()
   love.graphics.draw(logo.data, 0, -200)
   
-  love.graphics.printf("press space to start, escape to exit\nr - start battlesystem", 0, H - 100, W, 'center')
-end
-
-function stateMain:keypressed(key, scancode, isrepeat)
-  if key == "space" then
-    Gamestate.switch(stateVN)
-
-  elseif key == "r" then
-    Gamestate.switch(stateBattle)
-    
-  end
+  love.graphics.printf("space/a - Start Battle\ng/right shoulder - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
 end
 
 

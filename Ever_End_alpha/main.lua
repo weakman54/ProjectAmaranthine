@@ -1,6 +1,6 @@
 
 
-local dbg_print_animation_frames = true
+local dbg_print_animation_frames = false
 
 -- LASKDJLASKDJLASKJD
 reloaded = true
@@ -35,6 +35,7 @@ require "global_consts"
 Gamestate = require "hump.gamestate"
 Sound = require "resourceManager.soundManager"
 Timer = require "timer.timer"
+HUMPTimer = require "hump.timer"
 
 SM = require "statemachine.statemachine"
 AC = require "animation.animationCollection"
@@ -78,12 +79,14 @@ input = baton.new { -- Should be global
     heal   = {"key:h"    ,                         "button:y"},
     -- TODO: choices = keys:
 
-    comboLeft    = {"key:a"    ,                         "button:x"},
-    comboRight   = {"key:d"    ,                         "button:b"},
-    comboUp      = {"key:w"    ,                         "button:y"},
-    comboDown    = {"key:s"    ,                         "button:a"},
+    comboLeft    = {"key:a"    ,                   "button:x"},
+    comboRight   = {"key:d"    ,                   "button:b"},
+    comboUp      = {"key:w"    ,                   "button:y"},
+    comboDown    = {"key:s"    ,                   "button:a"},
 
-    systemStart = {"key:escape",                   "button:start"},                      
+    systemStart = {"key:escape",                   "button:start"},    
+    systemBack  = {"key:x"     ,                   "button:back"},               
+               
   },
   pairs = {
     move = {'left', 'right', 'up', 'down'}
@@ -123,8 +126,8 @@ function love.update(dt)
 
   if input:pressed("systemStart") then 
     if Gamestate.current() == stateMain then
---      love.event.quit() 
-      Gamestate.switch(stateBattle)
+----      love.event.quit() 
+--      Gamestate.switch(stateBattle)
     elseif Gamestate.current() ~= statePause then
       return Gamestate.push(statePause)
     end
@@ -134,6 +137,8 @@ function love.update(dt)
 
   -- TEST vvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^
+  
+  HUMPTimer.update(dt)
 
   Sound:update(dt)  -- NOTE: not quite fully tested, but should work fine
   callOrError(Gamestate.update, dt)
