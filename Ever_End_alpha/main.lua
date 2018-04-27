@@ -56,7 +56,7 @@ player = require "player"
 enemy = require "enemy"
 
 -- the joystick
-joystick = love.joystick.getJoysticks()[1]
+gJoy = love.joystick.getJoysticks()[1]
 
 
 
@@ -265,7 +265,7 @@ end
 
 
 function love.joystickadded( joystick )
-  print("Joystick added")
+  gJoy = love.joystick.getJoysticks()[1]
   
   input = baton.new { -- HACK
   controls = {
@@ -295,9 +295,9 @@ function love.joystickadded( joystick )
 }
 end
 
-
-
-
+function love.joystickremoved()
+  gJoy = love.joystick.getJoysticks()[1]
+end
 
 
 
