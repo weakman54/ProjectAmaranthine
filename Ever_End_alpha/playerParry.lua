@@ -20,9 +20,9 @@ function parry:update(dt)
   self.sm:update(dt)
 end
 
---function parry:draw(dt)
---  self.sm:draw()
---end
+function parry:draw(dt)
+  self.sm:draw()
+end
 
 function parry:exit()
   data = {}
@@ -60,10 +60,43 @@ sm:add("parryStart", {
     end,
   })
 
+
+
+local stageTimings = {
+  {duration = 2.0, target = 1.500},  
+  {duration = 1.5, target = 1.250},
+  {duration = 1.0, target = 0.865},
+}
+
+RM.prefix = ""
+local graphics = {
+  border = {anim = RM:loadAnimation("assets/GUI/sword_combo_border_"      , nil, 12), s = 1},
+  flash  = {anim = RM:loadAnimation("assets/GUI/sword_combo_border_flash_", nil, 12), s = 1},
+  button = {anim = RM:loadAnimation("assets/GUI/sword_combo_button_"      , nil, 12), s = 1},
+}
+
+for _, c in pairs(graphics) do
+  local iw, ih =  c.anim.data._frames[1].data:getDimensions()
+  c.ox, c.oy = iw/2, ih/2
+  c.x, c.y = W/2, H/2
+end
+
+
 sm:add("parryWindup", {
     enter = function(self, stage)
-      self.stage = stage
       ac:setAnimation(string.format("sword_combo%02d_windup", stage))
+
+      self.stage = stage
+      self.duration = stageTimings[stage].duration
+      self.target   = stageTimings[stage].target
+
+      self.drawFlash = false
+      graphics.border.s = 1
+
+      local dif = self.duration - self.target
+      local after = function() HUMPTimer.tween(dif, graphics.border, {s = 0.25}, "linear") end
+      HUMPTimer.tween(self.target, graphics.border, {s = 0.5}, "linear", after)
+
 
       self.timer = Timer:new()
     end,
@@ -71,11 +104,40 @@ sm:add("parryWindup", {
     update = function(self, dt)
       self.timer:update(dt)
 
-      if self.timer:reached(1) or input:pressed("attack") then -- HARDCODED for now
-       return sm:switch("parryAttack", self.stage)
+      if input:pressed("attack") then
+        self.drawFlash = true
+      end
+
+      if self.timer:reached(self.duration) or input:pressed("attack") then -- HARDCODED for now
+        return sm:switch("parryAttack", self.stage)
       end
     end,
+
+    draw = function(self)
+      love.graphics.push() -- HACKY fix to remove flip effect
+      love.graphics.origin()
+      love.graphics.scale(scale.x, scale.y)
+
+
+      local c 
+
+      c = graphics.button
+      c.anim.data:loveDraw(c.x, c.y, r, c.s, c.s, c.ox, c.oy)
+
+      if self.drawFlash then
+        c = graphics.flash
+        c.anim.data:loveDraw(c.x, c.y, r, c.s, c.s, c.ox, c.oy)
+
+      else
+        c = graphics.border
+        c.anim.data:loveDraw(c.x, c.y, r, c.s, c.s, c.ox, c.oy)
+      end
+
+
+      love.graphics.pop()
+    end,
   })
+
 
 
 sm:add("parryAttack", {
@@ -84,7 +146,7 @@ sm:add("parryAttack", {
 
       ac:setAnimation(string.format("sword_combo%02d_attack", self.stage), false)
       enemy.ac:setAnimation(string.format("sword_hurt%02d", self.stage))
-      
+
       enemy:changeHP(-1) -- MAGIC VALUE: damage
 
       self.timer = Timer:new()
