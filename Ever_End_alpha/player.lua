@@ -342,6 +342,12 @@ end
 
 function player:changeHP(offset)
   self.HP = self.HP + offset
+  
+  local scalar = math.abs(offset)/3
+  
+  if gJoy then
+    gJoy:setVibration(1*scalar, 1*scalar, 2*scalar)
+  end
 
   -- TODO: handle death
 end
