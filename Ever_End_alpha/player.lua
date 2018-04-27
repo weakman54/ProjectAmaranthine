@@ -253,7 +253,7 @@ function player:initializeSM()
         self.timer = Timer:new()
         self.target = 0.1 -- HARDCODED duration
         
-        enemy.sm:switch("hurt")
+        enemy.sm:switch("hurt") -- HACK
         enemy:changeHP(-3)
       end,
 
