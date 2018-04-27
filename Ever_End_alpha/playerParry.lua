@@ -35,6 +35,28 @@ end
 
 
 
+local stageTimings = {
+--  {duration = 2.0, target = 1.500},  
+  {duration = 1.5, target = 1.250 },
+  {duration = 1.0, target = 0.865 },
+  {duration = 0.5, target = 0.4375},
+}
+
+RM.prefix = ""
+local graphics = {
+  border = {anim = RM:loadAnimation("assets/GUI/sword_combo_border_"      , nil, 12), s = 1},
+  flash  = {anim = RM:loadAnimation("assets/GUI/sword_combo_border_flash_", nil, 12), s = 1},
+  button = {anim = RM:loadAnimation("assets/GUI/sword_combo_button_"      , nil, 12), s = 1},
+}
+
+for _, c in pairs(graphics) do
+  local iw, ih =  c.anim.data._frames[1].data:getDimensions()
+  c.ox, c.oy = iw/2, ih/2
+  c.x, c.y = W/2, H/2
+end
+
+
+
 
 sm:add("parryStart", {
     enter = function(self)
@@ -42,6 +64,9 @@ sm:add("parryStart", {
 
       enemy.sm:switch("parryMinigame")
       enemy.ac:pause()
+
+      graphics.border.s = 1
+      HUMPTimer.tween(player.parryDuration, graphics.border, {s = 0.25}, "linear")
 
       self.timer = Timer:new()
     end,
@@ -58,28 +83,35 @@ sm:add("parryStart", {
         return player.sm:switch("idle")
       end
     end,
+    
+    draw = function(self)
+      love.graphics.push() -- HACKY fix to remove flip effect
+      love.graphics.origin()
+      love.graphics.scale(scale.x, scale.y)
+
+
+      local c 
+
+      c = graphics.button
+      c.anim.data:loveDraw(c.x, c.y, r, c.s, c.s, c.ox, c.oy)
+
+      if self.drawFlash then
+        c = graphics.flash
+        c.anim.data:loveDraw(c.x, c.y, r, c.s, c.s, c.ox, c.oy)
+
+      else
+        c = graphics.border
+        c.anim.data:loveDraw(c.x, c.y, r, c.s, c.s, c.ox, c.oy)
+      end
+
+
+      love.graphics.pop()
+    end,
   })
 
 
 
-local stageTimings = {
-  {duration = 2.0, target = 1.500},  
-  {duration = 1.5, target = 1.250},
-  {duration = 1.0, target = 0.865},
-}
 
-RM.prefix = ""
-local graphics = {
-  border = {anim = RM:loadAnimation("assets/GUI/sword_combo_border_"      , nil, 12), s = 1},
-  flash  = {anim = RM:loadAnimation("assets/GUI/sword_combo_border_flash_", nil, 12), s = 1},
-  button = {anim = RM:loadAnimation("assets/GUI/sword_combo_button_"      , nil, 12), s = 1},
-}
-
-for _, c in pairs(graphics) do
-  local iw, ih =  c.anim.data._frames[1].data:getDimensions()
-  c.ox, c.oy = iw/2, ih/2
-  c.x, c.y = W/2, H/2
-end
 
 
 sm:add("parryWindup", {
