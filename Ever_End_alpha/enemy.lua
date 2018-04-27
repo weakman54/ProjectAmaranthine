@@ -32,6 +32,7 @@ function enemy:initialize()
   self.attackTime    = 3 -- seconds, TODO: figure better name for this
   self.guardDuration = 2
   self.hurtDuration  = 2
+  self.tauntDuration = 1.2
 
 
   self.timingStage = 0
@@ -142,6 +143,7 @@ function enemy:initializeAC()
 
   name = "hurt"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
 
   -- Combo hurts
   for _, comboType in ipairs{"sword", "gun"} do
@@ -205,8 +207,15 @@ function enemy:initializeSM()
         enemy.dbg_trigger_offensive_action = false
 
         -- TODO: choose action #
-        local attackI = math.random(2)
-        self.curAttack = enemy.attacks[attackI]
+        local attackI = math.random(#enemy.attacks * 2 + 1)
+        attackI = math.ceil(attackI/2)
+        
+        if attackI == (#enemy.attacks + 1) then
+          return sm:switch("taunt")
+        else
+          self.curAttack = enemy.attacks[attackI]
+        end
+
 
         -- TODO: set animation
         ac:setAnimation(self.curAttack.name, false)
@@ -293,6 +302,31 @@ function enemy:initializeSM()
 --
 
 
+  sm:add("taunt", {
+      enter = function(self)
+        ac:setAnimation("taunt01", false)
+
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+        
+        if enemy.attacked then
+          enemy.attacked = false
+          enemy:changeHP(-1) -- HARDCODED: damage
+          return sm:switch("hurt")
+        end
+
+        if self.timer:reached(enemy.tauntDuration) then
+          return sm:switch("idle")
+        end
+      end,
+
+    })
+--
+
+
 
   sm:add("hurt", {
       enter = function(self, data)
@@ -301,7 +335,7 @@ function enemy:initializeSM()
         else
           ac:setAnimation("hurt")
         end
-        
+
         self.timer = Timer:new()
       end,
 
