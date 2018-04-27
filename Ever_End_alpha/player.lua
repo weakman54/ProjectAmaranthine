@@ -236,7 +236,7 @@ function player:initializeSM()
 
         player.SP = player.SP - player.SPChargeDrainRate * dt
 
-        if self.timer:reached(player.chargeDuration) then
+        if self.timer:reached(player.chargeDuration) and ac:curName() ~= "charge_attack_ready" then
           self.chargeReady = true
           ac:setAnimation("charge_attack_ready")
         end
