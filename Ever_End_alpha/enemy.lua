@@ -281,7 +281,7 @@ function enemy:initializeSM()
         if self.timer:reached(enemy.guardDuration) then
           return sm:switch("idle")
         end
-        
+
         if enemy.attacked then
           player.guarded = true
           enemy.attacked = false
@@ -296,8 +296,12 @@ function enemy:initializeSM()
 
   sm:add("hurt", {
       enter = function(self, data)
-        ac:setAnimation(string.format("%s_hurt%02d", data.kind, 1)) -- NOTE: need to handle differing numbers of hurt here
-
+        if data then
+          ac:setAnimation(string.format("%s_hurt%02d", data.kind, 1)) -- NOTE: need to handle differing numbers of hurt here
+        else
+          ac:setAnimation("hurt")
+        end
+        
         self.timer = Timer:new()
       end,
 
