@@ -310,6 +310,12 @@ function enemy:initializeSM()
 
       update = function(self, dt)
         self.timer:update(dt)
+        
+        if enemy.attacked then
+          enemy.attacked = false
+          enemy:changeHP(-1) -- HARDCODED: damage
+          return sm:switch("hurt")
+        end
 
         if self.timer:reached(enemy.tauntDuration) then
           return sm:switch("idle")
