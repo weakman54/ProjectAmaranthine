@@ -14,13 +14,6 @@ function stateMain:init()
   logo = RM:loadImage("assets/EveREnd logo.png")
 end
 
-function stateMain:enter()
-end
-
-function stateMain:leave()
-end
-
-
 
 function stateMain:update(dt)
   if input:pressed("attack") then
@@ -39,9 +32,6 @@ function stateMain:draw()
   love.graphics.draw(logo.data, 0, -200)
   
   love.graphics.printf("space/a - Start Battle\ng/right shoulder - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
-end
-
-function stateMain:keypressed(key, scancode, isrepeat)
 end
 
 

@@ -77,10 +77,7 @@ function stateError:draw()
   love.graphics.clear(193/255, 135/255, 255/255)
   love.graphics.setColor(0, 0, 0)
 
---  love.graphics.printf('Error', 20, 50, W, 'center')
-
   love.graphics.setNewFont(20)
---  love.graphics.printf(, 20, 100, W, "center")
 
   local pos = 20
   love.graphics.printf(p, pos, pos, W - pos)

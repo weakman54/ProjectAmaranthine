@@ -6,9 +6,6 @@ local statePause = {}
 local printScreenMode = false
 
 
-function statePause:init()
-end
-
 function statePause:enter(from)
   self.from = from -- record previous state
   self.pausedSounds = love.audio.pause()
