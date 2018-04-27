@@ -55,6 +55,9 @@ stateVN     = require "gamestates.stateVN"
 player = require "player"
 enemy = require "enemy"
 
+-- the joystick
+joystick = love.joystick.getJoysticks()[1]
+
 
 
 
@@ -258,6 +261,38 @@ end
 function love.resize(w, h)
   scale.x = love.graphics.getWidth()/1920  -- scale hack
   scale.y = love.graphics.getHeight()/1080 -- scale hack
+end
+
+
+function love.joystickadded( joystick )
+  print("Joystick added")
+  
+  input = baton.new { -- HACK
+  controls = {
+    left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},
+    right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
+    up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
+    down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
+    attack = {'key:space',                         'button:a'},
+    guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
+    dodge  = {"key:d"    ,                         "button:x"},
+    heal   = {"key:h"    ,                         "button:y"},
+    -- TODO: choices = keys:
+
+    comboLeft    = {"key:a"    ,                   "button:x"},
+    comboRight   = {"key:d"    ,                   "button:b"},
+    comboUp      = {"key:w"    ,                   "button:y"},
+    comboDown    = {"key:s"    ,                   "button:a"},
+
+    systemStart = {"key:escape",                   "button:start"},    
+    systemBack  = {"key:x"     ,                   "button:back"},               
+               
+  },
+  pairs = {
+    move = {'left', 'right', 'up', 'down'}
+  },
+  joystick = love.joystick.getJoysticks()[1],
+}
 end
 
 
