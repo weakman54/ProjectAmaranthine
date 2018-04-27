@@ -16,6 +16,9 @@ function player:initialize()
   self.dodgeDuration = 2
 
   self.gunAttackDuration = 0.1
+  
+  
+  self.SPDrainRate = 0.1 -- points per second
 
 
   self.maxHP = 10
@@ -157,6 +160,10 @@ function player:initializeSM()
 
 
   sm:add("guard",  {
+      canSwitch = function(self)
+        return player.SP > 0
+      end,
+      
       enter = function(self)
         ac:setAnimation("guard")
 
@@ -171,6 +178,8 @@ function player:initializeSM()
             sm:switch("parry")
           else
             ac:setAnimation("guard_hit", false)
+            
+            player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
           end
 
           player.damaged = false
@@ -184,9 +193,11 @@ function player:initializeSM()
         end
 
 
-        if not input:down("guard") then
+        if not input:down("guard") or player.SP <= 0 then
           sm:switch("idle")
         end
+        
+        player.SP = player.SP - player.SPDrainRate * dt
       end,
 
       exit = function(self)
