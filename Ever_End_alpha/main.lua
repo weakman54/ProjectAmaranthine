@@ -79,12 +79,14 @@ input = baton.new { -- Should be global
     heal   = {"key:h"    ,                         "button:y"},
     -- TODO: choices = keys:
 
-    comboLeft    = {"key:a"    ,                         "button:x"},
-    comboRight   = {"key:d"    ,                         "button:b"},
-    comboUp      = {"key:w"    ,                         "button:y"},
-    comboDown    = {"key:s"    ,                         "button:a"},
+    comboLeft    = {"key:a"    ,                   "button:x"},
+    comboRight   = {"key:d"    ,                   "button:b"},
+    comboUp      = {"key:w"    ,                   "button:y"},
+    comboDown    = {"key:s"    ,                   "button:a"},
 
-    systemStart = {"key:escape",                   "button:start"},                      
+    systemStart = {"key:escape",                   "button:start"},    
+    systemBack  = {"key:x"     ,                   "button:back"},               
+               
   },
   pairs = {
     move = {'left', 'right', 'up', 'down'}
@@ -124,8 +126,8 @@ function love.update(dt)
 
   if input:pressed("systemStart") then 
     if Gamestate.current() == stateMain then
---      love.event.quit() 
-      Gamestate.switch(stateBattle)
+----      love.event.quit() 
+--      Gamestate.switch(stateBattle)
     elseif Gamestate.current() ~= statePause then
       return Gamestate.push(statePause)
     end
