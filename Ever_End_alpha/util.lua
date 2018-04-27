@@ -34,3 +34,17 @@ function countAll(table)
   end
   return s
 end
+
+
+function removeValue(array, value) 
+  for i=#array, 1, -1 do 
+    if array[i] == value then 
+      table.remove(array, i) 
+    end 
+  end 
+end
+
+function clearTable(t)
+  local count = #t
+  for i=0, count do t[i]=nil end
+end

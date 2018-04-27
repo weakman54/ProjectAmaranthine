@@ -2,6 +2,11 @@
 
 local dbg_print_animation_frames = false
 
+
+require "util"
+require "global_consts"
+
+
 -- LASKDJLASKDJLASKJD
 reloaded = true
 
@@ -28,8 +33,7 @@ end
 -- ALSKDJLAKSJD
 
 
-require "util"
-require "global_consts"
+
 
 -- Lib
 Gamestate = require "hump.gamestate"

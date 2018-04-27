@@ -344,6 +344,9 @@ function player:changeHP(offset)
   self.HP = self.HP + offset
 
   -- TODO: handle death
+  if self.HP <= 0 then
+    Gamestate.switch(stateVN, {playerDeath = true})
+  end
 end
 
 

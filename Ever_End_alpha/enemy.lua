@@ -301,7 +301,7 @@ function enemy:initializeSM()
         else
           ac:setAnimation("hurt")
         end
-        
+
         self.timer = Timer:new()
       end,
 
@@ -327,6 +327,9 @@ function enemy:changeHP(offset)
   self.HP = self.HP + offset
 
   -- TODO: handle death
+  if self.HP <= 0 then
+    Gamestate.switch(stateVN, {playerDeath = false})
+  end
 end
 
 
