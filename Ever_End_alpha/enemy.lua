@@ -32,7 +32,7 @@ function enemy:initialize()
   self.attackTime    = 3 -- seconds, TODO: figure better name for this
   self.guardDuration = 2
   self.hurtDuration  = 2
-  self.tauntDuration = 1.1
+  self.tauntDuration = 1.2
 
 
   self.timingStage = 0
@@ -207,7 +207,8 @@ function enemy:initializeSM()
         enemy.dbg_trigger_offensive_action = false
 
         -- TODO: choose action #
-        local attackI = math.random(#enemy.attacks + 1)
+        local attackI = math.random(#enemy.attacks * 2 + 1)
+        attackI = math.ceil(attackI/2)
         
         if attackI == (#enemy.attacks + 1) then
           return sm:switch("taunt")
@@ -303,7 +304,7 @@ function enemy:initializeSM()
 
   sm:add("taunt", {
       enter = function(self)
-        ac:setAnimation("taunt01")
+        ac:setAnimation("taunt01", false)
 
         self.timer = Timer:new()
       end,
