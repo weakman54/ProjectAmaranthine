@@ -77,10 +77,7 @@ function stateError:draw()
   love.graphics.clear(193/255, 135/255, 255/255)
   love.graphics.setColor(0, 0, 0)
 
---  love.graphics.printf('Error', 20, 50, W, 'center')
-
   love.graphics.setNewFont(20)
---  love.graphics.printf(, 20, 100, W, "center")
 
   local pos = 20
   love.graphics.printf(p, pos, pos, W - pos)
@@ -92,7 +89,7 @@ end
 
 function stateError:keypressed(key)
   if key == "3" then
-    error(self.err) -- propagate the error for handling outside of the app
+    error(self.err, 2) -- propagate the error for handling outside of the app
     
   elseif key == "x" then
     love.event.quit()

@@ -6,9 +6,6 @@ local statePause = {}
 local printScreenMode = false
 
 
-function statePause:init()
-end
-
 function statePause:enter(from)
   self.from = from -- record previous state
   self.pausedSounds = love.audio.pause()
@@ -18,6 +15,10 @@ end
 function statePause:update(dt)
   if input:pressed("systemStart") then
     return Gamestate.pop()
+    
+  elseif input:pressed("systemBack") then
+    love.event.quit()
+    
   end
 end
 
@@ -32,18 +33,12 @@ function statePause:draw()
     love.graphics.setColor(1, 1, 1)
     love.graphics.printf('PAUSE', 0, H/2, W, 'center')
 
-    love.graphics.printf("escape - return\nr - return to main menu\nt - toggle printscreen mode\nx - exit game", 0, H/2 + 100, W, "center")
+    love.graphics.printf("escape/start - Return to game\nr - Return to main menu\nt - Toggle printscreen mode\nx/back - Exit game", 0, H/2 + 100, W, "center")
   end
 end
 
 function statePause:keypressed(key)
-  if key == "x" then
-    love.event.quit()
-
-  elseif key == "p" then
-    return Gamestate.pop()
-
-  elseif key == "r" then
+  if key == "r" then
     Gamestate.pop()
     return Gamestate.switch(stateMain)
 

@@ -76,6 +76,7 @@ local dodgeMinigame = {
 
     self.combo = combos[math.random(4)]
 
+    player.SP = math.min(player.SP + (data.timing == "normal" and 1 or 2), player.maxSP)
 
     self.timer = Timer:new()
   end,
@@ -99,7 +100,7 @@ local dodgeMinigame = {
       if self.attackTimer:reached(player.gunAttackDuration) then
         ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing)
         enemy.ac:setAnimation("idle") -- TODO: look into this 
-        
+
         self.attackTimer = nil
         self.combo = combos[math.random(4)]
       end
@@ -109,7 +110,7 @@ local dodgeMinigame = {
       print("#" .. self.hurtI)
       enemy.ac:setAnimation("gun_hurt" .. string.format("%02d", self.hurtI))
       enemy:changeHP(-1) -- HARDCODED: -1, health amount
-      
+
       ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing)
       self.attackTimer = Timer:new()
 
@@ -118,13 +119,15 @@ local dodgeMinigame = {
   end,
 
   draw = function(self)
-    love.graphics.push()
+    love.graphics.push() -- HACKY fix to remove flip effect
     love.graphics.origin()
     love.graphics.scale(scale.x, scale.y)
+
     if self.combo then
       local c = self.combo
       c.anim.data:loveDraw(c.x, c.y, r, sx, sy, c.ox, c.oy)
     end
+
     love.graphics.pop()
   end,
 }
@@ -179,7 +182,7 @@ end
 
 function dodgeMain:exit()
   data = {}
-  
+
   flipHack = not flipHack
 
   if enemy.sm:is("dodgeMinigame") then

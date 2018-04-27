@@ -17,6 +17,14 @@ function player:initialize()
 
   self.gunAttackDuration = 0.1
 
+  self.chargeDuration = 1
+
+
+  self.SPDrainRate = 0.1 -- points per second
+  self.SPChargeDrainRate = 1
+
+  self.HPGainRate = 0.5
+
 
   self.maxHP = 10
   self.maxSP = 10
@@ -41,7 +49,7 @@ end
 
 function player:initializeAC()
   self.ac = AC:new()
-  
+
   local ac = self.ac
   local name
 
@@ -130,7 +138,7 @@ function player:initializeSM()
   sm:add("idle", {
       enter = function(self)
         ac:setAnimation("idle")
-        
+
         player.damaged = false
       end,
 
@@ -148,7 +156,10 @@ function player:initializeSM()
           sm:switch("dodge", "high")
 
         elseif input:pressed("attack") then
-          sm:switch("attack")
+          sm:switch("charge")
+
+        elseif input:pressed("heal") then
+          sm:switch("heal")
 
         end
       end,
@@ -157,6 +168,10 @@ function player:initializeSM()
 
 
   sm:add("guard",  {
+      canSwitch = function(self)
+        return player.SP > 0
+      end,
+
       enter = function(self)
         ac:setAnimation("guard")
 
@@ -171,6 +186,8 @@ function player:initializeSM()
             sm:switch("parry")
           else
             ac:setAnimation("guard_hit", false)
+
+            player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
           end
 
           player.damaged = false
@@ -184,15 +201,99 @@ function player:initializeSM()
         end
 
 
-        if not input:down("guard") then
+        if not input:down("guard") or player.SP <= 0 then
+          sm:switch("idle")
+        end
+
+        player.SP = math.max(player.SP - player.SPDrainRate * dt, 0)
+      end,
+    })
+  --
+
+
+  sm:add("heal",  {
+      canSwitch = function(self)
+        return player.HP < player.maxHP and player.SP > 0
+      end,
+
+      enter = function(self)
+        ac:setAnimation("heal")
+      end,
+
+      update = function(self, dt)
+        if player.damaged then
+          return sm:switch("hurt")
+        end
+
+        if not input:down("heal") or player.HP >= player.maxHP or player.SP <= 0 then
+          sm:switch("idle")
+        end
+
+        player.HP = math.min(player.HP + player.HPGainRate * dt, player.maxHP)
+        player.SP = math.max(player.SP - player.HPGainRate * dt, 0) -- TODO: separate heal drain rate from hp gain rate
+
+      end,
+    })
+  --
+
+
+  sm:add("charge",  {
+      enter = function(self)
+        ac:setAnimation("charge_attack_charging")
+
+        self.chargeReady = false
+
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if player.damaged then          
+          sm:switch("hurt")
+        end
+
+
+        if input:released("attack") or player.SP <= 0 then
+          if self.chargeReady then
+            sm:switch("chargeAttack")
+          else
+            sm:switch("attack")
+          end
+        end
+
+        player.SP = player.SP - player.SPChargeDrainRate * dt
+
+        if self.timer:reached(player.chargeDuration) and ac:curName() ~= "charge_attack_ready" then
+          self.chargeReady = true
+          ac:setAnimation("charge_attack_ready")
+        end
+      end,
+    })
+  --
+
+
+
+  sm:add("chargeAttack",  { 
+      enter = function(self)
+        ac:setAnimation("charge_attack_attack", false)
+
+        self.timer = Timer:new()
+        self.target = 0.1 -- HARDCODED duration
+
+        enemy.sm:switch("hurt") -- HACK
+        enemy:changeHP(-3)
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if self.timer:reached(self.target) then
           sm:switch("idle")
         end
       end,
-
-      exit = function(self)
-      end
     })
-  --
+--
 
 
   sm:add("attack",  { -- HACK: Entire "normal" attack stuff is hack atm, but it's in for playtesting/demo
@@ -269,6 +370,12 @@ end
 
 function player:changeHP(offset)
   self.HP = self.HP + offset
+
+  local scalar = math.abs(offset)/3
+
+  if gJoy then
+    gJoy:setVibration(1*scalar, 1*scalar, 1*scalar)
+  end
 
   -- TODO: handle death
 end
