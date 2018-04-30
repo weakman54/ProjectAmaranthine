@@ -358,7 +358,7 @@ end
 
 
 function enemy:changeHP(offset)
-  self.HP = self.HP + offset
+  self.HP = math.min(math.max(self.HP + offset, 0), self.maxHP)
 
   -- TODO: handle death
 end

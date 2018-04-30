@@ -369,7 +369,7 @@ end
 
 
 function player:changeHP(offset)
-  self.HP = self.HP + offset
+  self.HP = math.min(math.max(self.HP + offset, 0), self.maxHP)
 
   local scalar = math.abs(offset)/3
 
