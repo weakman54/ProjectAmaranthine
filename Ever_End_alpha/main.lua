@@ -40,6 +40,8 @@ HUMPTimer = require "hump.timer"
 SM = require "statemachine.statemachine"
 AC = require "animation.animationCollection"
 
+lovebird = require "lovebird.lovebird"
+table.insert(lovebird.whitelist, "192.168.*.*")
 
 local baton = require "baton.baton"
 local RM = require "resourceManager.resourceManager"
@@ -140,6 +142,8 @@ function love.update(dt)
 
   -- TEST vvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^
+  
+  lovebird.update()
 
   HUMPTimer.update(dt)
 
@@ -195,6 +199,9 @@ function GameReload()
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
   AC    = reload("animation.animationCollection")
+  
+  lovebird = reload("lovebird.lovebird")
+  table.insert(lovebird.whitelist, "192.168.*.*")
 
   -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
   player = reload("player")
@@ -294,6 +301,7 @@ function love.joystickadded( joystick )
     joystick = love.joystick.getJoysticks()[1],
   }
 end
+
 
 function love.joystickremoved()
   gJoy = love.joystick.getJoysticks()[1]
