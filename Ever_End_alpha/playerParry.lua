@@ -83,7 +83,7 @@ sm:add("parryStart", {
         return player.sm:switch("idle")
       end
     end,
-    
+
     draw = function(self)
       love.graphics.push() -- HACKY fix to remove flip effect
       love.graphics.origin()
@@ -120,14 +120,14 @@ sm:add("parryWindup", {
 
       self.stage = stage
       self.duration = stageTimings[stage].duration
-      self.target   = stageTimings[stage].target
+      self.target   = self.duration/2
 
       self.drawFlash = false
       graphics.border.s = 1
 
-      local dif = self.duration - self.target
-      local after = function() HUMPTimer.tween(dif, graphics.border, {s = 0.25}, "linear") end
-      HUMPTimer.tween(self.target, graphics.border, {s = 0.5}, "linear", after)
+--      local dif = self.duration - self.target
+--      local after = function() HUMPTimer.tween(dif, graphics.border, {s = 0.25}, "linear") end
+      HUMPTimer.tween(self.duration, graphics.border, {s = 0.25}, "linear")
 
 
       self.timer = Timer:new()
@@ -136,12 +136,16 @@ sm:add("parryWindup", {
     update = function(self, dt)
       self.timer:update(dt)
 
-      if input:pressed("attack") then
-        self.drawFlash = true
-      end
+--      if input:pressed("attack") then
 
-      if self.timer:reached(self.duration) or input:pressed("attack") then -- HARDCODED for now
-        return sm:switch("parryAttack", self.stage)
+--        self.drawFlash = true
+--      end
+
+      if self.timer:reached(self.duration) or input:pressed("attack") then
+        local dif = math.abs(self.timer._acc - self.target)
+        local norm = dif/self.target
+
+        return sm:switch("parryAttack", self.stage, norm)
       end
     end,
 
@@ -173,13 +177,18 @@ sm:add("parryWindup", {
 
 
 sm:add("parryAttack", {
-    enter = function(self, stage)
+    enter = function(self, stage, normalizedDif)
       self.stage = stage
 
       ac:setAnimation(string.format("sword_combo%02d_attack", self.stage), false)
       enemy.ac:setAnimation(string.format("sword_hurt%02d", self.stage))
 
-      enemy:changeHP(-1) -- MAGIC VALUE: damage
+--      self.swordComboBaseDmg = 1
+--      self.swordComboGradDmg = 2
+
+      local damageDealt = player.swordComboBaseDmg + player.swordComboGradDmg - player.swordComboGradDmg * normalizedDif
+
+      enemy:changeHP(-damageDealt)
 
       self.timer = Timer:new()
     end,
@@ -189,7 +198,7 @@ sm:add("parryAttack", {
 
       if self.timer:reached(1) then -- HARDCODED for now
         local t = self.stage + 1
-        if t == 4 then
+        if t == 4 then -- HARDCODED number of stages, also slightly HACK way to determine when to change
           player.sm:switch("idle")
         else
           sm:switch("parryWindup", t)

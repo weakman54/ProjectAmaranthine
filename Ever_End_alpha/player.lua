@@ -26,8 +26,11 @@ function player:initialize()
   self.HPGainRate = 0.5
 
 
-  self.maxHP = 10
+  self.maxHP = 10 -- points
   self.maxSP = 10
+  
+  self.swordComboBaseDmg = 1
+  self.swordComboGradDmg = 2
 
 
   self:initializeAC()
@@ -379,6 +382,12 @@ function player:changeHP(offset)
 
   -- TODO: handle death
 end
+
+
+function player:changeSP(offset)
+  self.SP = math.min(math.max(self.SP + offset, 0), self.maxSP)
+end
+  
 
 
 

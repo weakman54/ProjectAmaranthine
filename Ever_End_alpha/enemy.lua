@@ -41,6 +41,9 @@ function enemy:initialize()
   -- TODO: think about how to load all of these
   self.HP = 0
   self.maxHP = 10
+  
+  
+  self.dmgToSPRatio = 1
 
 
   self:initializeAC()
@@ -359,6 +362,10 @@ end
 
 function enemy:changeHP(offset)
   self.HP = math.min(math.max(self.HP + offset, 0), self.maxHP)
+  
+  if offset < 0 then
+    player:changeSP(math.abs(offset * self.dmgToSPRatio))
+  end
 
   -- TODO: handle death
 end
