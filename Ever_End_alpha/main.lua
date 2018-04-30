@@ -201,7 +201,7 @@ function GameReload()
   AC    = reload("animation.animationCollection")
   
   lovebird = reload("lovebird.lovebird")
-  table.insert(lovebird.whitelist, "192.168.*.*")
+  table.insert(lovebird.whitelist, "*")
 
   -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
   player = reload("player")
