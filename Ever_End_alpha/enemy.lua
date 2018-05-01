@@ -39,11 +39,14 @@ function enemy:initialize()
 
 
   -- TODO: think about how to load all of these
-  self.HP = 0
+--  self.HP = 0 -- Initialize in reset() ?
   self.maxHP = 10
-  
-  
+
   self.dmgToSPRatio = 1
+
+
+  self.baseGuardWeight = 5
+--  self.counterWeightTable = {guard = self.baseGuardWeight, counterAttack = 1} -- INitialize in reset()?
 
 
   self:initializeAC()
@@ -60,6 +63,8 @@ function enemy:reset()
 
   self.damaged = false
 
+  self.counterWeightTable = {guard = self.baseGuardWeight, counterAttack = 1}
+
   self.sm:switch("idle")
 end
 --
@@ -68,7 +73,8 @@ end
 function enemy:loadAttack(attack, framerate)
   -- TODO: look this over (though should finalize attack format first)
   assert(attack and attack.name, "must pass attack, attack must have name")
-  assert(framerate, "must pass framerate") -- TODO: cleanup error messages
+
+  framerate = framerate or DEFAULT_FRAMERATE
 
 
   local name = attack.name
@@ -110,8 +116,7 @@ function enemy:loadAttack(attack, framerate)
   attack.perfDodgeTime = attack.damageImpact - attack.perfDodgeTreshold
   attack.normDodgeTime = attack.damageImpact - attack.normDodgeTreshold
 
-
-  table.insert(self.attacks, attack)
+  return attack
 end
 --
 
@@ -119,9 +124,10 @@ end
 function enemy:initializeAttacks()
   self.attacks = {}
 
-  self:loadAttack({name = "high_attack01", damage = 1, stance = "high"}, 30)
+  table.insert(self.attacks, self:loadAttack({name = "high_attack01", damage = 1, stance = "high"}, 30))
+  table.insert(self.attacks, self:loadAttack({name = "low_attack01" , damage = 4, stance = "low" }, 30))
 
-  self:loadAttack({name = "low_attack01", damage = 4, stance = "low"}, 30)
+  self.counterAttack = self:loadAttack({name = "counter_attack", damage = 2, stance = "high"}, 30)
 end
 --
 
@@ -132,7 +138,7 @@ function enemy:initializeAC()
   local ac = self.ac
   local name
 
-  ac:setFramerate(12)
+  ac:setFramerate(DEFAULT_FRAMERATE)
   RM.prefix = string.format("assets/%s/%s_", self.name, self.name)
 
 
@@ -146,7 +152,11 @@ function enemy:initializeAC()
 
   name = "hurt"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
+
+
+--  name = "counter_attack" -- TODO: rename?
+--  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+
 
   -- Combo hurts
   for _, comboType in ipairs{"sword", "gun"} do
@@ -198,7 +208,18 @@ function enemy:initializeSM()
         if enemy.attacked then
           player.guarded = true
           enemy.attacked = false
-          return sm:switch("guard")
+
+
+          enemy.counterWeightTable.counterAttack = enemy.counterWeightTable.counterAttack + 1
+
+          local choice = lume.weightedchoice(enemy.counterWeightTable)
+
+          -- a bit more hack
+          if choice == "counterAttack" then
+            return sm:switch("offensive", "counterAttack")
+          else
+            return sm:switch("guard")
+          end
         end
       end,
       --
@@ -206,15 +227,23 @@ function enemy:initializeSM()
   --
 
   sm:add("offensive", {
-      enter = function(self)
+      enter = function(self, kind)
         enemy.dbg_trigger_offensive_action = false
 
+
         -- TODO: choose action #
+        -- TODO: Restructure to use lume.weigthed choice (TODO: clean up how taunts work)
         local attackI = math.random(#enemy.attacks * 2 + 1)
         attackI = math.ceil(attackI/2)
-        
-        if attackI == (#enemy.attacks + 1) then
+
+        if kind and kind == "counterAttack" then
+          self.curAttack = enemy.counterAttack
+          enemy.counterWeightTable = {guard = enemy.baseGuardWeight, counterAttack = 1}
+
+
+        elseif attackI == (#enemy.attacks + 1) then
           return sm:switch("taunt")
+
         else
           self.curAttack = enemy.attacks[attackI]
         end
@@ -314,7 +343,7 @@ function enemy:initializeSM()
 
       update = function(self, dt)
         self.timer:update(dt)
-        
+
         if enemy.attacked then
           enemy.attacked = false
           enemy:changeHP(-1) -- HARDCODED: damage
@@ -362,7 +391,7 @@ end
 
 function enemy:changeHP(offset)
   self.HP = math.min(math.max(self.HP + offset, 0), self.maxHP)
-  
+
   if offset < 0 then
     player:changeSP(math.abs(offset * self.dmgToSPRatio))
   end
