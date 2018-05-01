@@ -16,10 +16,14 @@ local stateError = require "gamestates.stateError"
 
 -- NOTE: This function does not work well with multiple returns atm
 function callOrError(f, ...)
-  local ok, ret = pcall(f, ...)
+  function msgh(msg) -- xpcall stuff not tested atm..
+    Gamestate.switch(stateError, msg)
+  end
+
+
+  local ok, ret = xpcall(f, msgh, ...)
 
   if not ok then
-    Gamestate.switch(stateError, ret)
     return ok, ret
   end
 
@@ -202,7 +206,7 @@ function GameReload()
   print("RELOADING\n-------------------------------------------------------------\n")
   reload "util"
   reload "global_consts"
-  
+
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
   AC    = reload("animation.animationCollection")
