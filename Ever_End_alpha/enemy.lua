@@ -77,18 +77,24 @@ function enemy:loadAttack(attack, framerate)
   framerate = framerate or DEFAULT_FRAMERATE
 
 
+  -- Set animation ---------------------
+  -- Load animation
   local name = attack.name
+  RM.prefix = ""
+  local anim =  RM:loadAnimation(string.format("assets/%s/%s_%s_", self.name, self.name, name), nil, framerate) -- NOTE: might as well do the "full" directory here, since this is set per attack anyway..
 
-  -- Load animation ---------------------
   local ac = self.ac
 
-  RM.prefix = string.format("assets/%s/%s_", self.name, self.name)
+  if not ac:has(name) then   -- HACK NOTE: This sets the framerate and looping on the "global" animation handle, which _shouldn't_ break anything, but yeah...
 
-  local anim = RM:loadAnimation(name .. "_")
 
-  ac:addAnimation(name, anim)
-  anim.data:setFramerate(framerate) -- HACK atm to fix framerate for old animation
-  anim.data:setLooping(false)
+    ac:addAnimation(name, anim)
+
+    -- NOTE: these have to be _after_ addAnimation, since addAnimation will set the framerate (should probably not happen because of this)
+    anim.data:setFramerate(framerate) -- HACK atm to fix framerate for old animation
+    anim.data:setLooping(false)
+  end
+
 
   attack.animation = anim
 
@@ -123,9 +129,17 @@ end
 
 function enemy:initializeAttacks()
   self.attacks = {}
+  self.attackWeights = {} -- NOTE: these are hardcoded atm, should make sure to fix a better way of loading the weights
 
-  table.insert(self.attacks, self:loadAttack({name = "high_attack01", damage = 1, stance = "high"}, 30))
-  table.insert(self.attacks, self:loadAttack({name = "low_attack01" , damage = 4, stance = "low" }, 30))
+  self.attacks["high_attack01"] = self:loadAttack({name = "high_attack01", damage = 1, stance = "high"}, 30)
+  self.attackWeights["high_attack01"] = 1
+
+  self.attacks["low_attack01"]  = self:loadAttack({name = "low_attack01" , damage = 4, stance = "low" }, 30)
+  self.attackWeights["low_attack01"] = 1
+
+
+  self.attackWeights["taunt"] = 0.5
+
 
   self.counterAttack = self:loadAttack({name = "counter_attack", damage = 2, stance = "high"}, 30)
 end
@@ -233,19 +247,20 @@ function enemy:initializeSM()
 
         -- TODO: choose action #
         -- TODO: Restructure to use lume.weigthed choice (TODO: clean up how taunts work)
-        local attackI = math.random(#enemy.attacks * 2 + 1)
-        attackI = math.ceil(attackI/2)
+--        local attackI = math.random(#enemy.attacks * 2 + 1)
+--        attackI = math.ceil(attackI/2)
 
         if kind and kind == "counterAttack" then
           self.curAttack = enemy.counterAttack
-          enemy.counterWeightTable = {guard = enemy.baseGuardWeight, counterAttack = 1}
-
-
-        elseif attackI == (#enemy.attacks + 1) then
-          return sm:switch("taunt")
+          enemy.counterWeightTable = {guard = enemy.baseGuardWeight, counterAttack = 1} -- Reset weights for counter attack
 
         else
-          self.curAttack = enemy.attacks[attackI]
+          local choice = lume.weightedchoice(enemy.attackWeights)
+          if choice == "taunt" then -- Still kindof hacky here, but this works better I think
+            return sm:switch("taunt")
+          end
+
+          self.curAttack = enemy.attacks[choice]
         end
 
 
