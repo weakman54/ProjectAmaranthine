@@ -111,7 +111,7 @@ local dodgeMinigame = {
       enemy.ac:setAnimation("gun_hurt" .. string.format("%02d", self.hurtI))
       enemy:changeHP(-1) -- HARDCODED: -1, health amount
 
-      ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing)
+      ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing, false)
       self.attackTimer = Timer:new()
 
       self.combo = nil
