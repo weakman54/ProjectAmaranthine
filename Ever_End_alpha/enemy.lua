@@ -81,13 +81,11 @@ function enemy:loadAttack(attack, framerate)
   -- Load animation
   local name = attack.name
   RM.prefix = ""
-  local anim =  RM:loadAnimation(string.format("assets/%s/%s_%s_", self.name, self.name, name), nil, framerate) -- NOTE: might as well do the "full" directory here, since this is set per attack anyway..
+  local anim =  RM:loadAnimation(string.format("assets/%s/%s_%s_", self.name, self.name, attack.animName), nil, framerate) -- NOTE: might as well do the "full" directory here, since this is set per attack anyway..
 
   local ac = self.ac
 
   if not ac:has(name) then   -- HACK NOTE: This sets the framerate and looping on the "global" animation handle, which _shouldn't_ break anything, but yeah...
-
-
     ac:addAnimation(name, anim)
 
     -- NOTE: these have to be _after_ addAnimation, since addAnimation will set the framerate (should probably not happen because of this)
@@ -131,17 +129,17 @@ function enemy:initializeAttacks()
   self.attacks = {}
   self.attackWeights = {} -- NOTE: these are hardcoded atm, should make sure to fix a better way of loading the weights
 
-  self.attacks["high_attack01"] = self:loadAttack({name = "high_attack01", damage = 1, stance = "high"}, 30)
+  self.attacks["high_attack01"] = self:loadAttack({name = "high_attack01", animName = "high_attack01", damage = 1, stance = "high"}, 30)
   self.attackWeights["high_attack01"] = 1
 
-  self.attacks["low_attack01"]  = self:loadAttack({name = "low_attack01" , damage = 4, stance = "low" }, 30)
+  self.attacks["low_attack01"]  = self:loadAttack({name = "low_attack01" , animName = "low_attack01" , damage = 4, stance = "low" }, 30)
   self.attackWeights["low_attack01"] = 1
 
 
-  self.attackWeights["taunt"] = 0.5
+  self.attackWeights["taunt"] = 0.5 -- Feels kindof misplaced but eh...
 
 
-  self.counterAttack = self:loadAttack({name = "counter_attack", damage = 2, stance = "high"}, 30)
+  self.counterAttack = self:loadAttack({name = "counter_attack", animName = "counter_attack", damage = 2, stance = "high"}, 30)
 end
 --
 
