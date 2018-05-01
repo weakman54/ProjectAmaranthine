@@ -36,15 +36,19 @@ Gamestate = require "hump.gamestate"
 Sound = require "resourceManager.soundManager"
 Timer = require "timer.timer"
 HUMPTimer = require "hump.timer"
+lume = require "lume.lume"
+
+local baton = require "baton.baton"
+input = nil -- Global used to store a baton "player" (input mappings)
+
+lovebird = require "lovebird.lovebird"
+table.insert(lovebird.whitelist, "*.*.*.*") -- Still testing...
 
 SM = require "statemachine.statemachine"
 AC = require "animation.animationCollection"
-
-lovebird = require "lovebird.lovebird"
-table.insert(lovebird.whitelist, "192.168.*.*")
-
-local baton = require "baton.baton"
 local RM = require "resourceManager.resourceManager"
+
+
 
 
 -- States
@@ -142,7 +146,7 @@ function love.update(dt)
 
   -- TEST vvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^
-  
+
   lovebird.update()
 
   HUMPTimer.update(dt)
@@ -196,12 +200,15 @@ end
 
 function GameReload()
   print("RELOADING\n-------------------------------------------------------------\n")
+  reload "util"
+  reload "global_consts"
+  
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
   AC    = reload("animation.animationCollection")
-  
-  lovebird = reload("lovebird.lovebird")
-  table.insert(lovebird.whitelist, "*.*.*.*")
+
+--  lovebird = reload("lovebird.lovebird")
+--  table.insert(lovebird.whitelist, "*.*.*.*")
 
   -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
   player = reload("player")
