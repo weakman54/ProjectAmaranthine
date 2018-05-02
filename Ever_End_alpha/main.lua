@@ -16,10 +16,14 @@ local stateError = require "gamestates.stateError"
 
 -- NOTE: This function does not work well with multiple returns atm
 function callOrError(f, ...)
-  local ok, ret = pcall(f, ...)
+  function msgh(msg) -- xpcall stuff not tested atm..
+    Gamestate.switch(stateError, msg)
+  end
+
+
+  local ok, ret = xpcall(f, msgh, ...)
 
   if not ok then
-    Gamestate.switch(stateError, ret)
     return ok, ret
   end
 
@@ -36,13 +40,19 @@ Gamestate = require "hump.gamestate"
 Sound = require "resourceManager.soundManager"
 Timer = require "timer.timer"
 HUMPTimer = require "hump.timer"
+lume = require "lume.lume"
+
+local baton = require "baton.baton"
+input = nil -- Global used to store a baton "player" (input mappings)
+
+lovebird = require "lovebird.lovebird"
+table.insert(lovebird.whitelist, "*.*.*.*") -- Still testing...
 
 SM = require "statemachine.statemachine"
 AC = require "animation.animationCollection"
-
-
-local baton = require "baton.baton"
 local RM = require "resourceManager.resourceManager"
+
+
 
 
 -- States
@@ -141,6 +151,8 @@ function love.update(dt)
   -- TEST vvvvvvvvvvvvvv
   -- TEST ^^^^^^^^^^^^^^
 
+  lovebird.update()
+
   HUMPTimer.update(dt)
 
   Sound:update(dt)  -- NOTE: not quite fully tested, but should work fine
@@ -192,9 +204,15 @@ end
 
 function GameReload()
   print("RELOADING\n-------------------------------------------------------------\n")
+  reload "util"
+  reload "global_consts"
+
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
   AC    = reload("animation.animationCollection")
+
+--  lovebird = reload("lovebird.lovebird")
+--  table.insert(lovebird.whitelist, "*.*.*.*")
 
   -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
   player = reload("player")
@@ -294,6 +312,7 @@ function love.joystickadded( joystick )
     joystick = love.joystick.getJoysticks()[1],
   }
 end
+
 
 function love.joystickremoved()
   gJoy = love.joystick.getJoysticks()[1]

@@ -1,4 +1,6 @@
 
+DEFAULT_FRAMERATE = 12
+
 W, H = 1920, 1080 -- pixels
 
 
