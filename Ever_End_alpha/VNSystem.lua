@@ -1,5 +1,30 @@
 
 
+
+function loadPanel(path, panelPrefix)
+  local ret = {
+    moments = {}
+  }
+  
+  local dirList = love.filesystem.getDirectoryItems(path)
+  
+  local scenedirName = dirName .. lume.filter(dir, function(name) return name:find(string.format("scene%02d", 1)) end)[1]
+  
+  local scenedir = love.filesystem.getDirectoryItems(scenedirName)
+    
+  for k, v in ipairs(scenedir) do
+    print(v, v:find("p19"))
+  end
+  
+  local panelT = lume.filter(scenedir, function(name) return name:find("p19") end)
+  
+  for k, v in ipairs(panelT) do
+    print(v)
+  end
+end
+
+
+
 local VNSystem = {}
 
 -- TODO: fix curDrawing
@@ -36,13 +61,13 @@ end
 
 
 
-function VNSystem:loadScene(scene, line)
-  assert(scene, "VNSystem: You must supply which scene to switch to!")
-  -- TODO: require scene.lua
-  -- TODO: load all images
-  self.curScene = scene
-  self.curLine = line or 1
-end
+--function VNSystem:loadScene(scene, line)
+--  assert(scene, "VNSystem: You must supply which scene to switch to!")
+--  -- TODO: require scene.lua
+--  -- TODO: load all images
+--  self.curScene = scene
+--  self.curLine = line or 1
+--end
 
 
 
