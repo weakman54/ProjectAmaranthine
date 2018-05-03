@@ -129,15 +129,15 @@ function enemy:initializeAttacks()
   self.attacks = {}
   self.attackWeights = {} -- NOTE: these are hardcoded atm, should make sure to fix a better way of loading the weights
 
-  self.attacks["high_attack01"] = self:loadAttack({name = "high_attack01", animName = "high_attack01", damage = 1, stance = "high"}, 12)
+  self.attacks["high_attack01"] = self:loadAttack({name = "high_attack01", animName = "high_attack01", damage = 1, stance = "high"})
   self.attackWeights["high_attack01"] = 2/7
 
-  self.attacks["low_attack01"]  = self:loadAttack({name = "low_attack01" , animName = "low_attack01" , damage = 4, stance = "low" }, 12)
+  self.attacks["low_attack01"]  = self:loadAttack({name = "low_attack01" , animName = "low_attack01" , damage = 4, stance = "low" })
   self.attackWeights["low_attack01"] = 2/7
 
 
 
-  self.attacks["comboTest"]  = self:loadAttack({name = "comboTest" , animName = "low_attack01" , damage = 4, stance = "low"}, 12)
+  self.attacks["comboTest"]  = self:loadAttack({name = "comboTest" , animName = "low_attack01" , damage = 4, stance = "low"})
   self.attacks["comboTest"].nextAttack = "low_attack01"
   self.attackWeights["comboTest"] = 2/7
 
@@ -146,7 +146,7 @@ function enemy:initializeAttacks()
   self.attackWeights["taunt"] = 1/7 -- Feels kindof misplaced but eh...
 
 
-  self.counterAttack = self:loadAttack({name = "counter_attack", animName = "counter_attack", damage = 2, stance = "high"}, 12)
+  self.counterAttack = self:loadAttack({name = "counterAttack", animName = "counterAttack", damage = 2, stance = "high"})
 end
 --
 
