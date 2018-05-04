@@ -226,7 +226,7 @@ function GameReload()
 
 
 
-  RM.dbg_render = false -- Don't show loading screens, they take long to just render...
+--  RM.dbg_render = false -- Don't show loading screens, they take long to just render...
   Gamestate.switch(stateMain)
 end
 
