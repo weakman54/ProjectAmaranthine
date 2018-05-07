@@ -48,7 +48,7 @@ function dumpToFile(o, f, depth, codeMarker)
 
   end
   --
-  
+
   local function rf(o, f, depth, codeMarker)
     depth = depth or 0
 
@@ -92,4 +92,10 @@ function dumpToFile(o, f, depth, codeMarker)
 
 
   return rf(o, f, depth, codeMarker)
+end
+
+
+
+function playDelayed(sound, time)
+  HUMPTimer.after(time, function() Sound:play(sound) end)
 end
