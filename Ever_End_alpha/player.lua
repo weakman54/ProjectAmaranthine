@@ -177,6 +177,8 @@ function player:initializeSM()
 
       enter = function(self)
         ac:setAnimation("guard")
+		Sound:play("Open1")
+		Sound:play("Crossbow")
 
         if enemy.sm:is("offensive") then
           self.parryTiming = enemy.timingStage == 3
@@ -189,6 +191,7 @@ function player:initializeSM()
             sm:switch("parry")
           else
             ac:setAnimation("guard_hit", false)
+			Sound:play("Player Block")
 
             player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
           end
@@ -345,6 +348,7 @@ function player:initializeSM()
         else
           ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
         end
+		Sound:play("Player Hit")
 
         player:changeHP(-player.damaged.attack.damage)
         player.damaged = false
