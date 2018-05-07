@@ -122,6 +122,8 @@ function love.load(arg)
     debugPrint("Loading: ", 100, 100)
   end
   --
+  
+  Sound:init()  
 
   math.randomseed( os.time() )
 
@@ -235,6 +237,7 @@ end
 
 function love.keypressed(key, scancode, isrepeat)
   -- TEST vvvvvvvvvvvvvvv
+  Sound:play("Absorb1")
   -- TEST ^^^^^^^^^^^^^^^
 
   if Gamestate.current() ~= stateError then
