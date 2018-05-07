@@ -6,7 +6,7 @@ function buildPanel(path, panelPrefix, panelNumber)
   local ret = {
     moments = {
       {transitionTrigger = "waitForInput"}
-      }
+    }
   }
 
   panelPrefix = string.format("%sp%03d_", panelPrefix, panelNumber)
@@ -47,9 +47,9 @@ function buildScene(path, num)
 
   -- Get all things in the directory
   local  sceneDirList = love.filesystem.getDirectoryItems(scenePath)
-  
+
   local loopNum = #sceneDirList * 5 -- HACK: this is to ensure all panels are loaded even if there are "deleted" numbers, could be solved in a much better manner...
-  
+
   for i=1, loopNum do -- HARDCODED: start num is 1, shouldn't have to change tbh
     local panel = buildPanel(scenePath, scenePrefix, i)
     if panel then
@@ -57,21 +57,28 @@ function buildScene(path, num)
       table.insert(ret, panel)
     end
   end
-  
-  
+
+
   -- NOTE: I'm having this in here, cause its easier, should probably be moved for a cleaner separation of duty
   local file = assert(io.open( ("%ssceneScript%02d.lua"):format(path, num), "w" ))
-  
+
   print(string.format("%ssceneScript%02d.lua", path, num, "w"), ("RM.prefix = '%s'"):format(scenePath))
   file:write("\nlocal RM = require 'resourceManager.resourceManager'\n")
   file:write(("RM.prefix = '%s/'\n\n"):format(scenePath))
   file:write("return ")
   dumpToFile(ret, file, nil, "$")
-  
+
   io.close(file)
-  
+
 --  return ret
 end
+
+
+
+function drawPanel(panel)
+  panel.bg.data:loveDraw()
+end
+
 
 
 
@@ -85,39 +92,34 @@ local things = {}
 local curDrawing = {}
 
 
-VNSystem.curLineI = 1
-VNSystem.curScene = nil
+function VNSystem:setPanelI(i)
+  if type(i) ~= "number" or i <= 0 then error("Couldn't set panel index, wrong type or negative!", 2) end
+  if not self.curScene then error("There is not scene!", 2) end
 
-function VNSystem:executeLine(line)
-  local f = functions(line[1])
-  assert(f, "function " .. line[1] .. ", line " .. self.curLineI .. ", does not exist, did you misspell something?") --NOTE: uses curLine for error messages, could be "cleaner" probably
-
-  return f(unpack(line, 2))
+  self.curPanelI = 1
+  self.curPanel = self.curScene[self.curPanelI]
 end
 
+
 function VNSystem:update(dt)
-  local curLine = self.curScene[self.curLineI]
 
-  local retVal = self:executeLine(curLine)
-
-  if retVal then return end
-
-  self.curLineI = self.curLineI + 1
 end
 
 
 function VNSystem:draw()
+  if self.curPanel then
+    drawPanel(self.curPanel)
+  end
 end
 
 
 
---function VNSystem:loadScene(scene, line)
---  assert(scene, "VNSystem: You must supply which scene to switch to!")
---  -- TODO: require scene.lua
---  -- TODO: load all images
---  self.curScene = scene
---  self.curLine = line or 1
---end
+function VNSystem:loadScene(scene, panelI)
+  assert(scene, "VNSystem: You must supply which scene to switch to!")
+
+  self.curScene = scene
+  self:setPanelI(panelI or 1)
+end
 
 
 
