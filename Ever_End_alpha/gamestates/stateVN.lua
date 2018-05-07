@@ -30,7 +30,8 @@ function stateVN:draw()
   VNSystem:draw()
 end
 
-function stateVN:keypressed()
+function stateVN:keypressed(key)
+  VNSystem:keypressed(key)
 end
 
 

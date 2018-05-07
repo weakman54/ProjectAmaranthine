@@ -5,7 +5,6 @@ local RM = require "resourceManager.resourceManager"
 function buildPanel(path, panelPrefix, panelNumber)
   local ret = {
     moments = {
-      {transitionTrigger = "waitForInput"}
     }
   }
 
@@ -15,7 +14,7 @@ function buildPanel(path, panelPrefix, panelNumber)
   local dirList = love.filesystem.getDirectoryItems(path)
 
   -- Filter out the panel specific files
-  local panelList = lume.filter(dirList, function(name) return name:find(panelPrefix .. "m")  end)
+  local panelList  = lume.filter(dirList, function(name) return name:find(panelPrefix .. "m" )  end)
   local background = lume.filter(dirList, function(name) return name:find(panelPrefix .. "bg")  end)[1]
 
   if not background then return end
@@ -25,10 +24,19 @@ function buildPanel(path, panelPrefix, panelNumber)
 
 
 --  print(ret.bg)
+--  ret.moments[1] = {transitionTrigger = "waitForInput"}
 
-  for _, item in ipairs(panelList) do
-    local name = item:sub(10, -11)
-    ret[name] = string.format("$RM:loadAnimation('%s')", item:sub(1, -10))
+  for _, item in ipairs(panelList) do -- TODO: this entire section needs cleanup...
+
+    local momentNum = tonumber(item:sub(11, 12))
+
+    ret.moments[momentNum] = ret.moments[momentNum] or {transitionTrigger = "waitForInput", anims = {}, drawData = {}, sounds = {}}
+
+    local t = ret.moments[momentNum]
+
+    local name = item:sub(14, -11)
+    t.anims[name] = string.format("$RM:loadAnimation('%s')", item:sub(1, -10))
+    table.insert(t.drawData, {anim = name})
 --    print(name, ret[name])
   end
 
@@ -75,8 +83,14 @@ end
 
 
 
-function drawPanel(panel)
+function drawPanel(panel, momentI)
   panel.bg.data:loveDraw()
+
+  local curMoment = panel.moments[momentI]
+  for _, t in ipairs(curMoment.drawData) do
+    local sprite = curMoment.anims[t.anim]
+    sprite.data:loveDraw(t.x, t.y)
+  end
 end
 
 
@@ -92,12 +106,26 @@ local things = {}
 local curDrawing = {}
 
 
-function VNSystem:setPanelI(i)
-  if type(i) ~= "number" or i <= 0 then error("Couldn't set panel index, wrong type or negative!", 2) end
+function VNSystem:setPanelI(panelI, momentI)
+  -- TODO: handle non-existant panels! (do we need to?)
+  if type(panelI) ~= "number" or panelI <= 0 then error("Couldn't set panel index, wrong type or negative!", 2) end
   if not self.curScene then error("There is not scene!", 2) end
 
-  self.curPanelI = 1
+  self.curPanelI = panelI or 1
   self.curPanel = self.curScene[self.curPanelI]
+  self:setMomentI(momentI or 1)
+end
+
+function VNSystem:setMomentI(momentI)
+  self.curMomentI = momentI or 1
+  self.curMoment = self.curPanel.moments[self.curMomentI]
+
+  for _, t in ipairs(self.curMoment.drawData) do
+    if t.tween then
+      local dur, target, method, after = unpack(t.tween)
+      HUMPTimer.tween(dur, t, target, method, after)
+    end
+  end
 end
 
 
@@ -108,18 +136,19 @@ end
 
 function VNSystem:draw()
   if self.curPanel then
-    drawPanel(self.curPanel)
+    drawPanel(self.curPanel, self.curMomentI)
   end
 end
 
 
 
-function VNSystem:loadScene(scene, panelI)
+function VNSystem:loadScene(scene, panelI, momentI)
   assert(scene, "VNSystem: You must supply which scene to switch to!")
 
   self.curScene = scene
-  self:setPanelI(panelI or 1)
+  self:setPanelI(panelI or 1, momentI or 1)
 end
+
 
 
 
