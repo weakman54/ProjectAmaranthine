@@ -16,7 +16,7 @@ local stateError = require "gamestates.stateError"
 
 -- NOTE: This function does not work well with multiple returns atm
 function callOrError(f, ...)
-  function msgh(msg) -- xpcall stuff not tested atm..
+  local function msgh(msg) -- xpcall stuff not tested atm..
     Gamestate.switch(stateError, msg)
   end
 
