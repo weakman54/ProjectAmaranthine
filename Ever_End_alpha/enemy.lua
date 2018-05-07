@@ -347,12 +347,19 @@ function enemy:initializeSM()
   sm:add("guard", { -- NOTE: renamed this from "defensive", that was basically phased out anyway...
       enter = function(self)
         ac:setAnimation("guard")
+		
+		self.soundPlayed=false
 
         self.timer = Timer:new()
       end,
 
       update = function(self, dt)
         self.timer:update(dt)
+		
+		if self.timer:reached(0.1) and not self.soundPlayed then 
+			Sound:play("Enemy Block")
+			self.soundPlayed=true
+		end
 
         if self.timer:reached(enemy.guardDuration) then
           return sm:switch("idle")
@@ -401,6 +408,7 @@ function enemy:initializeSM()
           ac:setAnimation(string.format("%s_hurt%02d", data.kind, 1)) -- NOTE: need to handle differing numbers of hurt here
         else
           ac:setAnimation("hurt")
+		  Sound:play("Player Hit")
         end
 
         self.timer = Timer:new()
