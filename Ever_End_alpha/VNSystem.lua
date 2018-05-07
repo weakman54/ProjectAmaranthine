@@ -30,7 +30,7 @@ function buildPanel(path, panelPrefix, panelNumber)
 
     local momentNum = tonumber(item:sub(11, 12))
 
-    ret.moments[momentNum] = ret.moments[momentNum] or {transitionTrigger = "waitForInput", anims = {}, drawData = {}, sounds = {}}
+    ret.moments[momentNum] = ret.moments[momentNum] or {transitionTrigger = {"waitForInput"}, anims = {}, drawData = {}, sounds = {}}
 
     local t = ret.moments[momentNum]
 
@@ -38,6 +38,10 @@ function buildPanel(path, panelPrefix, panelNumber)
     t.anims[name] = string.format("$RM:loadAnimation('%s')", item:sub(1, -10))
     table.insert(t.drawData, {anim = name})
 --    print(name, ret[name])
+  end
+
+  if not ret.moments[1] then
+    table.insert(ret.moments, {transitionTrigger = {"waitForInput"}, anims = {}, drawData = {}, sounds = {}})
   end
 
   return ret
@@ -65,6 +69,10 @@ function buildScene(path, num)
       table.insert(ret, panel)
     end
   end
+  
+  
+  -- END MARKER PANEL
+--  ret[#ret + 1] = "END"
 
 
   -- NOTE: I'm having this in here, cause its easier, should probably be moved for a cleaner separation of duty
@@ -83,15 +91,7 @@ end
 
 
 
-function drawPanel(panel, momentI)
-  panel.bg.data:loveDraw()
 
-  local curMoment = panel.moments[momentI]
-  for _, t in ipairs(curMoment.drawData) do
-    local sprite = curMoment.anims[t.anim]
-    sprite.data:loveDraw(t.x, t.y)
-  end
-end
 
 
 
@@ -113,12 +113,17 @@ function VNSystem:setPanelI(panelI, momentI)
 
   self.curPanelI = panelI or 1
   self.curPanel = self.curScene[self.curPanelI]
+  
+  assert(self.curPanel, "Tried to go to a non-existent panel: " .. self.curPanelI)
+  
   self:setMomentI(momentI or 1)
 end
 
 function VNSystem:setMomentI(momentI)
   self.curMomentI = momentI or 1
   self.curMoment = self.curPanel.moments[self.curMomentI]
+
+  if not self.curMoment then return end
 
   for _, t in ipairs(self.curMoment.drawData) do
     if t.tween then
@@ -134,10 +139,38 @@ function VNSystem:update(dt)
 end
 
 
+
+function VNSystem:drawPanel(panel, momentI)
+  panel.bg.data:loveDraw()
+
+  if not self.curMoment then return end
+
+  for _, t in ipairs(self.curMoment.drawData) do
+    local sprite = self.curMoment.anims[t.anim]
+    sprite.data:loveDraw(t.x, t.y)
+  end
+end
+
+
 function VNSystem:draw()
   if self.curPanel then
-    drawPanel(self.curPanel, self.curMomentI)
+    self:drawPanel(self.curPanel, self.curMomentI)
   end
+end
+
+
+
+function VNSystem:keypressed(key)
+  if self.curMoment.transitionTrigger[1] == "waitForInput" then
+    if self.curMomentI < #self.curPanel.moments then
+      VNSystem:setMomentI(self.curMomentI + 1)
+    else
+      -- ASSUMPTION: we are at last moment and should switch panel
+      -- TODO: Make sure "removed" panels are handled
+      VNSystem:setPanelI(self.curPanelI + 1)
+    end
+  end
+
 end
 
 
