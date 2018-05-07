@@ -16,7 +16,7 @@ local stateError = require "gamestates.stateError"
 
 -- NOTE: This function does not work well with multiple returns atm
 function callOrError(f, ...)
-  function msgh(msg) -- xpcall stuff not tested atm..
+  local function msgh(msg) -- xpcall stuff not tested atm..
     Gamestate.switch(stateError, msg)
   end
 
@@ -122,6 +122,8 @@ function love.load(arg)
     debugPrint("Loading: ", 100, 100)
   end
   --
+  
+  Sound:init()  
 
   math.randomseed( os.time() )
 
@@ -203,7 +205,7 @@ end
 
 
 function GameReload()
-  print("RELOADING\n-------------------------------------------------------------\n")
+  print("\n-------------------------------------------------------------\nRELOADING\n-------------------------------------------------------------\n")
   reload "util"
   reload "global_consts"
 
@@ -234,7 +236,7 @@ end
 
 
 function love.keypressed(key, scancode, isrepeat)
-  -- TEST vvvvvvvvvvvvvvv
+  -- TEST vvvvvvvvvvvvvvvs
   -- TEST ^^^^^^^^^^^^^^^
 
   if Gamestate.current() ~= stateError then

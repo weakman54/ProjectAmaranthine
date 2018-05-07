@@ -73,7 +73,6 @@ function stateError:update(dt)
 end
 
 function stateError:draw()
-
   love.graphics.clear(193/255, 135/255, 255/255)
   love.graphics.setColor(0, 0, 0)
 
@@ -84,6 +83,7 @@ function stateError:draw()
 
 
   love.graphics.setNewFont(48)
+  love.graphics.setColor(1, 1, 1)
 end
 
 
