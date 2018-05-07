@@ -236,8 +236,7 @@ end
 
 
 function love.keypressed(key, scancode, isrepeat)
-  -- TEST vvvvvvvvvvvvvvv
-  Sound:play("Absorb1")
+  -- TEST vvvvvvvvvvvvvvvs
   -- TEST ^^^^^^^^^^^^^^^
 
   if Gamestate.current() ~= stateError then
