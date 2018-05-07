@@ -1,5 +1,5 @@
 
-local dbg_print = true
+local dbg_print = false
 local dbg_render = true
 
 
@@ -37,15 +37,11 @@ function SoundManager:init()
     
     sfx[handle] = {filename = longname, sources = {}}
   end
+  
+  -- TODO: music
 end
 
-function SoundManager:update()
-  
-  local s = countAll(playing)
-  if s > 0 then
-    print(s)
-  end
-  
+function SoundManager:update()  
   local remove = {}
   for _, source in pairs(playing) do
     if sourceIsStopped(source) then
@@ -61,6 +57,8 @@ end
 function SoundManager:play(handle)
   if sfx[handle] then
     spawnNewSFX(handle)
+  else
+    error("SoundManager: trying to play a sound that does not exist: " .. handle)
   end
 end
 
