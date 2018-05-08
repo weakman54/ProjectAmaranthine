@@ -149,16 +149,24 @@ function VNSystem:setMomentI(momentI)
   end
 
   return true
-    
-    
+
+
   -- Play soundeffects/start sound play timers
 --  for _, sound in ipairs(self.curMoment.drawData) do
 --    if sound.delay
-  
+
 end
 
 function VNSystem:incrementMomentI()
   -- NOTE: not thought over, needs testing...
+
+  -- ASSUMPTION: there is a loaded moment when running this...
+  local sceneToGoto = self.curMoment.transitionTrigger.gotoScene
+  if sceneToGoto then
+    self:loadScene(sceneToGoto)
+  end
+
+
   local changedMoment = self:setMomentI(self.curMomentI + 1)
   if changedMoment then return end
 
@@ -204,7 +212,9 @@ end
 function VNSystem:loadScene(scene, panelI, momentI)
   assert(scene, "VNSystem: You must supply which scene to switch to!")
 
-  self.curScene = scene
+  local t = reload(("assets/VN/sceneScript%s"):format(scene)) -- NOTE: This feels pretty hack, but eh
+
+  self.curScene = t
   self:setPanelI(panelI or 1, momentI or 1)
 end
 

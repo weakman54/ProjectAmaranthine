@@ -1,39 +1,26 @@
 
 local RM = require 'resourceManager.resourceManager'
-RM.prefix = 'assets/VN/scene01_0_endAndZeroArgue/'
+RM.prefix = 'assets/VN/scene03_0_midFightScene/'
 
 return {
   [1] = {
-    bg = RM:loadAnimation('s01_0_p001_bg_'),
+    bg = RM:loadAnimation('s03_0_p001_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          ElevatorRight = RM:loadAnimation('s01_0_p001_m01_ElevatorRight_'),
-          EndZero = RM:loadAnimation('s01_0_p001_m01_EndZero_'),
-          ElevatorLeft = RM:loadAnimation('s01_0_p001_m01_ElevatorLeft_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
-          gotoScene = "03_0",
         },
         drawData = {
-          [1] = {
-            anim = "ElevatorLeft",
-          },
-          [2] = {
-            anim = "ElevatorRight",
-          },
-          [3] = {
-            anim = "EndZero",
-          },
         },
       },
     },
   },
   [2] = {
-    bg = RM:loadAnimation('s01_0_p002_bg_'),
+    bg = RM:loadAnimation('s03_0_p002_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -49,67 +36,55 @@ return {
     },
   },
   [3] = {
-    bg = RM:loadAnimation('s01_0_p003_bg_'),
+    bg = RM:loadAnimation('s03_0_p003_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          EndZero = RM:loadAnimation('s01_0_p003_m01_EndZero_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "EndZero",
-          },
         },
       },
     },
   },
   [4] = {
-    bg = RM:loadAnimation('s01_0_p004_bg_'),
+    bg = RM:loadAnimation('s03_0_p004_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          EndZero = RM:loadAnimation('s01_0_p004_m01_EndZero_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "EndZero",
-          },
         },
       },
     },
   },
   [5] = {
-    bg = RM:loadAnimation('s01_0_p005_bg_'),
+    bg = RM:loadAnimation('s03_0_p005_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          EndZero = RM:loadAnimation('s01_0_p005_m01_EndZero_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "EndZero",
-          },
         },
       },
     },
   },
   [6] = {
-    bg = RM:loadAnimation('s01_0_p006_bg_'),
+    bg = RM:loadAnimation('s03_0_p006_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -125,7 +100,7 @@ return {
     },
   },
   [7] = {
-    bg = RM:loadAnimation('s01_0_p007_bg_'),
+    bg = RM:loadAnimation('s03_0_p007_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -141,7 +116,7 @@ return {
     },
   },
   [8] = {
-    bg = RM:loadAnimation('s01_0_p008_bg_'),
+    bg = RM:loadAnimation('s03_0_p008_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -157,7 +132,7 @@ return {
     },
   },
   [9] = {
-    bg = RM:loadAnimation('s01_0_p009_bg_'),
+    bg = RM:loadAnimation('s03_0_p009_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -173,7 +148,7 @@ return {
     },
   },
   [10] = {
-    bg = RM:loadAnimation('s01_0_p010_bg_'),
+    bg = RM:loadAnimation('s03_0_p010_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -189,7 +164,7 @@ return {
     },
   },
   [11] = {
-    bg = RM:loadAnimation('s01_0_p011_bg_'),
+    bg = RM:loadAnimation('s03_0_p011_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -205,7 +180,7 @@ return {
     },
   },
   [12] = {
-    bg = RM:loadAnimation('s01_0_p012_bg_'),
+    bg = RM:loadAnimation('s03_0_p012_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -221,7 +196,7 @@ return {
     },
   },
   [13] = {
-    bg = RM:loadAnimation('s01_0_p013_bg_'),
+    bg = RM:loadAnimation('s03_0_p013_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -237,87 +212,71 @@ return {
     },
   },
   [14] = {
-    bg = RM:loadAnimation('s01_0_p014_bg_'),
+    bg = RM:loadAnimation('s03_0_p014_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          EndZero = RM:loadAnimation('s01_0_p014_m01_EndZero_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "EndZero",
-          },
         },
       },
     },
   },
   [15] = {
-    bg = RM:loadAnimation('s01_0_p015_bg_'),
+    bg = RM:loadAnimation('s03_0_p015_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          EndZero = RM:loadAnimation('s01_0_p015_m01_EndZero_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "EndZero",
-          },
         },
       },
     },
   },
   [16] = {
-    bg = RM:loadAnimation('s01_0_p016_bg_'),
+    bg = RM:loadAnimation('s03_0_p016_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          ZeroTiger = RM:loadAnimation('s01_0_p016_m01_ZeroTiger_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "ZeroTiger",
-          },
         },
       },
     },
   },
   [17] = {
-    bg = RM:loadAnimation('s01_0_p017_bg_'),
+    bg = RM:loadAnimation('s03_0_p017_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          Tiger = RM:loadAnimation('s01_0_p017_m01_Tiger_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "Tiger",
-          },
         },
       },
     },
   },
   [18] = {
-    bg = RM:loadAnimation('s01_0_p018_bg_'),
+    bg = RM:loadAnimation('s03_0_p018_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -333,47 +292,39 @@ return {
     },
   },
   [19] = {
-    bg = RM:loadAnimation('s01_0_p019_bg_'),
+    bg = RM:loadAnimation('s03_0_p019_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s01_0_p019_m01_End_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "End",
-          },
         },
       },
     },
   },
   [20] = {
-    bg = RM:loadAnimation('s01_0_p020_bg_'),
+    bg = RM:loadAnimation('s03_0_p020_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s01_0_p020_m01_End_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "End",
-          },
         },
       },
     },
   },
   [21] = {
-    bg = RM:loadAnimation('s01_0_p021_bg_'),
+    bg = RM:loadAnimation('s03_0_p021_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -389,7 +340,7 @@ return {
     },
   },
   [22] = {
-    bg = RM:loadAnimation('s01_0_p022_bg_'),
+    bg = RM:loadAnimation('s03_0_p022_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -405,7 +356,7 @@ return {
     },
   },
   [23] = {
-    bg = RM:loadAnimation('s01_0_p023_bg_'),
+    bg = RM:loadAnimation('s03_0_p023_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -421,27 +372,23 @@ return {
     },
   },
   [24] = {
-    bg = RM:loadAnimation('s01_0_p024_bg_'),
+    bg = RM:loadAnimation('s03_0_p024_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          ZeroTiger = RM:loadAnimation('s01_0_p024_m01_ZeroTiger_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "ZeroTiger",
-          },
         },
       },
     },
   },
   [25] = {
-    bg = RM:loadAnimation('s01_0_p025_bg_'),
+    bg = RM:loadAnimation('s03_0_p025_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -457,7 +404,7 @@ return {
     },
   },
   [26] = {
-    bg = RM:loadAnimation('s01_0_p026_bg_'),
+    bg = RM:loadAnimation('s03_0_p026_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -473,7 +420,7 @@ return {
     },
   },
   [27] = {
-    bg = RM:loadAnimation('s01_0_p027_bg_'),
+    bg = RM:loadAnimation('s03_0_p027_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -489,27 +436,23 @@ return {
     },
   },
   [28] = {
-    bg = RM:loadAnimation('s01_0_p028_bg_'),
+    bg = RM:loadAnimation('s03_0_p028_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          ZeroTiger = RM:loadAnimation('s01_0_p028_m01_ZeroTiger_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "ZeroTiger",
-          },
         },
       },
     },
   },
   [29] = {
-    bg = RM:loadAnimation('s01_0_p029_bg_'),
+    bg = RM:loadAnimation('s03_0_p029_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -525,27 +468,23 @@ return {
     },
   },
   [30] = {
-    bg = RM:loadAnimation('s01_0_p030_bg_'),
+    bg = RM:loadAnimation('s03_0_p030_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          ZeroTiger = RM:loadAnimation('s01_0_p030_m01_ZeroTiger_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "ZeroTiger",
-          },
         },
       },
     },
   },
   [31] = {
-    bg = RM:loadAnimation('s01_0_p031_bg_'),
+    bg = RM:loadAnimation('s03_0_p031_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -561,7 +500,7 @@ return {
     },
   },
   [32] = {
-    bg = RM:loadAnimation('s01_0_p032_bg_'),
+    bg = RM:loadAnimation('s03_0_p032_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -577,7 +516,7 @@ return {
     },
   },
   [33] = {
-    bg = RM:loadAnimation('s01_0_p033_bg_'),
+    bg = RM:loadAnimation('s03_0_p033_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -593,7 +532,7 @@ return {
     },
   },
   [34] = {
-    bg = RM:loadAnimation('s01_0_p034_bg_'),
+    bg = RM:loadAnimation('s03_0_p034_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -609,7 +548,7 @@ return {
     },
   },
   [35] = {
-    bg = RM:loadAnimation('s01_0_p035_bg_'),
+    bg = RM:loadAnimation('s03_0_p035_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -625,7 +564,7 @@ return {
     },
   },
   [36] = {
-    bg = RM:loadAnimation('s01_0_p036_bg_'),
+    bg = RM:loadAnimation('s03_0_p036_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -641,7 +580,7 @@ return {
     },
   },
   [37] = {
-    bg = RM:loadAnimation('s01_0_p037_bg_'),
+    bg = RM:loadAnimation('s03_0_p037_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -657,7 +596,7 @@ return {
     },
   },
   [38] = {
-    bg = RM:loadAnimation('s01_0_p038_bg_'),
+    bg = RM:loadAnimation('s03_0_p038_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -673,7 +612,7 @@ return {
     },
   },
   [39] = {
-    bg = RM:loadAnimation('s01_0_p039_bg_'),
+    bg = RM:loadAnimation('s03_0_p039_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -689,27 +628,23 @@ return {
     },
   },
   [40] = {
-    bg = RM:loadAnimation('s01_0_p040_bg_'),
+    bg = RM:loadAnimation('s03_0_p040_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s01_0_p040_m01_End_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "End",
-          },
         },
       },
     },
   },
   [41] = {
-    bg = RM:loadAnimation('s01_0_p041_bg_'),
+    bg = RM:loadAnimation('s03_0_p041_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -725,7 +660,7 @@ return {
     },
   },
   [42] = {
-    bg = RM:loadAnimation('s01_0_p042_bg_'),
+    bg = RM:loadAnimation('s03_0_p042_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -741,7 +676,7 @@ return {
     },
   },
   [43] = {
-    bg = RM:loadAnimation('s01_0_p043_bg_'),
+    bg = RM:loadAnimation('s03_0_p043_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -757,7 +692,7 @@ return {
     },
   },
   [44] = {
-    bg = RM:loadAnimation('s01_0_p044_bg_'),
+    bg = RM:loadAnimation('s03_0_p044_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -773,7 +708,7 @@ return {
     },
   },
   [45] = {
-    bg = RM:loadAnimation('s01_0_p045_bg_'),
+    bg = RM:loadAnimation('s03_0_p045_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -789,7 +724,7 @@ return {
     },
   },
   [46] = {
-    bg = RM:loadAnimation('s01_0_p046_bg_'),
+    bg = RM:loadAnimation('s03_0_p046_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -805,7 +740,7 @@ return {
     },
   },
   [47] = {
-    bg = RM:loadAnimation('s01_0_p047_bg_'),
+    bg = RM:loadAnimation('s03_0_p047_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -821,7 +756,7 @@ return {
     },
   },
   [48] = {
-    bg = RM:loadAnimation('s01_0_p048_bg_'),
+    bg = RM:loadAnimation('s03_0_p048_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -837,27 +772,23 @@ return {
     },
   },
   [49] = {
-    bg = RM:loadAnimation('s01_0_p049_bg_'),
+    bg = RM:loadAnimation('s03_0_p049_bg_'),
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          ZeroEnd = RM:loadAnimation('s01_0_p049_m01_ZeroEnd_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "ZeroEnd",
-          },
         },
       },
     },
   },
   [50] = {
-    bg = RM:loadAnimation('s01_0_p050_bg_'),
+    bg = RM:loadAnimation('s03_0_p050_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -873,7 +804,7 @@ return {
     },
   },
   [51] = {
-    bg = RM:loadAnimation('s01_0_p051_bg_'),
+    bg = RM:loadAnimation('s03_0_p051_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -889,7 +820,7 @@ return {
     },
   },
   [52] = {
-    bg = RM:loadAnimation('s01_0_p052_bg_'),
+    bg = RM:loadAnimation('s03_0_p052_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -905,7 +836,7 @@ return {
     },
   },
   [53] = {
-    bg = RM:loadAnimation('s01_0_p053_bg_'),
+    bg = RM:loadAnimation('s03_0_p053_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -921,7 +852,7 @@ return {
     },
   },
   [54] = {
-    bg = RM:loadAnimation('s01_0_p054_bg_'),
+    bg = RM:loadAnimation('s03_0_p054_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -937,7 +868,7 @@ return {
     },
   },
   [55] = {
-    bg = RM:loadAnimation('s01_0_p055_bg_'),
+    bg = RM:loadAnimation('s03_0_p055_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -953,7 +884,7 @@ return {
     },
   },
   [56] = {
-    bg = RM:loadAnimation('s01_0_p056_bg_'),
+    bg = RM:loadAnimation('s03_0_p056_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -969,7 +900,7 @@ return {
     },
   },
   [57] = {
-    bg = RM:loadAnimation('s01_0_p057_bg_'),
+    bg = RM:loadAnimation('s03_0_p057_bg_'),
     moments = {
       [1] = {
         sounds = {
@@ -985,135 +916,7 @@ return {
     },
   },
   [58] = {
-    bg = RM:loadAnimation('s01_0_p058_bg_'),
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [59] = {
-    bg = RM:loadAnimation('s01_0_p059_bg_'),
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [60] = {
-    bg = RM:loadAnimation('s01_0_p060_bg_'),
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [61] = {
-    bg = RM:loadAnimation('s01_0_p061_bg_'),
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [62] = {
-    bg = RM:loadAnimation('s01_0_p062_bg_'),
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [63] = {
-    bg = RM:loadAnimation('s01_0_p063_bg_'),
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [64] = {
-    bg = RM:loadAnimation('s01_0_p064_bg_'),
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [65] = {
-    bg = RM:loadAnimation('s01_0_p065_bg_'),
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [66] = {
-    bg = RM:loadAnimation('s01_0_p066_bg_'),
+    bg = RM:loadAnimation('s03_0_p058_bg_'),
     moments = {
       [1] = {
         sounds = {
