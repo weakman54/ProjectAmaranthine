@@ -12,8 +12,10 @@ function stateVN:init()
 end
 
 function stateVN:enter(data)
-  local scene = buildScene("assets/VN/", 1)
-  VNSystem:loadScene(reload("assets/VN/sceneScript01"))
+--  local scene = buildScene("assets/VN/", "01_0")  
+--  scene = buildScene("assets/VN/", "03_0"
+  
+  VNSystem:loadScene("01_0")
 end
 
 function stateVN:leave()
