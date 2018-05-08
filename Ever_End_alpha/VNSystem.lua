@@ -140,6 +140,7 @@ function VNSystem:setMomentI(momentI)
     HUMPTimer.after(time, function() VNSystem:incrementMomentI() end)
   end
 
+  -- Start any tweens
   for _, t in ipairs(self.curMoment.drawData) do
     if t.tween then
       local dur, target, method, after = unpack(t.tween)
@@ -148,6 +149,12 @@ function VNSystem:setMomentI(momentI)
   end
 
   return true
+    
+    
+  -- Play soundeffects/start sound play timers
+--  for _, sound in ipairs(self.curMoment.drawData) do
+--    if sound.delay
+  
 end
 
 function VNSystem:incrementMomentI()
