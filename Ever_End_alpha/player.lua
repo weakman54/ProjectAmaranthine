@@ -225,7 +225,7 @@ function player:initializeSM()
       enter = function(self)
         ac:setAnimation("heal")
 		Sound:play("Fire2")
-		self.sound=Sound:play("Placeholder Heal Loop", {loop=true})
+		self.sound = Sound:play("Placeholder Heal Loop",{loop=true})
       end,
 
       update = function(self, dt)
