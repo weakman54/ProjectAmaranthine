@@ -190,13 +190,14 @@ end
 
 
 function VNSystem:drawPanel(panel, momentI)
-  panel.bg.anim.data:loveDraw(panel.bg.x, panel.bg.y)
+  local t = panel.bg
+  panel.bg.anim.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox, t.oy)
 
   if not self.curMoment then return end
 
   for _, t in ipairs(self.curMoment.drawData) do
     local sprite = self.curMoment.anims[t.anim]
-    sprite.data:loveDraw(t.x, t.y)
+    sprite.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox or 200, t.oy or 200)
   end
 end
 
