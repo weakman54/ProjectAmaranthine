@@ -342,13 +342,18 @@ function player:initializeSM()
         if not kind then
           if player.damaged.attack.damage >= INTENSE_DAMAGE_TRESHOLD then
             ac:setAnimation("hurt_intense", false)
+			playDelayed("Bone Break", 0.4)
+			playDelayed("Crumble #1", 0.69)
+			playDelayed("Player Fall", 1.5)
+			playDelayed("Applause2", 2.5)
           else
             ac:setAnimation("hurt_mild", false)
+			playDelayed("Player Slammed", 0.3)
           end
         else
           ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
         end
-		Sound:play("Player Hit")
+		Sound:play("Enemy Hit")
 
         player:changeHP(-player.damaged.attack.damage)
         player.damaged = false
