@@ -62,8 +62,8 @@ statePause  = require "gamestates.statePause"
 stateVN     = require "gamestates.stateVN"
 
 -- player/enemy
-player = require "player"
-enemy = require "enemy"
+--player = require "player"
+--enemy = require "enemy"
 
 -- the joystick
 gJoy = love.joystick.getJoysticks()[1]
@@ -163,13 +163,13 @@ end
 
 
 function love.draw()
-  if flipHack then
-    love.graphics.scale(-scale.x, scale.y) -- Scale hack
-    love.graphics.translate(-1920, 0)
+--  if flipHack then
+--    love.graphics.scale(-scale.x, scale.y) -- Scale hack
+--    love.graphics.translate(-1920, 0)
 
-  else
+--  else
     love.graphics.scale(scale.x, scale.y) -- Scale hack
-  end
+--  end
 
   -- TEST vvvvvvvvvvv
   -- ^^^^^^^^^^^^^^^^
@@ -217,8 +217,6 @@ function GameReload()
 --  table.insert(lovebird.whitelist, "*.*.*.*")
 
   -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
-  player = reload("player")
-  enemy  = reload("enemy")
 
   stateBattle = reload("gamestates.stateBattle")
   statePause  = reload("gamestates.statePause")
