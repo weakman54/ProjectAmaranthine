@@ -28,7 +28,7 @@ function player:initialize()
 
   self.maxHP = 10 -- points
   self.maxSP = 10
-  
+
   self.swordComboBaseDmg = 1
   self.swordComboGradDmg = 2
 
@@ -45,7 +45,7 @@ function player:reset()
   self.HP = self.maxHP
   self.SP = self.maxSP/2
 
-  self.sm:switch("idle")
+  return self.sm:switch("idle")
 end
 --
 
@@ -147,22 +147,22 @@ function player:initializeSM()
 
       update = function(self, dt)
         if player.damaged then
-          sm:switch("hurt")
+          return sm:switch("hurt")
 
         elseif input:pressed("guard") then
-          sm:switch("guard")
+          return sm:switch("guard")
 
         elseif input:pressed("down") then
-          sm:switch("dodge", "low")
+          return sm:switch("dodge", "low")
 
         elseif input:pressed("up") then
-          sm:switch("dodge", "high")
+          return sm:switch("dodge", "high")
 
         elseif input:pressed("attack") then
-          sm:switch("charge")
+          return sm:switch("charge")
 
         elseif input:pressed("heal") then
-          sm:switch("heal")
+          return sm:switch("heal")
 
         end
       end,
@@ -177,8 +177,8 @@ function player:initializeSM()
 
       enter = function(self)
         ac:setAnimation("guard")
-		Sound:play("Open1")
-		Sound:play("Crossbow")
+        Sound:play("Open1")
+        Sound:play("Crossbow")
 
         if enemy.sm:is("offensive") then
           self.parryTiming = enemy.timingStage == 3
@@ -188,10 +188,10 @@ function player:initializeSM()
       update = function(self, dt)
         if player.damaged then
           if self.parryTiming then
-            sm:switch("parry")
+            return sm:switch("parry")
           else
             ac:setAnimation("guard_hit", false)
-			Sound:play("Player Block")
+            Sound:play("Player Block")
 
             player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
           end
@@ -208,7 +208,7 @@ function player:initializeSM()
 
 
         if not input:down("guard") or player.SP <= 0 then
-          sm:switch("idle")
+          return sm:switch("idle")
         end
 
         player.SP = math.max(player.SP - player.SPDrainRate * dt, 0)
@@ -232,7 +232,7 @@ function player:initializeSM()
         end
 
         if not input:down("heal") or player.HP >= player.maxHP or player.SP <= 0 then
-          sm:switch("idle")
+          return sm:switch("idle")
         end
 
         player.HP = math.min(player.HP + player.HPGainRate * dt, player.maxHP)
@@ -256,15 +256,15 @@ function player:initializeSM()
         self.timer:update(dt)
 
         if player.damaged then          
-          sm:switch("hurt")
+          return sm:switch("hurt")
         end
 
 
         if input:released("attack") or player.SP <= 0 then
           if self.chargeReady then
-            sm:switch("chargeAttack")
+            return sm:switch("chargeAttack")
           else
-            sm:switch("attack")
+            return sm:switch("attack")
           end
         end
 
@@ -287,15 +287,15 @@ function player:initializeSM()
         self.timer = Timer:new()
         self.target = 0.1 -- HARDCODED duration
 
-        enemy.sm:switch("hurt") -- HACK
         enemy:changeHP(-3)
+        return enemy.sm:switch("hurt") -- HACK
       end,
 
       update = function(self, dt)
         self.timer:update(dt)
 
         if self.timer:reached(self.target) then
-          sm:switch("idle")
+          return sm:switch("idle")
         end
       end,
     })
@@ -342,18 +342,18 @@ function player:initializeSM()
         if not kind then
           if player.damaged.attack.damage >= INTENSE_DAMAGE_TRESHOLD then
             ac:setAnimation("hurt_intense", false)
-			playDelayed("Bone Break", 0.4)
-			playDelayed("Crumble #1", 0.69)
-			playDelayed("Player Fall", 1.5)
-			playDelayed("Applause2", 2.5)
+            Sound:play("Bone Break", {delay = 0.4})
+            Sound:play("Crumble #1", {delay = 0.69})
+            Sound:play("Player Fall", {delay = 1.5})
+            Sound:play("Applause2", {delay = 2.5})
           else
             ac:setAnimation("hurt_mild", false)
-			playDelayed("Player Slammed", 0.3)
+            Sound:play("Player Slammed", {delay = 0.3})
           end
         else
           ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
         end
-		Sound:play("Enemy Hit")
+        Sound:play("Enemy Hit")
 
         player:changeHP(-player.damaged.attack.damage)
         player.damaged = false
@@ -366,7 +366,7 @@ function player:initializeSM()
         self.timer:update(dt)
 
         if self.timer:reached(player.hurtDuration) then
-          sm:switch("idle")
+          return sm:switch("idle")
         end
 
       end
@@ -396,7 +396,7 @@ end
 function player:changeSP(offset)
   self.SP = math.min(math.max(self.SP + offset, 0), self.maxSP)
 end
-  
+
 
 
 

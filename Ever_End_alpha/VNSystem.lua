@@ -21,7 +21,7 @@ function buildPanel(path, panelPrefix, panelNumber)
   if not background then return end
 
   RM.prefix = path
-  ret.bg = string.format("$RM:loadAnimation('%s')", background:sub(1, -10))
+  ret.bg = {anim = string.format("$RM:loadAnimation('%s')", background:sub(1, -10))}
 
 
 --  print(ret.bg)
@@ -148,6 +148,14 @@ function VNSystem:setMomentI(momentI)
     end
   end
 
+  local bgtween = self.curMoment.drawData.bg and self.curMoment.drawData.bg.tween -- HARDCODED: only does tweens, need changing if we ever add more ways to change stuff
+  local bg = self.curPanel.bg
+
+  if bgtween then
+    local dur, target, method, after = unpack(bgtween)
+    HUMPTimer.tween(dur, bg, target, method, after)
+  end
+
   return true
 
 
@@ -182,13 +190,14 @@ end
 
 
 function VNSystem:drawPanel(panel, momentI)
-  panel.bg.data:loveDraw()
+  local t = panel.bg
+  panel.bg.anim.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox, t.oy)
 
   if not self.curMoment then return end
 
   for _, t in ipairs(self.curMoment.drawData) do
     local sprite = self.curMoment.anims[t.anim]
-    sprite.data:loveDraw(t.x, t.y)
+    sprite.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox or 200, t.oy or 200)
   end
 end
 
