@@ -96,6 +96,6 @@ end
 
 
 
-function playDelayed(sound, time)
-  HUMPTimer.after(time, function() Sound:play(sound) end)
-end
+--function playDelayed(sound, time)
+--  HUMPTimer.after(time, function() Sound:play(sound) end)
+--end
