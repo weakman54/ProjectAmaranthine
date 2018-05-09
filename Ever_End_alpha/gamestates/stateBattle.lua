@@ -11,6 +11,10 @@ local stateBattle = {}
 local background -- TODO: check if this is useful like this
 
 
+player = reload("player")
+enemy  = reload("enemy")
+
+
 -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
 local GUIPlayerHealth = GUIBar:new(vec(300, 900) , vec(300, 30))
 GUIPlayerHealth.innerColor = {255, 000, 000}
@@ -91,6 +95,11 @@ function stateBattle:keypressed(key)
     enemy:reset()
     player:reset()
   end
+end
+
+
+function stateBattle:leave()
+  flipHack = false
 end
 
 
