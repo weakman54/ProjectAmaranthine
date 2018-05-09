@@ -75,6 +75,7 @@ end
 
 function stateBattle:draw()
   if flipHack then
+    love.graphics.origin()
     love.graphics.scale(-scale.x, scale.y) -- Scale hack
     love.graphics.translate(-1920, 0)
   end
