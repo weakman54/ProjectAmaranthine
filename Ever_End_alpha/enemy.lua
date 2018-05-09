@@ -346,7 +346,7 @@ function enemy:initializeSM()
 
   sm:add("guard", { -- NOTE: renamed this from "defensive", that was basically phased out anyway...
       enter = function(self)
-        ac:setAnimation("guard")
+        ac:setAnimation("guard", false)
 		
 		self.soundPlayed=false
 
