@@ -225,7 +225,6 @@ function player:initializeSM()
       enter = function(self)
         ac:setAnimation("heal")
 		Sound:play("Fire2")
-		self.sound = Sound:play("Placeholder Heal Loop",{loop=true})
       end,
 
       update = function(self, dt)
@@ -234,7 +233,7 @@ function player:initializeSM()
         end
 
         if not input:down("heal") or player.HP >= player.maxHP or player.SP <= 0 then
-			self.sound:stop()
+		--	if self.sound then self.sound:stop() end
           return sm:switch("idle")
         end
 
