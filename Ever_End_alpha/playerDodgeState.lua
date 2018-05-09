@@ -14,6 +14,12 @@ local data = {}
 local dodgeStart = {
   enter = function(self)
     ac:setAnimation("dodge_" .. data.stance .. "_start", false)
+		
+	if data.stance == "high" then 
+		Sound:play("High Dodge")
+	elseif data.stance == "low" then 
+			Sound:play("Low Dodge")
+	end
 
     self.timer = Timer:new()
 
@@ -112,6 +118,7 @@ local dodgeMinigame = {
       enemy:changeHP(-1) -- HARDCODED: -1, health amount
 
       ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing, false)
+	  Sound:play("Gun1")
       self.attackTimer = Timer:new()
 
       self.combo = nil
