@@ -74,13 +74,20 @@ function stateBattle:update(dt)
 end
 
 function stateBattle:draw()
+  if flipHack then
+    love.graphics.scale(-scale.x, scale.y) -- Scale hack
+    love.graphics.translate(-1920, 0)
+  end
+
   love.graphics.draw(background, x, y, r, sx, sy, 200, 200)
-  love.graphics.print("Battle state", 100, 100)
 
 
   enemy:draw()
   player:draw()
 
+-- RESET STUFF (?)
+  love.graphics.origin()
+  love.graphics.scale(scale.x, scale.y) -- Scale hack
 
   -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
   GUIPlayerHealth:loveDraw()
@@ -88,6 +95,8 @@ function stateBattle:draw()
 
   GUIEnemyHealth:loveDraw()
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  love.graphics.print("Battle state", 100, 100)
+
 end
 
 function stateBattle:keypressed(key)

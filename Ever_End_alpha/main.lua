@@ -163,13 +163,13 @@ end
 
 
 function love.draw()
-  if flipHack then
-    love.graphics.scale(-scale.x, scale.y) -- Scale hack
-    love.graphics.translate(-1920, 0)
+--  if flipHack then
+--    love.graphics.scale(-scale.x, scale.y) -- Scale hack
+--    love.graphics.translate(-1920, 0)
 
-  else
+--  else
     love.graphics.scale(scale.x, scale.y) -- Scale hack
-  end
+--  end
 
   -- TEST vvvvvvvvvvv
   -- ^^^^^^^^^^^^^^^^
