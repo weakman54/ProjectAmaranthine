@@ -65,7 +65,7 @@ function enemy:reset()
 
   self.counterWeightTable = {guard = self.baseGuardWeight, counterAttack = 1}
 
-  self.sm:switch("idle")
+  return self.sm:switch("idle")
 end
 --
 
@@ -220,7 +220,7 @@ function enemy:initializeSM()
         -- TODO: BETTER FEEDBACK FOR COUNTER ATTACK
 
         if self.attackTimer:reached(enemy.attackTime) or enemy.dbg_trigger_offensive_action then
-          sm:switch("offensive")
+          return sm:switch("offensive")
         end
 
         -- HACK Stuff:
@@ -418,7 +418,7 @@ function enemy:initializeSM()
         self.timer:update(dt)
 
         if self.timer:reached(enemy.hurtDuration) then -- HARDCODED: hurtDuration
-          sm:switch("idle")
+          return sm:switch("idle")
         end
       end,
     })
