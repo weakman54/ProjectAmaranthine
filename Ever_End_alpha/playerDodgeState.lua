@@ -77,6 +77,7 @@ local dodgeMinigame = {
   enter = function(self)
     enemy.ac:pause()
     ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing) -- ASSUMPTION: data.timing should have a correct value here since we're in this state
+	Sound:play("Slo Mo")
 
     self.hurtI = 1
 

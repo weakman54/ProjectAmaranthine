@@ -273,6 +273,7 @@ function player:initializeSM()
         if self.timer:reached(player.chargeDuration) and ac:curName() ~= "charge_attack_ready" then
           self.chargeReady = true
           ac:setAnimation("charge_attack_ready")
+		  Sound:play("Charge Complete")
         end
       end,
     })
