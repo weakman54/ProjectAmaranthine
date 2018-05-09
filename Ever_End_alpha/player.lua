@@ -224,6 +224,7 @@ function player:initializeSM()
 
       enter = function(self)
         ac:setAnimation("heal")
+		Sound:play("Fire2")
       end,
 
       update = function(self, dt)
@@ -232,6 +233,7 @@ function player:initializeSM()
         end
 
         if not input:down("heal") or player.HP >= player.maxHP or player.SP <= 0 then
+		--	if self.sound then self.sound:stop() end
           return sm:switch("idle")
         end
 
@@ -273,6 +275,7 @@ function player:initializeSM()
         if self.timer:reached(player.chargeDuration) and ac:curName() ~= "charge_attack_ready" then
           self.chargeReady = true
           ac:setAnimation("charge_attack_ready")
+		  Sound:play("Charge Complete")
         end
       end,
     })

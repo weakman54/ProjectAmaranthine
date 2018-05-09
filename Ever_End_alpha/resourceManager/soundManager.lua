@@ -15,16 +15,18 @@ local function spawnNewSFX(handle, opts)
   local tfx = sfx[handle]
   local src = love.audio.newSource(tfx.filename, "static")
 
-  src:setLooping(opts and opts.looping or false)
+  src:setLooping(opts and opts.loop or false)
 
 --  table.insert(tfx.sources, src) -- NOTE: this might be useful, so I'll keep it here, but for now I'll do the simple solution
 
   if opts and opts.delay then
-    HUMPTimer.after(opts.delay, function() src:play()   playing[src] = src end)
+    HUMPTimer.after(opts.delay, function() src:play() playing[src] = src end)
   else
     src:play()
     playing[src] = src
   end
+  
+  return src
 end
 
 
