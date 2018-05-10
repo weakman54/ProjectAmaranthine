@@ -4,7 +4,9 @@ RM.prefix = 'assets/VN/scene04_2_killOption/'
 
 return {
   [1] = {
-    bg = RM:loadAnimation('s04_2_p001_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_2_p001_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -24,7 +26,9 @@ return {
     },
   },
   [2] = {
-    bg = RM:loadAnimation('s04_2_p002_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_2_p002_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -44,7 +48,9 @@ return {
     },
   },
   [3] = {
-    bg = RM:loadAnimation('s04_2_p003_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_2_p003_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -64,7 +70,9 @@ return {
     },
   },
   [4] = {
-    bg = RM:loadAnimation('s04_2_p004_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_2_p004_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -84,7 +92,9 @@ return {
     },
   },
   [5] = {
-    bg = RM:loadAnimation('s04_2_p005_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_2_p005_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -104,7 +114,9 @@ return {
     },
   },
   [6] = {
-    bg = RM:loadAnimation('s04_2_p006_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_2_p006_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -124,7 +136,9 @@ return {
     },
   },
   [7] = {
-    bg = RM:loadAnimation('s04_2_p007_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_2_p007_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -144,7 +158,9 @@ return {
     },
   },
   [8] = {
-    bg = RM:loadAnimation('s04_2_p008_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_2_p008_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -160,7 +176,9 @@ return {
     },
   },
   [9] = {
-    bg = RM:loadAnimation('s04_2_p009_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_2_p009_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
