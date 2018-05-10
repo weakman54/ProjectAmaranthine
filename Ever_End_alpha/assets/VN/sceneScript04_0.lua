@@ -221,6 +221,8 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+          
+          gotoScene = "04_1"
         },
         drawData = {
         },
