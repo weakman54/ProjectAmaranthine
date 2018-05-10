@@ -8,14 +8,13 @@ local stateVN = {}
 
 
 function stateVN:init()
-
+  VNSystem:loadScene("03_0")
 end
 
 function stateVN:enter(data)
 --  local scene = buildScene("assets/VN/", "01_0")  
 --  buildScene("assets/VN/", "03_0")
 
-  VNSystem:loadScene("03_0")
 end
 
 function stateVN:leave()
