@@ -212,6 +212,10 @@ end
 
 function VNSystem:keypressed(key)
   if self.curMoment.transitionTrigger[1] == "waitForInput" then
+    local sceneAtKey = self.curMoment.transitionTrigger[key]
+    if sceneAtKey then
+      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
+    end
     self:incrementMomentI()
   end
 end
