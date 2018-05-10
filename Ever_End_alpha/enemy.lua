@@ -379,7 +379,7 @@ function enemy:initializeSM()
   sm:add("taunt", {
       enter = function(self)
         ac:setAnimation("taunt01", false)
-		Sound:play("Frog")
+		Sound:play("Froggy Laugh", {delay = 0.15})
 
         self.timer = Timer:new()
       end,
