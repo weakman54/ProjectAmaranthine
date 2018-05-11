@@ -16,6 +16,8 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+          k = "04_1",
+          s = "04_2",
         },
         drawData = {
           [1] = {
@@ -1342,6 +1344,8 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+          
+          gotoScene = "04_0"
         },
         drawData = {
           [1] = {

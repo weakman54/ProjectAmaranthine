@@ -120,6 +120,7 @@ local dodgeMinigame = {
 
       ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing, false)
 	  Sound:play("Gun1")
+	  Sound:play("Gun Wosh")
       self.attackTimer = Timer:new()
 
       self.combo = nil

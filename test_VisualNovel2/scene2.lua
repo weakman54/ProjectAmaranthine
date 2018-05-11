@@ -251,15 +251,17 @@ return {
   
   
   
-  {"clear", "s02_p042_bg"},
+  --{"clear", "s02_p042_bg"},
   
-  {"waitForInput"},
+  --{"waitForInput"},
   
   
   
-  {"gotoBattle", stateBattle},
+  --{"gotoBattle", stateBattle},
   
   {"changeScene", "scene3"},
+  
+  
   
   
 

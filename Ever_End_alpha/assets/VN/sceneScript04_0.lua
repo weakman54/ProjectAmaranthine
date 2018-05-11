@@ -4,7 +4,9 @@ RM.prefix = 'assets/VN/scene04_0_aftermath/'
 
 return {
   [1] = {
-    bg = RM:loadAnimation('s04_0_p001_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p001_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -28,7 +30,9 @@ return {
     },
   },
   [2] = {
-    bg = RM:loadAnimation('s04_0_p002_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p002_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -48,7 +52,9 @@ return {
     },
   },
   [3] = {
-    bg = RM:loadAnimation('s04_0_p003_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p003_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -72,7 +78,9 @@ return {
     },
   },
   [4] = {
-    bg = RM:loadAnimation('s04_0_p004_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p004_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -92,7 +100,9 @@ return {
     },
   },
   [5] = {
-    bg = RM:loadAnimation('s04_0_p005_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p005_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -112,7 +122,9 @@ return {
     },
   },
   [6] = {
-    bg = RM:loadAnimation('s04_0_p006_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p006_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -132,7 +144,9 @@ return {
     },
   },
   [7] = {
-    bg = RM:loadAnimation('s04_0_p007_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p007_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -152,7 +166,9 @@ return {
     },
   },
   [8] = {
-    bg = RM:loadAnimation('s04_0_p008_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p008_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -172,7 +188,9 @@ return {
     },
   },
   [9] = {
-    bg = RM:loadAnimation('s04_0_p009_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p009_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -192,7 +210,9 @@ return {
     },
   },
   [10] = {
-    bg = RM:loadAnimation('s04_0_p010_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p010_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -212,7 +232,9 @@ return {
     },
   },
   [11] = {
-    bg = RM:loadAnimation('s04_0_p011_bg_'),
+    bg = {
+      anim = RM:loadAnimation('s04_0_p011_bg_'),
+    },
     moments = {
       [1] = {
         sounds = {
@@ -221,6 +243,7 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+          gotoScene = "04_1"
         },
         drawData = {
         },
