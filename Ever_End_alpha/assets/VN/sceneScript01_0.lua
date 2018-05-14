@@ -18,6 +18,7 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+          gotoBattle = true
         },
         drawData = {
           [1] = {
