@@ -110,7 +110,7 @@ return {
   
   
   
-  {"gotoBattle", stateBattle},
+  --{"gotoBattle", stateBattle},
   
   
   
@@ -497,7 +497,7 @@ return {
   
   
   
-  {"gotoBattle", stateBattle},
+  --{"gotoBattle", stateBattle},
   
   {"changeScene", "scene4"},
   
