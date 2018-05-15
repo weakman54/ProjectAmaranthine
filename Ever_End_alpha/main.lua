@@ -2,7 +2,7 @@
 
 local dbg_print_animation_frames = false
 
--- LASKDJLASKDJLASKJD
+-- Reload error management stuff (should be moved) vvvvvvvv
 reloaded = true
 
 function reload(thing)
@@ -29,7 +29,7 @@ function callOrError(f, ...)
 
   return ret
 end
--- ALSKDJLAKSJD
+-- ^^^^^^^^^^^^^^^^^^^^^^
 
 
 require "util"
@@ -61,26 +61,17 @@ stateBattle = require "gamestates.stateBattle"
 statePause  = require "gamestates.statePause"
 stateVN     = require "gamestates.stateVN"
 
--- player/enemy
---player = require "player"
---enemy = require "enemy"
-
--- the joystick
-gJoy = love.joystick.getJoysticks()[1]
-
-
 
 
 -- Other stuff:
 scale = {x = 1, y = 1} -- scale hack
 
-
--- TEST vvvvvvvvvvvvvvvvvv
-flipHack = false
--- TEST ^^^^^^^^^^^^^^^^^^
+-- global joystick var, probably not needed...
+gJoy = love.joystick.getJoysticks()[1]
 
 
-input = baton.new { -- Should be global
+
+input = baton.new {
   controls = {
     left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},
     right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
@@ -111,6 +102,7 @@ input = baton.new { -- Should be global
 
 function love.load(arg)
   reloaded = true
+
   do -- Starting loadscreens
     love.graphics.setNewFont(48)
 
@@ -122,7 +114,7 @@ function love.load(arg)
     debugPrint("Loading: ", 100, 100)
   end
   --
-  
+
   Sound:init()  
 
   math.randomseed( os.time() )
@@ -132,6 +124,7 @@ end
 
 
 function love.update(dt)
+  -- Skip frame if stuff has been loaded, since dt will be large
   if reloaded then 
     reloaded = false 
     return 
@@ -139,6 +132,7 @@ function love.update(dt)
 
   input:update()
 
+  -- Change to pause from anywhere but main and pause itself
   if input:pressed("systemStart") then 
     if Gamestate.current() == stateMain then
 ----      love.event.quit() 
@@ -147,11 +141,6 @@ function love.update(dt)
       return Gamestate.push(statePause)
     end
   end
-
-
-
-  -- TEST vvvvvvvvvvvvvv
-  -- TEST ^^^^^^^^^^^^^^
 
   lovebird.update()
 
@@ -163,44 +152,42 @@ end
 
 
 function love.draw()
---  if flipHack then
---    love.graphics.scale(-scale.x, scale.y) -- Scale hack
---    love.graphics.translate(-1920, 0)
+  love.graphics.scale(scale.x, scale.y) -- Scale hack
 
---  else
-    love.graphics.scale(scale.x, scale.y) -- Scale hack
---  end
-
-  -- TEST vvvvvvvvvvv
-  -- ^^^^^^^^^^^^^^^^
 
   callOrError(Gamestate.draw)
 
+
   if dbg_print_animation_frames and player.ac and enemy.ac then
-    love.graphics.push()
-    love.graphics.reset() -- RESETS Font as well, not documented? might be mistaken
-    love.graphics.scale(scale.x, scale.y) -- Scale hack
-
-    love.graphics.setColor(1.0, 1.0, 1.0)
-
-
-    local t = 40
-
-    love.graphics.rectangle("fill", 0, 0, W, t)
-
-    love.graphics.setColor(0.0, 0.0, 0.0)
-
-
-    love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
-
-    love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
-    love.graphics.pop() -- does not re-reset font?
-
-    love.graphics.setNewFont(48)
-
-    love.graphics.setColor(1.0, 1.0, 1.0)
+    dbgPrintAnimFrames()
   end
 end
+
+function dbgPrintAnimFrames()
+  love.graphics.push()
+  love.graphics.reset() -- RESETS Font as well, not documented? might be mistaken
+  love.graphics.scale(scale.x, scale.y) -- Scale hack
+
+  love.graphics.setColor(1.0, 1.0, 1.0)
+
+
+  local t = 40
+
+  love.graphics.rectangle("fill", 0, 0, W, t)
+
+  love.graphics.setColor(0.0, 0.0, 0.0)
+
+
+  love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
+
+  love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
+  love.graphics.pop() -- does not re-reset font?
+
+  love.graphics.setNewFont(48)
+
+  love.graphics.setColor(1.0, 1.0, 1.0)
+end
+--
 
 
 
@@ -214,10 +201,6 @@ function GameReload()
   AC    = reload("animation.animationCollection")
   Sound = reload("resourceManager.soundManager")
 
---  lovebird = reload("lovebird.lovebird")
---  table.insert(lovebird.whitelist, "*.*.*.*")
-
-  -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
 
   stateBattle = reload("gamestates.stateBattle")
   statePause  = reload("gamestates.statePause")
@@ -226,17 +209,14 @@ function GameReload()
   -- NOTE: probably should not reload stateError here, since its called in callOrError
 
 
-
 --  RM.dbg_render = false -- Don't show loading screens, they take long to just render...
   Gamestate.switch(stateMain)
 end
 
 
 
-
 function love.keypressed(key, scancode, isrepeat)
-  -- TEST vvvvvvvvvvvvvvvs
-  -- TEST ^^^^^^^^^^^^^^^
+  -- NOTE: cannot use input library in keypressed! use it in update instead!
 
   if Gamestate.current() ~= stateError then
     callOrError(Gamestate.keypressed, key, scancode, isrepeat) -- TODO: remove this later
@@ -244,11 +224,10 @@ function love.keypressed(key, scancode, isrepeat)
     Gamestate.keypressed(key, scancode, isrepeat)
   end
 
-  -- NOTE: cannot use input library in keypressed! use it in update instead!
+  -- NOTE: windows specific, crashes on mac...
   if scancode == "`" then
     love._openConsole()
   end
-
 
 
   if key == "t" then
@@ -261,10 +240,9 @@ function love.keypressed(key, scancode, isrepeat)
 
 
   elseif key == "2" then
---    Gamestate.switch(stateMain) -- stack overflow test
     callOrError(GameReload)
 
-  elseif key == "3" then
+  elseif key == "3" then -- Reset animations, could proably be moved
     if player.sm then
       player.sm:switch("idle")
     end
@@ -285,7 +263,8 @@ end
 
 function love.joystickadded( joystick )
   gJoy = love.joystick.getJoysticks()[1]
-
+  
+  -- This can be simplified
   input = baton.new { -- HACK
     controls = {
       left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},

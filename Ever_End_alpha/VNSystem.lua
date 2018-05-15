@@ -163,21 +163,21 @@ function VNSystem:setMomentI(momentI)
 --  for _, sound in ipairs(self.curMoment.drawData) do
 --    if sound.delay
 
+  
 end
 
 function VNSystem:incrementMomentI()
   -- NOTE: not thought over, needs testing...
 
-  -- ASSUMPTION: there is a loaded moment when running this...
+-- ASSUMPTION: there is a loaded moment when running this...
   local sceneToGoto = self.curMoment.transitionTrigger.gotoScene
-  if sceneToGoto then
+    if sceneToGoto then
     self:loadScene(sceneToGoto)
   end
 
-
   local changedMoment = self:setMomentI(self.curMomentI + 1)
-  if changedMoment then return end
 
+  -- If there are no more moments, go to next panel
   self:setPanelI(self.curPanelI + 1)
 end
 
@@ -185,10 +185,10 @@ end
 
 function VNSystem:update(dt)
   if input:pressed("attack") and self.curMoment.transitionTrigger[1] == "waitForInput" then
-    local sceneAtKey = self.curMoment.transitionTrigger[key]
-    if sceneAtKey then
-      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
-    end
+--    local sceneAtKey = self.curMoment.transitionTrigger[key]
+--    if sceneAtKey then
+--      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
+--    end
     self:incrementMomentI()
   end
 end

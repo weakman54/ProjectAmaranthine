@@ -1,5 +1,9 @@
 
+
+
+-- TEST: vvvvvvvvvvvvvv
 flipHack = false
+-- TEST: ^^
 
 local vec = require "hump.vector" -- TODO: replace with own vector
 local GUIBar = require "gui.bar"
@@ -38,7 +42,6 @@ function stateBattle:init()
   enemy:initialize()
 
   background = love.graphics.newImage("assets/background.png")
-  loading = false
 end
 
 function stateBattle:enter()
@@ -56,9 +59,6 @@ function stateBattle:enter()
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
-function stateBattle:leave()
-end
-
 
 
 function stateBattle:update(dt)
@@ -74,6 +74,7 @@ function stateBattle:update(dt)
 end
 
 function stateBattle:draw()
+  -- HACK RESET BELOW
   if flipHack then
     love.graphics.origin()
     love.graphics.scale(-scale.x, scale.y) -- Scale hack
@@ -90,6 +91,8 @@ function stateBattle:draw()
   love.graphics.origin()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
 
+
+
   -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
   GUIPlayerHealth:loveDraw()
   GUIPlayerSP:loveDraw()
@@ -105,11 +108,6 @@ function stateBattle:keypressed(key)
     enemy:reset()
     player:reset()
   end
-end
-
-
-function stateBattle:leave()
-  flipHack = false
 end
 
 
