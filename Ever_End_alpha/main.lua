@@ -69,6 +69,12 @@ scale = {x = 1, y = 1} -- scale hack
 -- global joystick var, probably not needed...
 gJoy = love.joystick.getJoysticks()[1]
 
+-- TEST vvvvvvvvvvvvvvvvvv
+flipHack = false
+
+slomo = 1
+dbgSlomoFactor = .5
+-- TEST ^^^^^^^^^^^^^^^^^^
 
 
 input = baton.new {
@@ -82,7 +88,7 @@ input = baton.new {
     dodge  = {"key:d"    ,                         "button:x"},
     heal   = {"key:h"    ,                         "button:y"},
     -- TODO: choices = keys:
-
+		combo = {"button:a", "button:b", "button:x", "button:y"},
     comboLeft    = {"key:a"    ,                   "button:x"},
     comboRight   = {"key:d"    ,                   "button:b"},
     comboUp      = {"key:w"    ,                   "button:y"},
@@ -102,7 +108,6 @@ input = baton.new {
 
 function love.load(arg)
   reloaded = true
-
   do -- Starting loadscreens
     love.graphics.setNewFont(48)
 
@@ -142,6 +147,12 @@ function love.update(dt)
     end
   end
 
+
+
+  -- TEST vvvvvvvvvvvvvv
+  dt = dt * slomo
+  -- TEST ^^^^^^^^^^^^^^
+
   lovebird.update()
 
   HUMPTimer.update(dt)
@@ -177,15 +188,14 @@ function dbgPrintAnimFrames()
 
   love.graphics.setColor(0.0, 0.0, 0.0)
 
+    love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
 
-  love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
+    love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
+    love.graphics.pop() -- does not re-reset font?
 
-  love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
-  love.graphics.pop() -- does not re-reset font?
+    love.graphics.setNewFont(48)
 
-  love.graphics.setNewFont(48)
-
-  love.graphics.setColor(1.0, 1.0, 1.0)
+    love.graphics.setColor(1.0, 1.0, 1.0)
 end
 --
 
@@ -201,6 +211,7 @@ function GameReload()
   AC    = reload("animation.animationCollection")
   Sound = reload("resourceManager.soundManager")
 
+  -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
 
   stateBattle = reload("gamestates.stateBattle")
   statePause  = reload("gamestates.statePause")
@@ -251,7 +262,10 @@ function love.keypressed(key, scancode, isrepeat)
       enemy.sm:switch("idle")
     end
 
-  end
+  elseif key == "4" then
+		
+	slomo = slomo == 1 and dbgSlomoFactor or 1
+	end
 end
 
 
@@ -271,12 +285,13 @@ function love.joystickadded( joystick )
       right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
       up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
       down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
-      attack = {'key:space',                         'button:a'},
-      guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
+      attack = {'key:space',                         'button:a','button:b'},
+      guard  = {"key:g"    ,                         "button:x"},--"button:rightshoulder", "axis:triggerright+"},
       dodge  = {"key:d"    ,                         "button:x"},
       heal   = {"key:h"    ,                         "button:y"},
       -- TODO: choices = keys:
-
+	
+	combo = {"button:a", "button:b", "button:x", "button:y"},
       comboLeft    = {"key:a"    ,                   "button:x"},
       comboRight   = {"key:d"    ,                   "button:b"},
       comboUp      = {"key:w"    ,                   "button:y"},

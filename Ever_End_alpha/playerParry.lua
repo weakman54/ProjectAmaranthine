@@ -61,13 +61,13 @@ end
 sm:add("parryStart", {
     enter = function(self)
       ac:setAnimation("parry", false)
-	  Sound:play("Player Parry")
+	  --Sound:play("Player Parry")
 
       enemy.sm:switch("parryMinigame")
       enemy.ac:pause()
 
       graphics.border.s = 1
-      HUMPTimer.tween(player.parryDuration, graphics.border, {s = 0.25}, "linear")
+      HUMPTimer.tween(player.parryMinigameDuration, graphics.border, {s = 0.25}, "linear")
 
       self.timer = Timer:new()
     end,
@@ -80,7 +80,7 @@ sm:add("parryStart", {
       end
 
 
-      if self.timer:reached(player.parryDuration) then
+      if self.timer:reached(player.parryMinigameDuration) then
         return player.sm:switch("idle")
       end
     end,

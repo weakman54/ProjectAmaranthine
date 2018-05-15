@@ -1,10 +1,6 @@
-
-
 local RM = require "resourceManager.resourceManager"
 
-
 local stateMain = {}
-
 
 local logo
 
