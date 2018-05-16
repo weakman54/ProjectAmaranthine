@@ -445,7 +445,9 @@ function player:changeHP(offset)
     gJoy:setVibration(1*scalar, 1*scalar, 1*scalar)
   end
 
-  -- TODO: handle death
+  if self.HP <=0 then
+    Gamestate.switch(stateVN);
+  end
 end
 
 

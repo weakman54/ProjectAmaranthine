@@ -440,7 +440,10 @@ function enemy:changeHP(offset)
     player:changeSP(math.abs(offset * self.dmgToSPRatio))
   end
 
-  -- TODO: handle death
+  if self.HP <=0 then
+    Gamestate.switch(stateVN);
+  end
+  
 end
 
 
