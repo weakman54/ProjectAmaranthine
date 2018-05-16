@@ -10,17 +10,22 @@ function player:initialize()
 
   -- durations in seconds vvv
   self.hurtDuration  = 2 -- just works value: plays the two hurt animations pretty nicely even though they get cut off =P
-  self.parryDuration = 2
+  self.parryMinigameDuration = 2
+  self.parryDuration = 1
 
   self.dodgeStartDuration = NORMDODGE_TRESHOLD + 0.0 -- MAGIC NUMBER: additional time on dodge start
   self.dodgeDuration = 2
+
+  self.fumbleDuration = .35
 
   self.gunAttackDuration = 0.1
 
   self.chargeDuration = 1
 
+  self.idleRegenDuration = .70
 
-  self.SPDrainRate = 0.1 -- points per second
+  self.SPRegenRateIdle = .2
+  self.SPDrainRate = 0.4 -- points per second
   self.SPChargeDrainRate = 1
 
   self.HPGainRate = 0.5
@@ -143,13 +148,19 @@ function player:initializeSM()
         ac:setAnimation("idle")
 
         player.damaged = false
+        player.parrying = false
+
+        self.regenTimer = Timer:new()
       end,
 
       update = function(self, dt)
+        self.regenTimer:update(dt)
+
+
         if player.damaged then
           return sm:switch("hurt")
 
-        elseif input:pressed("guard") then
+        elseif input:pressed("guard") then		
           return sm:switch("guard")
 
         elseif input:pressed("down") then
@@ -165,6 +176,10 @@ function player:initializeSM()
           return sm:switch("heal")
 
         end
+
+        if self.regenTimer:reached(player.idleRegenDuration) then
+          player.SP = math.min(player.SP + player.SPRegenRateIdle * dt, player.maxSP)
+        end
       end,
     })
   --
@@ -177,26 +192,31 @@ function player:initializeSM()
 
       enter = function(self)
         ac:setAnimation("guard")
-        Sound:play("Open1")
-        Sound:play("Crossbow")
+        --Sound:play("Open1")
+        --Sound:play("Crossbow")
 
-        if enemy.sm:is("offensive") then
-          self.parryTiming = enemy.timingStage == 3
-        end
+
       end,
 
-      update = function(self, dt)
-        if player.damaged then
-          if self.parryTiming then
-            return sm:switch("parry")
+      update = function(self, dt)	
+        if player.damaged  then
+          ac:setAnimation("guard_hit", false)
+          --Sound:play("Player Block")
+
+          player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
+          if player.SP == 0 then
+            print("hurt")
+            return sm:switch("hurt")
           else
-            ac:setAnimation("guard_hit", false)
-            Sound:play("Player Block")
-
-            player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
+            player.damaged = false
           end
+        end
 
-          player.damaged = false
+        if input:pressed("down") then
+          sm:switch("parry", "low")
+
+        elseif input:pressed("up") then
+          sm:switch("parry", "high")
         end
 
 
@@ -216,6 +236,39 @@ function player:initializeSM()
     })
   --
 
+  sm:add("parry",  {
+      enter = function(self, stance)
+        self.stance = stance
+        ac:setAnimation("parry", false)
+        -- Put parry sounds here 
+
+        self.parryTiming = false
+        if enemy.sm:is("offensive") then
+          self.parryTiming = enemy.timingStage == 3	
+        end
+
+        self.timer = Timer:new()
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if player.damaged then
+          if self.parryTiming and player.damaged.attack.stance == self.stance then
+            return sm:switch("parryMinigame", parrying)
+          else
+            return sm:switch("hurt")
+          end
+        end
+
+        if self.timer:reached(player.parryDuration) then
+          return player.sm:switch("guard")
+        end
+
+      end,
+    })
+  --
+
 
   sm:add("heal",  {
       canSwitch = function(self)
@@ -224,7 +277,7 @@ function player:initializeSM()
 
       enter = function(self)
         ac:setAnimation("heal")
-		Sound:play("Fire2")
+        --Sound:play("Fire2")
       end,
 
       update = function(self, dt)
@@ -233,7 +286,7 @@ function player:initializeSM()
         end
 
         if not input:down("heal") or player.HP >= player.maxHP or player.SP <= 0 then
-		--	if self.sound then self.sound:stop() end
+          --	if self.sound then self.sound:stop() end
           return sm:switch("idle")
         end
 
@@ -275,7 +328,7 @@ function player:initializeSM()
         if self.timer:reached(player.chargeDuration) and ac:curName() ~= "charge_attack_ready" then
           self.chargeReady = true
           ac:setAnimation("charge_attack_ready")
-		  Sound:play("Charge Complete")
+          --Sound:play("Charge Complete")
         end
       end,
     })
@@ -302,7 +355,7 @@ function player:initializeSM()
         end
       end,
     })
---
+  --
 
 
   sm:add("attack",  { -- HACK: Entire "normal" attack stuff is hack atm, but it's in for playtesting/demo
@@ -337,7 +390,7 @@ function player:initializeSM()
         self.attacked = false
       end,
     })
---
+  --
 
 
   sm:add("hurt", {
@@ -345,24 +398,24 @@ function player:initializeSM()
         if not kind then
           if player.damaged.attack.damage >= INTENSE_DAMAGE_TRESHOLD then
             ac:setAnimation("hurt_intense", false)
-            Sound:play("Bone Break", {delay = 0.4})
-            Sound:play("Crumble #1", {delay = 0.69})
-            Sound:play("Player Fall", {delay = 1.5})
-            Sound:play("Applause2", {delay = 2.5})
+            --Sound:play("Bone Break", {delay = 0.4})
+            --Sound:play("Crumble #1", {delay = 0.69})
+            --Sound:play("Player Fall", {delay = 1.5})
+            --Sound:play("Applause2", {delay = 2.5})
           else
             ac:setAnimation("hurt_mild", false)
-            Sound:play("Player Slammed", {delay = 0.3})
+            --Sound:play("Player Slammed", {delay = 0.3})
           end
         else
           ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
         end
-        Sound:play("Enemy Hit")
+        ----Sound:play("Enemy Hit")
 
         player:changeHP(-player.damaged.attack.damage)
         player.damaged = false
 
         self.timer = Timer:new()
---        player.hurtDuration = ac:curDuration() -- HACK: This needs to be set properly later!
+        --        player.hurtDuration = ac:curDuration() -- HACK: This needs to be set properly later!
       end,
 
       update = function(self, dt)
@@ -374,9 +427,9 @@ function player:initializeSM()
 
       end
     })
---
+  --
 
-  sm:add("parry",  reload("playerParry"))
+  sm:add("parryMinigame",  reload("playerParry"))
   sm:add("dodge",  reload("playerDodgeState"))
 end
 --
@@ -392,7 +445,9 @@ function player:changeHP(offset)
     gJoy:setVibration(1*scalar, 1*scalar, 1*scalar)
   end
 
-  -- TODO: handle death
+  if self.HP <=0 then
+    Gamestate.switch(stateVN);
+  end
 end
 
 
@@ -400,12 +455,10 @@ function player:changeSP(offset)
   self.SP = math.min(math.max(self.SP + offset, 0), self.maxSP)
 end
 
-
-
-
 function player:update(dt)
   self.ac:update(dt)
   self.sm:update(dt)
+  player.parrying = false;
 end
 
 

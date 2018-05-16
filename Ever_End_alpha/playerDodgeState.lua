@@ -10,16 +10,18 @@ local ac = player.ac
 
 local data = {}
 
+local fumbling = false
 
 local dodgeStart = {
   enter = function(self)
     ac:setAnimation("dodge_" .. data.stance .. "_start", false)
-		
-	if data.stance == "high" then 
-		Sound:play("High Dodge")
-	elseif data.stance == "low" then 
-			Sound:play("Low Dodge")
-	end
+
+
+    if data.stance == "high" then 
+      ----Sound:play("High Dodge")
+    elseif data.stance == "low" then 
+      ----Sound:play("Low Dodge")
+    end
 
     self.timer = Timer:new()
 
@@ -28,6 +30,7 @@ local dodgeStart = {
 
   update = function(self, dt)
     self.timer:update(dt)
+
 
     -- Attacked during dodge:
     if player.damaged then
@@ -77,7 +80,7 @@ local dodgeMinigame = {
   enter = function(self)
     enemy.ac:pause()
     ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing) -- ASSUMPTION: data.timing should have a correct value here since we're in this state
-	Sound:play("Slo Mo")
+    --Sound:play("Slo Mo")
 
     self.hurtI = 1
 
@@ -86,16 +89,29 @@ local dodgeMinigame = {
     player.SP = math.min(player.SP + (data.timing == "normal" and 1 or 2), player.maxSP)
 
     self.timer = Timer:new()
+
+    fumbling = false
+    self.fumbleTimer = Timer:new()
   end,
+  --
 
   update = function(self, dt)
     self.timer:update(dt)
     if self.combo then self.combo.anim.data:update(dt) end -- update the combo GUI animations TODO: clean a bit?
 
     if self.timer:reached(player.dodgeDuration) then
---      enemy.ac:play() -- This will probably not be needed?
---      enemy.sm:switch("idle") -- NOTE: not quite good yet
+      --      enemy.ac:play() -- This will probably not be needed?
+      --      enemy.sm:switch("idle") -- NOTE: not quite good yet
       return sm:switch("dodgeEnd")
+    end
+
+    if fumbling then
+      self.fumbleTimer:update(dt);
+    end
+
+    if self.fumbleTimer:reached(player.fumbleDuration) then
+      fumbling = false;
+      self.fumbleTimer:reset();
     end
 
 
@@ -112,18 +128,25 @@ local dodgeMinigame = {
         self.combo = combos[math.random(4)]
       end
 
-    elseif input:pressed("combo" .. self.combo.name) then
-      self.hurtI = (self.hurtI % 2) + 1
-      print("#" .. self.hurtI)
-      enemy.ac:setAnimation("gun_hurt" .. string.format("%02d", self.hurtI))
-      enemy:changeHP(-1) -- HARDCODED: -1, health amount
+    elseif not fumbling and input:pressed("combo") then
+      if input:pressed("combo" .. self.combo.name) then
+        self.hurtI = (self.hurtI % 2) + 1
+        print("#" .. self.hurtI)
+        enemy.ac:setAnimation("gun_hurt" .. string.format("%02d", self.hurtI))
+        enemy:changeHP(-1) -- HARDCODED: -1, health amount
 
-      ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing, false)
-	  Sound:play("Gun1")
-	  Sound:play("Gun Wosh")
-      self.attackTimer = Timer:new()
+        ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing, false)
+        --Sound:play("Gun1")
+        --Sound:play("Gun Wosh")
+        self.attackTimer = Timer:new()
 
-      self.combo = nil
+        self.combo = nil
+      else -- Miss click
+        -- put sound here
+        fumbling = true;
+        self.fumbleTimer:reset();
+      end
+
     end
   end,
 
@@ -132,7 +155,7 @@ local dodgeMinigame = {
     love.graphics.origin()
     love.graphics.scale(scale.x, scale.y)
 
-    if self.combo then
+    if self.combo and not fumbling then
       local c = self.combo
       c.anim.data:loveDraw(c.x, c.y, r, sx, sy, c.ox, c.oy)
     end

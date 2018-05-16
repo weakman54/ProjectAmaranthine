@@ -1,9 +1,5 @@
 
-
-
--- TEST: vvvvvvvvvvvvvv
 flipHack = false
--- TEST: ^^
 
 local vec = require "hump.vector" -- TODO: replace with own vector
 local GUIBar = require "gui.bar"
@@ -42,6 +38,7 @@ function stateBattle:init()
   enemy:initialize()
 
   background = love.graphics.newImage("assets/background.png")
+  loading = false
 end
 
 function stateBattle:enter()
@@ -57,6 +54,9 @@ function stateBattle:enter()
 
   GUIEnemyHealth:setTrackTarget(enemy, "HP", 0, enemy.maxHP)
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+end
+
+function stateBattle:leave()
 end
 
 
@@ -108,6 +108,11 @@ function stateBattle:keypressed(key)
     enemy:reset()
     player:reset()
   end
+end
+
+
+function stateBattle:leave()
+  flipHack = false
 end
 
 

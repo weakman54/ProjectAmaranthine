@@ -36,7 +36,7 @@ end
 
 
 local stageTimings = {
---  {duration = 2.0, target = 1.500},  
+  --  {duration = 2.0, target = 1.500},  
   {duration = 1.5, target = 1.250 },
   {duration = 1.0, target = 0.865 },
   {duration = 0.5, target = 0.4375},
@@ -61,13 +61,13 @@ end
 sm:add("parryStart", {
     enter = function(self)
       ac:setAnimation("parry", false)
-	  Sound:play("Player Parry")
+      --Sound:play("Player Parry")
 
       enemy.sm:switch("parryMinigame")
       enemy.ac:pause()
 
       graphics.border.s = 1
-      HUMPTimer.tween(player.parryDuration, graphics.border, {s = 0.25}, "linear")
+      HUMPTimer.tween(player.parryMinigameDuration, graphics.border, {s = 0.25}, "linear")
 
       self.timer = Timer:new()
     end,
@@ -80,7 +80,7 @@ sm:add("parryStart", {
       end
 
 
-      if self.timer:reached(player.parryDuration) then
+      if self.timer:reached(player.parryMinigameDuration) then
         return player.sm:switch("idle")
       end
     end,
@@ -126,8 +126,8 @@ sm:add("parryWindup", {
       self.drawFlash = false
       graphics.border.s = 1
 
---      local dif = self.duration - self.target
---      local after = function() HUMPTimer.tween(dif, graphics.border, {s = 0.25}, "linear") end
+      --      local dif = self.duration - self.target
+      --      local after = function() HUMPTimer.tween(dif, graphics.border, {s = 0.25}, "linear") end
       HUMPTimer.tween(self.duration, graphics.border, {s = 0.25}, "linear")
 
 
@@ -137,10 +137,10 @@ sm:add("parryWindup", {
     update = function(self, dt)
       self.timer:update(dt)
 
---      if input:pressed("attack") then
+      --      if input:pressed("attack") then
 
---        self.drawFlash = true
---      end
+      --        self.drawFlash = true
+      --      end
 
       if self.timer:reached(self.duration) or input:pressed("attack") then
         local dif = math.abs(self.timer._acc - self.target)
@@ -184,8 +184,8 @@ sm:add("parryAttack", {
       ac:setAnimation(string.format("sword_combo%02d_attack", self.stage), false)
       enemy.ac:setAnimation(string.format("sword_hurt%02d", self.stage))
 
---      self.swordComboBaseDmg = 1
---      self.swordComboGradDmg = 2
+      --      self.swordComboBaseDmg = 1
+      --      self.swordComboGradDmg = 2
 
       local damageDealt = player.swordComboBaseDmg + player.swordComboGradDmg - player.swordComboGradDmg * normalizedDif
 
