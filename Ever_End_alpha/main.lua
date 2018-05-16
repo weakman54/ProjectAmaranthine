@@ -292,10 +292,10 @@ function love.joystickadded( joystick )
       heal   = {"key:h"    ,                         "button:y"},
       -- TODO: choices = keys:
 
-      comboLeft    = {"key:a"    ,                   "button:x"},
-      comboRight   = {"key:d"    ,                   "button:b"},
-      comboUp      = {"key:w"    ,                   "button:y"},
-      comboDown    = {"key:s"    ,                   "button:a"},
+      comboLeft    = {'key:left' ,    "key:a"    ,    "button:x"},
+      comboRight   = {'key:right',    "key:d"    ,    "button:b"},
+      comboUp      = {'key:up'   ,    "key:w"    ,    "button:y"},
+      comboDown    = {'key:down' ,    "key:s"    ,    "button:a"},
 
       systemStart = {"key:escape",                   "button:start"},    
       systemBack  = {"key:x"     ,                   "button:back"},               
