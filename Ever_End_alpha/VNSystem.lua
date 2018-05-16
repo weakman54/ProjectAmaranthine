@@ -16,7 +16,7 @@ function buildPanel(path, panelPrefix, panelNumber)
   -- Filter out the panel specific files
   local panelList  = lume.filter(dirList, function(name) return name:find(panelPrefix .. "m" )  end)
   local background = lume.filter(dirList, function(name) return name:find(panelPrefix .. "bg")  end)[1]
---  print(#panelList, background)
+  --  print(#panelList, background)
 
   if not background then return end
 
@@ -24,8 +24,8 @@ function buildPanel(path, panelPrefix, panelNumber)
   ret.bg = {anim = string.format("$RM:loadAnimation('%s')", background:sub(1, -10))}
 
 
---  print(ret.bg)
---  ret.moments[1] = {transitionTrigger = "waitForInput"}
+  --  print(ret.bg)
+  --  ret.moments[1] = {transitionTrigger = "waitForInput"}
 
   for _, item in ipairs(panelList) do -- TODO: this entire section needs cleanup...
 
@@ -39,7 +39,7 @@ function buildPanel(path, panelPrefix, panelNumber)
     local name = item:sub(16, -11)
     t.anims[name] = string.format("$RM:loadAnimation('%s')", item:sub(1, -10))
     table.insert(t.drawData, {anim = name})
---    print(name, ret[name])
+    --    print(name, ret[name])
   end
 
   if not ret.moments[1] then
@@ -60,34 +60,34 @@ function buildScene(path, num)
   assert(sceneRel, "buildScene(): Could not find scenefolder: " .. string.format("scene%s", num))
 
   local scenePath = path .. sceneRel
---  print(scenePath)
+  --  print(scenePath)
 
   local scenePrefix = string.format("s%s_", num)
---  print(scenePrefix)
+  --  print(scenePrefix)
 
   -- Get all things in the directory
   local  sceneDirList = love.filesystem.getDirectoryItems(scenePath)
---  print(#sceneDirList)
+  --  print(#sceneDirList)
 
   local loopNum = #sceneDirList * 5 -- HACK: this is to ensure all panels are loaded even if there are "deleted" numbers, could be solved in a much better manner...
 
   for i=1, loopNum do -- HARDCODED: start num is 1, shouldn't have to change tbh
     local panel = buildPanel(scenePath, scenePrefix, i)
     if panel then
---      print(i)
+      --      print(i)
       table.insert(ret, panel)
     end
   end
 
 
   -- END MARKER PANEL
---  ret[#ret + 1] = "END"
+  --  ret[#ret + 1] = "END"
 
 
   -- NOTE: I'm having this in here, cause its easier, should probably be moved for a cleaner separation of duty
   local file = assert(io.open( ("%ssceneScript%s.lua"):format(path, num), "w" ))
 
---  print(string.format("%ssceneScript%s.lua", path, num, "w"), ("RM.prefix = '%s'"):format(scenePath))
+  --  print(string.format("%ssceneScript%s.lua", path, num, "w"), ("RM.prefix = '%s'"):format(scenePath))
   file:write("\nlocal RM = require 'resourceManager.resourceManager'\n")
   file:write(("RM.prefix = '%s/'\n\n"):format(scenePath))
   file:write("return ")
@@ -95,7 +95,7 @@ function buildScene(path, num)
 
   io.close(file)
 
---  return ret
+  --  return ret
 end
 
 
@@ -160,35 +160,37 @@ function VNSystem:setMomentI(momentI)
 
 
   -- Play soundeffects/start sound play timers
---  for _, sound in ipairs(self.curMoment.drawData) do
---    if sound.delay
+  --  for _, sound in ipairs(self.curMoment.drawData) do
+  --    if sound.delay
 
-  
+
 end
 
 function VNSystem:incrementMomentI()
   -- NOTE: not thought over, needs testing...
 
--- ASSUMPTION: there is a loaded moment when running this...
+  -- ASSUMPTION: there is a loaded moment when running this...
   local sceneToGoto = self.curMoment.transitionTrigger.gotoScene
-    if sceneToGoto then
+  if sceneToGoto then
     self:loadScene(sceneToGoto)
   end
 
   local changedMoment = self:setMomentI(self.curMomentI + 1)
 
   -- If there are no more moments, go to next panel
-  self:setPanelI(self.curPanelI + 1)
+  if not changedMoment then
+    self:setPanelI(self.curPanelI + 1)
+  end
 end
 
 
 
 function VNSystem:update(dt)
   if input:pressed("attack") and self.curMoment.transitionTrigger[1] == "waitForInput" then
---    local sceneAtKey = self.curMoment.transitionTrigger[key]
---    if sceneAtKey then
---      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
---    end
+    --    local sceneAtKey = self.curMoment.transitionTrigger[key]
+    --    if sceneAtKey then
+    --      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
+    --    end
     self:incrementMomentI()
   end
 end

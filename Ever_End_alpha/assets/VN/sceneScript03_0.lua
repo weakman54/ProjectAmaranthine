@@ -168,14 +168,14 @@ return {
         },
         anims = {
           Quit = RM:loadAnimation('s03_0_p007_m01_Quit_'),
-          EndEND = RM:loadAnimation('s03_0_p007_m01_EndEND_'),
+          End = RM:loadAnimation('s03_0_p007_m01_End_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "EndEND",
+            anim = "End",
           },
           [2] = {
             anim = "Quit",
