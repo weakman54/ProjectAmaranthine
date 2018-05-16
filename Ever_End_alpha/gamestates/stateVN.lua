@@ -11,7 +11,7 @@ function stateVN:init()
 --  buildScene("assets/VN/", "02_0")
 --  buildScene("assets/VN/", "02_1")
   
-  buildScene("assets/VN/", "03_0")
+--  buildScene("assets/VN/", "03_0")
   
 --  buildScene("assets/VN/", "04_0")
 --  buildScene("assets/VN/", "04_1")  
