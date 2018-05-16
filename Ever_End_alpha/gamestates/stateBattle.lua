@@ -3,7 +3,7 @@ flipHack = false
 
 local vec = require "hump.vector" -- TODO: replace with own vector
 local GUIBar = require "gui.bar"
-
+local RM = require "resourceManager.resourceManager"
 
 local stateBattle = {}
 
@@ -37,7 +37,8 @@ function stateBattle:init()
   player:initialize()
   enemy:initialize()
 
-  background = love.graphics.newImage("assets/background.png")
+--  background = love.graphics.newImage("assets/background.png")
+  background = RM:loadAnimation("assets/Battle_background/background_")
   loading = false
 end
 
@@ -62,6 +63,8 @@ end
 
 
 function stateBattle:update(dt)
+  background.data:update(dt)
+  
   player:update(dt)
   enemy:update(dt)
 
@@ -81,8 +84,8 @@ function stateBattle:draw()
     love.graphics.translate(-1920, 0)
   end
 
-  love.graphics.draw(background, x, y, r, sx, sy, 200, 200)
-
+  --love.graphics.draw(background, x, y, r, sx, sy, 200, 200)
+  background.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
   enemy:draw()
   player:draw()
