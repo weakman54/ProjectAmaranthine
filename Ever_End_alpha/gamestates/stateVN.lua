@@ -19,7 +19,7 @@ function stateVN:init()
 
 
 
-  VNSystem:loadScene("01_0")
+  VNSystem:loadScene("03_0")
 end
 
 function stateVN:enter(data)
