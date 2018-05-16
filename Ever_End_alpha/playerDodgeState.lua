@@ -128,7 +128,7 @@ local dodgeMinigame = {
         self.combo = combos[math.random(4)]
       end
 
-    elseif not fumbling and input:pressed("combo") then
+    elseif not fumbling and input:pressed("comboLeft") or input:pressed("comboRight") or input:pressed("comboUp") or input:pressed("comboDown") then
       if input:pressed("combo" .. self.combo.name) then
         self.hurtI = (self.hurtI % 2) + 1
         print("#" .. self.hurtI)

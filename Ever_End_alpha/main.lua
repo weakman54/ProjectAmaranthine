@@ -237,7 +237,7 @@ function love.keypressed(key, scancode, isrepeat)
   end
 
   -- NOTE: windows specific, crashes on mac...
-  if scancode == "`" then
+  if scancode == "`" and love.system.getOS() == "Windows" then
     love._openConsole()
   end
 
@@ -292,7 +292,6 @@ function love.joystickadded( joystick )
       heal   = {"key:h"    ,                         "button:y"},
       -- TODO: choices = keys:
 
-      combo = {"button:a", "button:b", "button:x", "button:y"},
       comboLeft    = {"key:a"    ,                   "button:x"},
       comboRight   = {"key:d"    ,                   "button:b"},
       comboUp      = {"key:w"    ,                   "button:y"},
