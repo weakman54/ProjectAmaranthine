@@ -436,12 +436,13 @@ end
 
 
 
+
 function player:changeHP(offset)
   self.HP = math.min(math.max(self.HP + offset, 0), self.maxHP)
 
   local scalar = math.abs(offset)/3
 
-  if gJoy then
+  if gJoy and vibrationEnabled then
     gJoy:setVibration(1*scalar, 1*scalar, 1*scalar)
   end
 
