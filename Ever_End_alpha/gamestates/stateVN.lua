@@ -6,10 +6,7 @@ local stateVN = {}
 
 
 function stateVN:init()
-end
-
-function stateVN:enter(data)
---  buildScene("assets/VN/", "01_0")  
+  --  buildScene("assets/VN/", "01_0")  
   
 --  buildScene("assets/VN/", "02_0")
 --  buildScene("assets/VN/", "02_1")
@@ -22,7 +19,11 @@ function stateVN:enter(data)
 
 
 
-  VNSystem:loadScene("03_0")
+  VNSystem:loadScene("01_0")
+end
+
+function stateVN:enter(data)
+
 end
 
 function stateVN:leave()
