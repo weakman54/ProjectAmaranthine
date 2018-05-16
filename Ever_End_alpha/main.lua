@@ -61,6 +61,8 @@ stateMain   = require "gamestates.stateMain"
 stateBattle = require "gamestates.stateBattle"
 statePause  = require "gamestates.statePause"
 stateVN     = require "gamestates.stateVN"
+stateGameOver     = require "gamestates.stateGameOver"
+
 
 
 
@@ -220,6 +222,8 @@ function GameReload()
   statePause  = reload("gamestates.statePause")
   stateMain   = reload("gamestates.stateMain")
   stateVN     = reload("gamestates.stateVN")
+  stateGameOver     = reload("gamestates.stateGameOver")
+  
   -- NOTE: probably should not reload stateError here, since its called in callOrError
 
 
