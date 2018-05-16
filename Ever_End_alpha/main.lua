@@ -34,6 +34,7 @@ end
 
 require "util"
 require "global_consts"
+require "settings"
 
 -- Lib
 Gamestate = require "hump.gamestate"
@@ -205,6 +206,7 @@ function GameReload()
   print("\n-------------------------------------------------------------\nRELOADING\n-------------------------------------------------------------\n")
   reload "util"
   reload "global_consts"
+  reload "settings"
 
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
