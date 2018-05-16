@@ -447,7 +447,7 @@ function player:changeHP(offset)
   end
 
   if self.HP <=0 then
-    Gamestate.switch(stateVN);
+    Gamestate.switch(stateGameOver);
   end
 end
 

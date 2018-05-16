@@ -34,6 +34,7 @@ end
 
 require "util"
 require "global_consts"
+require "settings"
 
 -- Lib
 Gamestate = require "hump.gamestate"
@@ -60,6 +61,8 @@ stateMain   = require "gamestates.stateMain"
 stateBattle = require "gamestates.stateBattle"
 statePause  = require "gamestates.statePause"
 stateVN     = require "gamestates.stateVN"
+stateGameOver     = require "gamestates.stateGameOver"
+
 
 
 
@@ -205,6 +208,7 @@ function GameReload()
   print("\n-------------------------------------------------------------\nRELOADING\n-------------------------------------------------------------\n")
   reload "util"
   reload "global_consts"
+  reload "settings"
 
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
@@ -218,6 +222,8 @@ function GameReload()
   statePause  = reload("gamestates.statePause")
   stateMain   = reload("gamestates.stateMain")
   stateVN     = reload("gamestates.stateVN")
+  stateGameOver     = reload("gamestates.stateGameOver")
+  
   -- NOTE: probably should not reload stateError here, since its called in callOrError
 
 
