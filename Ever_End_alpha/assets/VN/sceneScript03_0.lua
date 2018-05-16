@@ -167,8 +167,8 @@ return {
         sounds = {
         },
         anims = {
-          Quit = RM:loadAnimation('s03_0_p007_m01_Quit_'),
           End = RM:loadAnimation('s03_0_p007_m01_End_'),
+          Quit = RM:loadAnimation('s03_0_p007_m01_Quit_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",

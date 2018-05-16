@@ -8,7 +8,7 @@ local RM = require "resourceManager.resourceManager"
 local stateBattle = {}
 
 
-local background -- TODO: check if this is useful like this
+stateBattle.background = nil -- TODO: check if this is useful like this
 
 
 player = reload("player")
@@ -38,8 +38,9 @@ function stateBattle:init()
   enemy:initialize()
 
 --  background = love.graphics.newImage("assets/background.png")
-  background = RM:loadAnimation("assets/Battle_background/background_")
-  loading = false
+  self.background = RM:loadAnimation("assets/Battle_background/background_")
+  self.background.data:setLooping(true)
+  self.background.data:play()
 end
 
 function stateBattle:enter()
@@ -57,13 +58,10 @@ function stateBattle:enter()
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
-function stateBattle:leave()
-end
-
 
 
 function stateBattle:update(dt)
-  background.data:update(dt)
+  self.background.data:update(dt)
   
   player:update(dt)
   enemy:update(dt)
@@ -85,7 +83,7 @@ function stateBattle:draw()
   end
 
   --love.graphics.draw(background, x, y, r, sx, sy, 200, 200)
-  background.data:loveDraw(x, y, r, sx, sy, 200, 200)
+  self.background.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
   enemy:draw()
   player:draw()
