@@ -39,14 +39,14 @@ function enemy:initialize()
 
 
   -- TODO: think about how to load all of these
---  self.HP = 0 -- Initialize in reset() ?
+  --  self.HP = 0 -- Initialize in reset() ?
   self.maxHP = 10
 
   self.dmgToSPRatio = 1
 
 
   self.baseGuardWeight = 5
---  self.counterWeightTable = {guard = self.baseGuardWeight, counterAttack = 1} -- INitialize in reset()?
+  --  self.counterWeightTable = {guard = self.baseGuardWeight, counterAttack = 1} -- INitialize in reset()?
 
 
   self:initializeAC()
@@ -173,8 +173,8 @@ function enemy:initializeAC()
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
---  name = "counter_attack" -- TODO: rename?
---  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  --  name = "counter_attack" -- TODO: rename?
+  --  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
   -- Combo hurts
@@ -252,8 +252,8 @@ function enemy:initializeSM()
 
         -- TODO: choose action #
         -- TODO: Restructure to use lume.weigthed choice (TODO: clean up how taunts work)
---        local attackI = math.random(#enemy.attacks * 2 + 1)
---        attackI = math.ceil(attackI/2)
+        --        local attackI = math.random(#enemy.attacks * 2 + 1)
+        --        attackI = math.ceil(attackI/2)
 
         if kind then
           if kind == "counterAttack" then
@@ -275,9 +275,9 @@ function enemy:initializeSM()
           self.curAttack = enemy.attacks[choice]
         end
 
---        if self.curAttack.nextAttack then
---          print("COMBO!")
---        end
+        --        if self.curAttack.nextAttack then
+        --          print("COMBO!")
+        --        end
 
 
         -- TODO: set animation
@@ -347,19 +347,19 @@ function enemy:initializeSM()
   sm:add("guard", { -- NOTE: renamed this from "defensive", that was basically phased out anyway...
       enter = function(self)
         ac:setAnimation("guard", false)
-		
-		self.soundPlayed=false
+
+        self.soundPlayed=false
 
         self.timer = Timer:new()
       end,
 
       update = function(self, dt)
         self.timer:update(dt)
-		
-		if self.timer:reached(0.1) and not self.soundPlayed then 
-			Sound:play("Enemy Block")
-			self.soundPlayed=true
-		end
+
+        if self.timer:reached(0.1) and not self.soundPlayed then 
+          Sound:play("Enemy Block")
+          self.soundPlayed=true
+        end
 
         if self.timer:reached(enemy.guardDuration) then
           return sm:switch("idle")
@@ -373,13 +373,13 @@ function enemy:initializeSM()
       end,
 
     })
---
+  --
 
 
   sm:add("taunt", {
       enter = function(self)
         ac:setAnimation("taunt01", false)
-		Sound:play("Froggy Laugh", {delay = 0.15})
+        Sound:play("Froggy Laugh", {delay = 0.15})
 
         self.timer = Timer:new()
       end,
@@ -399,7 +399,7 @@ function enemy:initializeSM()
       end,
 
     })
---
+  --
 
 
 
@@ -409,7 +409,7 @@ function enemy:initializeSM()
           ac:setAnimation(string.format("%s_hurt%02d", data.kind, 1)) -- NOTE: need to handle differing numbers of hurt here
         else
           ac:setAnimation("hurt")
-		  Sound:play("Player Hit")
+          Sound:play("Player Hit")
         end
 
         self.timer = Timer:new()
@@ -423,7 +423,7 @@ function enemy:initializeSM()
         end
       end,
     })
---
+  --
 
 
   sm:add("parryMinigame", reload("enemyParryMinigame"))
@@ -440,7 +440,10 @@ function enemy:changeHP(offset)
     player:changeSP(math.abs(offset * self.dmgToSPRatio))
   end
 
-  -- TODO: handle death
+  if self.HP <=0 then
+    Gamestate.switch(stateVN);
+  end
+  
 end
 
 

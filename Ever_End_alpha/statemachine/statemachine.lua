@@ -1,7 +1,4 @@
-
-
 local SM = {}
-
 
 local NULLSTATE = {canSwitch = function() return true end}
 

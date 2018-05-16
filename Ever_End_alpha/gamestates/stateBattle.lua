@@ -1,18 +1,14 @@
 
-
-
--- TEST: vvvvvvvvvvvvvv
 flipHack = false
--- TEST: ^^
 
 local vec = require "hump.vector" -- TODO: replace with own vector
 local GUIBar = require "gui.bar"
-
+local RM = require "resourceManager.resourceManager"
 
 local stateBattle = {}
 
 
-local background -- TODO: check if this is useful like this
+stateBattle.background = nil -- TODO: check if this is useful like this
 
 
 player = reload("player")
@@ -41,7 +37,10 @@ function stateBattle:init()
   player:initialize()
   enemy:initialize()
 
-  background = love.graphics.newImage("assets/background.png")
+--  background = love.graphics.newImage("assets/background.png")
+  self.background = RM:loadAnimation("assets/Battle_background/background_")
+  self.background.data:setLooping(true)
+  self.background.data:play()
 end
 
 function stateBattle:enter()
@@ -62,6 +61,8 @@ end
 
 
 function stateBattle:update(dt)
+  self.background.data:update(dt)
+  
   player:update(dt)
   enemy:update(dt)
 
@@ -81,8 +82,8 @@ function stateBattle:draw()
     love.graphics.translate(-1920, 0)
   end
 
-  love.graphics.draw(background, x, y, r, sx, sy, 200, 200)
-
+  --love.graphics.draw(background, x, y, r, sx, sy, 200, 200)
+  self.background.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
   enemy:draw()
   player:draw()
@@ -108,6 +109,11 @@ function stateBattle:keypressed(key)
     enemy:reset()
     player:reset()
   end
+end
+
+
+function stateBattle:leave()
+  flipHack = false
 end
 
 
