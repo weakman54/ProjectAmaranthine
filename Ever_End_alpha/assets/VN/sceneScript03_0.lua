@@ -239,7 +239,7 @@ return {
         },
         transitionTrigger = {
            [1] = "timer",--"waitForInput",
-           [2] = 0.65
+           [2] = 0.9
         },
         drawData = {
           [1] = {
@@ -280,6 +280,9 @@ return {
           },
           [3] = {
             anim = "Zero",
+            xScale = .5,
+            yScale = .5,
+            tween = {2, {xScale = 1, yScale = 1}, "out-expo"}
           },
         },
       },
