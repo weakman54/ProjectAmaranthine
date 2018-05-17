@@ -4,20 +4,23 @@ local VNSystem = reload("VNSystem")
 local stateVN = {}
 
 
+local sceneToLoad = "03_0"
+local panelToLoad = 7
+
 
 function stateVN:init()
 
 --    buildScene("assets/VN/", "01_0")  
-  
+
 --  buildScene("assets/VN/", "02_0")
 --  buildScene("assets/VN/", "02_1")
-  
+
 --  buildScene("assets/VN/", "03_0")
-  
+
 --  buildScene("assets/VN/", "04_0")
 --  buildScene("assets/VN/", "04_1")  
 
-  VNSystem:loadScene("03_0")
+  VNSystem:loadScene(sceneToLoad, panelToLoad)
 end
 
 function stateVN:enter(data)
@@ -39,7 +42,11 @@ function stateVN:draw()
 end
 
 function stateVN:keypressed(key)
-  VNSystem:keypressed(key)
+  if key == "r" then
+    VNSystem:loadScene(sceneToLoad, panelToLoad)
+  else
+--    VNSystem:keypressed(key)
+  end
 end
 
 

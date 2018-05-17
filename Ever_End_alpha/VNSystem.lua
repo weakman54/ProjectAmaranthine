@@ -197,6 +197,9 @@ function VNSystem:update(dt)
     --      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
     --    end
     self:incrementMomentI()
+
+  elseif input:pressed("guard") and self.curPanelI ~= 1 then
+    self:setPanelI(self.curPanelI - 1)
   end
 end
 
@@ -219,12 +222,6 @@ function VNSystem:draw()
   if self.curPanel then
     self:drawPanel(self.curPanel, self.curMomentI)
   end
-end
-
-
-
-function VNSystem:keypressed(key)
-
 end
 
 
