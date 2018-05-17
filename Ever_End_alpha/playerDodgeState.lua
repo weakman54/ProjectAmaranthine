@@ -18,9 +18,9 @@ local dodgeStart = {
 
 
     if data.stance == "high" then 
-      ----Sound:play("High Dodge")
+      --Sound:play("High Dodge")
     elseif data.stance == "low" then 
-      ----Sound:play("Low Dodge")
+      --Sound:play("Low Dodge")
     end
 
     self.timer = Timer:new()
@@ -80,7 +80,7 @@ local dodgeMinigame = {
   enter = function(self)
     enemy.ac:pause()
     ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing) -- ASSUMPTION: data.timing should have a correct value here since we're in this state
-    --Sound:play("Slo Mo")
+    Sound:play("Slo Mo")
 
     self.hurtI = 1
 
@@ -136,8 +136,8 @@ local dodgeMinigame = {
         enemy:changeHP(-1) -- HARDCODED: -1, health amount
 
         ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing, false)
-        --Sound:play("Gun1")
-        --Sound:play("Gun Wosh")
+        Sound:play("Gun1")
+        Sound:play("Gun Wosh")
         self.attackTimer = Timer:new()
 
         self.combo = nil

@@ -85,7 +85,7 @@ function buildScene(path, num)
 
 
   -- NOTE: I'm having this in here, cause its easier, should probably be moved for a cleaner separation of duty
-  local file = assert(io.open( ("%ssceneScript%s.lua"):format(path, num), "w" ))
+  local file = assert(io.open( ("%sgenerated/sceneScript%s.lua"):format(path, num), "w" ))
 
   --  print(string.format("%ssceneScript%s.lua", path, num, "w"), ("RM.prefix = '%s'"):format(scenePath))
   file:write("\nlocal RM = require 'resourceManager.resourceManager'\n")
@@ -175,9 +175,9 @@ function VNSystem:incrementMomentI()
     self:loadScene(sceneToGoto)
   end 
   -- ASSUMPTION: there is a loaded moment when running this...
-  local gotoBattle = self.curMoment.transitionTrigger.gotoBattle
-  if gotoBattle then
-    Gamestate.switch(stateBattle)
+  local enemyToGoTo = self.curMoment.transitionTrigger.enemyToGoTo
+  if enemyToGoTo then
+    Gamestate.switch(stateBattle, enemyToGoTo)
   end
 
   local changedMoment = self:setMomentI(self.curMomentI + 1)
@@ -204,7 +204,7 @@ end
 
 function VNSystem:drawPanel(panel, momentI)
   local t = panel.bg
-  panel.bg.anim.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox, t.oy)
+  panel.bg.anim.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox or 200, t.oy or 200)
 
   if not self.curMoment then return end
 

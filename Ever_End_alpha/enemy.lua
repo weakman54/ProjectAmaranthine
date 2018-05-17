@@ -442,6 +442,7 @@ function enemy:changeHP(offset)
 
   if self.HP <=0 then
     Gamestate.switch(stateVN);
+    Gamestate.switch(stateVN);
   end
   
 end
