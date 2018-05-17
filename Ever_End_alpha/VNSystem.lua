@@ -215,13 +215,13 @@ function VNSystem:drawPanel(panel, momentI)
     c = { r/255, g/255, b/255, a/255 }
   end
   love.graphics.setColor(c)
-  panel.bg.anim.data:loveDraw(t.x, t.y, t.rotation, t.scalex, t.scaley, t.offsetx or 200, t.offsety or 200)
+  panel.bg.anim.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
 
   if not self.curMoment then return end
 
   for _, t in ipairs(self.curMoment.drawData) do
     local sprite = self.curMoment.anims[t.anim]
-    sprite.data:loveDraw(t.x, t.y, t.rotation, t.scalex, t.scaley, t.offsetx or 200, t.offsety or 200)
+    sprite.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
   end
 end
 

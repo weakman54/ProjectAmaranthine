@@ -194,7 +194,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = 1.2
+          [2] = 1.0
         },
         drawData = {
           [1] = {
@@ -280,9 +280,15 @@ return {
           },
           [3] = {
             anim = "Zero",
-            xScale = .5,
-            yScale = .5,
-            tween = {2, {xScale = 1, yScale = 1}, "out-expo"}
+            xScale = 0.9,
+            yScale = 0.9,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+  
+            tween = {3, {xScale = 1.1, yScale = 1.1}, "in-linear"}
+            -- fade to white
           },
         },
       },
