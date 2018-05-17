@@ -204,7 +204,7 @@ end
 
 function VNSystem:drawPanel(panel, momentI)
   local t = panel.bg
-  panel.bg.anim.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox, t.oy)
+  panel.bg.anim.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox or 200, t.oy or 200)
 
   if not self.curMoment then return end
 
