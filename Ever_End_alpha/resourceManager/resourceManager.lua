@@ -103,7 +103,7 @@ function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TO
 
     if love.filesystem.getInfo(self.prefix .. filename) then -- NOTE: need prefix here as well, getting a bit cluttered..
       if self.dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
-      if self.dbg_render and not self:checkLoaded(filename) then debugPrint("loading animation frame:\n[" .. self.prefix .. "]" .. filename, 100, 100) end
+      if self.dbg_render and not self:checkLoaded(self.prefix .. filename) then debugPrint("loading animation frame:\n[" .. self.prefix .. "]" .. filename, 100, 100) end
 
       anim:_importFrame(self:loadImage(filename))
       i = i + 1

@@ -119,9 +119,11 @@ function VNSystem:setPanelI(panelI, momentI)
   -- TODO: handle non-existant panels! (do we need to?)
   if type(panelI) ~= "number" or panelI <= 0 then error("Couldn't set panel index, wrong type or negative!", 2) end
   if not self.curScene then error("There is not scene!", 2) end
-
-  self.curPanelI = panelI or 1
-  self.curPanel = self.curScene[self.curPanelI]
+  for i = 0, 100 do -- MAGIC NUMBER: number of panels to look forward
+    self.curPanelI = (panelI or 1) + i
+    self.curPanel = self.curScene[self.curPanelI]
+    if self.curPanel then break end
+  end
 
   assert(self.curPanel, "Tried to go to a non-existent panel: " .. self.curPanelI)
 
@@ -175,9 +177,9 @@ function VNSystem:incrementMomentI()
     self:loadScene(sceneToGoto)
   end 
   -- ASSUMPTION: there is a loaded moment when running this...
-  local gotoBattle = self.curMoment.transitionTrigger.gotoBattle
-  if gotoBattle then
-    Gamestate.switch(stateBattle)
+  local enemyToGoTo = self.curMoment.transitionTrigger.enemyToGoTo
+  if enemyToGoTo then
+    Gamestate.switch(stateBattle, enemyToGoTo)
   end
 
   local changedMoment = self:setMomentI(self.curMomentI + 1)
@@ -197,6 +199,9 @@ function VNSystem:update(dt)
     --      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
     --    end
     self:incrementMomentI()
+
+  elseif input:pressed("guard") and self.curPanelI ~= 1 then
+    self:setPanelI(self.curPanelI - 1)
   end
 end
 
@@ -204,13 +209,19 @@ end
 
 function VNSystem:drawPanel(panel, momentI)
   local t = panel.bg
-  panel.bg.anim.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox, t.oy)
+  local c = {1, 1, 1, 1}
+  if t.hue or t.saturation or t.value then
+    r, g, b, a = vivid.HSVtoRGB(t.hue or 0.5, t.saturation or 1, t.value or 1)
+    c = { r/255, g/255, b/255, a/255 }
+  end
+  love.graphics.setColor(c)
+  panel.bg.anim.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
 
   if not self.curMoment then return end
 
   for _, t in ipairs(self.curMoment.drawData) do
     local sprite = self.curMoment.anims[t.anim]
-    sprite.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox or 200, t.oy or 200)
+    sprite.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
   end
 end
 
@@ -219,12 +230,6 @@ function VNSystem:draw()
   if self.curPanel then
     self:drawPanel(self.curPanel, self.curMomentI)
   end
-end
-
-
-
-function VNSystem:keypressed(key)
-
 end
 
 
