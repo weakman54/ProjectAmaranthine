@@ -193,7 +193,8 @@ return {
           Sword = RM:loadAnimation('s03_0_p007_m01_Sword_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 2.3
         },
         drawData = {
           [1] = {
@@ -202,16 +203,23 @@ return {
           [2] = {
             anim = "End",
             x = 0,
-            tween = {2, {x =- 100}, "linear"}
+            y = 0,
+    
+            tween = {2.4, {x =- 100, y =- 40}, "out-quart"}
           },
           [3] = {
             anim = "Quit",
+    
+            x = 0,
+            y = 0,
+    
+            tween = {2.4, {x =- 75, y =- 30}, "out-quart"}
           },
           [4] = {
             anim = "Sword",
             x = 0,
             y = 0,
-            tween = {2, {x = 50, y = -50}, "linear"}
+            tween = {3, {x = 40, y = -25}, "out-quart"}
           },
         },
       },
