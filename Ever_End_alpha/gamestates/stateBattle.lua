@@ -12,7 +12,7 @@ stateBattle.background = nil -- TODO: check if this is useful like this
 
 
 player = reload("player")
-enemy  = reload("enemy")
+enemy  = reload("enemyQuit3")
 
 
 -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv

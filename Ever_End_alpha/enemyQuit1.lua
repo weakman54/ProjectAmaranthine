@@ -27,7 +27,7 @@ enemy.dbg_trigger_offensive_action = false
 
 
 function enemy:initialize()
-  self.name = "Quit" -- TODO: load properly
+  self.name = "Quit1" -- TODO: load properly
 
   self.attackTime    = 3 -- seconds, TODO: figure better name for this
   self.guardDuration = 2
@@ -146,7 +146,7 @@ function enemy:initializeAttacks()
   self.attackWeights["taunt"] = 1/7 -- Feels kindof misplaced but eh...
 
 
-  self.counterAttack = self:loadAttack({name = "counterAttack", animName = "counterAttack", damage = 2, stance = "high"})
+  self.counterAttack = self:loadAttack({name = "counterAttack", animName = "low_attack01", damage = 2, stance = "high"})
 end
 --
 
@@ -169,27 +169,30 @@ function enemy:initializeAC()
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
-  name = "hurt"
+  name = "taunt"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-
+  
+  
+ name = "hurt"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
   --  name = "counter_attack" -- TODO: rename?
   --  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
-
-  -- Combo hurts
-  for _, comboType in ipairs{"sword", "gun"} do
-    for i=1, 3 do
-      name = string.format("%s_hurt%02d", comboType, i)
-      ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-    end
-  end
+  --
+  --  -- Combo hurts
+  --  for _, comboType in ipairs{"sword", "gun"} do
+  --    for i=1, 3 do
+  --      name = string.format("%s_hurt%02d", comboType, i)
+  --      ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  --    end
+  --  end
 
   -- taunts
-  for i=1, 1 do
-    name = string.format("taunt%02d", i)
-    ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  end
+--  for i=1, 1 do
+--    name = string.format("taunt%02d", i)
+----    ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+--  end
 end
 --
 
@@ -378,7 +381,7 @@ function enemy:initializeSM()
 
   sm:add("taunt", {
       enter = function(self)
-        ac:setAnimation("taunt01", false)
+        ac:setAnimation("taunt", false)
         Sound:play("Froggy Laugh", {delay = 0.15})
 
         self.timer = Timer:new()
@@ -405,12 +408,8 @@ function enemy:initializeSM()
 
   sm:add("hurt", {
       enter = function(self, data)
-        if data then
-          ac:setAnimation(string.format("%s_hurt%02d", data.kind, 1)) -- NOTE: need to handle differing numbers of hurt here
-        else
-          ac:setAnimation("hurt")
-          Sound:play("Player Hit")
-        end
+        ac:setAnimation("hurt", false)
+        Sound:play("Player Hit")
 
         self.timer = Timer:new()
       end,
@@ -442,9 +441,8 @@ function enemy:changeHP(offset)
 
   if self.HP <=0 then
     Gamestate.switch(stateVN);
-    Gamestate.switch(stateVN);
   end
-  
+
 end
 
 
