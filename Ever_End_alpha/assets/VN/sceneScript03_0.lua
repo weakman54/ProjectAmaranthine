@@ -239,7 +239,7 @@ return {
         },
         transitionTrigger = {
            [1] = "timer",--"waitForInput",
-           [2] = 1.3
+           [2] = 0.65
         },
         drawData = {
           [1] = {
@@ -250,33 +250,6 @@ return {
             x = 100,
             y = -50,
             tween = {2, {x = 0, y = 0}, "out-expo"}
-          },
-        },
-      },
-    },
-  },
-  [9] = {
-    bg = {
-      anim = RM:loadAnimation('s03_0_p009_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          End = RM:loadAnimation('s03_0_p009_m01_End_'),
-          Box = RM:loadAnimation('s03_0_p009_m01_Box_'),
-        },
-        transitionTrigger = {
-           [1] = "timer",--"waitForInput",
-           [2] = 1.0
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-          },
-          [2] = {
-            anim = "End",
           },
         },
       },
@@ -307,25 +280,6 @@ return {
           },
           [3] = {
             anim = "Zero",
-          },
-        },
-      },
-      [2] = {
-        sounds = {
-        },
-        anims = {
-          Effect = RM:loadAnimation('s03_0_p010_m02_Effect_'),
-          Box = RM:loadAnimation('s03_0_p010_m02_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-          },
-          [2] = {
-            anim = "Effect",
           },
         },
       },
