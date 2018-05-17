@@ -61,7 +61,7 @@ end
 sm:add("parryStart", {
     enter = function(self)
       ac:setAnimation("parry", false)
-      --Sound:play("Player Parry")
+      Sound:play("Player Parry")
 
       enemy.sm:switch("parryMinigame")
       enemy.ac:pause()

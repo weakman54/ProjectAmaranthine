@@ -85,7 +85,7 @@ function buildScene(path, num)
 
 
   -- NOTE: I'm having this in here, cause its easier, should probably be moved for a cleaner separation of duty
-  local file = assert(io.open( ("%ssceneScript%s.lua"):format(path, num), "w" ))
+  local file = assert(io.open( ("%sgenerated/sceneScript%s.lua"):format(path, num), "w" ))
 
   --  print(string.format("%ssceneScript%s.lua", path, num, "w"), ("RM.prefix = '%s'"):format(scenePath))
   file:write("\nlocal RM = require 'resourceManager.resourceManager'\n")
