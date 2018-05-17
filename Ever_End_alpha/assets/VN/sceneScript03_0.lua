@@ -194,7 +194,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = 2.3
+          [2] = 1.2
         },
         drawData = {
           [1] = {
@@ -238,7 +238,8 @@ return {
           Box = RM:loadAnimation('s03_0_p008_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+           [1] = "timer",--"waitForInput",
+           [2] = 1.3
         },
         drawData = {
           [1] = {
@@ -246,6 +247,9 @@ return {
           },
           [2] = {
             anim = "End",
+            x = 100,
+            y = -50,
+            tween = {2, {x = 0, y = 0}, "out-expo"}
           },
         },
       },
@@ -264,7 +268,8 @@ return {
           Box = RM:loadAnimation('s03_0_p009_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+           [1] = "timer",--"waitForInput",
+           [2] = 1.0
         },
         drawData = {
           [1] = {
