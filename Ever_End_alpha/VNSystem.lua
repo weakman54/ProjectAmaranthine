@@ -175,9 +175,9 @@ function VNSystem:incrementMomentI()
     self:loadScene(sceneToGoto)
   end 
   -- ASSUMPTION: there is a loaded moment when running this...
-  local gotoBattle = self.curMoment.transitionTrigger.gotoBattle
-  if gotoBattle then
-    Gamestate.switch(stateBattle)
+  local enemyToGoTo = self.curMoment.transitionTrigger.enemyToGoTo
+  if enemyToGoTo then
+    Gamestate.switch(stateBattle, enemyToGoTo)
   end
 
   local changedMoment = self:setMomentI(self.curMomentI + 1)

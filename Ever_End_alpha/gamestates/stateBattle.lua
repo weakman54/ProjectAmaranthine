@@ -43,7 +43,9 @@ function stateBattle:init()
   self.background.data:play()
 end
 
-function stateBattle:enter()
+function stateBattle:enter(prev, enemyString)
+  enemy  = reload(enemyString or "enemyQuit1")
+  enemy:initialize() -- Hack I guess
   reloaded = true
   -- TODO: make reset conditional (or push states, not sure which atm)
   player:reset()
