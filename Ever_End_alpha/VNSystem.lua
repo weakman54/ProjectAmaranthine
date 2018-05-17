@@ -207,13 +207,19 @@ end
 
 function VNSystem:drawPanel(panel, momentI)
   local t = panel.bg
-  panel.bg.anim.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox or 200, t.oy or 200)
+  local c = {1, 1, 1, 1}
+  if t.hue or t.saturation or t.value then
+    r, g, b, a = vivid.HSVtoRGB(t.hue or 0.5, t.saturation or 1, t.value or 1)
+    c = { r/255, g/255, b/255, a/255 }
+  end
+  love.graphics.setColor(c)
+  panel.bg.anim.data:loveDraw(t.x, t.y, t.rotation, t.scalex, t.scaley, t.offsetx or 200, t.offsety or 200)
 
   if not self.curMoment then return end
 
   for _, t in ipairs(self.curMoment.drawData) do
     local sprite = self.curMoment.anims[t.anim]
-    sprite.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox or 200, t.oy or 200)
+    sprite.data:loveDraw(t.x, t.y, t.rotation, t.scalex, t.scaley, t.offsetx or 200, t.offsety or 200)
   end
 end
 
