@@ -1332,14 +1332,14 @@ return {
         },
         anims = {
           End = RM:loadAnimation('s03_0_p050_m01_End_'),
-          Box_00001  = RM:loadAnimation('s03_0_p050_m01_Box_00001 -'),
+          Box = RM:loadAnimation('s03_0_p050_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "Box_00001 ",
+            anim = "Box",
           },
           [2] = {
             anim = "End",
