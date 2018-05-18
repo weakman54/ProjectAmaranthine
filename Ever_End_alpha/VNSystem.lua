@@ -131,6 +131,7 @@ function VNSystem:setPanelI(panelI, momentI)
 end
 
 function VNSystem:setMomentI(momentI)
+--  if self.waitTimer then  -- TODO: fix this bug
   self.curMomentI = momentI or 1
   self.curMoment = self.curPanel.moments[self.curMomentI]
 
@@ -139,19 +140,34 @@ function VNSystem:setMomentI(momentI)
   local transTrigType = self.curMoment.transitionTrigger[1] 
   if transTrigType == "timer" then
     local time = self.curMoment.transitionTrigger[2]
-    HUMPTimer.after(time, function() VNSystem:incrementMomentI() end)
+    self.waitTimer = HUMPTimer.after(time, function() VNSystem:incrementMomentI() end)
   end
 
-  -- Start any tweens
+
+
+
   for _, t in ipairs(self.curMoment.drawData) do
+    -- Start and loop all moment animations ASSUMPTION: all animations for VN system are simple looping anims
+    local anim = self.curMoment.anims[t.anim].data
+    anim:play()
+    anim:setLooping(true)
+
+    -- Start any tweens
     if t.tween then
       local dur, target, method, after = unpack(t.tween)
       HUMPTimer.tween(dur, t, target, method, after)
     end
   end
 
-  local bgtween = self.curMoment.drawData.bg and self.curMoment.drawData.bg.tween -- HARDCODED: only does tweens, need changing if we ever add more ways to change stuff
+
   local bg = self.curPanel.bg
+  -- Start and loop bg animation see assumption above
+  local anim = bg.anim.data
+  anim:play()
+  anim:setLooping(true)
+
+  -- Start any bg tweens
+  local bgtween = self.curMoment.drawData.bg and self.curMoment.drawData.bg.tween -- HARDCODED: only does tweens, need changing if we ever add more ways to change stuff
 
   if bgtween then
     local dur, target, method, after = unpack(bgtween)
@@ -203,17 +219,25 @@ function VNSystem:update(dt)
   elseif input:pressed("guard") and self.curPanelI ~= 1 then
     self:setPanelI(self.curPanelI - 1)
   end
+
+
+
+
+  self.curPanel.bg.anim.data:update(dt)
+
+  if not self.curMoment then return end
+
+  for _, t in ipairs(self.curMoment.drawData) do
+    local sprite = self.curMoment.anims[t.anim]
+    sprite.data:update(dt)
+  end
 end
 
 
 
 function VNSystem:drawPanel(panel, momentI)
   local t = panel.bg
-  local c = {1, 1, 1, 1}
-  if t.hue or t.saturation or t.value then
-    r, g, b, a = vivid.HSVtoRGB(t.hue or 0.5, t.saturation or 1, t.value or 1)
-    c = { r/255, g/255, b/255, a/255 }
-  end
+  local c = {t.red or 1, t.green or 1, t.blue or 1, t.alpha or 1}
   love.graphics.setColor(c)
   panel.bg.anim.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
 
@@ -221,8 +245,12 @@ function VNSystem:drawPanel(panel, momentI)
 
   for _, t in ipairs(self.curMoment.drawData) do
     local sprite = self.curMoment.anims[t.anim]
+    local c = {t.red or 1, t.green or 1, t.blue or 1, t.alpha or 1}
+    love.graphics.setColor(c)
     sprite.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
   end
+
+  love.graphics.setColor(1, 1, 1, 1)
 end
 
 

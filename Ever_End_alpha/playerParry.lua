@@ -182,7 +182,7 @@ sm:add("parryAttack", {
       self.stage = stage
 
       ac:setAnimation(string.format("sword_combo%02d_attack", self.stage), false)
-      enemy.ac:setAnimation(string.format("sword_hurt%02d", self.stage))
+      enemy.ac:setAnimation(string.format("hurt%02d", self.stage))
 
       --      self.swordComboBaseDmg = 1
       --      self.swordComboGradDmg = 2
