@@ -173,7 +173,7 @@ function enemy:initializeAC()
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   
   -- hurt animations
-   for i=1, 1 do
+   for i=1, 5 do
    name = string.format("hurt%02d", i)
     ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   end
