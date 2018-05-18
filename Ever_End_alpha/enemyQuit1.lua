@@ -171,10 +171,12 @@ function enemy:initializeAC()
 
   name = "taunt"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-  
- name = "hurt"
-  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+
+
+  for i=1, 1 do
+    name = string.format("hurt%02d", i)
+    ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  end
 
   --  name = "counter_attack" -- TODO: rename?
   --  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
@@ -393,7 +395,7 @@ function enemy:initializeSM()
         if enemy.attacked then
           enemy.attacked = false
           enemy:changeHP(-1) -- HARDCODED: damage
-          return sm:switch("hurt")
+          return sm:switch("hurt01")
         end
 
         if self.timer:reached(enemy.tauntDuration) then
@@ -408,7 +410,7 @@ function enemy:initializeSM()
 
   sm:add("hurt", {
       enter = function(self, data)
-        ac:setAnimation("hurt", false)
+        ac:setAnimation("hurt01", false)
         Sound:play("Player Hit")
 
         self.timer = Timer:new()
