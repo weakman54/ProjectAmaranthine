@@ -318,7 +318,7 @@ return {
   },
   [12] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p013_bg_'),
+      anim = RM:loadAnimation('s03_0_p012_bg_'),
     },
     moments = {
       [1] = {
@@ -340,7 +340,7 @@ return {
   },
   [13] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p014_bg_'),
+      anim = RM:loadAnimation('s03_0_p012_bg_'),
     },
     moments = {
       [1] = {
@@ -366,7 +366,7 @@ return {
   },
   [14] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p015_bg_'),
+      anim = RM:loadAnimation('s03_0_p012_bg_'),
     },
     moments = {
       [1] = {
@@ -388,7 +388,7 @@ return {
   },
   [15] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p016_bg_'),
+      anim = RM:loadAnimation('s03_0_p012_bg_'),
     },
     moments = {
       [1] = {
@@ -410,7 +410,7 @@ return {
   },
   [16] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p017_bg_'),
+      anim = RM:loadAnimation('s03_0_p012_bg_'),
     },
     moments = {
       [1] = {
@@ -432,7 +432,7 @@ return {
   },
   [17] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p018_bg_'),
+      anim = RM:loadAnimation('s03_0_p012_bg_'),
     },
     moments = {
       [1] = {
@@ -454,7 +454,7 @@ return {
   },
   [18] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p019_bg_'),
+      anim = RM:loadAnimation('s03_0_p012_bg_'),
     },
     moments = {
       [1] = {
