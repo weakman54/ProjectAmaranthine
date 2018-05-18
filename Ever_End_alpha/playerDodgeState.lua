@@ -132,7 +132,7 @@ local dodgeMinigame = {
       if input:pressed("combo" .. self.combo.name) then
         self.hurtI = (self.hurtI % 2) + 1
         print("#" .. self.hurtI)
-        enemy.ac:setAnimation("gun_hurt" .. string.format("%02d", self.hurtI))
+        enemy.ac:setAnimation("hurt" .. string.format("%02d", self.hurtI))
         enemy:changeHP(-1) -- HARDCODED: -1, health amount
 
         ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing, false)
