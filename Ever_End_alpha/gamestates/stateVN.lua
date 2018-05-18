@@ -4,16 +4,16 @@ local VNSystem = reload("VNSystem")
 local stateVN = {}
 
 
-local sceneToLoad = "03_0"
-local panelToLoad = 7
+local sceneToLoad = "01_0"
+local panelToLoad = 1
 
 
 function stateVN:init()
 
---    buildScene("assets/VN/", "01_0")  
+    buildScene("assets/VN/", "01_0")  
 
---  buildScene("assets/VN/", "02_0")
---  buildScene("assets/VN/", "02_1")
+  buildScene("assets/VN/", "02_0")
+  buildScene("assets/VN/", "02_1")
 
 --  buildScene("assets/VN/", "03_0")
 

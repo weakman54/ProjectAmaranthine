@@ -80,266 +80,223 @@ return {
       anim = RM:loadAnimation('s02_1_p005_bg_'),
     },
     moments = {
-      [1] = {
+      [2] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m02_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [6] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p006_bg_'),
-    },
-    moments = {
-      [1] = {
+      [3] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m03_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [7] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p007_bg_'),
-    },
-    moments = {
-      [1] = {
+      [4] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m04_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [8] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p008_bg_'),
-    },
-    moments = {
-      [1] = {
+      [5] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m05_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [9] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p009_bg_'),
-    },
-    moments = {
-      [1] = {
+      [6] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m06_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [10] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p010_bg_'),
-    },
-    moments = {
-      [1] = {
+      [7] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m07_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [11] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p011_bg_'),
-    },
-    moments = {
-      [1] = {
+      [8] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m08_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [12] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p012_bg_'),
-    },
-    moments = {
-      [1] = {
+      [9] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m09_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [13] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p013_bg_'),
-    },
-    moments = {
-      [1] = {
+      [10] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m10_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [14] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p014_bg_'),
-    },
-    moments = {
-      [1] = {
+      [11] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m11_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [15] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p015_bg_'),
-    },
-    moments = {
-      [1] = {
+      [12] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m12_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [16] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p016_bg_'),
-    },
-    moments = {
-      [1] = {
+      [13] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m13_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [17] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p017_bg_'),
-    },
-    moments = {
-      [1] = {
+      [14] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m14_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [18] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p018_bg_'),
-    },
-    moments = {
-      [1] = {
+      [15] = {
         sounds = {
         },
         anims = {
+          bg = RM:loadAnimation('s02_1_p005_m15_bg_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "bg",
+          },
         },
       },
-    },
-  },
-  [19] = {
-    bg = {
-      anim = RM:loadAnimation('s02_1_p019_bg_'),
-    },
-    moments = {
-      [1] = {
+      [16] = {
         sounds = {
         },
         anims = {
         },
         transitionTrigger = {
           [1] = "waitForInput",
-          gotoScene = "03_0"
         },
         drawData = {
         },

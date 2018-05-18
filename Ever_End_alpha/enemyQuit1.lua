@@ -442,7 +442,9 @@ function enemy:changeHP(offset)
   end
 
   if self.HP <=0 then
+--    VNSys TTODO: fix
     Gamestate.switch(stateVN);
+    
   end
 
 end
