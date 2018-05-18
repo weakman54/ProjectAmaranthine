@@ -203,17 +203,25 @@ function VNSystem:update(dt)
   elseif input:pressed("guard") and self.curPanelI ~= 1 then
     self:setPanelI(self.curPanelI - 1)
   end
+
+
+
+
+  self.curPanel.bg.anim.data:update(dt)
+
+  if not self.curMoment then return end
+
+  for _, t in ipairs(self.curMoment.drawData) do
+    local sprite = self.curMoment.anims[t.anim]
+    sprite.data:update(dt)
+  end
 end
 
 
 
 function VNSystem:drawPanel(panel, momentI)
   local t = panel.bg
-  local c = {1, 1, 1, 1}
-  if t.hue or t.saturation or t.value then
-    r, g, b, a = vivid.HSVtoRGB(t.hue or 0.5, t.saturation or 1, t.value or 1)
-    c = { r/255, g/255, b/255, a/255 }
-  end
+  local c = {t.red or 1, t.green or 1, t.blue or 1, t.alpha or 1}
   love.graphics.setColor(c)
   panel.bg.anim.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
 
@@ -221,8 +229,12 @@ function VNSystem:drawPanel(panel, momentI)
 
   for _, t in ipairs(self.curMoment.drawData) do
     local sprite = self.curMoment.anims[t.anim]
+    local c = {t.red or 1, t.green or 1, t.blue or 1, t.alpha or 1}
+    love.graphics.setColor(c)
     sprite.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
   end
+  
+  love.graphics.setColor(1, 1, 1, 1)
 end
 
 
