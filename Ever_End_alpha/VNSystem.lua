@@ -131,6 +131,7 @@ function VNSystem:setPanelI(panelI, momentI)
 end
 
 function VNSystem:setMomentI(momentI)
+--  if self.waitTimer then  -- TODO: fix this bug
   self.curMomentI = momentI or 1
   self.curMoment = self.curPanel.moments[self.curMomentI]
 
@@ -139,19 +140,34 @@ function VNSystem:setMomentI(momentI)
   local transTrigType = self.curMoment.transitionTrigger[1] 
   if transTrigType == "timer" then
     local time = self.curMoment.transitionTrigger[2]
-    HUMPTimer.after(time, function() VNSystem:incrementMomentI() end)
+    self.waitTimer = HUMPTimer.after(time, function() VNSystem:incrementMomentI() end)
   end
 
-  -- Start any tweens
+
+
+
   for _, t in ipairs(self.curMoment.drawData) do
+    -- Start and loop all moment animations ASSUMPTION: all animations for VN system are simple looping anims
+    local anim = self.curMoment.anims[t.anim].data
+    anim:play()
+    anim:setLooping(true)
+
+    -- Start any tweens
     if t.tween then
       local dur, target, method, after = unpack(t.tween)
       HUMPTimer.tween(dur, t, target, method, after)
     end
   end
 
-  local bgtween = self.curMoment.drawData.bg and self.curMoment.drawData.bg.tween -- HARDCODED: only does tweens, need changing if we ever add more ways to change stuff
+
   local bg = self.curPanel.bg
+  -- Start and loop bg animation see assumption above
+  local anim = bg.anim.data
+  anim:play()
+  anim:setLooping(true)
+
+  -- Start any bg tweens
+  local bgtween = self.curMoment.drawData.bg and self.curMoment.drawData.bg.tween -- HARDCODED: only does tweens, need changing if we ever add more ways to change stuff
 
   if bgtween then
     local dur, target, method, after = unpack(bgtween)
@@ -233,7 +249,7 @@ function VNSystem:drawPanel(panel, momentI)
     love.graphics.setColor(c)
     sprite.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
   end
-  
+
   love.graphics.setColor(1, 1, 1, 1)
 end
 
