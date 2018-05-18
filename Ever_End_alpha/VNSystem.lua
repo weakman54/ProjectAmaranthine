@@ -119,9 +119,11 @@ function VNSystem:setPanelI(panelI, momentI)
   -- TODO: handle non-existant panels! (do we need to?)
   if type(panelI) ~= "number" or panelI <= 0 then error("Couldn't set panel index, wrong type or negative!", 2) end
   if not self.curScene then error("There is not scene!", 2) end
-
-  self.curPanelI = panelI or 1
-  self.curPanel = self.curScene[self.curPanelI]
+  for i = 0, 100 do -- MAGIC NUMBER: number of panels to look forward
+    self.curPanelI = (panelI or 1) + i
+    self.curPanel = self.curScene[self.curPanelI]
+    if self.curPanel then break end
+  end
 
   assert(self.curPanel, "Tried to go to a non-existent panel: " .. self.curPanelI)
 
@@ -201,20 +203,38 @@ function VNSystem:update(dt)
   elseif input:pressed("guard") and self.curPanelI ~= 1 then
     self:setPanelI(self.curPanelI - 1)
   end
+
+
+
+
+  self.curPanel.bg.anim.data:update(dt)
+
+  if not self.curMoment then return end
+
+  for _, t in ipairs(self.curMoment.drawData) do
+    local sprite = self.curMoment.anims[t.anim]
+    sprite.data:update(dt)
+  end
 end
 
 
 
 function VNSystem:drawPanel(panel, momentI)
   local t = panel.bg
-  panel.bg.anim.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox or 200, t.oy or 200)
+  local c = {t.red or 1, t.green or 1, t.blue or 1, t.alpha or 1}
+  love.graphics.setColor(c)
+  panel.bg.anim.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
 
   if not self.curMoment then return end
 
   for _, t in ipairs(self.curMoment.drawData) do
     local sprite = self.curMoment.anims[t.anim]
-    sprite.data:loveDraw(t.x, t.y, t.r, t.sx, t.sy, t.ox or 200, t.oy or 200)
+    local c = {t.red or 1, t.green or 1, t.blue or 1, t.alpha or 1}
+    love.graphics.setColor(c)
+    sprite.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
   end
+  
+  love.graphics.setColor(1, 1, 1, 1)
 end
 
 
