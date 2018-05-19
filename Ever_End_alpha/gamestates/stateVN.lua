@@ -37,7 +37,6 @@ function stateVN:update(dt)
 end
 
 function stateVN:draw()
-  love.graphics.print("VN state", 100, 100)
   VNSystem:draw()
 end
 
