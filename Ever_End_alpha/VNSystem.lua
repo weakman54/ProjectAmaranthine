@@ -137,18 +137,20 @@ function VNSystem:setMomentI(momentI)
 
   if not self.curMoment then return false end
 
-  local transTrigType = self.curMoment.transitionTrigger[1] 
+  local moment = self.curMoment
+
+  local transTrigType = moment.transitionTrigger[1] 
   if transTrigType == "timer" then
-    local time = self.curMoment.transitionTrigger[2]
+    local time = moment.transitionTrigger[2]
     self.waitTimer = HUMPTimer.after(time, function() VNSystem:incrementMomentI() end)
   end
 
 
 
 
-  for _, t in ipairs(self.curMoment.drawData) do
+  for _, t in ipairs(moment.drawData) do
     -- Start and loop all moment animations ASSUMPTION: all animations for VN system are simple looping anims
-    local anim = self.curMoment.anims[t.anim].data
+    local anim = moment.anims[t.anim].data
     anim:play()
     anim:setLooping(true)
 
@@ -167,21 +169,32 @@ function VNSystem:setMomentI(momentI)
   anim:setLooping(true)
 
   -- Start any bg tweens
-  local bgtween = self.curMoment.drawData.bg and self.curMoment.drawData.bg.tween -- HARDCODED: only does tweens, need changing if we ever add more ways to change stuff
+  local bgtween = moment.drawData.bg and moment.drawData.bg.tween -- HARDCODED: only does tweens, need changing if we ever add more ways to change stuff
 
   if bgtween then
     local dur, target, method, after = unpack(bgtween)
     HUMPTimer.tween(dur, bg, target, method, after)
   end
 
-  return true
 
 
   -- Play soundeffects/start sound play timers
-  --  for _, sound in ipairs(self.curMoment.drawData) do
+  --  for _, sound in ipairs(moment.drawData) do
   --    if sound.delay
 
 
+  -- Start or stop any music
+  if moment.music then
+    if moment.music == "stop" then
+      Sound:muteMusic()
+
+    else
+      Sound:play(moment.music)
+    end
+  end
+
+
+  return true
 end
 
 function VNSystem:incrementMomentI()
@@ -190,12 +203,12 @@ function VNSystem:incrementMomentI()
   -- ASSUMPTION: there is a loaded moment when running this...
   local sceneToGoto = self.curMoment.transitionTrigger.gotoScene
   if sceneToGoto then
-    self:loadScene(sceneToGoto)
+    return self:loadScene(sceneToGoto)
   end 
   -- ASSUMPTION: there is a loaded moment when running this...
   local enemyToGoTo = self.curMoment.transitionTrigger.enemyToGoTo
   if enemyToGoTo then
-    Gamestate.switch(stateBattle, enemyToGoTo)
+    return Gamestate.switch(stateBattle, enemyToGoTo)
   end
 
   local changedMoment = self:setMomentI(self.curMomentI + 1)

@@ -5,7 +5,7 @@ local stateVN = {}
 
 
 local sceneToLoad = "03_0"
-local panelToLoad = 7
+local panelToLoad = 1
 
 
 function stateVN:init()
@@ -28,6 +28,7 @@ function stateVN:enter(data)
 end
 
 function stateVN:leave()
+  Sound:muteMusic()
 end
 
 
@@ -37,7 +38,6 @@ function stateVN:update(dt)
 end
 
 function stateVN:draw()
-  love.graphics.print("VN state", 100, 100)
   VNSystem:draw()
 end
 

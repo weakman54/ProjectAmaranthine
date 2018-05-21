@@ -51,6 +51,10 @@ function stateError:enter(prev, msg)
 
   p = table.concat(errStr, "\n")
 
+
+  Sound:muteMusic()
+
+
 --  p = p:gsub("\t", "")
 --  p = p:gsub("%[string \"(.-)\"%]", "%1")
 
@@ -63,6 +67,7 @@ function stateError:enter(prev, msg)
 --  require("mobdebug").start() 
 
   print("Error: " .. self.err)
+
 end
 
 
@@ -90,10 +95,10 @@ end
 function stateError:keypressed(key)
   if key == "3" then
     error(self.err, 2) -- propagate the error for handling outside of the app
-    
+
   elseif key == "x" then
     love.event.quit()
-    
+
   end
 end
 
