@@ -2,10 +2,12 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene04_0_aftermath/'
 
+local background = RM:loadAnimation('Inside_robot_')
+
 return {
   [1] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p001_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -60,8 +62,7 @@ return {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s04_0_p003_m01_End_'),
-          Quit = RM:loadAnimation('s04_0_p003_m01_Quit_'),
+          End = RM:loadAnimation('s04_0_p003_m01_End_Quit_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -69,9 +70,6 @@ return {
         drawData = {
           [1] = {
             anim = "End",
-          },
-          [2] = {
-            anim = "Quit",
           },
         },
       },
@@ -86,15 +84,11 @@ return {
         sounds = {
         },
         anims = {
-          End_Quit = RM:loadAnimation('s04_0_p004_m01_End_Quit_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "End_Quit",
-          },
         },
       },
     },
@@ -108,15 +102,11 @@ return {
         sounds = {
         },
         anims = {
-          End_Quit = RM:loadAnimation('s04_0_p005_m01_End_Quit_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "End_Quit",
-          },
         },
       },
     },
@@ -130,15 +120,11 @@ return {
         sounds = {
         },
         anims = {
-          Zero = RM:loadAnimation('s04_0_p006_m01_Zero_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "Zero",
-          },
         },
       },
     },
@@ -152,15 +138,11 @@ return {
         sounds = {
         },
         anims = {
-          Quit = RM:loadAnimation('s04_0_p007_m01_Quit_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "Quit",
-          },
         },
       },
     },
@@ -174,66 +156,56 @@ return {
         sounds = {
         },
         anims = {
-          Quit = RM:loadAnimation('s04_0_p008_m01_Quit_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "Quit",
-          },
         },
       },
     },
   },
   [9] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p009_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          Quit = RM:loadAnimation('s04_0_p009_m01_Quit_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "Quit",
-          },
         },
       },
     },
   },
   [10] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p010_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s04_0_p010_m01_End_'),
+          
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-          [1] = {
-            anim = "End",
-          },
+          
         },
       },
     },
   },
   [11] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p011_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -241,7 +213,7 @@ return {
         },
         anims = {
         },
-        transitionTrigger = {
+        transitionTrigger = {	
           [1] = "waitForInput",
           gotoScene = "04_1"
         },
