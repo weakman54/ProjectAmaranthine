@@ -4,7 +4,7 @@ local VNSystem = reload("VNSystem")
 local stateVN = {}
 
 
-local sceneToLoad = "04_0"
+local sceneToLoad = "03_0"
 local panelToLoad = 1
 
 
