@@ -3,8 +3,9 @@ local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene03_0_midFightScene/'
 
 local background = RM:loadAnimation('Inside_robot_')
-local boxAlpha = 0.8
 local boxDarken = 0.1
+local background_blur = RM:loadAnimation('inside_robot_blur_')
+local boxAlpha = 0.8
 
 return {
   [1] = {
@@ -40,7 +41,7 @@ return {
   },
   [2] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -71,7 +72,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -101,7 +102,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -184,7 +185,7 @@ return {
   },
   [6] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -299,7 +300,7 @@ return {
   },
   [10] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -522,7 +523,7 @@ return {
   },
   [19] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -556,7 +557,7 @@ return {
   },
   [20] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -586,7 +587,7 @@ return {
   },
   [21] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -736,7 +737,7 @@ return {
   },
   [26] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -766,7 +767,7 @@ return {
   },
   [27] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -796,7 +797,7 @@ return {
   },
   [28] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -826,7 +827,7 @@ return {
   },
   [29] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -856,7 +857,7 @@ return {
   },
   [30] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -920,7 +921,7 @@ return {
   },
   [32] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -950,7 +951,7 @@ return {
   },
   [33] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -980,7 +981,7 @@ return {
   },
   [34] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1126,7 +1127,7 @@ return {
   },
   [38] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1156,7 +1157,7 @@ return {
   },
   [39] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1186,7 +1187,7 @@ return {
   },
   [40] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1261,7 +1262,7 @@ return {
   },
   [42] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1291,7 +1292,7 @@ return {
   },
   [43] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1321,7 +1322,7 @@ return {
   },
   [44] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1351,7 +1352,7 @@ return {
   },
   [45] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1381,7 +1382,7 @@ return {
   },
   [46] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1453,7 +1454,7 @@ return {
   },
   [47] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1532,7 +1533,7 @@ return {
   },
   [49] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1562,7 +1563,7 @@ return {
   },
   [50] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1592,7 +1593,7 @@ return {
   },
   [51] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1622,7 +1623,7 @@ return {
   },
   [52] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1652,7 +1653,7 @@ return {
   },
   [53] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1682,7 +1683,7 @@ return {
   },
   [54] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1712,7 +1713,7 @@ return {
   },
   [55] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {

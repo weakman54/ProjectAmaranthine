@@ -2,10 +2,16 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene02_0_quitEncounter/'
 
+local background1 = RM:loadAnimation('Elevator_room_')
+local background2 = RM:loadAnimation('quit_quarters_')
+local background3 = RM:loadAnimation('robot_room_') 
+local blur1 = RM:loadAnimation('Elevator_room_blur_')
+local blur2 = RM:loadAnimation('quit_quarters_blur_')
+local blur3 = RM:loadAnimation('robot_room_blur_')
 return {
   [1] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p001_bg_'),
+      anim = background1,
     },
     moments = {
       [1] = {
@@ -27,7 +33,7 @@ return {
   },
   [2] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p002_bg_'),
+      anim = blur1,
     },
     moments = {
       [1] = {
@@ -49,7 +55,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p003_bg_'),
+      anim = blur1,
     },
     moments = {
       [1] = {
@@ -71,7 +77,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p004_bg_'),
+      anim = blur1,
     },
     moments = {
       [1] = {
@@ -97,7 +103,7 @@ return {
   },
   [5] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p005_bg_'),
+      anim = blur1,
     },
     moments = {
       [1] = {
@@ -123,7 +129,7 @@ return {
   },
   [6] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p006_bg_'),
+      anim = blur1,
     },
     moments = {
       [1] = {
@@ -149,7 +155,7 @@ return {
   },
   [7] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p007_bg_'),
+      anim = blur1,
     },
     moments = {
       [1] = {
@@ -171,7 +177,7 @@ return {
   },
   [8] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p008_bg_'),
+      anim = blur1,
     },
     moments = {
       [1] = {
@@ -193,7 +199,7 @@ return {
   },
   [9] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p009_bg_'),
+      anim = blur1,
     },
     moments = {
       [1] = {
@@ -219,7 +225,7 @@ return {
   },
   [10] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p010_bg_'),
+      anim = blur1,
     },
     moments = {
       [1] = {
@@ -241,7 +247,7 @@ return {
   },
   [11] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p011_bg_'),
+      anim = background1,
     },
     moments = {
       [1] = {
@@ -263,7 +269,7 @@ return {
   },
   [12] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p012_bg_'),
+      anim = background2,
     },
     moments = {
       [1] = {
@@ -285,7 +291,7 @@ return {
   },
   [13] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p013_bg_'),
+      anim = blur2,
     },
     moments = {
       [1] = {
@@ -307,7 +313,7 @@ return {
   },
   [14] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p014_bg_'),
+      anim = blur2,
     },
     moments = {
       [1] = {
@@ -329,7 +335,7 @@ return {
   },
   [15] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p015_bg_'),
+      anim = blur2,
     },
     moments = {
       [1] = {
@@ -370,7 +376,7 @@ return {
   },
   [16] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p016_bg_'),
+      anim = blur2,
     },
     moments = {
       [1] = {
@@ -388,7 +394,7 @@ return {
   },
   [17] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p017_bg_'),
+      anim = blur2,
     },
     moments = {
       [1] = {
@@ -410,7 +416,7 @@ return {
   },
   [18] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p018_bg_'),
+      anim = blur2,
     },
     moments = {
       [1] = {
@@ -432,7 +438,7 @@ return {
   },
   [19] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p019_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -454,7 +460,7 @@ return {
   },
   [20] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p020_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -476,7 +482,7 @@ return {
   },
   [21] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p021_bg_'),
+      anim = background3,
     },
     moments = {
       [1] = {
@@ -498,7 +504,7 @@ return {
   },
   [22] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p022_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -520,7 +526,7 @@ return {
   },
   [23] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p023_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -542,7 +548,7 @@ return {
   },
   [24] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p024_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -564,7 +570,7 @@ return {
   },
   [25] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p025_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -586,7 +592,7 @@ return {
   },
   [26] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p026_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -608,7 +614,7 @@ return {
   },
   [27] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p027_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -630,7 +636,7 @@ return {
   },
   [28] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p028_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -652,7 +658,7 @@ return {
   },
   [29] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p029_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -674,7 +680,7 @@ return {
   },
   [30] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p030_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -696,7 +702,7 @@ return {
   },
   [31] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p031_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -722,7 +728,7 @@ return {
   },
   [32] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p032_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -744,7 +750,7 @@ return {
   },
   [33] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p033_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -766,7 +772,7 @@ return {
   },
   [34] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p034_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -803,7 +809,7 @@ return {
   },
   [35] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p035_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -825,7 +831,7 @@ return {
   },
   [36] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p036_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -855,7 +861,7 @@ return {
   },
   [37] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p037_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -877,7 +883,7 @@ return {
   },
   [38] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p038_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -899,7 +905,7 @@ return {
   },
   [39] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p039_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -921,7 +927,7 @@ return {
   },
   [40] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p040_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -947,7 +953,7 @@ return {
   },
   [41] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p041_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
@@ -969,7 +975,7 @@ return {
   },
   [42] = {
     bg = {
-      anim = RM:loadAnimation('s02_0_p042_bg_'),
+      anim = blur3,
     },
     moments = {
       [1] = {
