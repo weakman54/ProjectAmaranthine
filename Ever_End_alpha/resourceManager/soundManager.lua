@@ -7,6 +7,8 @@ local SoundManager = {}
 
 
 local sfx = {}
+local mus = {}
+local playingMus
 
 local playing = {}
 
@@ -25,7 +27,7 @@ local function spawnNewSFX(handle, opts)
     src:play()
     playing[src] = src
   end
-  
+
   return src
 end
 
@@ -37,6 +39,7 @@ function SoundManager:init()
   local sfxDir = love.filesystem.getDirectoryItems(sfxRoot)
   local musDir = love.filesystem.getDirectoryItems(musRoot)
 
+-- Load all sound effects
   for _, shortname in ipairs(sfxDir) do
     local longname = sfxRoot .. "/" .. shortname
     local handle = shortname:sub(1, -5)
@@ -47,7 +50,16 @@ function SoundManager:init()
     sfx[handle] = {filename = longname, sources = {}}
   end
 
-  -- TODO: music
+  -- Load all music
+  for _, shortname in ipairs(musDir) do
+    local longname = musRoot .. "/" .. shortname
+    local handle = shortname:sub(1, -5)
+
+    if dbg_render then debugPrint("Loading: mus\n" .. longname, 100, 100) end
+    if dbg_print then print("Loading: mus: " .. longname .. " as " .. handle) end
+
+    mus[handle] = {filename = longname, source = love.audio.newSource(longname, "stream")}
+  end
 end
 
 function SoundManager:update()  
@@ -63,9 +75,33 @@ function SoundManager:update()
   end     
 end
 
+function SoundManager:stop(handle)
+  if not handle then return end
+  if mus[handle] then
+    mus[handle]:stop()
+    playingMus = nil
+  else
+    error("tried to stop thing: " .. handle .. ", this is either not implemented yet or something else went wrong...")
+  end
+end
+
+function SoundManager:muteMusic()
+  self:stop(playingMus)
+end
+  
+
 function SoundManager:play(handle, opts)
   if sfx[handle] then
     spawnNewSFX(handle, opts)
+    
+  elseif mus[handle] then
+    if playingMus and playingMus ~= handle then
+      mus[playingMus].source:stop()
+    end
+    
+    mus[handle].source:play()
+    playingMus = handle
+
   else
     error("SoundManager: trying to play a sound that does not exist: " .. handle)
   end
