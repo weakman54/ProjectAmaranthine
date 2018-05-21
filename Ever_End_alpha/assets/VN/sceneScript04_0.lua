@@ -37,7 +37,7 @@ return {
   },
   [2] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p002_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -97,7 +97,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p003_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -123,7 +123,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p004_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -149,7 +149,7 @@ return {
   },
   [5] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p005_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -175,7 +175,7 @@ return {
   },
   [6] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p006_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
