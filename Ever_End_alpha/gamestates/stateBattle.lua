@@ -102,7 +102,6 @@ function stateBattle:draw()
 
   GUIEnemyHealth:loveDraw()
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  love.graphics.print("Battle state", 100, 100)
 
 end
 

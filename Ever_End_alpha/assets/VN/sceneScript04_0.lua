@@ -2,10 +2,12 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene04_0_aftermath/'
 
+local background = RM:loadAnimation('Inside_robot_')
+
 return {
   [1] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p001_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -199,7 +201,7 @@ return {
   },
   [7] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p007_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -225,7 +227,7 @@ return {
   },
   [8] = {
     bg = {
-      anim = RM:loadAnimation('s04_0_p008_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -253,8 +255,9 @@ return {
         anims = {
           Choice = RM:loadAnimation('s04_0_p008_m02_Choice_'),
         },
-        transitionTrigger = {
+        transitionTrigger = {	
           [1] = "waitForInput",
+          gotoScene = "04_1",
         },
         drawData = {
           [1] = {

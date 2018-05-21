@@ -4,16 +4,16 @@ local VNSystem = reload("VNSystem")
 local stateVN = {}
 
 
-local sceneToLoad = "01_0"
+local sceneToLoad = "04_0"
 local panelToLoad = 1
 
 
 function stateVN:init()
 
-    buildScene("assets/VN/", "01_0")  
+--    buildScene("assets/VN/", "01_0")  
 
-  buildScene("assets/VN/", "02_0")
-  buildScene("assets/VN/", "02_1")
+--  buildScene("assets/VN/", "02_0")
+--  buildScene("assets/VN/", "02_1")
 
 --  buildScene("assets/VN/", "03_0")
 
@@ -37,7 +37,6 @@ function stateVN:update(dt)
 end
 
 function stateVN:draw()
-  love.graphics.print("VN state", 100, 100)
   VNSystem:draw()
 end
 
