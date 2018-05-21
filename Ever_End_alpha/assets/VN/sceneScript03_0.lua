@@ -2,10 +2,12 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene03_0_midFightScene/'
 
+local background = RM:loadAnimation('Inside_robot_')
+
 return {
   [1] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p001_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -31,7 +33,7 @@ return {
   },
   [2] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p002_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -57,7 +59,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p003_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -83,7 +85,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p004_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -128,7 +130,7 @@ return {
   },
   [5] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p005_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -154,7 +156,7 @@ return {
   },
   [6] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p006_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -180,7 +182,7 @@ return {
   },
   [7] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p007_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -227,7 +229,7 @@ return {
   },
   [8] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p008_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -257,7 +259,7 @@ return {
   },
   [10] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p010_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -476,7 +478,7 @@ return {
   },
   [19] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p020_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -506,7 +508,7 @@ return {
   },
   [20] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p021_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -532,7 +534,7 @@ return {
   },
   [21] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p022_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -558,7 +560,7 @@ return {
   },
   [22] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p023_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -584,7 +586,7 @@ return {
   },
   [23] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p024_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -610,7 +612,7 @@ return {
   },
   [24] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p025_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -636,7 +638,7 @@ return {
   },
   [25] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p026_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -662,7 +664,7 @@ return {
   },
   [26] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p027_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -688,7 +690,7 @@ return {
   },
   [27] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p028_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -714,7 +716,7 @@ return {
   },
   [28] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p029_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -740,7 +742,7 @@ return {
   },
   [29] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p030_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -766,7 +768,7 @@ return {
   },
   [30] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p031_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -792,7 +794,7 @@ return {
   },
   [31] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p032_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -822,7 +824,7 @@ return {
   },
   [32] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p033_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -848,7 +850,7 @@ return {
   },
   [33] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p034_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -874,7 +876,7 @@ return {
   },
   [34] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p035_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -942,7 +944,7 @@ return {
   },
   [35] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p036_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -960,7 +962,7 @@ return {
   },
   [36] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p037_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -978,7 +980,7 @@ return {
   },
   [37] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p038_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1004,7 +1006,7 @@ return {
   },
   [38] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p039_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1030,7 +1032,7 @@ return {
   },
   [39] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p040_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1056,7 +1058,7 @@ return {
   },
   [40] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p041_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1097,7 +1099,7 @@ return {
   },
   [41] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p042_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1123,7 +1125,7 @@ return {
   },
   [42] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p043_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1149,7 +1151,7 @@ return {
   },
   [43] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p044_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1175,7 +1177,7 @@ return {
   },
   [44] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p045_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1201,7 +1203,7 @@ return {
   },
   [45] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p046_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1227,7 +1229,7 @@ return {
   },
   [46] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p047_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1287,7 +1289,7 @@ return {
   },
   [47] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p049_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1309,7 +1311,7 @@ return {
   },
   [48] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p050_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1358,7 +1360,7 @@ return {
   },
   [49] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p051_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1384,7 +1386,7 @@ return {
   },
   [50] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p052_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1410,7 +1412,7 @@ return {
   },
   [51] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p053_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1436,7 +1438,7 @@ return {
   },
   [52] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p054_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1462,7 +1464,7 @@ return {
   },
   [53] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p055_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1488,7 +1490,7 @@ return {
   },
   [54] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p056_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1514,7 +1516,7 @@ return {
   },
   [55] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p057_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
