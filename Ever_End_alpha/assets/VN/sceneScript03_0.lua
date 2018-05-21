@@ -13,6 +13,7 @@ return {
       [1] = {
         sounds = {
         },
+        music = "Build_up_Theme Full",
         anims = {
           End_Quit = RM:loadAnimation('s03_0_p001_m01_End_Quit_'),
           Box = RM:loadAnimation('s03_0_p001_m01_Box_'),
@@ -39,6 +40,7 @@ return {
       [1] = {
         sounds = {
         },
+        music = "stop",
         anims = {
           Quit = RM:loadAnimation('s03_0_p002_m01_Quit_'),
           Box = RM:loadAnimation('s03_0_p002_m01_Box_'),
@@ -206,15 +208,15 @@ return {
             anim = "End",
             x = 0,
             y = 0,
-    
+
             tween = {2.4, {x =- 100, y =- 40}, "out-quart"}
           },
           [3] = {
             anim = "Quit",
-    
+
             x = 0,
             y = 0,
-    
+
             tween = {2.4, {x =- 75, y =- 30}, "out-quart"}
           },
           [4] = {
@@ -240,8 +242,8 @@ return {
           Box = RM:loadAnimation('s03_0_p008_m01_Box_'),
         },
         transitionTrigger = {
-           [1] = "timer",--"waitForInput",
-           [2] = 0.9
+          [1] = "timer",--"waitForInput",
+          [2] = 0.9
         },
         drawData = {
           [1] = {
@@ -288,7 +290,7 @@ return {
             yOffset = 1480/2,
             x = 2320/2 - 200,
             y = 1480/2 - 200,
-  
+
             tween = {3, {xScale = 1.1, yScale = 1.1}, "in-linear"}
             -- fade to white
           },

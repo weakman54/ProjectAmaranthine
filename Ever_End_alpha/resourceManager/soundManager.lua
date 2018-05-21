@@ -78,7 +78,7 @@ end
 function SoundManager:stop(handle)
   if not handle then return end
   if mus[handle] then
-    mus[handle]:stop()
+    mus[handle].source:stop()
     playingMus = nil
   else
     error("tried to stop thing: " .. handle .. ", this is either not implemented yet or something else went wrong...")
