@@ -86,6 +86,11 @@ function player:initializeAC()
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
+  name = "defeat"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+
+
+
   name = "charge_attack_charging"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   name = "charge_attack_ready"
@@ -447,7 +452,8 @@ function player:changeHP(offset)
   end
 
   if self.HP <=0 then
-    Gamestate.switch(stateGameOver);
+    self.ac:setAnimation("defeat")
+    Gamestate.push(stateGameOver)
   end
 end
 
