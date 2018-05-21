@@ -297,6 +297,7 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+          battleToGoTo = "enemyQuit2"
         },
         drawData = {
         },

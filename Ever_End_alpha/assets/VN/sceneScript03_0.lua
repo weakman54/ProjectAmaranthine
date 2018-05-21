@@ -3,6 +3,8 @@ local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene03_0_midFightScene/'
 
 local background = RM:loadAnimation('Inside_robot_')
+local boxAlpha = 0.8
+local boxDarken = 0.1
 
 return {
   [1] = {
@@ -24,6 +26,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End_Quit",
@@ -51,6 +57,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -77,6 +87,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -103,6 +117,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit_Zero",
@@ -122,6 +140,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit_Zero",
@@ -148,6 +170,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -174,6 +200,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -203,6 +233,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -248,6 +282,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -278,6 +316,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Effect",
@@ -497,6 +539,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Effect",
@@ -526,6 +572,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -552,6 +602,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -578,6 +632,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -604,6 +662,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -630,6 +692,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -656,6 +722,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -682,6 +752,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -708,6 +782,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -734,6 +812,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit_End",
@@ -760,6 +842,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -786,6 +872,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -813,6 +903,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -842,6 +936,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -868,6 +966,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -895,6 +997,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -917,6 +1023,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -936,6 +1046,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -998,6 +1112,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End_Zero",
@@ -1024,6 +1142,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -1050,6 +1172,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1076,6 +1202,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1117,6 +1247,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit_End",
@@ -1143,6 +1277,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1169,6 +1307,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1195,6 +1337,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1221,6 +1367,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1247,6 +1397,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1266,6 +1420,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "bg",
@@ -1284,6 +1442,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
         },
       },
@@ -1329,6 +1491,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1349,6 +1515,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1378,6 +1548,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1404,6 +1578,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1430,6 +1608,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1456,6 +1638,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1482,6 +1668,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1508,6 +1698,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1530,10 +1724,15 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+          enemyToGoTo = "enemyQuit3",
         },
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
