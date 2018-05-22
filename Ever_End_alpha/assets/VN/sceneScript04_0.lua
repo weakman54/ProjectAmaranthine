@@ -81,6 +81,7 @@ return {
       [3] = {
         sounds = {
         },
+		music = "Conflict to Resolve Theme (Happy) Intro",
         anims = {
           End_Quit = RM:loadAnimation('s04_0_p002_m03_End_Quit_'),
         },
