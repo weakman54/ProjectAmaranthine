@@ -16,7 +16,7 @@ return {
       [1] = {
         sounds = {
         },
-        music = "Build_up_Theme Full",
+        music = "Ambient Cicada",
         anims = {
           End_Quit = RM:loadAnimation('s03_0_p001_m01_End_Quit_'),
           Box = RM:loadAnimation('s03_0_p001_m01_Box_'),
@@ -47,7 +47,6 @@ return {
       [1] = {
         sounds = {
         },
-        music = "stop",
         anims = {
           Quit = RM:loadAnimation('s03_0_p002_m01_Quit_'),
           Box = RM:loadAnimation('s03_0_p002_m01_Box_'),
@@ -315,6 +314,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = "stop",
         anims = {
           Box = RM:loadAnimation('s03_0_p010_m01_Box_'),
           Effect = RM:loadAnimation('s03_0_p010_m01_Effect_'),
@@ -1040,6 +1040,7 @@ return {
       [2] = {
         sounds = {
         },
+		music = "End_Ex_Soldier",
         anims = {
           Box = RM:loadAnimation('s03_0_p032_m01_Box_'),
           End = RM:loadAnimation('s03_0_p032_m01_End_'),
@@ -1758,11 +1759,13 @@ return {
         sounds = {
         },
         anims = {
-          Quit = RM:loadAnimation('s03_0_p054_m01_Quit_'),
+          Quit = RM:loadAnimation('s03_0_p054_m01_Quit1_'),
+          Sword = RM:loadAnimation('s03_0_p054_m01_QuitSword_'),
           Box = RM:loadAnimation('s03_0_p054_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+           [1] = "timer",--"waitForInput",
+            [2] = .82
         },
         drawData = {
           [1] = {
@@ -1774,6 +1777,13 @@ return {
           },
           [2] = {
             anim = "Quit",
+          },
+          [3] = {
+            anim = "Sword",
+            x = 30,
+            y = -500,
+            tween = {.75, {x = 0, y = 0}, "in-bounce"}
+
           },
         },
       },
@@ -1792,7 +1802,8 @@ return {
           Box = RM:loadAnimation('s03_0_p055_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+           [1] = "timer",--"waitForInput",
+           [2] = 1.3
         },
         drawData = {
           [1] = {
