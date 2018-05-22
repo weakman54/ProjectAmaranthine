@@ -114,7 +114,8 @@ return {
           Box = RM:loadAnimation('s03_0_p004_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 1.0
         },
         drawData = {
           [1] = {
@@ -149,7 +150,8 @@ return {
           Box = RM:loadAnimation('s03_0_p005_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 2.7
         },
         drawData = {
           [1] = {
@@ -186,7 +188,8 @@ return {
           Box = RM:loadAnimation('s03_0_p006_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = .7
         },
         drawData = {
           [1] = {
@@ -209,6 +212,22 @@ return {
     },
     moments = {
       [1] = {
+        sounds = {
+        },
+        anims = {
+          Black = RM:loadAnimation('black'),
+        },
+        transitionTrigger = {
+          [1] = "timer",--"waitForInput",
+          [2] = .2
+        },
+        drawData = {
+          [1] = {
+            anim = "Black"
+          },
+        },
+      },
+      [2] = {
         sounds = {
         },
         anims = {
@@ -300,9 +319,11 @@ return {
           Box = RM:loadAnimation('s03_0_p010_m01_Box_'),
           Effect = RM:loadAnimation('s03_0_p010_m01_Effect_'),
           Zero = RM:loadAnimation('s03_0_p010_m01_Zero_'),
+          White = RM:loadAnimation('white'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 2.7
         },
         drawData = {
           [1] = {
@@ -324,8 +345,13 @@ return {
             x = 2320/2 - 200,
             y = 1480/2 - 200,
 
-            tween = {3, {xScale = 1.1, yScale = 1.1}, "in-linear"}
-            -- fade to white
+            tween = {2.5, {xScale = 1.1, yScale = 1.1}, "in-linear"}
+          },
+          [4] = {
+            anim = "White",
+            alpha = 0,
+
+            tween = {2.5, {alpha = 1}, "in-cubic"}
           },
         },
       },
@@ -341,9 +367,32 @@ return {
         },
         anims = {
           End = RM:loadAnimation('s03_0_p012_m01_End_'),
+          White = RM:loadAnimation('white'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+           [1] = "timer",--"waitForInput",
+           [2] = 1.25--1.27
+        },
+        drawData = {
+          [1] = {
+            anim = "End",
+          },
+          [2] = {
+            anim = "White",
+            alpha = 1,
+
+            tween = {1.25, {alpha = 0}, "in-cubic"}
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          End = RM:loadAnimation('s03_0_p012_m01_End_'),
+        },
+        transitionTrigger = {
+           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -523,6 +572,47 @@ return {
           Box = RM:loadAnimation('s03_0_p020_m01_Box_'),
           Effect = RM:loadAnimation('s03_0_p020_m01_Effect_'),
           Zero = RM:loadAnimation('s03_0_p020_m01_Zero_'),
+          White = RM:loadAnimation('white'),
+        },
+        transitionTrigger = {
+          [1] = "timer",--"waitForInput",
+          [2] = .75--1.27
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
+          },
+          [2] = {
+            anim = "Effect",
+          },
+          [3] = {
+            anim = "Zero",
+            xScale = .9,
+            yScale = .9,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            x = 2320/2 - 200 ,
+            y = 1480/2 - 200,
+          },
+          [4] = {
+              anim = "White",
+              alpha = 1,
+              tween = {1.2, {alpha = 0}, "out-cubic"}
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s03_0_p020_m01_Box_'),
+          Effect = RM:loadAnimation('s03_0_p020_m01_Effect_'),
+          Zero = RM:loadAnimation('s03_0_p020_m01_Zero_'),
+          White = RM:loadAnimation('white'),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -543,11 +633,11 @@ return {
             anim = "Zero",
             xOffset = 2320/2,
             yOffset = 1480/2,
-            x = 2320/2 - 200,
+            x = 2320/2 - 200 ,
             y = 1480/2 - 200,
             xScale = .9,
             yScale = .9,
-            tween = {1.2, {y = 1480/2 - 200 -75 ,xScale = 1.2, yScale = 1.2}, "out-cubic"}
+            tween = {1.2, {y = 1480/2 - 200 -75, xScale = 1.2, yScale = 1.2}, "out-cubic"}
           },
         },
       },
@@ -615,7 +705,7 @@ return {
   },
   [22] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -645,7 +735,8 @@ return {
   },
   [23] = {
     bg = {
-      anim = background,
+            anim = background_blur,
+
     },
     moments = {
       [1] = {
@@ -675,7 +766,8 @@ return {
   },
   [24] = {
     bg = {
-      anim = background,
+            anim = background_blur,
+
     },
     moments = {
       [1] = {
@@ -705,7 +797,8 @@ return {
   },
   [25] = {
     bg = {
-      anim = background,
+            anim = background_blur,
+
     },
     moments = {
       [1] = {
@@ -875,7 +968,8 @@ return {
           Box = RM:loadAnimation('s03_0_p031_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 1.8
         },
         drawData = {
           [1] = {
@@ -897,6 +991,29 @@ return {
           },
         },
       },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          Quit = RM:loadAnimation('s03_0_p031_m01_Quit_'),
+          Box = RM:loadAnimation('s03_0_p031_m01_Box_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
+          },
+          [2] = {
+            anim = "Quit",
+          },
+        },
+      },
     },
   },
   [31] = {
@@ -905,6 +1022,22 @@ return {
     },
     moments = {
       [1] = {
+        sounds = {
+        },
+        anims = {
+          Black = RM:loadAnimation('black'),
+        },
+        transitionTrigger = {
+          [1] = "timer",--"waitForInput",
+          [2] = .363
+        },
+        drawData = {
+          [1] = {
+            anim = "Black"
+          },
+        },
+      },
+      [2] = {
         sounds = {
         },
         anims = {
@@ -1073,45 +1206,10 @@ return {
       },
     },
   },
-  [35] = {
-    bg = {
-      anim = background,
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [36] = {
-    bg = {
-      anim = background,
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
   [37] = {
     bg = {
-      anim = background,
+            anim = background_blur,
+
     },
     moments = {
       [1] = {
@@ -1244,6 +1342,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "EndNod",
@@ -1255,30 +1357,6 @@ return {
             alpha = 0,
             tween = {.05, {alpha = 1}, "in-quart"}
           },
-        },
-      },
-    },
-  },
-  [40] = {
-    bg = {
-      anim = RM:loadAnimation('s03_0_p041_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          
-          Box = RM:loadAnimation('s03_0_p041_m01_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          
-
-
-          
         },
       },
     },
@@ -1461,48 +1539,48 @@ return {
           },
         },
       },
-      [2] = {
-        sounds = {
-        },
-        anims = {
-          bg = RM:loadAnimation('s03_0_p047_m02_bg_'),
-          Box = RM:loadAnimation('s03_0_p047_m02_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-            alpha = boxAlpha,
-            red = boxDarken,
-            green = boxDarken, 
-            blue = boxDarken
-          },
-          [2] = {
-            anim = "bg",
-          },
-        },
-      },
-      [3] = {
-        sounds = {
-        },
-        anims = {
-          Box = RM:loadAnimation('s03_0_p047_m03_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-            alpha = boxAlpha,
-            red = boxDarken,
-            green = boxDarken, 
-            blue = boxDarken
-          },
-        },
-      },
+--      [2] = {
+--        sounds = {
+--        },
+--        anims = {
+--          bg = RM:loadAnimation('s03_0_p047_m02_bg_'),
+--          Box = RM:loadAnimation('s03_0_p047_m02_Box_'),
+--        },
+--        transitionTrigger = {
+--          [1] = "waitForInput",
+--        },
+--        drawData = {
+--          [1] = {
+--            anim = "Box",
+--            alpha = boxAlpha,
+--            red = boxDarken,
+--            green = boxDarken, 
+--            blue = boxDarken
+--          },
+--          [2] = {
+--            anim = "bg",
+--          },
+--        },
+--      },
+--      [3] = {
+--        sounds = {
+--        },
+--        anims = {
+--          Box = RM:loadAnimation('s03_0_p047_m03_Box_'),
+--        },
+--        transitionTrigger = {
+--          [1] = "waitForInput",
+--        },
+--        drawData = {
+--          [1] = {
+--            anim = "Box",
+--            alpha = boxAlpha,
+--            red = boxDarken,
+--            green = boxDarken, 
+--            blue = boxDarken
+--          },
+--        },
+--      },
     },
   },
   [47] = {
@@ -1602,104 +1680,75 @@ return {
       },
     },
   },
-  [49] = {
-    bg = {
-      anim = background_blur,
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          Quit = RM:loadAnimation('s03_0_p051_m01_Quit_'),
-          Box = RM:loadAnimation('s03_0_p051_m01_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-            alpha = boxAlpha,
-            red = boxDarken,
-            green = boxDarken, 
-            blue = boxDarken
-          },
-          [2] = {
-            anim = "Quit",
-            xScale = .9,
-            yScale = .9,
-            xOffset = 2320/2,
-            yOffset = 1480/2,
-            x = 2320/2 - 200,
-            y = 1480/2 - 200,
---            tween = {1, { y = 1480/2 - 200,     }, "in-linear"} -- TODO: Make it possible to have multiple tweens with different timing 
-            tween = {3, { xScale = 1, yScale = 1}, "out-quad"}
-          },
-        },
-      },
-    },
-  },
-  [50] = {
-    bg = {
-      anim = background_blur,
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          Quit = RM:loadAnimation('s03_0_p052_m01_Quit_'),
-          Box = RM:loadAnimation('s03_0_p052_m01_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-            alpha = boxAlpha,
-            red = boxDarken,
-            green = boxDarken, 
-            blue = boxDarken
-          },
-          [2] = {
-            anim = "Quit",
-          },
-        },
-      },
-    },
-  },
-  [51] = {
-    bg = {
-      anim = background_blur,
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          End = RM:loadAnimation('s03_0_p053_m01_End_'),
-          Box = RM:loadAnimation('s03_0_p053_m01_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-            alpha = boxAlpha,
-            red = boxDarken,
-            green = boxDarken, 
-            blue = boxDarken
-          },
-          [2] = {
-            anim = "End",
-          },
-        },
-      },
-    },
-  },
+--  [49] = {
+--    bg = {
+--      anim = background_blur,
+--    },
+--    moments = {
+--      [1] = {
+--        sounds = {
+--        },
+--        anims = {
+--          Quit = RM:loadAnimation('s03_0_p051_m01_Quit_'),
+--          Box = RM:loadAnimation('s03_0_p051_m01_Box_'),
+--        },
+--        transitionTrigger = {
+--          [1] = "waitForInput",
+--        },
+--        drawData = {
+--          [1] = {
+--            anim = "Box",
+--            alpha = boxAlpha,
+--            red = boxDarken,
+--            green = boxDarken, 
+--            blue = boxDarken
+--          },
+--          [2] = {
+--            anim = "Quit",
+--            xScale = .9,
+--            yScale = .9,
+--            xOffset = 2320/2,
+--            yOffset = 1480/2,
+--            x = 2320/2 - 200,
+--            y = 1480/2 - 200,
+----            tween = {1, { y = 1480/2 - 200,     }, "in-linear"} -- TODO: Make it possible to have multiple tweens with different timing 
+--            tween = {3, { xScale = 1, yScale = 1}, "out-quad"}
+--          },
+--        },
+--      },
+--    },
+--  },
+--  [50] = {
+--    bg = {
+--      anim = background_blur,
+--    },
+--    moments = {
+--      [1] = {
+--        sounds = {
+--        },
+--        anims = {
+--          Quit = RM:loadAnimation('s03_0_p052_m01_Quit_'),
+--          Box = RM:loadAnimation('s03_0_p052_m01_Box_'),
+--        },
+--        transitionTrigger = {
+--          [1] = "waitForInput",
+--        },
+--        drawData = {
+--          [1] = {
+--            anim = "Box",
+--            alpha = boxAlpha,
+--            red = boxDarken,
+--            green = boxDarken, 
+--            blue = boxDarken
+--          },
+--          [2] = {
+--            anim = "Quit",
+--          },
+--        },
+--      },
+--    },
+--  },
+
   [52] = {
     bg = {
       anim = background_blur,
@@ -1804,7 +1853,6 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
-          enemyToGoTo = "enemyQuit3",
         },
         drawData = {
           [1] = {
@@ -1816,6 +1864,37 @@ return {
           },
           [2] = {
             anim = "Quit",
+          },
+        },
+      },
+    },
+  },
+  [56] = {
+    bg = {
+      anim = background_blur,
+    },
+    moments = {
+      [1] = {
+        sounds = {
+        },
+        anims = {
+          End = RM:loadAnimation('s03_0_p053_m01_End_'),
+          Box = RM:loadAnimation('s03_0_p053_m01_Box_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+          enemyToGoTo = "enemyQuit3",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
+          },
+          [2] = {
+            anim = "End",
           },
         },
       },
