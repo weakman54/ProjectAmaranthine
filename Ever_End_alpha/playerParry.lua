@@ -37,10 +37,11 @@ end
 
 local stageTimings = {
   --  {duration = 2.0, target = 1.500},  
-  {duration = 1.5, target = 1.250 },
-  {duration = 1.0, target = 0.865 },
-  {duration = 0.5, target = 0.4375},
+  {duration = PARRY1_DURATION, target = PARRY1_TARGET },
+  {duration = PARRY2_DURATION, target = PARRY2_TARGET },
+  {duration = PARRY3_DURATION, target = PARRY3_TARGET },
 }
+
 
 RM.prefix = ""
 local graphics = {
