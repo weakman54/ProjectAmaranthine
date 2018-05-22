@@ -171,6 +171,10 @@ function enemy:initializeAC()
 
   name = "taunt"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+  
+  name = "defeat"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
   for i=1, 3 do
@@ -442,8 +446,8 @@ function enemy:changeHP(offset)
   end
 
   if self.HP <=0 then
---    VNSys TTODO: fix
-    Gamestate.switch(stateVN);
+    self.ac:setAnimation("defeat")
+    Gamestate.push(stateGameOver)
     
   end
 

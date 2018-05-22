@@ -171,10 +171,15 @@ function enemy:initializeAC()
 
   name = "taunt"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
+
+
+  name = "defeat"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+
+
   -- hurt animations
-   for i=1, 5 do
-   name = string.format("hurt%02d", i)
+  for i=1, 5 do
+    name = string.format("hurt%02d", i)
     ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   end
 -- name = "hurt"
@@ -444,7 +449,8 @@ function enemy:changeHP(offset)
   end
 
   if self.HP <=0 then
-    Gamestate.switch(stateVN);
+    self.ac:setAnimation("defeat")
+    Gamestate.push(stateGameOver)
   end
 
 end

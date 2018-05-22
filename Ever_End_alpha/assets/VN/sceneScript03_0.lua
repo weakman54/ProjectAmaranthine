@@ -2,15 +2,21 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene03_0_midFightScene/'
 
+local background = RM:loadAnimation('inside_robot_')
+local boxDarken = 0.1
+local background_blur = RM:loadAnimation('inside_robot_blur_')
+local boxAlpha = 0.8
+
 return {
   [1] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p001_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
         sounds = {
         },
+        music = "Build_up_Theme Full",
         anims = {
           End_Quit = RM:loadAnimation('s03_0_p001_m01_End_Quit_'),
           Box = RM:loadAnimation('s03_0_p001_m01_Box_'),
@@ -21,6 +27,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End_Quit",
@@ -31,12 +41,13 @@ return {
   },
   [2] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p002_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
         sounds = {
         },
+        music = "stop",
         anims = {
           Quit = RM:loadAnimation('s03_0_p002_m01_Quit_'),
           Box = RM:loadAnimation('s03_0_p002_m01_Box_'),
@@ -47,6 +58,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -57,7 +72,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p003_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -73,6 +88,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -83,7 +102,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p004_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -100,6 +119,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit_Zero2",
@@ -115,7 +138,7 @@ return {
   },
   [5] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p005_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -131,6 +154,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -148,7 +175,7 @@ return {
   },
   [6] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p006_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -164,6 +191,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -174,7 +205,7 @@ return {
   },
   [7] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p007_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -193,6 +224,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -221,7 +256,7 @@ return {
   },
   [8] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p008_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -232,12 +267,16 @@ return {
           Box = RM:loadAnimation('s03_0_p008_m01_Box_'),
         },
         transitionTrigger = {
-           [1] = "timer",--"waitForInput",
-           [2] = 0.9
+          [1] = "timer",--"waitForInput",
+          [2] = 0.9
         },
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -251,7 +290,7 @@ return {
   },
   [10] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p010_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -268,6 +307,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Effect",
@@ -280,7 +323,7 @@ return {
             yOffset = 1480/2,
             x = 2320/2 - 200,
             y = 1480/2 - 200,
-  
+
             tween = {3, {xScale = 1.1, yScale = 1.1}, "in-linear"}
             -- fade to white
           },
@@ -470,7 +513,7 @@ return {
   },
   [19] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p020_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -488,6 +531,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Effect",
@@ -508,7 +555,7 @@ return {
   },
   [20] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p021_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -524,6 +571,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -534,7 +585,7 @@ return {
   },
   [21] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p022_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -550,6 +601,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -560,7 +615,7 @@ return {
   },
   [22] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p023_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -576,6 +631,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -586,7 +645,7 @@ return {
   },
   [23] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p024_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -602,6 +661,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -612,7 +675,7 @@ return {
   },
   [24] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p025_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -628,6 +691,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -638,7 +705,7 @@ return {
   },
   [25] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p026_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -654,6 +721,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -664,7 +735,7 @@ return {
   },
   [26] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p027_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -680,6 +751,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -690,7 +765,7 @@ return {
   },
   [27] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p028_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -706,6 +781,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -716,7 +795,7 @@ return {
   },
   [28] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p029_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -732,6 +811,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit_End",
@@ -744,7 +827,7 @@ return {
   },
   [29] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p030_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -760,6 +843,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -777,7 +864,7 @@ return {
   },
   [30] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p031_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -793,6 +880,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -810,7 +901,7 @@ return {
   },
   [31] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p032_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -827,6 +918,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -840,7 +935,7 @@ return {
   },
   [32] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p033_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -856,6 +951,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -866,7 +965,7 @@ return {
   },
   [33] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p034_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -882,6 +981,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -892,7 +995,7 @@ return {
   },
   [34] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p035_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -909,6 +1012,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -931,6 +1038,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -950,6 +1061,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -960,7 +1075,7 @@ return {
   },
   [35] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p036_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -978,7 +1093,7 @@ return {
   },
   [36] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p037_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -996,7 +1111,7 @@ return {
   },
   [37] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p038_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1012,6 +1127,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End_Zero",
@@ -1022,7 +1141,7 @@ return {
   },
   [38] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p039_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1038,6 +1157,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Zero",
@@ -1048,7 +1171,7 @@ return {
   },
   [39] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p040_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1065,6 +1188,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "EndSurprised",
@@ -1086,6 +1213,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "EndSurprised",
@@ -1154,7 +1285,7 @@ return {
   },
   [41] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p042_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1170,6 +1301,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit_End",
@@ -1180,7 +1315,7 @@ return {
   },
   [42] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p043_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1196,6 +1331,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1206,7 +1345,7 @@ return {
   },
   [43] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p044_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1222,6 +1361,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1232,7 +1375,7 @@ return {
   },
   [44] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p045_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1248,6 +1391,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1258,7 +1405,7 @@ return {
   },
   [45] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p046_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1274,6 +1421,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1284,7 +1435,7 @@ return {
   },
   [46] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p047_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1300,6 +1451,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1319,6 +1474,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "bg",
@@ -1337,6 +1496,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
         },
       },
@@ -1344,7 +1507,7 @@ return {
   },
   [47] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p049_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1369,7 +1532,7 @@ return {
   },
   [48] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p050_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -1385,6 +1548,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1409,6 +1576,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1433,7 +1604,7 @@ return {
   },
   [49] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p051_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1449,6 +1620,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1467,7 +1642,7 @@ return {
   },
   [50] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p052_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1483,6 +1658,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1493,7 +1672,7 @@ return {
   },
   [51] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p053_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1509,6 +1688,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "End",
@@ -1519,7 +1702,7 @@ return {
   },
   [52] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p054_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1535,6 +1718,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1545,7 +1732,7 @@ return {
   },
   [53] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p055_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1561,6 +1748,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1571,7 +1762,7 @@ return {
   },
   [54] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p056_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1587,6 +1778,10 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -1597,7 +1792,7 @@ return {
   },
   [55] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p057_bg_'),
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -1609,10 +1804,15 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+          enemyToGoTo = "enemyQuit3",
         },
         drawData = {
           [1] = {
             anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
           },
           [2] = {
             anim = "Quit",
