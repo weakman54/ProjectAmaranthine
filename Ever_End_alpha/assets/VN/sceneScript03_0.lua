@@ -2,7 +2,7 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene03_0_midFightScene/'
 
-local background = RM:loadAnimation('Inside_robot_')
+local background = RM:loadAnimation('inside_robot_')
 local boxDarken = 0.1
 local background_blur = RM:loadAnimation('inside_robot_blur_')
 local boxAlpha = 0.8
@@ -110,6 +110,7 @@ return {
         },
         anims = {
           Quit_Zero = RM:loadAnimation('s03_0_p004_m01_Quit_Zero_'),
+          Quit_Zero2 = RM:loadAnimation('s03_0_p004_m02_Quit_Zero_'),
           Box = RM:loadAnimation('s03_0_p004_m01_Box_'),
         },
         transitionTrigger = {
@@ -124,30 +125,12 @@ return {
             blue = boxDarken
           },
           [2] = {
-            anim = "Quit_Zero",
+            anim = "Quit_Zero2",
           },
-        },
-      },
-      [2] = {
-        sounds = {
-        },
-        anims = {
-          Quit_Zero = RM:loadAnimation('s03_0_p004_m02_Quit_Zero_'),
-          Box = RM:loadAnimation('s03_0_p004_m02_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-            alpha = boxAlpha,
-            red = boxDarken,
-            green = boxDarken, 
-            blue = boxDarken
-          },
-          [2] = {
+          [3] = {
             anim = "Quit_Zero",
+            alpha = 1,
+            tween = {.43, {alpha = 0}, "in-quart"}
           },
         },
       },
@@ -178,6 +161,13 @@ return {
           },
           [2] = {
             anim = "End",
+            x = 2320/2 - 200 - 90,
+            y = 1480/2 - 200 - 10,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {3, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-linear"}
           },
         },
       },
@@ -243,15 +233,15 @@ return {
             anim = "End",
             x = 0,
             y = 0,
-
+    
             tween = {2.4, {x =- 100, y =- 40}, "out-quart"}
           },
           [3] = {
             anim = "Quit",
-
+    
             x = 0,
             y = 0,
-
+    
             tween = {2.4, {x =- 75, y =- 30}, "out-quart"}
           },
           [4] = {
@@ -535,7 +525,8 @@ return {
           Zero = RM:loadAnimation('s03_0_p020_m01_Zero_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = .75--1.27
         },
         drawData = {
           [1] = {
@@ -550,6 +541,13 @@ return {
           },
           [3] = {
             anim = "Zero",
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = .9,
+            yScale = .9,
+            tween = {1.2, {y = 1480/2 - 200 -75 ,xScale = 1.2, yScale = 1.2}, "out-cubic"}
           },
         },
       },
@@ -820,6 +818,8 @@ return {
           },
           [2] = {
             anim = "Quit_End",
+            -- plz separate quit and end
+            -- I want to do a thing where end comes in from left and quit from right to create the illusion of rotation. Sorta like how pokemon battles start
           },
         },
       },
@@ -850,6 +850,13 @@ return {
           },
           [2] = {
             anim = "Quit",
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            x = 2320/2 - 200 -10,
+            y = 1480/2 - 200 +25,
+            xScale = .95,
+            yScale = .95,
+            tween = {5, {x = 2320/2 - 200, y = 1480/2 - 200 ,xScale = 1, yScale = 1}, "out-linear"}
           },
         },
       },
@@ -880,6 +887,13 @@ return {
           },
           [2] = {
             anim = "Quit",
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            x = 2320/2 - 200,
+            y = 1480/2 - 200 +400,
+            xScale = 1.4,
+            yScale = 1.4,
+            tween = {1.8, {y = 1480/2 - 200 ,xScale = 1, yScale = 1}, "in-out-cubic"}
           },
         },
       },
@@ -1164,7 +1178,8 @@ return {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s03_0_p040_m01_End_'),
+          EndSurprised = RM:loadAnimation('s03_0_p040_m01_End_'),
+          EndNod = RM:loadAnimation('s03_0_p041_m01_End_'),
           Box = RM:loadAnimation('s03_0_p040_m01_Box_'),
         },
         transitionTrigger = {
@@ -1179,26 +1194,21 @@ return {
             blue = boxDarken
           },
           [2] = {
-            anim = "End",
+            anim = "EndSurprised",
           },
         },
       },
-    },
-  },
-  [40] = {
-    bg = {
-      anim = background_blur,
-    },
-    moments = {
-      [1] = {
+      [2] = {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s03_0_p041_m01_End_'),
-          Box = RM:loadAnimation('s03_0_p041_m01_Box_'),
+          EndSurprised = RM:loadAnimation('s03_0_p040_m01_End_'),
+          EndNod = RM:loadAnimation('s03_0_p041_m01_End_'),
+          Box = RM:loadAnimation('s03_0_p040_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = .3
         },
         drawData = {
           [1] = {
@@ -1209,23 +1219,66 @@ return {
             blue = boxDarken
           },
           [2] = {
-            anim = "End",
+            anim = "EndSurprised",
+            alpha = 1,
+            tween = {.1, {alpha = 0}, "in-quart"}
+          },
+          [3] = {
+            anim = "EndNod",
+            alpha = 0,
+            tween = {.05, {alpha = 1}, "in-quart"}
           },
         },
       },
-      [2] = {
+      [3] = {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s03_0_p041_m02_End_'),
+          EndNod = RM:loadAnimation('s03_0_p041_m01_End_'),
+          EndNormal = RM:loadAnimation('s03_0_p041_m02_End_'),
+          Box = RM:loadAnimation('s03_0_p040_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "End",
+            anim = "Box",
           },
+          [2] = {
+            anim = "EndNod",
+            alpha = 1,
+            tween = {.1, {alpha = 0}, "in-quart"}
+          },
+          [3] = {
+            anim = "EndNormal",
+            alpha = 0,
+            tween = {.05, {alpha = 1}, "in-quart"}
+          },
+        },
+      },
+    },
+  },
+  [40] = {
+    bg = {
+      anim = RM:loadAnimation('s03_0_p041_bg_'),
+    },
+    moments = {
+      [1] = {
+        sounds = {
+        },
+        anims = {
+          
+          Box = RM:loadAnimation('s03_0_p041_m01_Box_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          
+
+
+          
         },
       },
     },
@@ -1469,6 +1522,9 @@ return {
         drawData = {
           [1] = {
             anim = "Quit",
+            x = 0,
+            y = 10,
+            tween = {1, {y = 0}, "out-quart"}
           },
         },
       },
@@ -1499,6 +1555,9 @@ return {
           },
           [2] = {
             anim = "End",
+            x = 20,
+            y = 5,
+            tween = {1.5, {x = 0}, "out-linear"}
           },
         },
       },
@@ -1507,7 +1566,8 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s03_0_p050_m02_Box_'),
-          End = RM:loadAnimation('s03_0_p050_m02_End_'),
+          End = RM:loadAnimation('s03_0_p050_m01_End_'),
+          End2 = RM:loadAnimation('s03_0_p050_m02_End_'),
           Hand = RM:loadAnimation('s03_0_p050_m02_Hand_'),
         },
         transitionTrigger = {
@@ -1523,10 +1583,21 @@ return {
           },
           [2] = {
             anim = "End",
+
+            alpha = 1,
+            tween = {.2, {alpha = 0}, "in-quart"}
           },
           [3] = {
-            anim = "Hand",
+            anim = "End2",
+            alpha = 0,
+            tween = {.1, {alpha = 1}, "in-quart"}
           },
+          [4] = {
+            anim = "Hand",
+            x = 0,
+            y = 500,
+            tween = {.15, {y = 0}, "in-linear"}
+          }
         },
       },
     },
@@ -1556,6 +1627,14 @@ return {
           },
           [2] = {
             anim = "Quit",
+            xScale = .9,
+            yScale = .9,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+--            tween = {1, { y = 1480/2 - 200,     }, "in-linear"} -- TODO: Make it possible to have multiple tweens with different timing 
+            tween = {3, { xScale = 1, yScale = 1}, "out-quad"}
           },
         },
       },
