@@ -80,7 +80,7 @@ return {
       anim = RM:loadAnimation('s02_1_p005_bg_'),
     },
     moments = {
-      [2] = {
+      [1] = {
         sounds = {
         },
         anims = {
@@ -95,7 +95,7 @@ return {
           },
         },
       },
-      [3] = {
+      [2] = {
         sounds = {
         },
         anims = {
@@ -110,7 +110,7 @@ return {
           },
         },
       },
-      [4] = {
+      [3] = {
         sounds = {
         },
         anims = {
@@ -125,7 +125,7 @@ return {
           },
         },
       },
-      [5] = {
+      [4] = {
         sounds = {
         },
         anims = {
@@ -140,7 +140,7 @@ return {
           },
         },
       },
-      [6] = {
+      [5] = {
         sounds = {
         },
         anims = {
@@ -155,7 +155,7 @@ return {
           },
         },
       },
-      [7] = {
+      [6] = {
         sounds = {
         },
         anims = {
@@ -170,7 +170,7 @@ return {
           },
         },
       },
-      [8] = {
+      [7] = {
         sounds = {
         },
         anims = {
@@ -185,7 +185,7 @@ return {
           },
         },
       },
-      [9] = {
+      [8] = {
         sounds = {
         },
         anims = {
@@ -200,7 +200,7 @@ return {
           },
         },
       },
-      [10] = {
+      [9] = {
         sounds = {
         },
         anims = {
@@ -215,7 +215,7 @@ return {
           },
         },
       },
-      [11] = {
+      [10] = {
         sounds = {
         },
         anims = {
@@ -230,7 +230,7 @@ return {
           },
         },
       },
-      [12] = {
+      [11] = {
         sounds = {
         },
         anims = {
@@ -245,7 +245,7 @@ return {
           },
         },
       },
-      [13] = {
+      [12] = {
         sounds = {
         },
         anims = {
@@ -260,7 +260,7 @@ return {
           },
         },
       },
-      [14] = {
+      [13] = {
         sounds = {
         },
         anims = {
@@ -275,7 +275,7 @@ return {
           },
         },
       },
-      [15] = {
+      [14] = {
         sounds = {
         },
         anims = {
@@ -290,14 +290,14 @@ return {
           },
         },
       },
-      [16] = {
+      [15] = {
         sounds = {
         },
         anims = {
         },
         transitionTrigger = {
           [1] = "waitForInput",
-          battleToGoTo = "enemyQuit2"
+          enemyToGoTo = "enemyQuit2"
         },
         drawData = {
         },
