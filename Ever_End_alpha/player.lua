@@ -433,6 +433,16 @@ function player:initializeSM()
       end
     })
   --
+  
+  sm:add("defeat", {
+      enter = function(self, data)
+        ac:setAnimation("defeat", false)
+      end,
+
+      update = function(self, dt)
+      end,
+    })
+  --
 
   sm:add("parryMinigame",  reload("playerParry"))
   sm:add("dodge",  reload("playerDodgeState"))
@@ -452,8 +462,9 @@ function player:changeHP(offset)
   end
 
   if self.HP <=0 then
-    self.ac:setAnimation("defeat")
-    Gamestate.push(stateGameOver)
+    self.sm:switch("defeat")
+    enemy.ac:setAnimation("idle")
+    Gamestate.push(stateGameOver, {won = false})
   end
 end
 
