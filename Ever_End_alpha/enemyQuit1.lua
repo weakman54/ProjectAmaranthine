@@ -28,6 +28,8 @@ enemy.dbg_trigger_offensive_action = false
 
 function enemy:initialize()
   self.name = "Quit1" -- TODO: load properly
+  
+  self.nextScene = "02_1"
 
   self.attackTime    = 3 -- seconds, TODO: figure better name for this
   self.guardDuration = 2
@@ -429,6 +431,16 @@ function enemy:initializeSM()
       end,
     })
   --
+  
+  sm:add("defeat", {
+      enter = function(self, data)
+        ac:setAnimation("defeat", false)
+      end,
+
+      update = function(self, dt)
+      end,
+    })
+  --
 
 
   sm:add("parryMinigame", reload("enemyParryMinigame"))
@@ -446,8 +458,9 @@ function enemy:changeHP(offset)
   end
 
   if self.HP <=0 then
-    self.ac:setAnimation("defeat")
-    Gamestate.push(stateGameOver)
+    self.sm:switch("defeat")
+    player.ac:setAnimation("idle")
+    Gamestate.push(stateGameOver, {won = true})
     
   end
 
