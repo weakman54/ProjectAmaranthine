@@ -13,6 +13,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = "Conflict to Resolve Theme (Happy) Full",
         anims = {
           End = RM:loadAnimation('s04_1_p001_m01_End_'),
           Quit = RM:loadAnimation('s04_1_p001_m01_Quit_'),

@@ -13,6 +13,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = "stop",
         anims = {
           End = RM:loadAnimation('s04_2_p001_m01_End_'),
         },
