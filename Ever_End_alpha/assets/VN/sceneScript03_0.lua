@@ -1912,7 +1912,7 @@ return {
             anim = "White",
             alpha = .8,
 
-            tween = {.5, {alpha = 0}, "out-quint"}
+            tween = {.8, {alpha = 0}, "out-quint"}
           },
         },
       },
