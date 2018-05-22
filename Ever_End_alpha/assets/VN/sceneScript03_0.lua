@@ -1758,11 +1758,13 @@ return {
         sounds = {
         },
         anims = {
-          Quit = RM:loadAnimation('s03_0_p054_m01_Quit_'),
+          Quit = RM:loadAnimation('s03_0_p054_m01_Quit1_'),
+          Sword = RM:loadAnimation('s03_0_p054_m01_QuitSword_'),
           Box = RM:loadAnimation('s03_0_p054_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+           [1] = "timer",--"waitForInput",
+            [2] = .82
         },
         drawData = {
           [1] = {
@@ -1774,6 +1776,13 @@ return {
           },
           [2] = {
             anim = "Quit",
+          },
+          [3] = {
+            anim = "Sword",
+            x = 30,
+            y = -500,
+            tween = {.75, {x = 0, y = 0}, "in-bounce"}
+
           },
         },
       },
@@ -1792,7 +1801,8 @@ return {
           Box = RM:loadAnimation('s03_0_p055_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+           [1] = "timer",--"waitForInput",
+           [2] = 1.3
         },
         drawData = {
           [1] = {
