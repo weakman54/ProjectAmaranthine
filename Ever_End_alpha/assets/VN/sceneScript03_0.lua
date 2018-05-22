@@ -1859,8 +1859,8 @@ return {
         sounds = {
         },
         anims = {
-          Quit = RM:loadAnimation('s03_0_p057_m01_Quit_'),
-          Box = RM:loadAnimation('s03_0_p057_m01_Box_'),
+          Quit = RM:loadAnimation('s03_0_p056_m01_Quit_'),
+          Box = RM:loadAnimation('s03_0_p056_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1881,6 +1881,44 @@ return {
     },
   },
   [56] = {
+    bg = {
+      anim = background_blur,
+    },
+    moments = {
+      [1] = {
+        sounds = {
+        },
+        anims = {
+          Quit = RM:loadAnimation('s03_0_p057_m01_Quit_'),
+          Box = RM:loadAnimation('s03_0_p057_m01_Box_'),
+          White = RM:loadAnimation('white'),
+
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
+          },
+          [2] = {
+            anim = "Quit",
+          },
+          [3] = {
+            anim = "White",
+            alpha = .8,
+
+            tween = {.8, {alpha = 0}, "out-quint"}
+          },
+        },
+      },
+    },
+  },
+  [57] = {
     bg = {
       anim = background_blur,
     },
