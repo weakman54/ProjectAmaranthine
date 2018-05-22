@@ -2,6 +2,8 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene04_1_spareOption/'
 
+local background = RM:loadAnimation('Inside_robot_')
+
 return {
   [1] = {
     bg = {
@@ -31,7 +33,7 @@ return {
   },
   [2] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p002_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -53,7 +55,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p003_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -75,7 +77,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p004_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -97,7 +99,7 @@ return {
   },
   [5] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p005_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {

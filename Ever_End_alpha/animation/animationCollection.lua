@@ -128,6 +128,14 @@ end
 
 
 
+function AC:getAnimation(name)
+  assert(self:has(name), "does not have anim: " .. name)
+  return self._animations[name]
+end
+
+
+
+
 return AC
 
 

@@ -2,10 +2,12 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene04_2_killOption/'
 
+local background = RM:loadAnimation('Inside_robot_')
+
 return {
   [1] = {
     bg = {
-      anim = RM:loadAnimation('s04_2_p001_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -27,7 +29,7 @@ return {
   },
   [2] = {
     bg = {
-      anim = RM:loadAnimation('s04_2_p002_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -49,7 +51,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = RM:loadAnimation('s04_2_p003_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -71,7 +73,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = RM:loadAnimation('s04_2_p004_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
