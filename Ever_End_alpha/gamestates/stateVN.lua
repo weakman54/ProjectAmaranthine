@@ -7,7 +7,6 @@ local stateVN = {}
 local sceneToLoad = "03_0"
 local panelToLoad = 1
 
-
 function stateVN:init()
 
 --    buildScene("assets/VN/", "01_0")  
