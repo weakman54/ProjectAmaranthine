@@ -204,8 +204,10 @@ return {
         sounds = {
         },
         anims = {
-          End_Zero_Table = RM:loadAnimation('s02_0_p007_m01_End_Zero_Table_'),
           Box = RM:loadAnimation('s02_0_p007_m01_Box_'),
+          Zero_Table = RM:loadAnimation('s02_0_p007_m01_Zero_Table_'),
+          End = RM:loadAnimation('s02_0_p007_m01_End_'),
+          
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -215,7 +217,18 @@ return {
             anim = "Box",
           },
           [2] = {
-            anim = "End_Zero_Table",
+            anim = "End",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            alpha = 1,
+            tween = {.52, {x = 2320/2 - 200, y = 1480/2 - 200, alpha = 0, xScale = .5, yScale = .5}, "out-linear"},
+          },
+          [3] = {
+            anim = "Zero_Table",
           },
         },
       },
