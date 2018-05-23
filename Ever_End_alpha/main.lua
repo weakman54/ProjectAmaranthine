@@ -6,6 +6,7 @@ local dbg_print_animation_frames = false
 reloaded = true
 
 function reload(thing)
+  if type(thing) ~= "string" then error("reload(): Must pass a string to reload! (passed type: " .. type(thing) .. ")", 2) end
   package.loaded[thing] = nil
   reloaded = true
   return require(thing)
