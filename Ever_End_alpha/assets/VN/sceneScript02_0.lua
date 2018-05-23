@@ -20,7 +20,7 @@ return {
       [1] = {
         sounds = {
         },
-		music = "Conflict Theme PlaceHolder",
+		music = "Conflict Theme Placeholder",
         anims = {
           Zero = RM:loadAnimation('s02_0_p001_m01_Zero_'),
           Box = RM:loadAnimation('s02_0_p001_m01_Box_'),
