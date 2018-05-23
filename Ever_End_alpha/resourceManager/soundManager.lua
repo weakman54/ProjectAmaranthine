@@ -75,13 +75,16 @@ function SoundManager:update()
   end     
 end
 
-function SoundManager:stop(music)
+function SoundManager:stop(sound)
   if not sound then return end
+  
   if sound == playingMus then
     playingMus.source:stop()
     playingMus = nil
+    
   else
     error("tried to stop thing: " .. tostring(sound and sound.handle) .. ", this is either not implemented yet or something else went wrong...")
+    
   end
 end
 
