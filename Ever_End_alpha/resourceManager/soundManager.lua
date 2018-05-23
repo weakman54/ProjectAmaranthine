@@ -75,34 +75,44 @@ function SoundManager:update()
   end     
 end
 
-function SoundManager:stop(handle)
-  if not handle then return end
-  if mus[handle] then
-    mus[handle].source:stop()
+function SoundManager:stop(music)
+  if not sound then return end
+  if sound == playingMus then
+    playingMus.source:stop()
     playingMus = nil
   else
-    error("tried to stop thing: " .. handle .. ", this is either not implemented yet or something else went wrong...")
+    error("tried to stop thing: " .. tostring(sound and sound.handle) .. ", this is either not implemented yet or something else went wrong...")
   end
 end
 
 function SoundManager:muteMusic()
   self:stop(playingMus)
 end
-  
+
 
 function SoundManager:play(handle, opts)
   if sfx[handle] then
     spawnNewSFX(handle, opts)
-    
-  elseif mus[handle] then
-    if playingMus and playingMus ~= handle then
-      mus[playingMus].source:stop()
-    end
-    
-    mus[handle].source:play()
-    playingMus = handle
 
+  elseif mus[handle] then
+    local tMus = mus[handle]
+    tMus.handle = handle
+    local src = tMus.source
+
+    if playingMus and playingMus ~= tMus then
+      playingMus.source:stop()
+    end
+
+    src:play()
+    src:setLooping(opts and opts.looping     or true)
+    src:setVolume(opts  and opts.startVolume or 1)
+
+    tMus.targetVolume = opts and opts.targetVolume
+    tMus.rateVolume   = opts and opts.rateVolume
+
+    playingMus = tMus
   else
+
     error("SoundManager: trying to play a sound that does not exist: " .. handle)
   end
 end

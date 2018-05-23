@@ -5,7 +5,7 @@ local stateVN = {}
 
 
 local sceneToLoad = "01_0"
-local panelToLoad = 2
+local panelToLoad = 1
 
 function stateVN:init()
 
@@ -27,7 +27,7 @@ function stateVN:enter(data)
 end
 
 function stateVN:leave()
-  Sound:muteMusic()
+--  Sound:muteMusic()
 end
 
 
