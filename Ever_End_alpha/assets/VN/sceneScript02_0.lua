@@ -14,7 +14,7 @@ local blur3 = RM:loadAnimation('robot_room_blur_')
 return {
   [1] = {
     bg = {
-      anim = background1,
+      anim = blur1,
     },
     moments = {
       [1] = {
