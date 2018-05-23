@@ -20,7 +20,7 @@ return {
       [1] = {
         sounds = {
         },
-		-- music = "Conflict Theme Placeholder",
+		music = "Conflict Theme Placeholder",
         anims = {
           Zero = RM:loadAnimation('s02_0_p001_m01_Zero_'),
           Box = RM:loadAnimation('s02_0_p001_m01_Box_'),
@@ -465,7 +465,7 @@ return {
       [1] = {
         sounds = {
         },
-		-- music = "stop",
+		music = "stop",
         anims = {
           Box = RM:loadAnimation('s02_0_p015_m01_Box_'),
           Zero = RM:loadAnimation('s02_0_p015_m01_Zero_'),
@@ -761,6 +761,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = "Quit_Chill_Theme_Full",
         anims = {
           Box = RM:loadAnimation('s02_0_p023_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p023_m01_Quit_'),
@@ -815,7 +816,6 @@ return {
       [1] = {
         sounds = {
         },
-		-- music = "Quit_Chill_Theme_Full",
         anims = {
           Quit = RM:loadAnimation('s02_0_p024_m01_Quit_'),
           Box = RM:loadAnimation('s02_0_p024_m01_Box_'),
@@ -1128,7 +1128,7 @@ return {
       [1] = {
         sounds = {
         },
-		-- music = "stop",
+		music = "stop",
         anims = {
           Box = RM:loadAnimation('s02_0_p035_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p035_m01_Quit_'),
@@ -1215,7 +1215,7 @@ return {
       [1] = {
         sounds = {
         },
-		-- music = "Build_up_Theme Full",
+		music = "Build_up_Theme Full",
         anims = {
           Box = RM:loadAnimation('s02_0_p038_m01_Box_'),
           Robot = RM:loadAnimation('s02_0_p038_m01_Robot_'),
@@ -1324,6 +1324,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = "stop",
         anims = {
           Box = RM:loadAnimation('s02_0_p042_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p042_m01_Quit_'),

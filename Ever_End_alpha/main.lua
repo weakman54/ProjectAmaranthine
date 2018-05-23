@@ -6,6 +6,7 @@ local dbg_print_animation_frames = false
 reloaded = true
 
 function reload(thing)
+  if type(thing) ~= "string" then error("reload(): Must pass a string to reload! (passed type: " .. type(thing) .. ")", 2) end
   package.loaded[thing] = nil
   reloaded = true
   return require(thing)
@@ -142,13 +143,12 @@ function love.update(dt)
   input:update()
 
   -- Change to pause from anywhere but main and pause itself
-  if input:pressed("systemStart") then 
-    if Gamestate.current() == stateMain then
-      ----      love.event.quit() 
-      --      Gamestate.switch(stateBattle)
-    elseif Gamestate.current() ~= statePause then
-      return Gamestate.push(statePause)
-    end
+  if input:pressed("systemStart") and 
+  Gamestate.current() ~= stateMain and
+  Gamestate.current() ~= stateGameOver and
+  Gamestate.current() ~= statePause then
+
+    return Gamestate.push(statePause)
   end
 
 
@@ -224,7 +224,7 @@ function GameReload()
   stateMain   = reload("gamestates.stateMain")
   stateVN     = reload("gamestates.stateVN")
   stateGameOver     = reload("gamestates.stateGameOver")
-  
+
   -- NOTE: probably should not reload stateError here, since its called in callOrError
 
 
@@ -251,7 +251,7 @@ function love.keypressed(key, scancode, isrepeat)
 
   if key == "t" then
     enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
-    
+
   elseif key == "m" then
     Sound:muteMusic()
 

@@ -7,7 +7,6 @@ local logo
 
 local stateGameOver = {}
 
-stateGameOver.fadeOutSpeed = 0.4
 
 
 function stateGameOver:init()
@@ -19,8 +18,11 @@ function stateGameOver:enter(from, data)
   self.from = from
   
   self.won = data.won
-
+  
   self.fadeOut = 1
+  HUMPTimer.tween(2, self, {fadeOut = 0})
+  
+  Sound:muteMusic()
 end
 
 
@@ -28,13 +30,11 @@ function stateGameOver:update(dt)
   enemy.ac:update(dt) -- ASSUMPTION: global enemy and player exists
   player.ac:update(dt)
 
-  self.fadeOut = self.fadeOut - self.fadeOutSpeed * dt
 
-  if input:pressed("attack") then
+  if input:pressed("left") then
     Gamestate.switch(stateBattle)
 
-  elseif input:pressed("guard") then
-
+  elseif input:pressed("right") then
     if self.won then
       VNSystem:loadScene(enemy.nextScene, enemy.nextPanel)
     end
@@ -69,7 +69,7 @@ function stateGameOver:draw()
 
 
   love.graphics.printf("Game Over", 0, 200, W,'center')
-  love.graphics.printf("space/a - Start Battle\ng/right shoulder - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
+  love.graphics.printf("right - Restart Battle\nleft - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
 end
 
 

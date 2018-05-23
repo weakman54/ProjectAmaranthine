@@ -27,7 +27,7 @@ function stateVN:enter(data)
 end
 
 function stateVN:leave()
-  Sound:muteMusic()
+--  Sound:muteMusic()
 end
 
 
