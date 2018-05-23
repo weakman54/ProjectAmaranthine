@@ -12,8 +12,6 @@ stateBattle.background = nil -- TODO: check if this is useful like this
 
 
 player = reload("player")
-enemy  = reload("enemyQuit3")
-
 
 -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
 local GUIPlayerHealth = GUIBar:new(vec(300, 900) , vec(300, 30))
@@ -35,8 +33,8 @@ function stateBattle:init()
 
   debugPrint("Loading battle...")
   player:initialize()
-  enemy:initialize()
 
+  RM.prefix = ""
 --  background = love.graphics.newImage("assets/background.png")
   self.background = RM:loadAnimation("assets/Battle_background/background_")
   self.background.data:setLooping(true)
@@ -44,12 +42,14 @@ function stateBattle:init()
 end
 
 function stateBattle:enter(prev, enemyString)
-  enemy  = reload(enemyString or "enemyQuit1")
+  enemy  = reload(enemyString or "enemyQuit1") -- TODO: fix default enemy here...
   enemy:initialize() -- Hack I guess
   reloaded = true
   -- TODO: make reset conditional (or push states, not sure which atm)
   player:reset()
   enemy:reset()
+  
+  if enemy.music then Sound:play(enemy.music) end
 
 
 -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv

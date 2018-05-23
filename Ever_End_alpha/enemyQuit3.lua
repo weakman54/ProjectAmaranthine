@@ -44,8 +44,6 @@ function enemy:initialize()
   --  self.HP = 0 -- Initialize in reset() ?
   self.maxHP = 25
 
-  self.dmgToSPRatio = 1
-
 
   self.baseGuardWeight = 5
   --  self.counterWeightTable = {guard = self.baseGuardWeight, counterAttack = 1} -- INitialize in reset()?
@@ -457,7 +455,7 @@ function enemy:changeHP(offset)
   self.HP = math.min(math.max(self.HP + offset, 0), self.maxHP)
 
   if offset < 0 then
-    player:changeSP(math.abs(offset * self.dmgToSPRatio))
+    player:changeSP(math.abs(offset * DMG_TO_SP_RATIO))
   end
 
   if self.HP <=0 then
