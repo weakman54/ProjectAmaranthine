@@ -18,7 +18,7 @@ function player:initialize()
 
   self.fumbleDuration = .35
 
-  self.gunAttackDuration = 0.1
+  self.gunAttackDuration = 0.2
 
   self.chargeDuration = 1
 
@@ -28,10 +28,10 @@ function player:initialize()
   self.SPDrainRate = 0.4 -- points per second
   self.SPChargeDrainRate = 1
 
-  self.HPGainRate = 0.5
+  self.HPGainRate = 2.0
 
 
-  self.maxHP = 10 -- points
+  self.maxHP = 15 -- points
   self.maxSP = 10
 
   self.swordComboBaseDmg = 1
@@ -78,6 +78,11 @@ function player:initializeAC()
 
   name = "parry"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+  
+   name = "parry_high" -- EKivi Hacked these in as a mad experiment
+  ac:addAnimation(name, RM:loadAnimation(name .. "_")) 
+  name = "parry_low"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
   name = "hurt_mild"
@@ -107,7 +112,7 @@ function player:initializeAC()
     end
   end
   name = "hurt_dodge"
-  ac:addAnimation("hurt_dodge", RM:loadAnimation("dodge_hurt_")) -- NOTE: hardcoded values here to consolidate with other "hurts"
+  ac:addAnimation("hurt_dodge", RM:loadAnimation("hurt_mild_")) -- NOTE: hardcoded values here to consolidate with other "hurts" -- EKivi, made the hurt_dodge into hurt_mild
 
 
   -- Gun attack
@@ -218,10 +223,11 @@ function player:initializeSM()
         end
 
         if input:pressed("down") then
-          sm:switch("parry", "low")
+          return sm:switch("parry", "low")
+		  
 
         elseif input:pressed("up") then
-          sm:switch("parry", "high")
+          return sm:switch("parry", "high")
         end
 
 
@@ -244,7 +250,7 @@ function player:initializeSM()
   sm:add("parry",  {
       enter = function(self, stance)
         self.stance = stance
-        ac:setAnimation("parry", false)
+        ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm
         -- Put parry sounds here 
 
         self.parryTiming = false
