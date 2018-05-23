@@ -23,8 +23,6 @@ INTENSE_DAMAGE_TRESHOLD = 5 -- HP
 
 -- WANTED
 -- Initiating parry attack duration
--- Player, Enemy HP
--- Player SP
 -- Attack damage (player & enemy)
 -- Damage to SP ratio
 
