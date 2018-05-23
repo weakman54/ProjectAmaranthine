@@ -159,7 +159,9 @@ function love.update(dt)
 
   lovebird.update()
 
-  HUMPTimer.update(dt)
+  if Gamestate.current() ~= statePause then
+    HUMPTimer.update(dt)
+  end
 
   Sound:update(dt)  -- NOTE: not quite fully tested, but should work fine
   callOrError(Gamestate.update, dt)
