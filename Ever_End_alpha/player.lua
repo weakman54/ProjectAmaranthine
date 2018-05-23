@@ -174,10 +174,10 @@ function player:initializeSM()
           return sm:switch("guard")
 
         elseif input:pressed("down") then
-          return sm:switch("dodge", "low")
+          return sm:switch("dodgeMinigame", "low")
 
         elseif input:pressed("up") then
-          return sm:switch("dodge", "high")
+          return sm:switch("dodgeMinigame", "high")
 
         elseif input:pressed("attack") then
           return sm:switch("charge")
@@ -450,8 +450,8 @@ function player:initializeSM()
     })
   --
 
-  sm:add("parryMinigame",  reload("playerParry"))
-  sm:add("dodge",  reload("playerDodgeState"))
+  sm:add("parryMinigame",  reload("playerParryMinigame"))
+  sm:add("dodgeMinigame",  reload("playerDodgeMinigame"))
 end
 --
 

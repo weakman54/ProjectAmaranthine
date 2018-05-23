@@ -31,11 +31,10 @@ function stateGameOver:update(dt)
   player.ac:update(dt)
 
 
-  if input:pressed("attack") then
+  if input:pressed("left") then
     Gamestate.switch(stateBattle)
 
-  elseif input:pressed("guard") then
-
+  elseif input:pressed("right") then
     if self.won then
       VNSystem:loadScene(enemy.nextScene, enemy.nextPanel)
     end
@@ -70,7 +69,7 @@ function stateGameOver:draw()
 
 
   love.graphics.printf("Game Over", 0, 200, W,'center')
-  love.graphics.printf("space/a - Start Battle\ng/right shoulder - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
+  love.graphics.printf("right - Restart Battle\nleft - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
 end
 
 
