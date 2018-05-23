@@ -32,7 +32,7 @@ function stateGameOver:update(dt)
 
 
   if input:pressed("left") then
-    Gamestate.switch(stateBattle)
+    Gamestate.switch(stateBattle, "enemy" .. enemy.name) -- HACK: should switch to the correct battle better (all the global state is making this hacky...)
 
   elseif input:pressed("right") then
     if self.won then
