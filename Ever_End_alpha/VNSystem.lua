@@ -150,6 +150,9 @@ function VNSystem:setMomentI(momentI)
 
   for _, t in ipairs(moment.drawData) do
     -- Start and loop all moment animations ASSUMPTION: all animations for VN system are simple looping anims
+    if not moment.anims then error("There is no anims table! scene: " .. self.curSceneName .. ", panel: " .. tostring(self.curPanelI) .. ", moment: " .. tostring(self.curMomentI)) end
+    if type(t.anim) ~= "string" then error("anim is wrong type! type:" .. type(t.anim) .. ", scene: " .. self.curSceneName .. ", panel: " .. tostring(self.curPanelI) .. ", moment: " .. tostring(self.curMomentI)) end
+    if not moment.anims[t.anim] then error("Couldn't find anim " .. t.anim .. " in anims! scene: " .. self.curSceneName .. ", panel: " .. tostring(self.curPanelI) .. ", moment: " .. tostring(self.curMomentI)) end
     local anim = moment.anims[t.anim].data
     anim:play()
     anim:setLooping(true)
@@ -222,7 +225,20 @@ end
 
 
 function VNSystem:update(dt)
-  if input:pressed("attack") and self.curMoment.transitionTrigger[1] == "waitForInput" then
+  -- ASSUMPTION: for these things in the beginning:  curMoment exists
+  if self.curMoment.choice then
+    if input:pressed("attack") then
+      self.curMoment.transitionTrigger.gotoScene = "04_2"
+      return self:incrementMomentI()
+      
+    elseif input:pressed("guard") then
+      self.curMoment.transitionTrigger.gotoScene = "04_1"
+      return self:incrementMomentI()
+      
+    end
+  end
+
+  if input:pressed("attack") and self.curMoment.transitionTrigger[1] == "waitForInput" then 
     --    local sceneAtKey = self.curMoment.transitionTrigger[key]
     --    if sceneAtKey then
     --      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
@@ -279,7 +295,8 @@ function VNSystem:loadScene(scene, panelI, momentI)
   assert(scene, "VNSystem: You must supply which scene to switch to!")
 
   local t = reload(("assets/VN/sceneScript%s"):format(scene)) -- NOTE: This feels pretty hack, but eh
-
+  
+  self.curSceneName = scene
   self.curScene = t
   self:setPanelI(panelI or 1, momentI or 1)
 end
