@@ -133,7 +133,7 @@ local dodgeMinigame = {
         self.hurtI = (self.hurtI % 2) + 1
         print("#" .. self.hurtI)
         enemy.ac:setAnimation("hurt" .. string.format("%02d", self.hurtI))
-        enemy:changeHP(-1) -- HARDCODED: -1, health amount
+        enemy:changeHP(-PLAYER_DODGE_DAMAGE)
 
         ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing, false)
         Sound:play("Gun1")
