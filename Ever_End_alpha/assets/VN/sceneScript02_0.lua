@@ -1324,7 +1324,7 @@ return {
       [1] = {
         sounds = {
         },
-
+		music = "stop",
         anims = {
           Box = RM:loadAnimation('s02_0_p042_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p042_m01_Quit_'),
