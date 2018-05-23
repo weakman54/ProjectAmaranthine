@@ -131,7 +131,10 @@ function VNSystem:setPanelI(panelI, momentI)
 end
 
 function VNSystem:setMomentI(momentI)
---  if self.waitTimer then  -- TODO: fix this bug
+  if self.waitTimer then  -- TODO: fix this bug (which? xD it's fixed though..)
+    HUMPTimer.cancel(self.waitTimer)
+  end
+  
   self.curMomentI = momentI or 1
   self.curMoment = self.curPanel.moments[self.curMomentI]
 
