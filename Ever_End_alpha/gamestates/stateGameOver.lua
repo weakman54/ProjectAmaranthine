@@ -7,7 +7,6 @@ local logo
 
 local stateGameOver = {}
 
-stateGameOver.fadeOutSpeed = 0.4
 
 
 function stateGameOver:init()
@@ -19,8 +18,11 @@ function stateGameOver:enter(from, data)
   self.from = from
   
   self.won = data.won
-
+  
   self.fadeOut = 1
+  HUMPTimer.tween(2, self, {fadeOut = 0})
+  
+  Sound:muteMusic()
 end
 
 
@@ -28,7 +30,6 @@ function stateGameOver:update(dt)
   enemy.ac:update(dt) -- ASSUMPTION: global enemy and player exists
   player.ac:update(dt)
 
-  self.fadeOut = self.fadeOut - self.fadeOutSpeed * dt
 
   if input:pressed("attack") then
     Gamestate.switch(stateBattle)
