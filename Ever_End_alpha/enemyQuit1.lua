@@ -401,7 +401,7 @@ function enemy:initializeSM()
         if enemy.attacked then
           enemy.attacked = false
           enemy:changeHP(-1) -- HARDCODED: damage
-          return sm:switch("hurt01")
+          return sm:switch("hurt")
         end
 
         if self.timer:reached(enemy.tauntDuration) then
