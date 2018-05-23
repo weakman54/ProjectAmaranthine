@@ -1040,6 +1040,35 @@ return {
       [2] = {
         sounds = {
         },
+		
+        anims = {
+          Box = RM:loadAnimation('s03_0_p032_m01_Box_'),
+          End = RM:loadAnimation('s03_0_p032_m01_End_'),
+          Quit = RM:loadAnimation('s03_0_p032_m01_Quit_'),
+        },
+        transitionTrigger = {
+          [1] = "timer",--"waitForInput",
+          [2] = .4
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+            alpha = boxAlpha,
+            red = boxDarken,
+            green = boxDarken, 
+            blue = boxDarken
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Quit",
+          },
+        },
+      },
+      [3] = {
+        sounds = {
+        },
 		music = "End_Ex_Soldier",
         anims = {
           Box = RM:loadAnimation('s03_0_p032_m01_Box_'),
@@ -1821,36 +1850,6 @@ return {
     },
   },
   [54] = {
-    bg = {
-      anim = background_blur,
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          Quit = RM:loadAnimation('s03_0_p056_m01_Quit_'),
-          Box = RM:loadAnimation('s03_0_p056_m01_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-            alpha = boxAlpha,
-            red = boxDarken,
-            green = boxDarken, 
-            blue = boxDarken
-          },
-          [2] = {
-            anim = "Quit",
-          },
-        },
-      },
-    },
-  },
-  [55] = {
     bg = {
       anim = background_blur,
     },
