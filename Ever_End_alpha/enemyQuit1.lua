@@ -262,6 +262,7 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self, kind, nextAttack)
         enemy.dbg_trigger_offensive_action = false
+		Sound:play("Robot Telegraph")
 
 
         -- TODO: choose action #
