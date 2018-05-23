@@ -42,7 +42,7 @@ function enemy:initialize()
 
   -- TODO: think about how to load all of these
   --  self.HP = 0 -- Initialize in reset() ?
-  self.maxHP = 10
+  self.maxHP = 20
 
   self.dmgToSPRatio = 1
 
