@@ -60,13 +60,13 @@ local dodgeStart = {
 -- Load combo stuff: -----------------------
 RM.prefix = "assets/GUI/"
 local combos = { -- HACK TODO: fix the readabilty of the m thing here...
-  {name = "Up"   , anim = RM:loadAnimation("gun_combo_up_"   , nil, 12), xm =  0, ym = -1, }, -- x = 1*W/2, y = 1*H/4, },
-  {name = "Down" , anim = RM:loadAnimation("gun_combo_down_" , nil, 12), xm =  0, ym =  1, }, -- x = 1*W/2, y = 3*H/4, },
-  {name = "Left" , anim = RM:loadAnimation("gun_combo_left_" , nil, 12), xm = -1, ym =  0, }, -- x = 1*W/4, y = 1*H/2, },
-  {name = "Right", anim = RM:loadAnimation("gun_combo_right_", nil, 12), xm =  1, ym =  0, }, -- x = 3*W/4, y = 1*H/2, },
+  {name = "Up"   , anim = RM:loadAnimation("gun_combo_up_"   , nil, 12), xm =  0, ym =  0, }, -- x = 1*W/2, y = 1*H/4, }, -- EKivi hacke, made the cutton prompts be in the same place
+  {name = "Down" , anim = RM:loadAnimation("gun_combo_down_" , nil, 12), xm =  0, ym =  0, }, -- x = 1*W/2, y = 3*H/4, },
+  {name = "Left" , anim = RM:loadAnimation("gun_combo_left_" , nil, 12), xm =  0, ym =  0, }, -- x = 1*W/4, y = 1*H/2, },
+  {name = "Right", anim = RM:loadAnimation("gun_combo_right_", nil, 12), xm =  0, ym =  0, }, -- x = 3*W/4, y = 1*H/2, },
 }
 
-local t = {x = 2*W/3, y = 1*H/2} -- Center point for the combo graphics
+local t = {x = 960, y = 540} -- Center point for the combo graphics -- {x = 2*W/3, y = 1*H/2}
 
 for _, c in ipairs(combos) do
   local w, h =  c.anim.data._frames[1].data:getDimensions()
