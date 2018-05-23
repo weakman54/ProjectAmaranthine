@@ -22,10 +22,12 @@ PARRY3_TARGET   = 0.9
 INTENSE_DAMAGE_TRESHOLD = 5 -- HP 
 
 -- WANTED
-  -- Initiating parry attack duration
-  -- Player, Enemy HP
-  -- Player SP
-  -- Attack damage (player & enemy)
-  -- Damage to SP ratio
-  
+-- Initiating parry attack duration
+-- Player, Enemy HP
+-- Player SP
+-- Attack damage (player & enemy)
+-- Damage to SP ratio
+
+DMG_TO_SP_RATIO = 0.1
+
 
