@@ -37,7 +37,7 @@ end
 
 local stageTimings = {
   --  {duration = 2.0, target = 1.500},  
-  {duration = PARRY1_DURATION, target = PARRY1_TARGET },
+  {duration = PARRY1_DURATION, target = PARRY1_TARGET }, -- NOTE: TARGET IS NOT USED ATM!
   {duration = PARRY2_DURATION, target = PARRY2_TARGET },
   {duration = PARRY3_DURATION, target = PARRY3_TARGET },
 }
@@ -68,7 +68,7 @@ sm:add("parryStart", {
       enemy.ac:pause()
 
       graphics.border.s = 1
-      HUMPTimer.tween(player.parryMinigameDuration, graphics.border, {s = 0.25}, "linear")
+      HUMPTimer.tween(PARRY0_DURATION, graphics.border, {s = 0.25}, "linear")
 
       self.timer = Timer:new()
     end,

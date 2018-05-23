@@ -251,6 +251,7 @@ return {
         },
       },
       [2] = {
+        choice = true,
         sounds = {
         },
         anims = {
@@ -258,7 +259,7 @@ return {
         },
         transitionTrigger = {	
           [1] = "waitForInput",
-          gotoScene = "04_1",
+          gotoScene = "04_0",
         },
         drawData = {
           [1] = {
