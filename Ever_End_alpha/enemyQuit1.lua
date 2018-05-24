@@ -35,10 +35,10 @@ function enemy:initialize()
   
   
   
-  self.attackTime    = 3 -- seconds, TODO: figure better name for this
-  self.guardDuration = 2
-  self.hurtDuration  = 2
-  self.tauntDuration = 1.2
+  self.attackInterval = 2 -- seconds, TODO: figure better name for this
+  self.guardDuration  = 2
+  self.hurtDuration   = 2
+  self.tauntDuration  = 1.2
 
 
   self.timingStage = 0
@@ -233,7 +233,7 @@ function enemy:initializeSM()
         -- TODO: counter attack ( if been attacked multiple times)
         -- TODO: BETTER FEEDBACK FOR COUNTER ATTACK
 
-        if self.attackTimer:reached(enemy.attackTime) or enemy.dbg_trigger_offensive_action then
+        if self.attackTimer:reached(enemy.attackInterval) or enemy.dbg_trigger_offensive_action then
           return sm:switch("offensive")
         end
 
