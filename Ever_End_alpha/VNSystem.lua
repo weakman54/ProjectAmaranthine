@@ -2,6 +2,12 @@
 local RM = require "resourceManager.resourceManager"
 
 
+
+dbg_VNSystem_DrawIndexes = true
+dbg_VNSystem_DrawAnims = true
+
+
+
 function buildPanel(path, panelPrefix, panelNumber)
   local ret = {
     moments = {
@@ -134,7 +140,7 @@ function VNSystem:setMomentI(momentI)
   if self.waitTimer then  -- TODO: fix this bug (which? xD it's fixed though..)
     HUMPTimer.cancel(self.waitTimer)
   end
-  
+
   self.curMomentI = momentI or 1
   self.curMoment = self.curPanel.moments[self.curMomentI]
 
@@ -288,6 +294,22 @@ end
 function VNSystem:draw()
   if self.curPanel then
     self:drawPanel(self.curPanel, self.curMomentI)
+  end
+
+
+
+  if dbg_VNSystem_DrawIndexes then
+    love.graphics.setColor(0, 0, 0, 0.6)
+    love.graphics.rectangle("fill", 0, 0, 900, 70)
+
+    love.graphics.setColor(1, 1, 1, 0.6)
+    love.graphics.print("scene: " .. tostring(self.curSceneName) .. "; panel: " .. (self.curPanelI) .. "; moment: " .. tostring(self.curMomentI), 5, 5)
+
+    love.graphics.setColor(1, 1, 1)
+  end
+
+  if dbg_VNSystem_DrawAnims then
+    -- TODO: maybe not necessary
   end
 end
 
