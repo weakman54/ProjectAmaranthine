@@ -35,9 +35,9 @@ PLAYER_PARRY_DAMAGE_BASE = 1 -- Will always do this much damage
 PLAYER_PARRY_DAMAGE_GRAD = 2 -- Does up to this much additional damage depending on how well you hit target
 
 
-ENEMY_ATTACK_HIGH_DAMAGE = 1
-ENEMY_ATTACK_LOW_DAMAGE  = 4
-ENEMY_ATTACK_COUNTER_DAMAGE = 3
+ENEMY_ATTACK_HIGH_DAMAGE = 2
+ENEMY_ATTACK_LOW_DAMAGE  = 2
+ENEMY_ATTACK_COUNTER_DAMAGE = 2
 
 
 
@@ -46,12 +46,17 @@ ENEMY_ATTACK_COUNTER_DAMAGE = 3
 -- Since the total number of notes is 5, the pobabilities for the above example would be:
 --   HIGH & LOW: 2/5
 --   TAUNT     : 1/5
-ENEMY_ATTACK_HIGH_WEIGHT = 2
-ENEMY_ATTACK_LOW_WEIGHT  = 2
-ENEMY_TAUNT_WEIGHT       = 1
+ENEMY_ATTACK_HIGH_WEIGHT = 4
+ENEMY_ATTACK_LOW_WEIGHT  = 4
+ENEMY_TAUNT_WEIGHT       = 1.5
 -- REMEMBER TO TEST A BUNCH OF TIMES WHEN MESSING WITH PROBABILITIES, you might just have gotten an improbable streak of choices
 
 
 DMG_TO_SP_RATIO = 0.1 -- muliplier: spGained = damageDone * DMG_TO_SP_RATIO
+
+
+
+FONT_PATH = "assets/fonts/typewcond_bold.otf"
+FONT_SIZE = 48
 
 

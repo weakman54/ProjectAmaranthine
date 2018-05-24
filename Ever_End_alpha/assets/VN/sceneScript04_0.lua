@@ -412,7 +412,10 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s04_0_p008_m01_Box_'),
-          Choice = RM:loadAnimation('s04_0_p008_m02_Choice_'),
+          EEnd =RM:loadAnimation('s04_0_p008_m01_End_'),
+--          Choice = RM:loadAnimation('s04_0_p008_m02_Choice_'),          
+          Choice = RM:loadAnimation('s04_0_p008_m02_ChoiceText_'), -- TODO: use proper drawn text things later
+          
           Black = RM:loadAnimation('black'),
         },
         transitionTrigger = {	
@@ -424,6 +427,9 @@ return {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
+            anim = "EEnd",
+          },
+          [3] = {
             anim = "Choice",
           },
         },
