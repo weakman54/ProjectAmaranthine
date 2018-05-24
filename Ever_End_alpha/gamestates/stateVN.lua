@@ -5,7 +5,7 @@ local stateVN = {}
 
 
 local sceneToLoad = "04_2"
-local panelToLoad = 1
+local panelToLoad = 2
 
 function stateVN:init()
 
