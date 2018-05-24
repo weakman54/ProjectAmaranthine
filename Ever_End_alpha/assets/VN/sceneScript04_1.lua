@@ -3,6 +3,8 @@ local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene04_1_spareOption/'
 
 local background = RM:loadAnimation('Inside_robot_')
+local boxDarken = 0.1
+local boxAlpha = 0.8
 
 return {
   [1] = {
@@ -180,7 +182,7 @@ return {
         sounds = {
         },
         anims = {
-          End_Zero = RM:loadAnimation('s04_1_p007_m01_End_Zero_'),
+          EEnd_Zero = RM:loadAnimation('s04_1_p007_m01_End_Zero_'),
           Box = RM:loadAnimation('s04_1_p007_m01_Box_'),
         },
         transitionTrigger = {
@@ -258,7 +260,7 @@ return {
         sounds = {
         },
         anims = {
-          End_Zero = RM:loadAnimation('s04_1_p010_m01_End_Zero_'),
+          EEnd_Zero = RM:loadAnimation('s04_1_p010_m01_End_Zero_'),
           Box = RM:loadAnimation('s04_1_p010_m01_Box_'),
         },
         transitionTrigger = {
