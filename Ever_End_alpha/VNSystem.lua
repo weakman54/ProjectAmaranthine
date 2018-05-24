@@ -164,7 +164,7 @@ function VNSystem:setMomentI(momentI)
     if not moment.anims[t.anim] then error("Couldn't find anim " .. t.anim .. " in anims! scene: " .. self.curSceneName .. ", panel: " .. tostring(self.curPanelI) .. ", moment: " .. tostring(self.curMomentI)) end
     local anim = moment.anims[t.anim].data
     anim:play()
-    anim:setLooping(true)
+    anim:setLooping(t.looping)-- NOTE: defaults to looping
 
     -- Start any tweens
     if t.tween then
