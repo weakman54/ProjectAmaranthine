@@ -31,7 +31,7 @@ function player:initialize()
   self.HPGainRate = 2.0
 
 
-  self.maxHP = 15 -- points
+  self.maxHP = 12 -- points
   self.maxSP = 10
 
  
