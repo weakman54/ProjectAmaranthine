@@ -1,4 +1,4 @@
-
+-- REPLACE FILE with generated script when background boxes exist
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene04_1_spareOption/'
 
