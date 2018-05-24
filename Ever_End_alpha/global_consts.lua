@@ -55,3 +55,8 @@ ENEMY_TAUNT_WEIGHT       = 1
 DMG_TO_SP_RATIO = 0.1 -- muliplier: spGained = damageDone * DMG_TO_SP_RATIO
 
 
+
+FONT_PATH = "assets/fonts/typewcond_bold.otf"
+FONT_SIZE = 48
+
+
