@@ -134,6 +134,7 @@ end
 
 
 function love.update(dt)
+  love.audio.stop( ) -- I hate sound.
   -- Skip frame if stuff has been loaded, since dt will be large
   if reloaded then 
     reloaded = false 

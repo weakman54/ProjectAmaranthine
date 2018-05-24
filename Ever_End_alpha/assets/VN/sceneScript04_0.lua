@@ -184,11 +184,46 @@ return {
           Box = RM:loadAnimation('s04_0_p002_m01_Box_'),
           Quit2 = RM:loadAnimation('s04_0_p002_m02_Quit_'),
           EEnd = RM:loadAnimation('s04_0_p002_m02_End_'),
-          EEnd_Quit = RM:loadAnimation('s04_0_p002_m03_End_Quit_'),
+          Gun = RM:loadAnimation('s04_0_p002_m03_Gun_'),
+          Quit3 = RM:loadAnimation('s04_0_p002_m03_Quit_'),
+          
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = 2.0
+          [2] = 1.5
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
+          },
+          [2] = {
+            anim = "EEnd",
+          },
+          [3] = {
+            anim = "Quit2",
+          },
+           [4] = {
+            anim = "Gun",
+            x=0,y = -230, tween = {.7, { x=0,y = 0 }, "out-expo" },
+            
+          },
+        },
+      },
+      [4] = {
+        sounds = {
+        },
+        music = "Conflict to Resolve Theme (Happy) Intro",
+        anims = {
+          Box = RM:loadAnimation('s04_0_p002_m01_Box_'),
+          Quit2 = RM:loadAnimation('s04_0_p002_m02_Quit_'),
+          EEnd = RM:loadAnimation('s04_0_p002_m02_End_'),
+          Gun = RM:loadAnimation('s04_0_p002_m03_Gun_'),
+          Quit3 = RM:loadAnimation('s04_0_p002_m03_Quit_'),
+          
+        },
+        transitionTrigger = {
+          [1] = "timer",--"waitForInput",
+          [2] = 2.3
         },
         drawData = {
           [1] = {
@@ -201,7 +236,11 @@ return {
             anim = "Quit2",
           },
           [4] = {
-            anim = "EEnd_Quit",
+            anim = "Quit3",
+            alpha = 0, tween = {1.3, { alpha = 1 }, "out-quart" },
+          },
+           [5] = {
+            anim = "Gun",
           },
         },
       },
