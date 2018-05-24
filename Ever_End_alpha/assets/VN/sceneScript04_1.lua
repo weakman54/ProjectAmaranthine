@@ -7,13 +7,13 @@ local background = RM:loadAnimation('Inside_robot_')
 return {
   [1] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p001_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
         sounds = {
         },
-		music = "Conflict to Resolve Theme (Happy) Full",
+        music = "Conflict to Resolve Theme (Happy) Full",
         anims = {
           Box = RM:loadAnimation('s04_1_p001_m01_Box_'),
           End = RM:loadAnimation('s04_1_p001_m01_End_'),
@@ -147,7 +147,7 @@ return {
   },
   [6] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p006_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -173,7 +173,7 @@ return {
   },
   [7] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p007_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -199,7 +199,7 @@ return {
   },
   [8] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p008_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -225,7 +225,7 @@ return {
   },
   [9] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p009_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -251,7 +251,7 @@ return {
   },
   [10] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p010_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -277,7 +277,7 @@ return {
   },
   [11] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p011_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -303,7 +303,7 @@ return {
   },
   [12] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p012_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -333,7 +333,7 @@ return {
   },
   [13] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p013_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -341,6 +341,7 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s04_1_p013_m01_Box_'),
+          Quit = RM:loadAnimation('s04_1_p012_m01_Quit_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -348,6 +349,9 @@ return {
         drawData = {
           [1] = {
             anim = "Box",
+          },
+          [2] = {
+            anim = "Quit",
           },
         },
       },
@@ -355,7 +359,7 @@ return {
   },
   [14] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p014_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
@@ -363,6 +367,7 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s04_1_p014_m01_Box_'),
+          Quit = RM:loadAnimation('s04_1_p012_m01_Quit_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -371,13 +376,16 @@ return {
           [1] = {
             anim = "Box",
           },
+          [2] = {
+            anim = "Quit",
+          },
         },
       },
     },
   },
   [15] = {
     bg = {
-      anim = RM:loadAnimation('s04_1_p015_bg_'),
+      anim = background,
     },
     moments = {
       [1] = {
