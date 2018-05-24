@@ -41,24 +41,33 @@ function SoundManager:init()
 
 -- Load all sound effects
   for _, shortname in ipairs(sfxDir) do
-    local longname = sfxRoot .. "/" .. shortname
-    local handle = shortname:sub(1, -5)
+    local ext = shortname:sub(-4, -1)
+    if ext == ".ogg" or ext == ".wav" then 
+      local longname = sfxRoot .. "/" .. shortname
+      local handle = shortname:sub(1, -5)
 
-    if dbg_render then debugPrint("Loading: sfx\n" .. longname, 100, 100) end
-    if dbg_print then print("Loading: sfx: " .. longname .. " as " .. handle) end
 
-    sfx[handle] = {filename = longname, sources = {}}
+
+      if dbg_render then debugPrint("Loading: sfx\n" .. longname, 100, 100) end
+      if dbg_print then print("Loading: sfx: " .. longname .. " as " .. handle) end
+
+      sfx[handle] = {filename = longname, sources = {}}
+    end
   end
 
   -- Load all music
   for _, shortname in ipairs(musDir) do
-    local longname = musRoot .. "/" .. shortname
-    local handle = shortname:sub(1, -5)
+    local ext = shortname:sub(-4, -1)
+    if ext == ".ogg" or ext == ".wav" or ext == ".mp3" then  -- TODO: remove mp3 from here, it glitches when looping
 
-    if dbg_render then debugPrint("Loading: mus\n" .. longname, 100, 100) end
-    if dbg_print then print("Loading: mus: " .. longname .. " as " .. handle) end
+      local longname = musRoot .. "/" .. shortname
+      local handle = shortname:sub(1, -5)
 
-    mus[handle] = {filename = longname, source = love.audio.newSource(longname, "stream")}
+      if dbg_render then debugPrint("Loading: mus\n" .. longname, 100, 100) end
+      if dbg_print then print("Loading: mus: " .. longname .. " as " .. handle) end
+
+      mus[handle] = {filename = longname, source = love.audio.newSource(longname, "stream")}
+    end
   end
 end
 
@@ -77,14 +86,14 @@ end
 
 function SoundManager:stop(sound)
   if not sound then return end
-  
+
   if sound == playingMus then
     playingMus.source:stop()
     playingMus = nil
-    
+
   else
     error("tried to stop thing: " .. tostring(sound and sound.handle) .. ", this is either not implemented yet or something else went wrong...")
-    
+
   end
 end
 
