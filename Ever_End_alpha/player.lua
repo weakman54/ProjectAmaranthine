@@ -20,7 +20,7 @@ function player:initialize()
 
   self.gunAttackDuration = 0.2
 
-  self.chargeDuration = 1
+  self.chargeDuration = 1.5
 
   self.idleRegenDuration = .70
 
@@ -348,7 +348,7 @@ function player:initializeSM()
 
   sm:add("chargeAttack",  { 
       enter = function(self)
-        ac:setAnimation("charge_attack_attack", false)
+        ac:setAnimation("charge_attack_attack") --, false)
 
         self.timer = Timer:new()
         self.target = 0.1 -- HARDCODED duration
