@@ -69,7 +69,7 @@ function stateGameOver:draw()
 
 
   love.graphics.printf("Game Over", 0, 200, W,'center')
-  love.graphics.printf("right - Restart Battle\nleft - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
+  love.graphics.printf("left - Restart Battle\nright - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
 end
 
 
