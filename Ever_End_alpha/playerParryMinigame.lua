@@ -188,7 +188,7 @@ sm:add("parryAttack", {
       --      self.swordComboBaseDmg = 1
       --      self.swordComboGradDmg = 2
 
-      local damageDealt = player.swordComboBaseDmg + player.swordComboGradDmg - player.swordComboGradDmg * normalizedDif
+      local damageDealt = PLAYER_PARRY_DAMAGE_BASE + PLAYER_PARRY_DAMAGE_GRAD - PLAYER_PARRY_DAMAGE_GRAD * normalizedDif
 
       enemy:changeHP(-damageDealt)
 
