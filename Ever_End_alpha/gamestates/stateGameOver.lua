@@ -32,7 +32,7 @@ function stateGameOver:update(dt)
 
 
   if input:pressed("left") then
-    Gamestate.switch(stateBattle)
+    Gamestate.switch(stateBattle, "enemy" .. enemy.name) -- HACK: should switch to the correct battle better (all the global state is making this hacky...)
 
   elseif input:pressed("right") then
     if self.won then
@@ -69,7 +69,7 @@ function stateGameOver:draw()
 
 
   love.graphics.printf("Game Over", 0, 200, W,'center')
-  love.graphics.printf("right - Restart Battle\nleft - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
+  love.graphics.printf("left - Restart Battle\nright - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
 end
 
 

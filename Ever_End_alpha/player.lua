@@ -34,8 +34,7 @@ function player:initialize()
   self.maxHP = 15 -- points
   self.maxSP = 10
 
-  self.swordComboBaseDmg = 1
-  self.swordComboGradDmg = 2
+ 
 
 
   self:initializeAC()
@@ -354,7 +353,7 @@ function player:initializeSM()
         self.timer = Timer:new()
         self.target = 0.1 -- HARDCODED duration
 
-        enemy:changeHP(-3)
+        enemy:changeHP(-PLAYER_CHARGE_ATTACK_DAMAGE)
         return enemy.sm:switch("hurt") -- HACK
       end,
 
