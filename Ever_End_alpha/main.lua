@@ -114,7 +114,7 @@ input = baton.new {
 function love.load(arg)
   reloaded = true
   do -- Starting loadscreens
-    love.graphics.setNewFont(48)
+    love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
 
     if arg[#arg] == "-debug" then
       debugPrint("Loading: Debug", 100, 100)
@@ -199,7 +199,7 @@ function dbgPrintAnimFrames()
   love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
   love.graphics.pop() -- does not re-reset font?
 
-  love.graphics.setNewFont(48)
+  love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
 
   love.graphics.setColor(1.0, 1.0, 1.0)
 end

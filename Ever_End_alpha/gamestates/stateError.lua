@@ -87,7 +87,7 @@ function stateError:draw()
   love.graphics.printf(p, pos, pos, W - pos)
 
 
-  love.graphics.setNewFont(48)
+  love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
   love.graphics.setColor(1, 1, 1)
 end
 
