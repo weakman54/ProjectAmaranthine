@@ -14,7 +14,7 @@ return {
       [1] = {
         sounds = {
         },
-		music = "stop",
+        music = "stop",
         anims = {
           Box = RM:loadAnimation('s04_2_p001_m01_Box_'),
           End = RM:loadAnimation('s04_2_p001_m01_End_'),
@@ -50,8 +50,8 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
-            },  
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
+          },  
           [2] = {
             anim = "Zero",
           },
@@ -127,6 +127,9 @@ return {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
           [2] = {
             anim = "End_Zero",
           },
@@ -176,7 +179,7 @@ return {
           [1] = "waitForInput",
         },
         drawData = {
-                [1] = {
+          [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
@@ -196,13 +199,13 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s04_2_p008_m01_Box_'),
-          
+
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
-      [1] = {
+          [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
         },
