@@ -642,9 +642,9 @@ return {
             
             tween = {8, {
                 x = 2320/2 - 200,
-                y = 1480/2 - 200+600,
-                xScale = 1.3,
-                yScale = 1.3,
+                y = 1480/2 - 200+800,
+                xScale = 2,
+                yScale = 2,
                 alpha = 0,
               }, "out-quad"
             },
