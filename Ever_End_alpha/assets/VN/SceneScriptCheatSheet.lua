@@ -1,9 +1,9 @@
-            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
 
           [1] = "waitForInput",
 
           [1] = "timer",--"waitForInput",
-          [2] = 1.0
+          [2] = 1.0,
 
             x = 2320/2 - 200 + 0,
             y = 1480/2 - 200 - 0,
