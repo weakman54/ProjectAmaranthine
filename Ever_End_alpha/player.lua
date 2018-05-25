@@ -205,6 +205,7 @@ function player:initializeSM()
 
       enter = function(self)
         ac:setAnimation("guard")
+		Sound:play("Guard Equip")
         --Sound:play("Open1")
         --Sound:play("Crossbow")
 
