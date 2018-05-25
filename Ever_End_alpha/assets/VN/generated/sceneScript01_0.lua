@@ -135,7 +135,7 @@ return {
         sounds = {
         },
         anims = {
-          rophies = RM:loadAnimation('s01_0_p005_m01_rophies_'),
+          Trophies = RM:loadAnimation('s01_0_p005_m01_Trophies_'),
           Box = RM:loadAnimation('s01_0_p005_m01_Box_'),
         },
         transitionTrigger = {
@@ -146,7 +146,7 @@ return {
             anim = "Box",
           },
           [2] = {
-            anim = "rophies",
+            anim = "Trophies",
           },
         },
       },
@@ -379,6 +379,47 @@ return {
   },
   [13] = {
     bg = {
+      anim = RM:loadAnimation('s01_0_p013_bg_'),
+    },
+    moments = {
+      [1] = {
+        sounds = {
+        },
+        anims = {
+          Kitty = RM:loadAnimation('s01_0_p013_m01_Kitty_'),
+          Box = RM:loadAnimation('s01_0_p013_m01_Box_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Kitty",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          KittyEye = RM:loadAnimation('s01_0_p013_m02_KittyEye_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "KittyEye",
+          },
+        },
+      },
+    },
+  },
+  [14] = {
+    bg = {
       anim = RM:loadAnimation('s01_0_p014_bg_'),
     },
     moments = {
@@ -422,7 +463,7 @@ return {
       },
     },
   },
-  [14] = {
+  [15] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p015_bg_'),
     },
@@ -460,7 +501,7 @@ return {
       },
     },
   },
-  [15] = {
+  [16] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p016_bg_'),
     },
@@ -521,7 +562,7 @@ return {
       },
     },
   },
-  [16] = {
+  [17] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p017_bg_'),
     },
@@ -578,7 +619,7 @@ return {
       },
     },
   },
-  [17] = {
+  [18] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p018_bg_'),
     },
@@ -608,7 +649,7 @@ return {
       },
     },
   },
-  [18] = {
+  [19] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p019_bg_'),
     },
@@ -638,7 +679,7 @@ return {
       },
     },
   },
-  [19] = {
+  [20] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p020_bg_'),
     },
@@ -668,7 +709,7 @@ return {
       },
     },
   },
-  [20] = {
+  [21] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p021_bg_'),
     },
@@ -706,7 +747,7 @@ return {
       },
     },
   },
-  [21] = {
+  [22] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p022_bg_'),
     },
@@ -736,7 +777,7 @@ return {
       },
     },
   },
-  [22] = {
+  [23] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p023_bg_'),
     },
@@ -762,7 +803,7 @@ return {
       },
     },
   },
-  [23] = {
+  [24] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p024_bg_'),
     },
@@ -788,7 +829,7 @@ return {
       },
     },
   },
-  [24] = {
+  [25] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p025_bg_'),
     },
@@ -818,7 +859,7 @@ return {
       },
     },
   },
-  [25] = {
+  [26] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p026_bg_'),
     },
@@ -856,7 +897,7 @@ return {
       },
     },
   },
-  [26] = {
+  [27] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p027_bg_'),
     },
@@ -886,7 +927,7 @@ return {
       },
     },
   },
-  [27] = {
+  [28] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p028_bg_'),
     },
@@ -916,7 +957,7 @@ return {
       },
     },
   },
-  [28] = {
+  [29] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p029_bg_'),
     },
@@ -942,7 +983,7 @@ return {
       },
     },
   },
-  [29] = {
+  [30] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p030_bg_'),
     },
@@ -964,7 +1005,7 @@ return {
       },
     },
   },
-  [30] = {
+  [31] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p031_bg_'),
     },
@@ -998,7 +1039,7 @@ return {
       },
     },
   },
-  [31] = {
+  [32] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p032_bg_'),
     },
@@ -1032,7 +1073,7 @@ return {
       },
     },
   },
-  [32] = {
+  [33] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p033_bg_'),
     },
@@ -1062,7 +1103,7 @@ return {
       },
     },
   },
-  [33] = {
+  [34] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p034_bg_'),
     },
@@ -1096,7 +1137,7 @@ return {
       },
     },
   },
-  [34] = {
+  [35] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p035_bg_'),
     },
@@ -1126,7 +1167,7 @@ return {
       },
     },
   },
-  [35] = {
+  [36] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p036_bg_'),
     },
@@ -1156,7 +1197,7 @@ return {
       },
     },
   },
-  [36] = {
+  [37] = {
     bg = {
       anim = RM:loadAnimation('s01_0_p037_bg_'),
     },
