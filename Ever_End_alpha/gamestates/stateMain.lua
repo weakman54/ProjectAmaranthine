@@ -11,6 +11,11 @@ function stateMain:init()
 end
 
 
+function stateMain:enter()
+  Sound:muteMusic()
+end
+
+
 function stateMain:update(dt)
   if input:pressed("attack") then
     Gamestate.switch(stateBattle)

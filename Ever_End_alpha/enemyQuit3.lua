@@ -253,6 +253,8 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self, kind, nextAttack)
         enemy.dbg_trigger_offensive_action = false
+		Sound:play("Telegraph", {delay = 0.5})
+		Sound:play("Hilt Hold", {delay = 0.5})
 
 
         -- TODO: choose action #

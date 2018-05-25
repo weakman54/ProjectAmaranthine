@@ -34,7 +34,7 @@ function player:initialize()
   self.maxHP = 12 -- points
   self.maxSP = 10
 
- 
+
 
 
   self:initializeAC()
@@ -77,8 +77,8 @@ function player:initializeAC()
 
   name = "parry"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-   name = "parry_high" -- EKivi Hacked these in as a mad experiment
+
+  name = "parry_high" -- EKivi Hacked these in as a mad experiment
   ac:addAnimation(name, RM:loadAnimation(name .. "_")) 
   name = "parry_low"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
@@ -187,7 +187,11 @@ function player:initializeSM()
         end
 
         if self.regenTimer:reached(player.idleRegenDuration) then
-          player.SP = math.min(player.SP + player.SPRegenRateIdle * dt, player.maxSP)
+          if enemy.name ~= "Quit2" then
+            player.SP = math.min(player.SP + player.SPRegenRateIdle * dt, player.maxSP)
+          else
+            player.SP = math.max(player.SP - player.SPRegenRateIdle * dt, 0)
+          end
         end
       end,
     })
@@ -210,7 +214,7 @@ function player:initializeSM()
       update = function(self, dt)	
         if player.damaged  then
           ac:setAnimation("guard_hit", false)
-          --Sound:play("Player Block")
+          Sound:play("Player Block")
 
           player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
           if player.SP == 0 then
@@ -223,7 +227,7 @@ function player:initializeSM()
 
         if input:pressed("down") then
           return sm:switch("parry", "low")
-		  
+
 
         elseif input:pressed("up") then
           return sm:switch("parry", "high")
@@ -338,7 +342,7 @@ function player:initializeSM()
         if self.timer:reached(player.chargeDuration) and ac:curName() ~= "charge_attack_ready" then
           self.chargeReady = true
           ac:setAnimation("charge_attack_ready")
-          --Sound:play("Charge Complete")
+          Sound:play("Charge Complete")
         end
       end,
     })
@@ -419,7 +423,7 @@ function player:initializeSM()
         else
           ac:setAnimation("hurt_" .. kind, false) -- Bit borked with the other animations atm...
         end
-        ----Sound:play("Enemy Hit")
+        Sound:play("Enemy Hit")
 
         player:changeHP(-player.damaged.attack.damage)
         player.damaged = false
@@ -438,7 +442,7 @@ function player:initializeSM()
       end
     })
   --
-  
+
   sm:add("defeat", {
       enter = function(self, data)
         ac:setAnimation("defeat", false)
