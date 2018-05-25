@@ -389,7 +389,7 @@ return {
   },
   [13] = {
     bg = {
-      anim = RM:loadAnimation('s01_0_p013_bg_'),
+      anim = QuitRoomBackgroundBlur,
     },
     moments = {
       [1] = {
@@ -1223,6 +1223,7 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+          gotoScene = "2_0",
         },
         drawData = {
           [1] = {
