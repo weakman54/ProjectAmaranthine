@@ -423,6 +423,7 @@ function enemy:initializeSM()
       enter = function(self, data)
         ac:setAnimation("hurt01", false)
         Sound:play("Player Hit")
+		Sound:play("Robot Hurt")
 
         self.timer = Timer:new()
       end,
