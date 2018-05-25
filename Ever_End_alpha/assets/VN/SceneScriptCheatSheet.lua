@@ -22,16 +22,25 @@
               }, "out-quad"
             },
 
-EEnd
-End
+End =
+EEnd =
 
-anim = "EEnd",
 anim = "End",
+anim = "EEnd",
 
-EEnd_Quit = End_Quit
+End_Quit =
+EEnd_Quit =
 
-anim = "EEnd_Quit",
+
+
 anim = "End_Quit",
+anim = "EEnd_Quit",
+
+End_Zero =
+EEnd_Zero = 
+
+anim = "End_Zero",
+anim = "EEnd_Zero",
 
 linear
 quad
