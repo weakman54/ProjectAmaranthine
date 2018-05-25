@@ -217,7 +217,8 @@ function GameReload()
   SM    = reload("statemachine.statemachine")
   AC    = reload("animation.animationCollection")
 --  Sound = reload("resourceManager.soundManager")
---    Sound:init()
+  Sound:init()
+  Sound:muteMusic()
 
   -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
 
