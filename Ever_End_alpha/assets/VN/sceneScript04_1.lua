@@ -3,6 +3,8 @@ local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene04_1_spareOption/'
 
 local background = RM:loadAnimation('Inside_robot_')
+local background_blur = RM:loadAnimation('inside_robot_blur_')
+
 local boxDarken = 0.1
 local boxAlpha = 0.8
 
@@ -26,7 +28,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "End",
@@ -55,7 +57,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "End_Quit",
@@ -81,7 +83,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -107,7 +109,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "End",
@@ -135,7 +137,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "End_End",
@@ -164,7 +166,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "End_Zero_Quit",
@@ -190,10 +192,10 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
-            anim = "End_Zero",
+            anim = "EEnd_Zero",
           },
         },
       },
@@ -216,7 +218,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -234,7 +236,7 @@ return {
         sounds = {
         },
         anims = {
-          End_Zero_Quit = RM:loadAnimation('s04_1_p009_m01_End_Zero_Quit_'),
+          EEnd_Zero_Quit = RM:loadAnimation('s04_1_p009_m01_End_Zero_Quit_'),
           Box = RM:loadAnimation('s04_1_p009_m01_Box_'),
         },
         transitionTrigger = {
@@ -242,10 +244,10 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
-            anim = "End_Zero_Quit",
+            anim = "EEnd_Zero_Quit",
           },
         },
       },
@@ -268,10 +270,10 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
-            anim = "End_Zero",
+            anim = "EEnd_Zero",
           },
         },
       },
@@ -294,7 +296,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "End",
@@ -321,7 +323,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -350,7 +352,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -376,7 +378,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [2] = {
             anim = "Quit",
@@ -402,7 +404,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
         },
       },
