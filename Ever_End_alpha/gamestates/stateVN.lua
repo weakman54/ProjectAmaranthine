@@ -4,7 +4,7 @@ local VNSystem = reload("VNSystem")
 local stateVN = {}
 
 
-local sceneToLoad = "03_0"
+local sceneToLoad = "01_0"
 local panelToLoad = 1
 
 function stateVN:init()
@@ -24,7 +24,7 @@ function stateVN:init()
 end
 
 function stateVN:enter(data)
-
+  
 end
 
 function stateVN:leave()
