@@ -9,7 +9,7 @@ PERFDODGE_TRESHOLD = 0.2
 NORMDODGE_TRESHOLD = 0.4
 
 
-PARRY0_DURATION = 0.7     -- duration, the entire duration until the attack happens (windup duration)
+PARRY0_DURATION = 1.0     -- duration, the entire duration until the attack happens (windup duration)
 --PARRY0_TARGET   = 0.6   -- target, the optimal time to hit the attack button -- NOTE: TARGET WILL ALWAYS BE HALF OF DURATION ATM!!
 
 PARRY1_DURATION = 0.7    
@@ -18,7 +18,7 @@ PARRY1_DURATION = 0.7
 PARRY2_DURATION = 0.7
 --PARRY2_TARGET   = 0.6
 
-PARRY3_DURATION = 1.0
+PARRY3_DURATION = 1.3
 --PARRY3_TARGET   = 0.9
 
 
