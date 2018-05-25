@@ -11,7 +11,7 @@ local boxAlpha = 0.8
 return {
   [1] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -42,7 +42,7 @@ return {
   },
   [2] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -68,7 +68,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -94,7 +94,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -120,7 +120,7 @@ return {
   },
   [5] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -151,7 +151,7 @@ return {
   },
   [6] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -177,7 +177,7 @@ return {
   },
   [7] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -203,7 +203,7 @@ return {
   },
   [8] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -229,7 +229,7 @@ return {
   },
   [9] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -255,7 +255,7 @@ return {
   },
   [10] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -281,7 +281,7 @@ return {
   },
   [11] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -307,7 +307,7 @@ return {
   },
   [12] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -337,7 +337,7 @@ return {
   },
   [13] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -363,7 +363,7 @@ return {
   },
   [14] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
@@ -389,7 +389,7 @@ return {
   },
   [15] = {
     bg = {
-      anim = background,
+      anim = background_blur,
     },
     moments = {
       [1] = {
