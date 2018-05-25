@@ -9,7 +9,7 @@ local panelToLoad = 1
 
 function stateVN:init()
 
-  buildScene("assets/VN/", "01_0")  
+--  buildScene("assets/VN/", "01_0")  
 
 --  buildScene("assets/VN/", "02_0")
 --  buildScene("assets/VN/", "02_1")
