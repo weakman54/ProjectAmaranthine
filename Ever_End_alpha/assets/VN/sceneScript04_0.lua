@@ -36,6 +36,22 @@ return {
           },
           [5] = {
             anim = "EEnd",
+                        x = 2320/2 - 200 + 0,
+            y = 1480/2 - 200 - 0,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            alpha = 1,
+            
+            tween = {3, {
+                x = 2320/2 - 200,
+                y = 1480/2 - 200,
+                xScale = 1.1,
+                yScale = 1.1,
+                alpha = 1,
+              }, "out-quad"
+            },
           },
           [4] = {
             anim = "Quit",
@@ -152,7 +168,8 @@ return {
           Black = RM:loadAnimation('black'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 1.5
         },
         drawData = {
           [1] = {
@@ -177,6 +194,34 @@ return {
         },
       },
       [3] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s04_0_p002_m01_Box_'),
+          EEnd =RM:loadAnimation('s04_0_p002_m02_End_'),
+          Quit1 = RM:loadAnimation('s04_0_p002_m01_Quit_'),
+          Quit2 = RM:loadAnimation('s04_0_p002_m02_Quit_'),
+          Black = RM:loadAnimation('black'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
+          },  
+          [2] = {
+            anim = "EEnd",
+          },
+          [3] = {
+            anim = "Quit1",
+          },
+          [4] = {
+            anim = "Quit2",
+          },
+        },
+      },
+      [4] = {
         sounds = {
         },
         music = "Conflict to Resolve Theme (Happy) Intro",
@@ -209,7 +254,7 @@ return {
           },
         },
       },
-      [4] = {
+      [5] = {
         sounds = {
         },
         music = "Conflict to Resolve Theme (Happy) Intro",
@@ -260,7 +305,8 @@ return {
           Black = RM:loadAnimation('black'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 2.5,
         },
         drawData = {
           [1] = {
@@ -268,6 +314,22 @@ return {
           },
           [2] = {
             anim = "EEnd_Quit",
+            x = 2320/2 - 200 + 80,
+            y = 1480/2 - 200 - 0,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            alpha = 1,
+            
+            tween = {2.5, {
+                x = 2320/2 - 200,
+                y = 1480/2 - 200,
+                xScale = 1,
+                yScale = 1,
+                alpha = 1,
+              }, "out-quad"
+            },            
           },
         },
       },
@@ -295,6 +357,22 @@ return {
           },
           [2] = {
             anim = "Zero",
+            x = 2320/2 - 200 - 100,
+            y = 1480/2 - 200 + 20,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            alpha = 1,
+            
+            tween = {1.5, {
+                x = 2320/2 - 200,
+                y = 1480/2 - 200,
+                xScale = 1,
+                yScale = 1,
+                alpha = 1,
+              }, "out-quad"
+            },
           },
         },
       },

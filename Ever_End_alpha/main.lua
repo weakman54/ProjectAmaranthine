@@ -112,6 +112,7 @@ input = baton.new {
 
 
 function love.load(arg)
+  --love.window.setMode( 960, 540, { fullscreen = false, vsync = false, msaa = 0,} )
   reloaded = true
   do -- Starting loadscreens
     love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
@@ -217,8 +218,9 @@ function GameReload()
   SM    = reload("statemachine.statemachine")
   AC    = reload("animation.animationCollection")
 --  Sound = reload("resourceManager.soundManager")
-  Sound:init()
   Sound:muteMusic()
+  Sound:init()
+
 
   -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
 

@@ -89,7 +89,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = 3
+          [2] = 3,
         },
         drawData = {
                              [1] = {
