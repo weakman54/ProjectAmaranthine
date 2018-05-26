@@ -288,10 +288,10 @@ return {
             anim = "Box",
           },
           [2] = {
-            anim = "Text",
+            anim = "Zero",
           },
           [3] = {
-            anim = "Zero",
+            anim = "Text",
           },
         },
       },
@@ -322,10 +322,10 @@ return {
             anim = "End",
           },
           [3] = {
-            anim = "Text",
+            anim = "ZeroKitty",
           },
           [4] = {
-            anim = "ZeroKitty",
+            anim = "Text",
           },
         },
       },
@@ -396,7 +396,7 @@ return {
         sounds = {
         },
         anims = {
-          Kitty = RM:loadAnimation('s01_0_p013_m01_Kitty_'),
+          Kitty = RM:loadAnimation('s01_0_p008_m02_KittyZoom_'), -- NOTE: earlier sprite here
           Box = RM:loadAnimation('s01_0_p013_m01_Box_'),
         },
         transitionTrigger = {
@@ -496,16 +496,16 @@ return {
             anim = "Box",
           },
           [2] = {
-            anim = "Effect",
+            anim = "Kitty",
           },
           [3] = {
             anim = "EndKicking",
           },
           [4] = {
-            anim = "Kitty",
+            anim = "ZeroScared",
           },
           [5] = {
-            anim = "ZeroScared",
+            anim = "Effect",
           },
         },
       },
@@ -522,7 +522,7 @@ return {
         anims = {
           Zero = RM:loadAnimation('s01_0_p016_m01_Zero_'),
           Box = RM:loadAnimation('s01_0_p016_m01_Box_'),
-          End = RM:loadAnimation('s01_0_p016_m01_End_'),
+          End = RM:loadAnimation('s01_0_p017_m02_End_'), -- NOTE: other asset
           Text = RM:loadAnimation('s01_0_p016_m01_Text_'),
         },
         transitionTrigger = {
@@ -536,20 +536,20 @@ return {
             anim = "End",
           },
           [3] = {
-            anim = "Text",
+            anim = "Zero",
           },
           [4] = {
-            anim = "Zero",
+            anim = "Text",
           },
         },
       },
-      [2] = {
+      [2] = { 
         sounds = {
         },
         anims = {
           Zero = RM:loadAnimation('s01_0_p016_m02_Zero_'),
           Box = RM:loadAnimation('s01_0_p016_m02_Box_'),
-          End = RM:loadAnimation('s01_0_p016_m02_End_'),
+          End = RM:loadAnimation('s01_0_p017_m02_End_'), -- NOTE: other asset
           Kitty = RM:loadAnimation('s01_0_p016_m02_Kitty_'),
         },
         transitionTrigger = {
@@ -583,7 +583,7 @@ return {
         anims = {
           Zero = RM:loadAnimation('s01_0_p017_m01_Zero_'),
           Box = RM:loadAnimation('s01_0_p017_m01_Box_'),
-          End = RM:loadAnimation('s01_0_p017_m01_End_'),
+          End = RM:loadAnimation('s01_0_p017_m02_EndFlashback_'), -- NOTE: other asset
           Kitty = RM:loadAnimation('s01_0_p017_m01_Kitty_'),
         },
         transitionTrigger = {
@@ -609,7 +609,7 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s01_0_p017_m02_Box_'),
-          End = RM:loadAnimation('s01_0_p017_m02_End_'),
+          End = RM:loadAnimation('s01_0_p017_m02_EndFlashback_'), -- NOTE: other asset
           Zero = RM:loadAnimation('s01_0_p017_m02_Zero_'),
         },
         transitionTrigger = {
@@ -680,10 +680,10 @@ return {
             anim = "Box",
           },
           [2] = {
-            anim = "Effect",
+            anim = "Zero",
           },
           [3] = {
-            anim = "Zero",
+            anim = "Effect",
           },
         },
       },
@@ -728,8 +728,8 @@ return {
         sounds = {
         },
         anims = {
-          s27effect1 = RM:loadAnimation('s01_0_p021_m01_s27effect1_'),
-          s27effect2 = RM:loadAnimation('s01_0_p021_m01_s27effect2_'),
+          PullFX = RM:loadAnimation('s01_0_p021_m01_PullFX_'),
+          TurnFX = RM:loadAnimation('s01_0_p021_m01_TurnFX_'),
           Box = RM:loadAnimation('s01_0_p021_m01_Box_'),
           EndPullingZero = RM:loadAnimation('s01_0_p021_m01_EndPullingZero_'),
           Text = RM:loadAnimation('s01_0_p021_m01_Text_'),
@@ -745,13 +745,13 @@ return {
             anim = "EndPullingZero",
           },
           [3] = {
-            anim = "Text",
+            anim = "PullFX",
           },
           [4] = {
-            anim = "s27effect1",
+            anim = "TurnFX",
           },
           [5] = {
-            anim = "s27effect2",
+            anim = "Text",
           },
         },
       },
@@ -778,10 +778,10 @@ return {
             anim = "Box",
           },
           [2] = {
-            anim = "Text",
+            anim = "ZeroAngry",
           },
           [3] = {
-            anim = "ZeroAngry",
+            anim = "Text",
           },
         },
       },
@@ -824,6 +824,7 @@ return {
         anims = {
           ZeroCrying = RM:loadAnimation('s01_0_p024_m01_ZeroCrying_'),
           Box = RM:loadAnimation('s01_0_p024_m01_Box_'),
+          Text = RM:loadAnimation("s01_0_p024_m01_Text_"),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -834,6 +835,9 @@ return {
           },
           [2] = {
             anim = "ZeroCrying",
+          },
+          [3] = {
+            anim = "Text",
           },
         },
       },
@@ -860,10 +864,10 @@ return {
             anim = "Box",
           },
           [2] = {
-            anim = "ZeroBiteFX",
+            anim = "ZeroBiting",
           },
           [3] = {
-            anim = "ZeroBiting",
+            anim = "ZeroBiteFX",
           },
         },
       },
@@ -895,13 +899,13 @@ return {
             anim = "EndPullingAway",
           },
           [3] = {
-            anim = "PullFX",
+            anim = "ZeroPullingAway",
           },
           [4] = {
-            anim = "Text",
+            anim = "PullFX",
           },
           [5] = {
-            anim = "ZeroPullingAway",
+            anim = "Text",
           },
         },
       },
@@ -928,10 +932,10 @@ return {
             anim = "Box",
           },
           [2] = {
-            anim = "Text",
+            anim = "ZeroShouting",
           },
           [3] = {
-            anim = "ZeroShouting",
+            anim = "Text",
           },
         },
       },
@@ -1040,10 +1044,10 @@ return {
             anim = "EndHolding",
           },
           [3] = {
-            anim = "Text",
+            anim = "ZeroWalkAway",
           },
           [4] = {
-            anim = "ZeroWalkAway",
+            anim = "Text",
           },
         },
       },
@@ -1074,10 +1078,10 @@ return {
             anim = "End",
           },
           [3] = {
-            anim = "Text",
+            anim = "Zero",
           },
           [4] = {
-            anim = "Zero",
+            anim = "Text",
           },
         },
       },
@@ -1089,6 +1093,29 @@ return {
     },
     moments = {
       [1] = {
+        sounds = {
+        },
+        anims = {
+          ZeroShouting = RM:loadAnimation('s01_0_p027_m01_ZeroShouting_'), -- NOTE:other asset
+          Box = RM:loadAnimation('s01_0_p033_m01_Box_'),
+          Text = RM:loadAnimation('s01_0_p033_m01_Text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "ZeroShouting",
+          },
+          [3] = {
+            anim = "Text",
+          },
+        },
+      },
+      [2] = {
         sounds = {
         },
         anims = {
@@ -1138,10 +1165,10 @@ return {
             anim = "EndSurprised",
           },
           [3] = {
-            anim = "Text",
+            anim = "ZeroRunning",
           },
           [4] = {
-            anim = "ZeroRunning",
+            anim = "Text",
           },
         },
       },
@@ -1233,10 +1260,10 @@ return {
             anim = "EndChasing",
           },
           [3] = {
-            anim = "Text",
+            anim = "ZeroRunning",
           },
           [4] = {
-            anim = "ZeroRunning",
+            anim = "Text",
           },
         },
       },
