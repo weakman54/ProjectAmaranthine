@@ -12,6 +12,7 @@ local ElevatorBackgroundBlur = RM:loadAnimation('Elevator_room_blur_')
 local QuitRoomBackground = RM:loadAnimation('quit_quarters_')
 local QuitRoomBackgroundBlur = RM:loadAnimation('quit_quarters_blur_')
 
+local FlashbackBG = RM:loadAnimation('FlashbackBG_')
 
 return {
   [1] = {
@@ -431,7 +432,7 @@ return {
   },
   [14] = {
     bg = {
-      anim = White,
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
@@ -514,7 +515,7 @@ return {
   },
   [16] = {
     bg = {
-      anim = QuitRoomBackgroundBlur
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
@@ -575,7 +576,7 @@ return {
   },
   [17] = {
     bg = {
-      anim = QuitRoomBackgroundBlur
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
