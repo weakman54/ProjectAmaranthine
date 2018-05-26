@@ -254,7 +254,7 @@ function love.keypressed(key, scancode, isrepeat)
   end
 
 
-  if key == "t" then
+  if key == "t" and enemy then
     enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
 
   elseif key == "m" then
