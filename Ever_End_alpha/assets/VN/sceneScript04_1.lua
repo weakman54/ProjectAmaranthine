@@ -1,4 +1,4 @@
--- REPLACE FILE with generated script when background boxes exist
+
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene04_1_spareOption/'
 
@@ -41,14 +41,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200-80,
                 y = 1480/2 - 200,
                 xScale = .9,
                 yScale = .9,
                 alpha = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
           },
           [3] = {
@@ -60,20 +60,20 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1.1,
                 yScale = 1.1,
                 alpha = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
           },
           [4] = {
             anim = "White",
             alpha = .63, tween = {2, { alpha = 0 }, "in-out-quad" },
-            
+
           },
         },
       },
@@ -134,14 +134,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200+10,
                 y = 1480/2 - 200+30,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
           },
         },
@@ -159,6 +159,7 @@ return {
         anims = {
           End = RM:loadAnimation('s04_1_p004_m01_End_'),
           Box = RM:loadAnimation('s04_1_p004_m01_Box_'),
+          Text = RM:loadAnimation('s04_1_p004_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -176,15 +177,18 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {3, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "out-quad"
+                }, "out-quad"
             },
+          },
+          [3] = {
+            anim = "Text",
           },
         },
       },
@@ -203,6 +207,7 @@ return {
           End_End = RM:loadAnimation('s04_1_p005_m01_End_End_'),
           Box = RM:loadAnimation('s04_1_p005_m01_Box_'),
           Quit = RM:loadAnimation('s04_1_p005_m01_Quit_'),
+          Text = RM:loadAnimation('s04_1_p005_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -216,18 +221,18 @@ return {
             yScale = 1,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            
+
             tween = {2, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
           },
           [2] = {
             anim = "Quit",
-        
+
             x = 2320/2 - 200 - 500,
             y = 1480/2 - 200 - 0,
             xScale = 1,
@@ -235,14 +240,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
           },
           [3] = {
@@ -254,15 +259,18 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200 + 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
+          },
+          [4] = {
+            anim = "Text",
           },
         },
       },
@@ -279,6 +287,7 @@ return {
         anims = {
           End_Zero_Quit = RM:loadAnimation('s04_1_p006_m01_End_Zero_Quit_'),
           Box = RM:loadAnimation('s04_1_p006_m01_Box_'),
+          Text = RM:loadAnimation('s04_1_p006_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -296,15 +305,48 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200 + 50,
                 y = 1480/2 - 200 + 50,
                 xScale = 1.05,
                 yScale = 1.05,
                 alpha = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
+          },
+          [3] = {
+            anim = "Text",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          End_Zero_Quit = RM:loadAnimation('s04_1_p006_m01_End_Zero_Quit_'),
+          Box = RM:loadAnimation('s04_1_p006_m01_Box_'),
+          Text = RM:loadAnimation('s04_1_p006_m02_Text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
+          },
+          [2] = {
+            anim = "End_Zero_Quit",
+            x = 2320/2 - 200 + 50,
+            y = 1480/2 - 200 + 50,
+            xScale = 1.05,
+            yScale = 1.05,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            alpha = 1,
+          },
+          [3] = {
+            anim = "Text",
           },
         },
       },
@@ -321,10 +363,11 @@ return {
         anims = {
           EEnd_Zero = RM:loadAnimation('s04_1_p007_m01_End_Zero_'),
           Box = RM:loadAnimation('s04_1_p007_m01_Box_'),
+          Text = RM:loadAnimation('s04_1_p007_text_'),
         },
         transitionTrigger = {
-          [1] = "timer",--"waitForInput",
-          [2] = 1.3,
+          [1] = "waitForInput",
+--          [2] = 1.3,
         },
         drawData = {
           [1] = {
@@ -339,15 +382,18 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {1.3, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
+          },
+          [3] = {
+            anim = "Text",
           },
         },
       },
@@ -364,6 +410,7 @@ return {
         anims = {
           Quit = RM:loadAnimation('s04_1_p008_m01_Quit_'),
           Box = RM:loadAnimation('s04_1_p008_m01_Box_'),
+          Text = RM:loadAnimation('s04_1_p008_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -379,16 +426,16 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200+5,
                 y = 1480/2 - 200+60,
                 xScale = .9,
                 yScale = .9,
                 alpha = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
-        
+
           },
           [2] = {
             anim = "Quit",
@@ -399,15 +446,18 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200+60,
                 xScale = .9,
                 yScale = .9,
                 alpha = 1,
-              }, "in-out-quad"
+                }, "in-out-quad"
             },
+          },
+          [3] = {
+            anim = "Text",
           },
         },
       },
@@ -424,6 +474,7 @@ return {
         anims = {
           EEnd_Zero_Quit = RM:loadAnimation('s04_1_p009_m01_End_Zero_Quit_'),
           Box = RM:loadAnimation('s04_1_p009_m01_Box_'),
+          Text = RM:loadAnimation('s04_1_p009_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -442,15 +493,18 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {1, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "out-quad"
+                }, "out-quad"
             },
+          },
+          [3] = {
+            anim = "Text",
           },
         },
       },
@@ -482,14 +536,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {3, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1.1,
                 yScale = 1.1,
                 alpha = 1,
-              }, "out-linear"
+                }, "out-linear"
             },
           },
           [2] = {
@@ -501,14 +555,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "out-quad"
+                }, "out-quad"
             },
           },
         },
@@ -540,13 +594,13 @@ return {
             yScale = .95,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            
+
             tween = {2, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1.1,
                 yScale = 1.1,
-              }, "out-quad"
+                }, "out-quad"
             },
           },
           [2] = {
@@ -558,14 +612,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "out-quad"
+                }, "out-quad"
             },
           },
         },
@@ -587,31 +641,18 @@ return {
           Box4 = RM:loadAnimation('s04_1_p015_m01_Box_'),
           Zero = RM:loadAnimation('s04_1_p012_m01_Zero_'),
           Quit = RM:loadAnimation('s04_1_p012_m01_Quit_'),
+          Text1 = RM:loadAnimation('s04_1_p012_m01_Text_'), -- TODO: fix these texts!
+          Text2 = RM:loadAnimation('s04_1_p012_m02_Text_'),
+          Text3 = RM:loadAnimation('s04_1_p012_m03_Text_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",
+          [2] = 9,
+--          [1] = "waitForInput",
+          gotoScene = "End",
         },
         drawData = {
           [1] = {
-            anim = "Box1",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
-          },
-          [2] = {
-            anim = "Box2",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
-            alpha = 0, tween = {3, { alpha = boxAlpha }, "in-expo" },
-      
-            
-          },
-          [3] = {
-            anim = "Box3",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
-            alpha = 0, tween = {6, { alpha = boxAlpha }, "in-expo" },
-            
-          },
-          [6] = {
-            anim = "Box4",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
-            alpha = 0, tween = {8, { alpha = 1 }, "in-expo" },
-            
-          },
-          [4] = {
             anim = "Quit",
             x = 2320/2 - 200 + 0,
             y = 1480/2 - 200 + 320,
@@ -620,17 +661,38 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {8, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200 + 270,
                 xScale = .9,
                 yScale = .9,
                 alpha = 1,
-              }, "out-quad"
+                }, "out-quad"
             },
           },
+          [2] = {
+            anim = "Text1",
+          },
+          [3] = {
+            anim = "Box1",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
+          },
+          [4] = {
+            anim = "Box2",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
+            alpha = 0, tween = {3, { alpha = boxAlpha }, "in-expo" },
+
+          },
           [5] = {
+            anim = "Box3",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
+            alpha = 0, tween = {6, { alpha = boxAlpha }, "in-expo" },
+
+          },
+          [6] = {
+            anim = "Box4",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
+            alpha = 0, tween = {8, { alpha = 1 }, "in-expo" },
+
+          },
+          [7] = {
             anim = "Zero",
             x = 2320/2 - 200 + 0,
             y = 1480/2 - 200 + 0,
@@ -639,14 +701,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {8, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200+800,
                 xScale = 2,
                 yScale = 2,
                 alpha = 0,
-              }, "out-quad"
+                }, "out-quad"
             },
           },
         },
