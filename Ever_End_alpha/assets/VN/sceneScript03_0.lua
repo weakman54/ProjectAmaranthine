@@ -3,9 +3,12 @@ local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene03_0_midFightScene/'
 
 local background = RM:loadAnimation('inside_robot_')
-local boxDarken = 0.1
 local background_blur = RM:loadAnimation('inside_robot_blur_')
+
 local boxAlpha = 0.8
+local boxDarken = 0.1
+
+local FlashbackBG = RM:loadAnimation('FlashbackBG_')
 
 return {
   [1] = {
@@ -398,7 +401,7 @@ return {
   },
   [11] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p012_bg_'),
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
@@ -443,7 +446,7 @@ return {
   },
   [12] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p012_bg_'),
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
@@ -465,7 +468,7 @@ return {
   },
   [13] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p012_bg_'),
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
@@ -491,7 +494,7 @@ return {
   },
   [14] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p012_bg_'),
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
@@ -513,7 +516,7 @@ return {
   },
   [15] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p012_bg_'),
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
@@ -535,7 +538,7 @@ return {
   },
   [16] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p012_bg_'),
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
@@ -557,7 +560,7 @@ return {
   },
   [17] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p012_bg_'),
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
@@ -579,7 +582,7 @@ return {
   },
   [18] = {
     bg = {
-      anim = RM:loadAnimation('s03_0_p012_bg_'),
+      anim = FlashbackBG,
     },
     moments = {
       [1] = {
