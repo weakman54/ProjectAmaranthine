@@ -4,6 +4,7 @@ RM.prefix = 'assets/VN/scene01_0_endAndZeroArgue/'
 
 
 local White = RM:loadAnimation("white")
+local Black = RM:loadAnimation("black")
 
 local ElevatorBackground = RM:loadAnimation('Elevator_room_')
 local ElevatorBackgroundBlur = RM:loadAnimation('Elevator_room_blur_')
@@ -15,7 +16,7 @@ local QuitRoomBackgroundBlur = RM:loadAnimation('quit_quarters_blur_')
 return {
   [1] = {
     bg = {
-      anim = RM:loadAnimation('s01_0_p001_bg_'),
+      anim = Black,
     },
     moments = {
       [1] = {
@@ -430,7 +431,7 @@ return {
   },
   [14] = {
     bg = {
-      anim = RM:loadAnimation('s01_0_p014_bg_'),
+      anim = White,
     },
     moments = {
       [1] = {
