@@ -112,6 +112,7 @@ input = baton.new {
 
 
 function love.load(arg)
+  --love.window.setMode( 960, 540, { fullscreen = false, vsync = false, msaa = 0,} )
   reloaded = true
   do -- Starting loadscreens
     love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
