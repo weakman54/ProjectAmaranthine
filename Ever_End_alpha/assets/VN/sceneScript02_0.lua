@@ -270,7 +270,7 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p009_m01_Box_'),
-          Zero = RM:loadAnimation('s02_0_p009_m01Zero_'),
+          Zero = RM:loadAnimation('s02_0_p009_m01_Zero_'),
           Table = RM:loadAnimation('s02_0_p009_m01_Table_'),
         },
         transitionTrigger = {
@@ -722,6 +722,7 @@ return {
         anims = {
           End = RM:loadAnimation('s02_0_p022_m01_End_'),
           Box = RM:loadAnimation('s02_0_p022_m01_Box_'),
+          text = RM:loadAnimation('s02_0_p022_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -748,6 +749,9 @@ return {
             yOffset = 1480/2,
             alpha = 1,
             tween = {3, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "out-cubic"},
+          },
+          [3] = {
+            anim = "text",
           },
         },
       },
@@ -924,6 +928,7 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p028_m01_Box_'),
           Quit_Zero = RM:loadAnimation('s02_0_p028_m01_Quit_Zero_'),
+          text = RM:loadAnimation('s02_0_p028_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -934,6 +939,55 @@ return {
           },
           [2] = {
             anim = "Quit_Zero",
+          },
+          [3] = {
+            anim = "text",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s02_0_p028_m01_Box_'),
+          Quit_Zero = RM:loadAnimation('s02_0_p028_m01_Quit_Zero_'),
+          Text = RM:loadAnimation('s02_0_p028_m02_Text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Quit_Zero",
+          },
+          [3] = {
+            anim = "Text",
+          },
+        },
+      },
+      [3] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s02_0_p028_m01_Box_'),
+          Quit_Zero = RM:loadAnimation('s02_0_p028_m01_Quit_Zero_'),
+          Text = RM:loadAnimation('s02_0_p028_m03_Text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Quit_Zero",
+          },
+          [3] = {
+            anim = "Text",
           },
         },
       },
@@ -950,6 +1004,7 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p029_m01_Box_'),
           Quit_Zero = RM:loadAnimation('s02_0_p029_m01_Quit_Zero_'),
+          text = RM:loadAnimation('s02_0_p029_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -960,6 +1015,9 @@ return {
           },
           [2] = {
             anim = "Quit_Zero",
+          },
+          [3] = {
+            anim = "text",
           },
         },
       },
@@ -975,8 +1033,8 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p030_m01_Box_'),
-
           Quit = RM:loadAnimation('s02_0_p030_m01_Quit_'),
+          text = RM:loadAnimation('s02_0_p030_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -987,6 +1045,55 @@ return {
           },
           [2] = {
             anim = "Quit",
+          },
+          [3] = {
+            anim = "text",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s02_0_p030_m01_Box_'),
+          Quit = RM:loadAnimation('s02_0_p030_m01_Quit_'),
+          text = RM:loadAnimation('s02_0_p030_m02_text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Quit",
+          },
+          [3] = {
+            anim = "text",
+          },
+        },
+      },
+      [3] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s02_0_p030_m01_Box_'),
+          Quit = RM:loadAnimation('s02_0_p030_m01_Quit_'),
+          text = RM:loadAnimation('s02_0_p030_m03_text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Quit",
+          },
+          [3] = {
+            anim = "text",
           },
         },
       },
@@ -1002,9 +1109,9 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p031_m01_Box_'),
-
           End = RM:loadAnimation('s02_0_p031_m01_End_'),
           Quit_Zero = RM:loadAnimation('s02_0_p031_m01_Quit_Zero_'),
+          text = RM:loadAnimation('s02_0_p031_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1018,6 +1125,9 @@ return {
           },
           [3] = {
             anim = "Quit_Zero",
+          },
+          [4] = {
+            anim = "text",
           },
         },
       },
@@ -1034,6 +1144,7 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p032_m01_Box_'),
           End = RM:loadAnimation('s02_0_p032_m01_End_'),
+          text = RM:loadAnimation('s02_0_p032_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1044,6 +1155,9 @@ return {
           },
           [2] = {
             anim = "End",
+          },
+          [3] = {
+            anim = "text",
           },
         },
       },
@@ -1086,6 +1200,7 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p034_m01_Box_'),
           Quit_Zero = RM:loadAnimation('s02_0_p034_m01_Quit_Zero_'),
+          text = RM:loadAnimation('s02_0_p034_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1096,6 +1211,9 @@ return {
           },
           [2] = {
             anim = "Quit_Zero",
+          },
+          [3] = {
+            anim = "text",
           },
         },
       },
@@ -1105,6 +1223,7 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p034_m01_Box_'),
           Quit_Zero = RM:loadAnimation('s02_0_p034_m02_Quit_Zero_'),
+          text = RM:loadAnimation('s02_0_p034_m02_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1115,6 +1234,9 @@ return {
           },
           [2] = {
             anim = "Quit_Zero",
+          },
+          [3] = {
+            anim = "text",
           },
         },
       },
@@ -1132,6 +1254,7 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p035_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p035_m01_Quit_'),
+          text = RM:loadAnimation('s02_0_p035_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1142,6 +1265,9 @@ return {
           },
           [2] = {
             anim = "Quit",
+          },
+          [3] = {
+            anim = "text",
           },
         },
       },
@@ -1176,6 +1302,33 @@ return {
           },
           [4] = {
             anim = "Robot",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          End = RM:loadAnimation('s02_0_p036_m02_End_'),
+          Star = RM:loadAnimation('s02_0_p036_m02_Star_'),
+          Effect = RM:loadAnimation('s02_0_p036_m02_Effect_'),
+          Robot = RM:loadAnimation('s02_0_p036_m02_Robot_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Effect",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Robot",
+          },
+          [4] = {
+            anim = "Star",
           },
         },
       },
@@ -1301,6 +1454,7 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p041_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p041_m01_Quit_'),
+          text = RM:loadAnimation('s02_0_p041_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1311,6 +1465,9 @@ return {
           },
           [2] = {
             anim = "Quit",
+          },
+          [3] = {
+            anim = "text",
           },
         },
       },
@@ -1324,10 +1481,11 @@ return {
       [1] = {
         sounds = {
         },
-		music = "stop",
+	music = "stop",
         anims = {
           Box = RM:loadAnimation('s02_0_p042_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p042_m01_Quit_'),
+          text = RM:loadAnimation('s02_0_p042_m01_text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1339,6 +1497,9 @@ return {
           },
           [2] = {
             anim = "Quit",
+          },
+          [3] = {
+            anim = "text",
           },
         },
       },
