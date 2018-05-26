@@ -37,22 +37,6 @@ return {
           },
           [3] = {
             anim = "EEnd",
-            x = 2320/2 - 200 + 0,
-            y = 1480/2 - 200 - 0,
-            xScale = 1,
-            yScale = 1,
-            xOffset = 2320/2,
-            yOffset = 1480/2,
-            alpha = 1,
-            
-            tween = {1, {
-                x = 2320/2 - 200,
-                y = 1480/2 - 200,
-                xScale = 1.1,
-                yScale = 1.1,
-                alpha = 1,
-              }, "out-quad"
-            },
           },
         },
       },
@@ -115,7 +99,6 @@ return {
           },
           [2] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
-
           },
           [3] = {
             anim = "EEnd",
