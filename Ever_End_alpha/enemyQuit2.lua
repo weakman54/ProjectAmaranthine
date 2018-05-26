@@ -256,6 +256,7 @@ function enemy:initializeSM()
       enter = function(self, kind, nextAttack)
         enemy.dbg_trigger_offensive_action = false
 		Sound:play("Telegraph", {delay = 0.35})
+		Sound:play("Quit Slash 2 Telegraph")
 
 
         -- TODO: choose action #
