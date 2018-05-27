@@ -324,6 +324,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = "stop",
         anims = {
           Zero = RM:loadAnimation('s02_0_p011_m01_Zero_'),
           Box = RM:loadAnimation('s02_0_p011_m01_Box_'),
@@ -465,7 +466,6 @@ return {
       [1] = {
         sounds = {
         },
-        music = "stop",
         anims = {
           Box = RM:loadAnimation('s02_0_p015_m01_Box_'),
           Zero = RM:loadAnimation('s02_0_p015_m01_Zero_'),
