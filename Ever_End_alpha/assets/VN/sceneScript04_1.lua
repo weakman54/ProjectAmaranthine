@@ -673,26 +673,49 @@ return {
           },
           [2] = {
             anim = "Text1",
+            x =  0,
+            y =  270,
+            alpha = 0, tween = {1, {  alpha = 1 }, "in-expo" },
           },
+          
           [3] = {
             anim = "Box1",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
           },
           [4] = {
-            anim = "Box2",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Text2",
+                  x =  0,
+            y =  270,
+            alpha = 0, tween = {3, { alpha = 1 }, "in-expo" },
+          
+          },
+          
+          
+          [5] = {
+          anim = "Box2",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
             alpha = 0, tween = {3, { alpha = boxAlpha }, "in-expo" },
 
           },
-          [5] = {
+    
+        [6] = {
+            anim = "Text3",
+                  x =  0,
+            y =  270,
+            alpha = 0, tween = {5, { alpha = 1 }, "in-expo" },
+            
+          },
+         
+          [7] = {
             anim = "Box3",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
             alpha = 0, tween = {6, { alpha = boxAlpha }, "in-expo" },
 
           },
-          [6] = {
+          
+          [8] = {
             anim = "Box4",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
             alpha = 0, tween = {8, { alpha = 1 }, "in-expo" },
 
           },
-          [7] = {
+          [9] = {
             anim = "Zero",
             x = 2320/2 - 200 + 0,
             y = 1480/2 - 200 + 0,

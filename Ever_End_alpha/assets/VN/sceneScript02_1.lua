@@ -150,30 +150,35 @@ return {
           },
         },
       },
+      -- Removed moment
+--      [2] = {
+--        sounds = {
+--        },
+--        anims = {
+--          EndIdle = EndIdle,
+--          QuitIdle = QuitIdle,
+--          TextBox = RM:loadAnimation('s02_1_p005_m02_TextBox_'),
+--        },
+--        transitionTrigger = {
+--          [1] = "waitForInput",
+--        },
+--        drawData = {
+--          [1] = {
+--            anim = "QuitIdle",
+--          },
+--          [2] = {
+--            anim = "EndIdle",
+--          },
+--          [3] = {
+--            anim = "TextBox",
+--          },
+--        },
+--      },
+      
+      
+  --All following moments are offset -1 to function in code
+      
       [2] = {
-        sounds = {
-        },
-        anims = {
-          EndIdle = EndIdle,
-          QuitIdle = QuitIdle,
-          TextBox = RM:loadAnimation('s02_1_p005_m02_TextBox_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "QuitIdle",
-          },
-          [2] = {
-            anim = "EndIdle",
-          },
-          [3] = {
-            anim = "TextBox",
-          },
-        },
-      },
-      [3] = {
         sounds = {
         },
         anims = {
@@ -196,7 +201,7 @@ return {
           },
         },
       },
-      [4] = {
+      [3] = {
         sounds = {
         },
         anims = {
@@ -219,7 +224,7 @@ return {
           },
         },
       },
-      [5] = {
+      [4] = {
         sounds = {
         },
         anims = {
@@ -242,7 +247,7 @@ return {
           },
         },
       },
-      [6] = {
+      [5] = {
         sounds = {
         },
         anims = {
@@ -262,7 +267,7 @@ return {
           },
         },
       },
-      [7] = {
+      [6] = {
         sounds = {
         },
         anims = {
@@ -286,7 +291,7 @@ return {
           },
         },
       },
-      [8] = {
+      [7] = {
         sounds = {
         },
         anims = {
@@ -313,7 +318,7 @@ return {
           },
         },
       },
-      [9] = {
+      [8] = {
         sounds = {
         },
         anims = {
@@ -350,7 +355,7 @@ return {
           },
         },
       },
-      [10] = {
+      [9] = {
         sounds = {
         },
         anims = {
@@ -378,7 +383,7 @@ return {
           },
         },
       },
-      [11] = {
+      [10] = {
         sounds = {
         },
         anims = {
@@ -405,7 +410,7 @@ return {
           },
         },
       },
-      [12] = {
+      [11] = {
         sounds = {
         },
         anims = {
@@ -433,7 +438,7 @@ return {
           },
         },
       },
-      [13] = {
+      [12] = {
         sounds = {
         },
         anims = {
@@ -460,11 +465,174 @@ return {
           },
         },
       },
-      [14] = {
+      [13] = {
         sounds = {
         },
         anims = {
           TextBox = RM:loadAnimation('s02_1_p005_m14_TextBox_'),
+          EndIdle = EndIdle,
+          QuitIdle = QuitIdle,
+          Gas = Gas,
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "QuitIdle",
+          },
+          [2] = {
+            anim = "EndIdle",
+          },
+          [3] = {
+            anim = "TextBox",
+          },
+          [4] = {
+            anim = "Gas",
+          },
+        },
+      },
+
+            [14] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s02_1_p005_m15_TextBox_'),
+          EndIdle = EndIdle,
+          QuitIdle = QuitIdle,
+          Gas = Gas,
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "QuitIdle",
+          },
+          [2] = {
+            anim = "EndIdle",
+          },
+          [3] = {
+            anim = "TextBox",
+          },
+          [4] = {
+            anim = "Gas",
+          },
+        },
+      },
+            [15] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s02_1_p005_m16_TextBox_'),
+          EndIdle = EndIdle,
+          QuitIdle = QuitIdle,
+          Gas = Gas,
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "QuitIdle",
+          },
+          [2] = {
+            anim = "EndIdle",
+          },
+          [3] = {
+            anim = "TextBox",
+          },
+          [4] = {
+            anim = "Gas",
+          },
+        },
+      },
+            [16] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s02_1_p005_m17_TextBox_'),
+          EndIdle = EndIdle,
+          QuitIdle = QuitIdle,
+          Gas = Gas,
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "QuitIdle",
+          },
+          [2] = {
+            anim = "EndIdle",
+          },
+          [3] = {
+            anim = "TextBox",
+          },
+          [4] = {
+            anim = "Gas",
+          },
+        },
+      },
+            [17] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s02_1_p005_m18_TextBox_'),
+          EndIdle = EndIdle,
+          QuitIdle = QuitIdle,
+          Gas = Gas,
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "QuitIdle",
+          },
+          [2] = {
+            anim = "EndIdle",
+          },
+          [3] = {
+            anim = "TextBox",
+          },
+          [4] = {
+            anim = "Gas",
+          },
+        },
+      },
+            [18] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s02_1_p005_m19_TextBox_'),
+          EndIdle = EndIdle,
+          QuitIdle = QuitIdle,
+          Gas = Gas,
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "QuitIdle",
+          },
+          [2] = {
+            anim = "EndIdle",
+          },
+          [3] = {
+            anim = "TextBox",
+          },
+          [4] = {
+            anim = "Gas",
+          },
+        },
+      },
+            [19] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s02_1_p005_m20_TextBox_'),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,

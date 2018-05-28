@@ -77,6 +77,7 @@ sm:add("parryStart", {
       self.timer:update(dt)
 
       if input:pressed("attack") then
+		  Sound:play("Quick Time Confirm 1")
         return sm:switch("parryWindup", 1)
       end
 
@@ -146,6 +147,20 @@ sm:add("parryWindup", {
       if self.timer:reached(self.duration) or input:pressed("attack") then
         local dif = math.abs(self.timer._acc - self.target)
         local norm = dif/self.target
+		
+		if self.stage == 1 then 
+		Sound:play("Quick Time Confirm 2")
+		Sound:play("Player Hit", {delay = 0.3})
+			
+		elseif self.stage == 2 then
+		Sound:play("Quick Time Confirm 3")	
+		Sound:play("Player Hit", {delay = 0.3})
+			
+		elseif self.stage == 3 then
+		Sound:play("Quick Time Confirm 4")
+		Sound:play("Player Hit", {delay = 0.3})
+			
+		end
 
         return sm:switch("parryAttack", self.stage, norm)
       end
