@@ -125,7 +125,7 @@ function SoundManager:play(handle, opts)
     playingMus = tMus
   else
 
-    error("SoundManager: trying to play a sound that does not exist: " .. handle)
+    error("SoundManager: trying to play a sound that does not exist: " .. tostring(handle))
   end
 end
 

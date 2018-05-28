@@ -451,7 +451,7 @@ return {
       },
     },
   },
-  [11] = {
+  [12] = {
     bg = {
       anim = FlashbackBG,
     },
@@ -496,7 +496,7 @@ return {
       },
     },
   },
-  [12] = {
+  [13] = {
     bg = {
       anim = FlashbackBG,
     },
@@ -518,7 +518,7 @@ return {
       },
     },
   },
-  [13] = {
+  [14] = {
     bg = {
       anim = FlashbackBG,
     },
@@ -544,7 +544,7 @@ return {
       },
     },
   },
-  [14] = {
+  [15] = {
     bg = {
       anim = FlashbackBG,
     },
@@ -566,7 +566,7 @@ return {
       },
     },
   },
-  [15] = {
+  [16] = {
     bg = {
       anim = FlashbackBG,
     },
@@ -588,7 +588,7 @@ return {
       },
     },
   },
-  [16] = {
+  [17] = {
     bg = {
       anim = FlashbackBG,
     },
@@ -610,7 +610,7 @@ return {
       },
     },
   },
-  [17] = {
+  [18] = {
     bg = {
       anim = FlashbackBG,
     },
@@ -632,7 +632,7 @@ return {
       },
     },
   },
-  [18] = {
+  [19] = {
     bg = {
       anim = FlashbackBG,
     },
@@ -654,7 +654,7 @@ return {
       },
     },
   },
-  [19] = {
+  [20] = {
     bg = {
       anim = background_blur,
     },
@@ -746,7 +746,7 @@ return {
       },
     },
   },
-  [20] = {
+  [21] = {
     bg = {
       anim = background_blur,
     },
@@ -780,7 +780,7 @@ return {
       },
     },
   },
-  [21] = {
+  [22] = {
     bg = {
       anim = background_blur,
     },
@@ -814,7 +814,7 @@ return {
       },
     },
   },
-  [22] = {
+  [23] = {
     bg = {
       anim = background_blur,
     },
@@ -848,7 +848,7 @@ return {
       },
     },
   },
-  [23] = {
+  [24] = {
     bg = {
       anim = background_blur,
 
@@ -883,7 +883,7 @@ return {
       },
     },
   },
-  [24] = {
+  [25] = {
     bg = {
       anim = background_blur,
 
@@ -918,7 +918,7 @@ return {
       },
     },
   },
-  [25] = {
+  [26] = {
     bg = {
       anim = background_blur,
 
@@ -953,7 +953,7 @@ return {
       },
     },
   },
-  [26] = {
+  [27] = {
     bg = {
       anim = background_blur,
     },
@@ -987,7 +987,7 @@ return {
       },
     },
   },
-  [27] = {
+  [28] = {
     bg = {
       anim = background_blur,
     },
@@ -1021,7 +1021,7 @@ return {
       },
     },
   },
-  [28] = {
+  [29] = {
     bg = {
       anim = background_blur,
     },
@@ -1061,7 +1061,7 @@ return {
       },
     },
   },
-  [29] = {
+  [30] = {
     bg = {
       anim = background_blur,
     },
@@ -1102,7 +1102,7 @@ return {
       },
     },
   },
-  [30] = {
+  [31] = {
     bg = {
       anim = background_blur,
     },
@@ -1163,7 +1163,7 @@ return {
       },
     },
   },
-  [31] = {
+  [32] = {
     bg = {
       anim = background,
     },
@@ -1243,7 +1243,7 @@ return {
       },
     },
   },
-  [32] = {
+  [33] = {
     bg = {
       anim = background_blur,
     },
@@ -1273,7 +1273,7 @@ return {
       },
     },
   },
-  [33] = {
+  [34] = {
     bg = {
       anim = background_blur,
     },
@@ -1307,7 +1307,7 @@ return {
       },
     },
   },
-  [34] = {
+  [35] = {
     bg = {
       anim = background_blur,
     },
@@ -1387,7 +1387,7 @@ return {
       },
     },
   },
-  [37] = {
+  [38] = {
     bg = {
       anim = background_blur,
 
@@ -1418,7 +1418,7 @@ return {
       },
     },
   },
-  [38] = {
+  [39] = {
     bg = {
       anim = background_blur,
     },
@@ -1448,7 +1448,7 @@ return {
       },
     },
   },
-  [39] = {
+  [40] = {
     bg = {
       anim = background_blur,
     },
@@ -1542,7 +1542,7 @@ return {
       },
     },
   },
-  [41] = {
+  [42] = {
     bg = {
       anim = background,
     },
@@ -1603,7 +1603,7 @@ return {
       },
     },
   },
-  [42] = {
+  [43] = {
     bg = {
       anim = background_blur,
     },
@@ -1637,7 +1637,7 @@ return {
       },
     },
   },
-  [43] = {
+  [44] = {
     bg = {
       anim = background_blur,
     },
@@ -1671,7 +1671,7 @@ return {
       },
     },
   },
-  [44] = {
+  [45] = {
     bg = {
       anim = background_blur,
     },
@@ -1705,7 +1705,7 @@ return {
       },
     },
   },
-  [45] = {
+  [46] = {
     bg = {
       anim = background_blur,
     },
@@ -1739,7 +1739,7 @@ return {
       },
     },
   },
-  [46] = {
+  [47] = {
     bg = {
       anim = background_blur,
     },
@@ -1815,7 +1815,7 @@ return {
 --      },
     },
   },
-  [47] = {
+  [49] = {
     bg = {
       anim = background_blur,
     },
@@ -1844,7 +1844,17 @@ return {
       },
     },
   },
-  [48] = {
+
+
+
+
+
+-- Caution:
+-- Panel order after this is changed so the panel numbering mismatch filenames.
+-- The correct panel order: p050, p054, p055, p056, p057, p053
+-- This note is only to avoid confusion
+
+  [50] = {
     bg = {
       anim = background,
     },
@@ -1989,7 +1999,10 @@ return {
 --    },
 --  },
 
-  [52] = {
+
+
+
+  [53] = { -- 54 rearranged
     bg = {
       anim = background_blur,
     },
@@ -2033,7 +2046,7 @@ return {
       },
     },
   },
-  [53] = {
+  [54] = { --55 rearranged
     bg = {
       anim = background_blur,
     },
@@ -2065,7 +2078,7 @@ return {
       },
     },
   },
-  [54] = {
+  [55] = { --56 rearranged
     bg = {
       anim = background_blur,
     },
@@ -2095,7 +2108,7 @@ return {
       },
     },
   },
-  [56] = {
+  [56] = { -- 57, just rearranged
     bg = {
       anim = background_blur,
     },
@@ -2136,7 +2149,7 @@ return {
       },
     },
   },
-  [57] = {
+  [57] = { -- 53 rearranged
     bg = {
       anim = background_blur,
     },
