@@ -2,4 +2,4 @@
 vibrationEnabled = false
 
 sceneToLoad = "02_0"
-panelToLoad = 23
+panelToLoad = 30
