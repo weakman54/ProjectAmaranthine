@@ -1844,6 +1844,16 @@ return {
       },
     },
   },
+
+
+
+
+
+-- Caution:
+-- Panel order after this is changed so the panel numbering mismatch filenames.
+-- The correct panel order: p050, p054, p055, p056, p057, p053
+-- This note is only to avoid confusion
+
   [50] = {
     bg = {
       anim = background,
@@ -1988,6 +1998,9 @@ return {
 --      },
 --    },
 --  },
+
+
+
 
   [53] = { -- 54 rearranged
     bg = {
