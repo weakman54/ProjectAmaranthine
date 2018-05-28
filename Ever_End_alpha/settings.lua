@@ -1,5 +1,5 @@
 -- TODO: make into table
 vibrationEnabled = false
 
-sceneToLoad = "03_0"
-panelToLoad = 1
+sceneToLoad = "02_1"
+panelToLoad = 5
