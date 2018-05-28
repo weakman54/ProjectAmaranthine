@@ -256,6 +256,7 @@ function player:initializeSM()
         self.stance = stance
         ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm
         -- Put parry sounds here 
+		Sound:play("Parry Swing")
 
         self.parryTiming = false
         if enemy.sm:is("offensive") then
@@ -292,7 +293,7 @@ function player:initializeSM()
 
       enter = function(self)
         ac:setAnimation("heal")
-        --Sound:play("Fire2")
+        Sound:play("Fire2")
       end,
 
       update = function(self, dt)
@@ -447,6 +448,7 @@ function player:initializeSM()
   sm:add("defeat", {
       enter = function(self, data)
         ac:setAnimation("defeat", false)
+		Sound:play("End Dies")
       end,
 
       update = function(self, dt)

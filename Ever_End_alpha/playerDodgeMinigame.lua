@@ -18,9 +18,9 @@ local dodgeStart = {
 
 
     if data.stance == "high" then 
-      --Sound:play("High Dodge")
+      Sound:play("High Dodge")
     elseif data.stance == "low" then 
-      --Sound:play("Low Dodge")
+      Sound:play("Low Dodge")
     end
 
     self.timer = Timer:new()

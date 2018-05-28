@@ -432,6 +432,7 @@ function enemy:initializeSM()
   sm:add("defeat", {
       enter = function(self, data)
         ac:setAnimation("defeat", false)
+		Sound:play("Quit Dies")
       end,
 
       update = function(self, dt)
