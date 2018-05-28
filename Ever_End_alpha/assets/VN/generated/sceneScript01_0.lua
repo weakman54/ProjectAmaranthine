@@ -12,22 +12,29 @@ return {
         sounds = {
         },
         anims = {
-          ElevatorRight = RM:loadAnimation('s01_0_p001_m01_ElevatorRight_'),
-          EndZero = RM:loadAnimation('s01_0_p001_m01_EndZero_'),
-          ElevatorLeft = RM:loadAnimation('s01_0_p001_m01_ElevatorLeft_'),
+          TextBox = RM:loadAnimation('s01_0_p001_m01_TextBox_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "ElevatorLeft",
+            anim = "TextBox",
           },
-          [2] = {
-            anim = "ElevatorRight",
-          },
-          [3] = {
-            anim = "EndZero",
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          ZeroHand = RM:loadAnimation('s01_0_p001_m02_ZeroHand_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "ZeroHand",
           },
         },
       },
@@ -42,11 +49,27 @@ return {
         sounds = {
         },
         anims = {
+          YawnFX = RM:loadAnimation('s01_0_p002_m01_YawnFX_'),
+          ElevatorRight = RM:loadAnimation('s01_0_p002_m01_ElevatorRight_'),
+          EndZero = RM:loadAnimation('s01_0_p002_m01_EndZero_'),
+          ElevatorLeft = RM:loadAnimation('s01_0_p002_m01_ElevatorLeft_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "ElevatorLeft",
+          },
+          [2] = {
+            anim = "ElevatorRight",
+          },
+          [3] = {
+            anim = "EndZero",
+          },
+          [4] = {
+            anim = "YawnFX",
+          },
         },
       },
     },
@@ -61,12 +84,16 @@ return {
         },
         anims = {
           EndZero = RM:loadAnimation('s01_0_p003_m01_EndZero_'),
+          Box = RM:loadAnimation('s01_0_p003_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
+            anim = "Box",
+          },
+          [2] = {
             anim = "EndZero",
           },
         },
@@ -82,14 +109,18 @@ return {
         sounds = {
         },
         anims = {
-          EndZero = RM:loadAnimation('s01_0_p004_m01_EndZero_'),
+          QuitPainting = RM:loadAnimation('s01_0_p004_m01_QuitPainting_'),
+          Box = RM:loadAnimation('s01_0_p004_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "EndZero",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "QuitPainting",
           },
         },
       },
@@ -104,14 +135,18 @@ return {
         sounds = {
         },
         anims = {
-          EndZero = RM:loadAnimation('s01_0_p005_m01_EndZero_'),
+          Trophies = RM:loadAnimation('s01_0_p005_m01_Trophies_'),
+          Box = RM:loadAnimation('s01_0_p005_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "EndZero",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Trophies",
           },
         },
       },
@@ -126,11 +161,19 @@ return {
         sounds = {
         },
         anims = {
+          QuitPhoto = RM:loadAnimation('s01_0_p006_m01_QuitPhoto_'),
+          Box = RM:loadAnimation('s01_0_p006_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "QuitPhoto",
+          },
         },
       },
     },
@@ -144,11 +187,23 @@ return {
         sounds = {
         },
         anims = {
+          EndRollEyes = RM:loadAnimation('s01_0_p007_m01_EndRollEyes_'),
+          TextBox = RM:loadAnimation('s01_0_p007_m01_TextBox_'),
+          Box = RM:loadAnimation('s01_0_p007_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "EndRollEyes",
+          },
+          [3] = {
+            anim = "TextBox",
+          },
         },
       },
     },
@@ -162,11 +217,42 @@ return {
         sounds = {
         },
         anims = {
+          Box = RM:loadAnimation('s01_0_p008_m01_Box_'),
+          Zero = RM:loadAnimation('s01_0_p008_m01_Zero_'),
+          Kitty = RM:loadAnimation('s01_0_p008_m01_Kitty_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Kitty",
+          },
+          [3] = {
+            anim = "Zero",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          KittyZoom = RM:loadAnimation('s01_0_p008_m02_KittyZoom_'),
+          BoxZoom = RM:loadAnimation('s01_0_p008_m02_BoxZoom_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "BoxZoom",
+          },
+          [2] = {
+            anim = "KittyZoom",
+          },
         },
       },
     },
@@ -180,11 +266,23 @@ return {
         sounds = {
         },
         anims = {
+          Box = RM:loadAnimation('s01_0_p009_m01_Box_'),
+          Zero = RM:loadAnimation('s01_0_p009_m01_Zero_'),
+          Text = RM:loadAnimation('s01_0_p009_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Text",
+          },
+          [3] = {
+            anim = "Zero",
+          },
         },
       },
     },
@@ -198,11 +296,27 @@ return {
         sounds = {
         },
         anims = {
+          ZeroKitty = RM:loadAnimation('s01_0_p010_m01_ZeroKitty_'),
+          Box = RM:loadAnimation('s01_0_p010_m01_Box_'),
+          End = RM:loadAnimation('s01_0_p010_m01_End_'),
+          Text = RM:loadAnimation('s01_0_p010_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Text",
+          },
+          [4] = {
+            anim = "ZeroKitty",
+          },
         },
       },
     },
@@ -216,11 +330,23 @@ return {
         sounds = {
         },
         anims = {
+          Box = RM:loadAnimation('s01_0_p011_m01_Box_'),
+          End = RM:loadAnimation('s01_0_p011_m01_End_'),
+          Text = RM:loadAnimation('s01_0_p011_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Text",
+          },
         },
       },
     },
@@ -234,11 +360,19 @@ return {
         sounds = {
         },
         anims = {
+          Zero = RM:loadAnimation('s01_0_p012_m01_Zero_'),
+          Box = RM:loadAnimation('s01_0_p012_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Zero",
+          },
         },
       },
     },
@@ -252,11 +386,34 @@ return {
         sounds = {
         },
         anims = {
+          Kitty = RM:loadAnimation('s01_0_p013_m01_Kitty_'),
+          Box = RM:loadAnimation('s01_0_p013_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Kitty",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          KittyEye = RM:loadAnimation('s01_0_p013_m02_KittyEye_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "KittyEye",
+          },
         },
       },
     },
@@ -270,14 +427,37 @@ return {
         sounds = {
         },
         anims = {
-          EndZero = RM:loadAnimation('s01_0_p014_m01_EndZero_'),
+          SoldierEye = RM:loadAnimation('s01_0_p014_m01_SoldierEye_'),
+          Box = RM:loadAnimation('s01_0_p014_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "EndZero",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "SoldierEye",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          SoldierZoomout = RM:loadAnimation('s01_0_p014_m02_SoldierZoomout_'),
+          Box = RM:loadAnimation('s01_0_p014_m02_Box_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "SoldierZoomout",
           },
         },
       },
@@ -292,14 +472,30 @@ return {
         sounds = {
         },
         anims = {
-          EndZero = RM:loadAnimation('s01_0_p015_m01_EndZero_'),
+          EndKicking = RM:loadAnimation('s01_0_p015_m01_EndKicking_'),
+          ZeroScared = RM:loadAnimation('s01_0_p015_m01_ZeroScared_'),
+          Box = RM:loadAnimation('s01_0_p015_m01_Box_'),
+          Effect = RM:loadAnimation('s01_0_p015_m01_Effect_'),
+          Kitty = RM:loadAnimation('s01_0_p015_m01_Kitty_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "EndZero",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Effect",
+          },
+          [3] = {
+            anim = "EndKicking",
+          },
+          [4] = {
+            anim = "Kitty",
+          },
+          [5] = {
+            anim = "ZeroScared",
           },
         },
       },
@@ -314,14 +510,53 @@ return {
         sounds = {
         },
         anims = {
-          ZeroTiger = RM:loadAnimation('s01_0_p016_m01_ZeroTiger_'),
+          Zero = RM:loadAnimation('s01_0_p016_m01_Zero_'),
+          Box = RM:loadAnimation('s01_0_p016_m01_Box_'),
+          End = RM:loadAnimation('s01_0_p016_m01_End_'),
+          Text = RM:loadAnimation('s01_0_p016_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "ZeroTiger",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Text",
+          },
+          [4] = {
+            anim = "Zero",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          Zero = RM:loadAnimation('s01_0_p016_m02_Zero_'),
+          Box = RM:loadAnimation('s01_0_p016_m02_Box_'),
+          End = RM:loadAnimation('s01_0_p016_m02_End_'),
+          Kitty = RM:loadAnimation('s01_0_p016_m02_Kitty_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Kitty",
+          },
+          [4] = {
+            anim = "Zero",
           },
         },
       },
@@ -336,14 +571,49 @@ return {
         sounds = {
         },
         anims = {
-          Tiger = RM:loadAnimation('s01_0_p017_m01_Tiger_'),
+          Zero = RM:loadAnimation('s01_0_p017_m01_Zero_'),
+          Box = RM:loadAnimation('s01_0_p017_m01_Box_'),
+          End = RM:loadAnimation('s01_0_p017_m01_End_'),
+          Kitty = RM:loadAnimation('s01_0_p017_m01_Kitty_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "Tiger",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Kitty",
+          },
+          [4] = {
+            anim = "Zero",
+          },
+        },
+      },
+      [2] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s01_0_p017_m02_Box_'),
+          End = RM:loadAnimation('s01_0_p017_m02_End_'),
+          Zero = RM:loadAnimation('s01_0_p017_m02_Zero_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Zero",
           },
         },
       },
@@ -358,11 +628,23 @@ return {
         sounds = {
         },
         anims = {
+          EndFlashback = RM:loadAnimation('s01_0_p018_m01_EndFlashback_'),
+          End = RM:loadAnimation('s01_0_p018_m01_End_'),
+          Box = RM:loadAnimation('s01_0_p018_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "EndFlashback",
+          },
+          [3] = {
+            anim = "End",
+          },
         },
       },
     },
@@ -376,14 +658,22 @@ return {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s01_0_p019_m01_End_'),
+          Box = RM:loadAnimation('s01_0_p019_m01_Box_'),
+          Effect = RM:loadAnimation('s01_0_p019_m01_Effect_'),
+          Zero = RM:loadAnimation('s01_0_p019_m01_Zero_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "End",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Effect",
+          },
+          [3] = {
+            anim = "Zero",
           },
         },
       },
@@ -398,14 +688,22 @@ return {
         sounds = {
         },
         anims = {
-          End = RM:loadAnimation('s01_0_p020_m01_End_'),
+          Box = RM:loadAnimation('s01_0_p020_m01_Box_'),
+          Text = RM:loadAnimation('s01_0_p020_m01_Text_'),
+          EndZero = RM:loadAnimation('s01_0_p020_m01_EndZero_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "End",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "EndZero",
+          },
+          [3] = {
+            anim = "Text",
           },
         },
       },
@@ -420,11 +718,31 @@ return {
         sounds = {
         },
         anims = {
+          s27effect1 = RM:loadAnimation('s01_0_p021_m01_s27effect1_'),
+          s27effect2 = RM:loadAnimation('s01_0_p021_m01_s27effect2_'),
+          Box = RM:loadAnimation('s01_0_p021_m01_Box_'),
+          EndPullingZero = RM:loadAnimation('s01_0_p021_m01_EndPullingZero_'),
+          Text = RM:loadAnimation('s01_0_p021_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "EndPullingZero",
+          },
+          [3] = {
+            anim = "Text",
+          },
+          [4] = {
+            anim = "s27effect1",
+          },
+          [5] = {
+            anim = "s27effect2",
+          },
         },
       },
     },
@@ -438,11 +756,23 @@ return {
         sounds = {
         },
         anims = {
+          Box = RM:loadAnimation('s01_0_p022_m01_Box_'),
+          ZeroAngry = RM:loadAnimation('s01_0_p022_m01_ZeroAngry_'),
+          Text = RM:loadAnimation('s01_0_p022_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Text",
+          },
+          [3] = {
+            anim = "ZeroAngry",
+          },
         },
       },
     },
@@ -456,11 +786,19 @@ return {
         sounds = {
         },
         anims = {
+          End = RM:loadAnimation('s01_0_p023_m01_End_'),
+          Box = RM:loadAnimation('s01_0_p023_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
         },
       },
     },
@@ -474,14 +812,18 @@ return {
         sounds = {
         },
         anims = {
-          ZeroTiger = RM:loadAnimation('s01_0_p024_m01_ZeroTiger_'),
+          ZeroCrying = RM:loadAnimation('s01_0_p024_m01_ZeroCrying_'),
+          Box = RM:loadAnimation('s01_0_p024_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "ZeroTiger",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "ZeroCrying",
           },
         },
       },
@@ -496,11 +838,23 @@ return {
         sounds = {
         },
         anims = {
+          ZeroBiteFX = RM:loadAnimation('s01_0_p025_m01_ZeroBiteFX_'),
+          ZeroBiting = RM:loadAnimation('s01_0_p025_m01_ZeroBiting_'),
+          Box = RM:loadAnimation('s01_0_p025_m01_Box_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "ZeroBiteFX",
+          },
+          [3] = {
+            anim = "ZeroBiting",
+          },
         },
       },
     },
@@ -514,11 +868,31 @@ return {
         sounds = {
         },
         anims = {
+          ZeroPullingAway = RM:loadAnimation('s01_0_p026_m01_ZeroPullingAway_'),
+          EndPullingAway = RM:loadAnimation('s01_0_p026_m01_EndPullingAway_'),
+          Box = RM:loadAnimation('s01_0_p026_m01_Box_'),
+          PullFX = RM:loadAnimation('s01_0_p026_m01_PullFX_'),
+          Text = RM:loadAnimation('s01_0_p026_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "EndPullingAway",
+          },
+          [3] = {
+            anim = "PullFX",
+          },
+          [4] = {
+            anim = "Text",
+          },
+          [5] = {
+            anim = "ZeroPullingAway",
+          },
         },
       },
     },
@@ -532,11 +906,23 @@ return {
         sounds = {
         },
         anims = {
+          Box = RM:loadAnimation('s01_0_p027_m01_Box_'),
+          ZeroShouting = RM:loadAnimation('s01_0_p027_m01_ZeroShouting_'),
+          Text = RM:loadAnimation('s01_0_p027_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "Text",
+          },
+          [3] = {
+            anim = "ZeroShouting",
+          },
         },
       },
     },
@@ -550,14 +936,22 @@ return {
         sounds = {
         },
         anims = {
-          ZeroTiger = RM:loadAnimation('s01_0_p028_m01_ZeroTiger_'),
+          Box = RM:loadAnimation('s01_0_p028_m01_Box_'),
+          End = RM:loadAnimation('s01_0_p028_m01_End_'),
+          Text = RM:loadAnimation('s01_0_p028_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "ZeroTiger",
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Text",
           },
         },
       },
@@ -572,11 +966,19 @@ return {
         sounds = {
         },
         anims = {
+          End = RM:loadAnimation('s01_0_p029_m01_End_'),
+          Text = RM:loadAnimation('s01_0_p029_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "End",
+          },
+          [2] = {
+            anim = "Text",
+          },
         },
       },
     },
@@ -590,14 +992,14 @@ return {
         sounds = {
         },
         anims = {
-          ZeroTiger = RM:loadAnimation('s01_0_p030_m01_ZeroTiger_'),
+          ZeroCry = RM:loadAnimation('s01_0_p030_m01_ZeroCry_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "ZeroTiger",
+            anim = "ZeroCry",
           },
         },
       },
@@ -612,11 +1014,27 @@ return {
         sounds = {
         },
         anims = {
+          EndHolding = RM:loadAnimation('s01_0_p031_m01_EndHolding_'),
+          Box = RM:loadAnimation('s01_0_p031_m01_Box_'),
+          ZeroWalkAway = RM:loadAnimation('s01_0_p031_m01_ZeroWalkAway_'),
+          Text = RM:loadAnimation('s01_0_p031_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "EndHolding",
+          },
+          [3] = {
+            anim = "Text",
+          },
+          [4] = {
+            anim = "ZeroWalkAway",
+          },
         },
       },
     },
@@ -630,11 +1048,27 @@ return {
         sounds = {
         },
         anims = {
+          Zero = RM:loadAnimation('s01_0_p032_m01_Zero_'),
+          Box = RM:loadAnimation('s01_0_p032_m01_Box_'),
+          End = RM:loadAnimation('s01_0_p032_m01_End_'),
+          Text = RM:loadAnimation('s01_0_p032_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Text",
+          },
+          [4] = {
+            anim = "Zero",
+          },
         },
       },
     },
@@ -648,11 +1082,23 @@ return {
         sounds = {
         },
         anims = {
+          EndKicked = RM:loadAnimation('s01_0_p033_m01_EndKicked_'),
+          Box = RM:loadAnimation('s01_0_p033_m01_Box_'),
+          ZeroKicking = RM:loadAnimation('s01_0_p033_m01_ZeroKicking_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "EndKicked",
+          },
+          [3] = {
+            anim = "ZeroKicking",
+          },
         },
       },
     },
@@ -666,11 +1112,27 @@ return {
         sounds = {
         },
         anims = {
+          Text = RM:loadAnimation('s01_0_p034_m01_Text_'),
+          Box = RM:loadAnimation('s01_0_p034_m01_Box_'),
+          ZeroRunning = RM:loadAnimation('s01_0_p034_m01_ZeroRunning_'),
+          EndSurprised = RM:loadAnimation('s01_0_p034_m01_EndSurprised_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "EndSurprised",
+          },
+          [3] = {
+            anim = "Text",
+          },
+          [4] = {
+            anim = "ZeroRunning",
+          },
         },
       },
     },
@@ -684,11 +1146,23 @@ return {
         sounds = {
         },
         anims = {
+          EndShouting = RM:loadAnimation('s01_0_p035_m01_EndShouting_'),
+          Box = RM:loadAnimation('s01_0_p035_m01_Box_'),
+          Text = RM:loadAnimation('s01_0_p035_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "EndShouting",
+          },
+          [3] = {
+            anim = "Text",
+          },
         },
       },
     },
@@ -702,11 +1176,23 @@ return {
         sounds = {
         },
         anims = {
+          Box = RM:loadAnimation('s01_0_p036_m01_Box_'),
+          End = RM:loadAnimation('s01_0_p036_m01_End_'),
+          ZeroRunning = RM:loadAnimation('s01_0_p036_m01_ZeroRunning_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
+          [1] = {
+            anim = "Box",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "ZeroRunning",
+          },
         },
       },
     },
@@ -720,541 +1206,27 @@ return {
         sounds = {
         },
         anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [38] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p038_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [39] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p039_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [40] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p040_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          End = RM:loadAnimation('s01_0_p040_m01_End_'),
+          ZeroRunning = RM:loadAnimation('s01_0_p037_m01_ZeroRunning_'),
+          Box = RM:loadAnimation('s01_0_p037_m01_Box_'),
+          EndChasing = RM:loadAnimation('s01_0_p037_m01_EndChasing_'),
+          Text = RM:loadAnimation('s01_0_p037_m01_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-            anim = "End",
+            anim = "Box",
           },
-        },
-      },
-    },
-  },
-  [41] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p041_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [42] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p042_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [43] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p043_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [44] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p044_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [45] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p045_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [46] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p046_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [47] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p047_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [48] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p048_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [49] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p049_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          ZeroEnd = RM:loadAnimation('s01_0_p049_m01_ZeroEnd_'),
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "ZeroEnd",
+          [2] = {
+            anim = "EndChasing",
           },
-        },
-      },
-    },
-  },
-  [50] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p050_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [51] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p051_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [52] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p052_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [53] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p053_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [54] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p054_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [55] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p055_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [56] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p056_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [57] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p057_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [58] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p058_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [59] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p059_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [60] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p060_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [61] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p061_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [62] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p062_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [63] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p063_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [64] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p064_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [65] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p065_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-        },
-      },
-    },
-  },
-  [66] = {
-    bg = {
-      anim = RM:loadAnimation('s01_0_p066_bg_'),
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
+          [3] = {
+            anim = "Text",
+          },
+          [4] = {
+            anim = "ZeroRunning",
+          },
         },
       },
     },

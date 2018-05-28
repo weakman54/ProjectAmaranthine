@@ -5,6 +5,9 @@ local vec = require "hump.vector" -- TODO: replace with own vector
 local GUIBar = require "gui.bar"
 local RM = require "resourceManager.resourceManager"
 
+
+
+
 local stateBattle = {}
 
 
@@ -24,6 +27,12 @@ GUIPlayerSP.innerColor = {000, 255, 255}
 local GUIEnemyHealth  = GUIBar:new(vec(1200, 200), vec(300, 30))
 GUIEnemyHealth.innerColor = {255, 000, 000}
 -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+RM.prefix = ""
+local Gas  = RM:loadAnimation("assets/FX/Gas_")
+Gas.data:play()
+Gas.data:setLooping()
+
 
 local reloaded = true
 
@@ -67,6 +76,10 @@ function stateBattle:update(dt)
   
   player:update(dt)
   enemy:update(dt)
+  
+  -- Gas hack vvvv
+  Gas.data:update(dt)
+  -- Gas hack ^^^^^^
 
   -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
   GUIPlayerHealth:update(dt)
@@ -93,6 +106,14 @@ function stateBattle:draw()
 -- RESET STUFF (?)
   love.graphics.origin()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
+
+
+
+  -- Gas hack vvvv
+  if enemy.name == "Quit2" then
+    Gas.data:loveDraw()
+  end
+  -- Gas hack ^^^^^^^^^^^^
 
 
 

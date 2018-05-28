@@ -112,9 +112,10 @@ input = baton.new {
 
 
 function love.load(arg)
+  --love.window.setMode( 960, 540, { fullscreen = false, vsync = false, msaa = 0,} )
   reloaded = true
   do -- Starting loadscreens
-    love.graphics.setNewFont(48)
+    love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
 
     if arg[#arg] == "-debug" then
       debugPrint("Loading: Debug", 100, 100)
@@ -199,7 +200,7 @@ function dbgPrintAnimFrames()
   love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, t/2)
   love.graphics.pop() -- does not re-reset font?
 
-  love.graphics.setNewFont(48)
+  love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
 
   love.graphics.setColor(1.0, 1.0, 1.0)
 end
@@ -217,7 +218,9 @@ function GameReload()
   SM    = reload("statemachine.statemachine")
   AC    = reload("animation.animationCollection")
 --  Sound = reload("resourceManager.soundManager")
---    Sound:init()
+  Sound:muteMusic()
+  Sound:init()
+
 
   -- NOTE: player and enemy needs to be reloaded _before_ stateBattle! they are initialized there
 
@@ -251,7 +254,7 @@ function love.keypressed(key, scancode, isrepeat)
   end
 
 
-  if key == "t" then
+  if key == "t" and enemy then
     enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
 
   elseif key == "m" then
@@ -324,20 +327,6 @@ end
 function love.joystickremoved()
   gJoy = love.joystick.getJoysticks()[1]
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
