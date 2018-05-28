@@ -304,7 +304,9 @@ return {
         sounds = {
         },
         anims = {
-          Zero_Table = RM:loadAnimation('s02_0_p010_m01_Zero_Table_'),
+          Zero = RM:loadAnimation('s02_0_p010_m01_Zero_'),
+          Table = RM:loadAnimation('s02_0_p010_m01_Table_'),
+    
           Box = RM:loadAnimation('s02_0_p010_m01_Box_'),
         },
         transitionTrigger = {
@@ -312,10 +314,19 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+                anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x= - 200, 
+                
           },
           [2] = {
-            anim = "Zero_Table",
+            anim = "Zero",
+            x= - 200, 
+      
+          },
+    [3] = {
+            anim = "Table",
+            x= - 200, 
+      
           },
         },
       },
