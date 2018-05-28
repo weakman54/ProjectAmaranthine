@@ -223,14 +223,14 @@ return {
           },
           [2] = {
             anim = "End",
-            x = 2320/2 - 200-20, -- 500 is magic number to offset the center of the tiny sprite
+            x = 2320/2 - 200-700, 
             y = 1480/2 - 200,
             xScale = 1,
             yScale = 1,
-            xOffset = 2320/2-500,
+            xOffset = 2320/2-500, -- 500 is magic number to offset the center of the tiny sprite
             yOffset = 1480/2,
             alpha = 1,
-            tween = {2, {x = 2320/2 - 200-20, y = 1480/2 - 200, alpha = 0, xScale = .5, yScale = .5}, "out-linear"},
+            tween = {2, {x = 2320/2 - 200-700, y = 1480/2 - 200, alpha = 0, xScale = .5, yScale = .5}, "out-linear"},
           },
           [3] = {
             anim = "Zero_Table",
@@ -856,17 +856,24 @@ return {
         },
         anims = {
           Quit = RM:loadAnimation('s02_0_p024_m01_Quit_'),
+          ShadowQuit = RM:loadAnimation('s02_0_p024_m01_DarkQuit_'),
           Box = RM:loadAnimation('s02_0_p024_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 2.0,
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
+            anim = "ShadowQuit",
+          },
+          [3] = {
             anim = "Quit",
+            alpha = 0.07, tween = {2.5, {alpha = 1}, "in-out-cubic"},
+            
           },
         },
       },
@@ -883,16 +890,22 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p025_m01_Box_'),
           Zero = RM:loadAnimation('s02_0_p025_m01_Zero_'),
+          Shadow = RM:loadAnimation('s02_0_p025_m01_DarkZero_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
+            anim = "Shadow",
+          },
+         [3] = {
             anim = "Zero",
+            alpha = .3, tween = {2.0, {alpha = 1}, "in-out-cubic"},
+            
           },
         },
       },
@@ -915,7 +928,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "End",
@@ -942,7 +955,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "End",
@@ -969,7 +982,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit_Zero",
@@ -992,7 +1005,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit_Zero",
@@ -1015,7 +1028,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit_Zero",
@@ -1074,14 +1087,15 @@ return {
           [1] = "waitForInput",
         },
         drawData = {
+         
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
-          },
-          [2] = {
             anim = "Quit",
           },
           [3] = {
             anim = "text",
+          },
+           [2] = {
+                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
         },
       },
@@ -1097,14 +1111,15 @@ return {
           [1] = "waitForInput",
         },
         drawData = {
+         
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
-          },
-          [2] = {
             anim = "Quit",
           },
           [3] = {
             anim = "text",
+          },
+           [2] = {
+                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
         },
       },
@@ -1120,14 +1135,15 @@ return {
           [1] = "waitForInput",
         },
         drawData = {
+        
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
-          },
-          [2] = {
             anim = "Quit",
           },
           [3] = {
             anim = "text",
+          },
+  [2] = {
+                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
         },
       },
@@ -1151,16 +1167,14 @@ return {
           [1] = "waitForInput",
         },
         drawData = {
+          
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
-          },
-          [2] = {
             anim = "End",
           },
-          [3] = {
+          [2] = {
             anim = "Quit_Zero",
           },
-          [4] = {
+          [3] = {
             anim = "text",
           },
         },
