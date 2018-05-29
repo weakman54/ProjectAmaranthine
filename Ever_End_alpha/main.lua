@@ -217,8 +217,9 @@ function GameReload()
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
   AC    = reload("animation.animationCollection")
---  Sound = reload("resourceManager.soundManager")
+  
   Sound:muteMusic()
+  Sound = reload("resourceManager.soundManager")
   Sound:init()
 
 
