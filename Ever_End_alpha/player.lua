@@ -254,6 +254,10 @@ function player:initializeSM()
   --
 
   sm:add("parry",  {
+      canSwitch = function(self)
+        return player.SP > 0
+      end,
+      
       enter = function(self, stance)
         self.stance = stance
         ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm
