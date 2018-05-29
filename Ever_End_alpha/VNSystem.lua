@@ -190,9 +190,10 @@ function VNSystem:setMomentI(momentI)
 
 
 
-  -- Play soundeffects/start sound play timers
-  --  for _, sound in ipairs(moment.drawData) do
-  --    if sound.delay
+--  Play soundeffects/start sound play timers
+  for _, soundData in ipairs(moment.sounds) do
+    Sound:play(soundData[1], soundData[2])
+  end
 
 
   -- Start or stop any music
