@@ -2,7 +2,7 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/Scene05_0_credits/'
 
-local creditsHeight = 10312
+local creditsHeight = 11594
 local endHeight = creditsHeight - H - 200 -- TODO: make sure this works with scaling HARDCODED edge offset
 
 local endBuffer = 5
