@@ -282,7 +282,7 @@ return {
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
           [2] = 6.0,
-          gotoScene = "End",
+          gotoScene = "05_0",
           
         },
         drawData = {
