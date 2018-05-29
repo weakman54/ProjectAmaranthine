@@ -46,13 +46,13 @@ ENEMY_ATTACK_COUNTER_DAMAGE = 2
 -- Since the total number of notes is 5, the pobabilities for the above example would be:
 --   HIGH & LOW: 2/5
 --   TAUNT     : 1/5
-ENEMY_ATTACK_HIGH_WEIGHT = 4
+ENEMY_ATTACK_HIGH_WEIGHT = 4.05
 ENEMY_ATTACK_LOW_WEIGHT  = 4
 ENEMY_TAUNT_WEIGHT       = 1.5
 -- REMEMBER TO TEST A BUNCH OF TIMES WHEN MESSING WITH PROBABILITIES, you might just have gotten an improbable streak of choices
 
 
-DMG_TO_SP_RATIO = 0.1 -- muliplier: spGained = damageDone * DMG_TO_SP_RATIO
+DMG_TO_SP_RATIO = 0.0 -- muliplier: spGained = damageDone * DMG_TO_SP_RATIO
 
 
 

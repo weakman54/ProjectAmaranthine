@@ -20,7 +20,7 @@ function player:initialize()
 
   self.gunAttackDuration = 0.2
 
-  self.chargeDuration = 1.5
+  self.chargeDuration = 1.0
 
   self.idleRegenDuration = .70
 
@@ -32,7 +32,7 @@ function player:initialize()
 
 
   self.maxHP = 12 -- points
-  self.maxSP = 10
+  self.maxSP = 4
 
 
 
