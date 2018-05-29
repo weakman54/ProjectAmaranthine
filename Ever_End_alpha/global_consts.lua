@@ -40,6 +40,10 @@ ENEMY_ATTACK_LOW_DAMAGE  = 2
 ENEMY_ATTACK_COUNTER_DAMAGE = 2
 
 
+PARRY_SP_COST = 1
+MIN_SP_TO_PARRY = PARRY_SP_COST
+
+
 
 -- Enemy attack weights, these function like if you put this many in a hat and then draw one
 -- So 2, 2, 1 means put two notes with HIGH, 2 with LOW and one with TAUNT, whatever we get when we pull is what happens
