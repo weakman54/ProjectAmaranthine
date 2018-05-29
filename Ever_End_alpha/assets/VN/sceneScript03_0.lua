@@ -307,6 +307,7 @@ return {
       },
       [2] = {
         sounds = {
+			{"Kick Echo"},
         },
         anims = {
           Box = RM:loadAnimation('s03_0_p007_m01_Box_'),
@@ -362,6 +363,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Player Fall by Kick"},
         },
         anims = {
           End = RM:loadAnimation('s03_0_p008_m01_End_'),
@@ -573,6 +575,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Flashback Slash"},
         },
         anims = {
           Soldier_End = RM:loadAnimation('s03_0_p016_m01_Soldier_End_'),
@@ -1187,6 +1190,8 @@ return {
       },
       [2] = {
         sounds = {
+			{"Kick"},
+			{"Damage3"},
         },
 
         anims = {
