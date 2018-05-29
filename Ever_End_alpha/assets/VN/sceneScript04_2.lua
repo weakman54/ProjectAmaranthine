@@ -16,6 +16,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Final Gunshot Kill"},
         },
         music = "stop",
         anims = {
