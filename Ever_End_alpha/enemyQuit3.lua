@@ -25,6 +25,8 @@ local enemy = {}
 
 enemy.dbg_trigger_offensive_action = false
 
+enemy.music = "End_Ex_Soldier"
+
 
 function enemy:initialize()
   self.name = "Quit3" -- TODO: load properly
