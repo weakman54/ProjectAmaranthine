@@ -111,8 +111,12 @@ function SoundManager:play(handle, opts)
     tMus.handle = handle
     local src = tMus.source
 
-    if playingMus and playingMus ~= tMus then
-      playingMus.source:stop()
+    if playingMus then
+      if playingMus ~= tMus then
+        playingMus.source:stop()
+      else
+        return -- Don't do anything if already playing. HACKish, needs looking over... (doesn't set looping and so on...)
+      end
     end
 
     src:play()
