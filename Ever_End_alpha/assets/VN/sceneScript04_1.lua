@@ -16,6 +16,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Final Gunshot Spare"},
         },
         music = "Conflict to Resolve Theme (Happy) Full",
         anims = {

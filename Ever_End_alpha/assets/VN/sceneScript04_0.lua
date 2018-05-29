@@ -17,6 +17,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Final Kick"},
         },
         anims = {
           Box = RM:loadAnimation('s04_0_p001_m01_Box_'),
