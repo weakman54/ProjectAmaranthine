@@ -7,6 +7,7 @@ local stateVN = {}
 
 function stateVN:init()
 
+--  buildScene("assets/VN/", "00_0")  
 --  buildScene("assets/VN/", "01_0")  
 
 --  buildScene("assets/VN/", "02_0")
