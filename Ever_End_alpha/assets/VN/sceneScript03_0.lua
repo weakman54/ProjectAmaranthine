@@ -1176,7 +1176,8 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = .363
+          [2] = .1
+--          [2] = .363
         },
         drawData = {
           [1] = {
@@ -1195,7 +1196,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = .4
+          [2] = 0.5,
         },
         drawData = {
           [1] = {
@@ -1207,23 +1208,32 @@ return {
           },
           [2] = {
             anim = "End",
+            x = 0,
+            y = 0,
+            tween = {0.5, {x = -50, y = 50}, "out-quart"},
           },
           [3] = {
             anim = "Quit",
+            x = 0,
+            y = 0,
+            tween = {0.5, {x = 50, y = -50}, "out-quart"},
           },
         },
       },
       [3] = {
         sounds = {
         },
-        music = "End_Ex_Soldier",
+--        music = "End_Ex_Soldier",
         anims = {
           Box = RM:loadAnimation('s03_0_p032_m01_Box_'),
           End = RM:loadAnimation('s03_0_p032_m01_End_'),
           Quit = RM:loadAnimation('s03_0_p032_m01_Quit_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",        
+          [2] = 0.5,
+
+--          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -1235,9 +1245,13 @@ return {
           },
           [2] = {
             anim = "End",
+            x = -50,
+            y = 50,
           },
           [3] = {
             anim = "Quit",
+            x = 50,
+            y = -50,
           },
         },
       },
@@ -1251,6 +1265,7 @@ return {
       [1] = {
         sounds = {
         },
+        music = "End_Ex_Soldier",
         anims = {
           Quit = RM:loadAnimation('s03_0_p033_m01_Quit_'),
           Box = RM:loadAnimation('s03_0_p033_m01_Box_'),
