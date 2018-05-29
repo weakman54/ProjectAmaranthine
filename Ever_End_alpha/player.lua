@@ -126,6 +126,8 @@ function player:initializeAC()
   name = "attack_start"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
+  name = "attack_hit"
+  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
   name = "attack_guarded"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
@@ -179,7 +181,7 @@ function player:initializeSM()
           return sm:switch("dodgeMinigame", "high")
 
         elseif input:pressed("attack") then
-          return sm:switch("charge")
+          return sm:switch("attackStart")
 
         elseif input:pressed("heal") then
           return sm:switch("heal")
@@ -205,7 +207,7 @@ function player:initializeSM()
 
       enter = function(self)
         ac:setAnimation("guard")
-		Sound:play("Guard Equip")
+        Sound:play("Guard Equip")
         --Sound:play("Open1")
         --Sound:play("Crossbow")
 
@@ -256,7 +258,7 @@ function player:initializeSM()
         self.stance = stance
         ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm
         -- Put parry sounds here 
-		Sound:play("Parry Swing")
+        Sound:play("Parry Swing")
 
         self.parryTiming = false
         if enemy.sm:is("offensive") then
@@ -314,6 +316,71 @@ function player:initializeSM()
   --
 
 
+  sm:add("attackStart",  { -- HACK: Entire "normal" attack stuff is hack atm, but it's in for playtesting/demo
+      enter = function(self)
+        ac:setAnimation("attack_start")
+
+        self.timer = Timer:new()
+        self.target = 0.1 -- HARDCODED: wait time to check for charge vs. attack
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if self.timer:reached(self.target) then
+          if input:down("attack") then -- still holding, go to charge
+            return sm:switch("charge")
+
+          else
+            return sm:switch("attack")
+
+          end
+        end
+      end,
+    })
+  --
+
+
+  sm:add("attack",  { -- HACK: Entire "normal" attack stuff is hack atm, but it's in for playtesting/demo
+      enter = function(self)
+        ac:setAnimation("attack_start")
+
+        self.timer = Timer:new()
+        self.target = 0.1 -- HARDCODED: wait time to check for guarded vs. hit
+
+        enemy.attacked = true
+      end,
+
+      update = function(self, dt)
+        self.timer:update(dt)
+
+        if self.timer:reached(self.target) then
+          if self.attackDone then -- timer is reached and we've already done the attack
+            return sm:switch("idle")
+          end
+
+          -- Attack happens here, reset timer and set new target to let the animation play
+          self.attackDone = true
+          self.timer:reset()
+
+          if player.guarded then 
+            player.guarded = false
+            ac:setAnimation("attack_guarded", false)
+          else
+            ac:setAnimation("attack_hit", false)
+          end
+          
+          self.target = ac:curDuration() + 0.1
+        end
+      end,
+
+      exit = function(self)
+        self.attackDone = false
+      end,
+    })
+  --
+
+
   sm:add("charge",  {
       enter = function(self)
         ac:setAnimation("charge_attack_charging")
@@ -354,10 +421,10 @@ function player:initializeSM()
 
   sm:add("chargeAttack",  { 
       enter = function(self)
-        ac:setAnimation("charge_attack_attack") --, false)
+        ac:setAnimation("charge_attack_attack", false) --, false)
 
         self.timer = Timer:new()
-        self.target = 0.1 -- HARDCODED duration
+        self.target = 1 -- HARDCODED duration
 
         enemy:changeHP(-PLAYER_CHARGE_ATTACK_DAMAGE)
         return enemy.sm:switch("hurt") -- HACK
@@ -374,39 +441,7 @@ function player:initializeSM()
   --
 
 
-  sm:add("attack",  { -- HACK: Entire "normal" attack stuff is hack atm, but it's in for playtesting/demo
-      enter = function(self)
-        ac:setAnimation("attack_start")
 
-        self.timer = Timer:new()
-        self.target = 0.1
-
-        enemy.attacked = true
-      end,
-
-      update = function(self, dt)
-        self.timer:update(dt)
-
-        if self.timer:reached(self.target) then
-          if self.attacked then
-            return sm:switch("idle")
-          end
-
-          self.attacked = true
-          if player.guarded then -- If this is not true, timer is still reached, and will reset to idle (yeah... hacks)
-            player.guarded = false
-            ac:setAnimation("attack_guarded", false)
-            self.target = ac:curDuration() + 0.1
-            self.timer:reset()
-          end
-        end
-      end,
-
-      exit = function(self)
-        self.attacked = false
-      end,
-    })
-  --
 
 
   sm:add("hurt", {
@@ -448,7 +483,7 @@ function player:initializeSM()
   sm:add("defeat", {
       enter = function(self, data)
         ac:setAnimation("defeat", false)
-		Sound:play("End Dies")
+        Sound:play("End Dies")
       end,
 
       update = function(self, dt)
