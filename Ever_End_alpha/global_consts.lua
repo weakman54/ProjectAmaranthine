@@ -31,13 +31,17 @@ PLAYER_CHARGE_ATTACK_DAMAGE = 3
 PLAYER_DODGE_DAMAGE = 1
 
 -- damageDealt = BASE + GRAD - GRAD * hitMultiplier (goes from 0 -> 1 -> 0, where 1 is perfect hit)
-PLAYER_PARRY_DAMAGE_BASE = 1 -- Will always do this much damage
-PLAYER_PARRY_DAMAGE_GRAD = 2 -- Does up to this much additional damage depending on how well you hit target
+PLAYER_PARRY_DAMAGE_BASE = 0.5 -- Will always do this much damage
+PLAYER_PARRY_DAMAGE_GRAD = 3 -- Does up to this much additional damage depending on how well you hit target
 
 
 ENEMY_ATTACK_HIGH_DAMAGE = 2
 ENEMY_ATTACK_LOW_DAMAGE  = 2
 ENEMY_ATTACK_COUNTER_DAMAGE = 2
+
+
+PARRY_SP_COST = 1
+MIN_SP_TO_PARRY = PARRY_SP_COST
 
 
 
@@ -46,13 +50,13 @@ ENEMY_ATTACK_COUNTER_DAMAGE = 2
 -- Since the total number of notes is 5, the pobabilities for the above example would be:
 --   HIGH & LOW: 2/5
 --   TAUNT     : 1/5
-ENEMY_ATTACK_HIGH_WEIGHT = 4
+ENEMY_ATTACK_HIGH_WEIGHT = 4.05
 ENEMY_ATTACK_LOW_WEIGHT  = 4
 ENEMY_TAUNT_WEIGHT       = 1.5
 -- REMEMBER TO TEST A BUNCH OF TIMES WHEN MESSING WITH PROBABILITIES, you might just have gotten an improbable streak of choices
 
 
-DMG_TO_SP_RATIO = 0.1 -- muliplier: spGained = damageDone * DMG_TO_SP_RATIO
+DMG_TO_SP_RATIO = 0.0 -- muliplier: spGained = damageDone * DMG_TO_SP_RATIO
 
 
 
