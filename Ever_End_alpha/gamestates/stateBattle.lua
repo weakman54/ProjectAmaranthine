@@ -32,7 +32,7 @@ GUIPlayerSP.innerColor = {153/255, 243/255, 242/255}
 -- angle -8.2
 
 
---local GUIEnemyHealth  = GUIBar:new(vec(1200, 200), vec(300, 30))
+local GUIEnemyHealth  = GUIBar:new(vec(1200, 200), vec(300, 30))
 --GUIEnemyHealth.innerColor = {255, 000, 000}
 -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -62,6 +62,9 @@ function stateBattle:init()
 
   self.playerGUIBase = RM:loadAnimation("assets/GUI/gui_base_")
   self.playerGUIMask = RM:loadAnimation("assets/GUI/gui_mask_")
+
+  self.enemyHealthBox = RM:loadAnimation("assets/GUI/Background_Box_")
+  self.enemyHealthBar = RM:loadAnimation("assets/GUI/Enemy_HPbar_")
 end
 
 function stateBattle:enter(prev, enemyString)
@@ -79,7 +82,7 @@ function stateBattle:enter(prev, enemyString)
   GUIPlayerHealth:setTrackTarget(player, "HP", 0, player.maxHP)
   GUIPlayerSP:setTrackTarget(player, "SP", 0, player.maxSP)
 
---  GUIEnemyHealth:setTrackTarget(enemy, "HP", 0, enemy.maxHP)
+  GUIEnemyHealth:setTrackTarget(enemy, "HP", 0, enemy.maxHP)
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
@@ -99,11 +102,19 @@ function stateBattle:update(dt)
   GUIPlayerHealth:update(dt)
   GUIPlayerSP:update(dt)
 
---  GUIEnemyHealth:update(dt)
+  GUIEnemyHealth:update(dt)
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
 function stateBattle:draw()
+  
+  self.background.data:loveDraw(x, y, r, sx, sy, 200, 200)
+  
+  local barPos = -2320 * GUIEnemyHealth:getPercent()
+  self.enemyHealthBar.data:loveDraw(barPos, y, r, sx, sy, 200, 200)
+  self.enemyHealthBox.data:loveDraw(x, y, r, sx, sy, 200, 200)
+  
+  
   -- HACK RESET BELOW
   if flipHack then
     love.graphics.origin()
@@ -112,7 +123,6 @@ function stateBattle:draw()
   end
 
 
-  self.background.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
   enemy:draw()
   player:draw()
@@ -141,20 +151,20 @@ function stateBattle:draw()
   -- RESET STUFF (?)
   love.graphics.origin()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
-  
+
   love.graphics.translate(spPos.x, spPos.y)
   love.graphics.rotate(-8.2 * math.pi/180)
   GUIPlayerSP:loveDraw()
-  
-  
+
+
   love.graphics.origin()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
-  
-  
+
+
   self.playerGUIMask.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
---  GUIEnemyHealth:loveDraw()
-  -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--  GUIEnemyHealth:loveDraw() NOT DRAWIN THIS, just using the percentage capabilities
+-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
 function stateBattle:keypressed(key)
