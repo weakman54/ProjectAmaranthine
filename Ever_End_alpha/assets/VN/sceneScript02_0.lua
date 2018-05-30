@@ -25,7 +25,13 @@ return {
       [1] = {
         sounds = {
         },
-        music = "Conflict Theme Placeholder",
+        music = {
+          "Conflict Theme Placeholder",
+          {
+            startVolume = 1,
+            fade = {duration = 10, rate = -0.1},
+          },
+        },
         anims = {
           Zero = RM:loadAnimation('s02_0_p001_m01_Zero_'),
           Box = RM:loadAnimation('s02_0_p001_m01_Box_'),
@@ -64,12 +70,12 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
             x = 500, y = -50, tween = {2, { x = 0, y = 0 }, "out-quart" },
-            
+
           },
         },
       },
@@ -92,7 +98,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -120,7 +126,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -160,7 +166,7 @@ return {
             anim = "End",
           },
           [2] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [3] = {
             anim = "Hand",
@@ -187,7 +193,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -225,7 +231,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "End",
@@ -262,7 +268,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -289,7 +295,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -312,7 +318,7 @@ return {
         anims = {
           Zero = RM:loadAnimation('s02_0_p010_m01_Zero_'),
           Table = RM:loadAnimation('s02_0_p010_m01_Table_'),
-    
+
           Box = RM:loadAnimation('s02_0_p010_m01_Box_'),
         },
         transitionTrigger = {
@@ -320,19 +326,19 @@ return {
         },
         drawData = {
           [1] = {
-                anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
             x= - 200, 
-                
+
           },
           [2] = {
             anim = "Zero",
             x= - 200, 
-      
+
           },
-    [3] = {
+          [3] = {
             anim = "Table",
             x= - 200, 
-      
+
           },
         },
       },
@@ -346,7 +352,7 @@ return {
       [1] = {
         sounds = {
         },
-		music = "stop",
+        music = {"stop"},
         anims = {
           Zero = RM:loadAnimation('s02_0_p011_m01_Zero_'),
           Box = RM:loadAnimation('s02_0_p011_m01_Box_'),
@@ -356,7 +362,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -427,7 +433,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -472,7 +478,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Kitty",
@@ -500,7 +506,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
             x = 2320/2 - 200 + 600,
             y = 1480/2 - 200 - 0,
             xScale = 1.13,
@@ -559,7 +565,7 @@ return {
         anims = {
           Zero = RM:loadAnimation('s02_0_p017_m01_Zero_'),
           Quit = RM:loadAnimation('s02_0_p017_m01_Quit_'),
-    
+
           Box = RM:loadAnimation('s02_0_p017_m01_Box_'),
         },
         transitionTrigger = {
@@ -567,7 +573,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
             x = 2320/2 - 200,
             y = 1480/2 - 200 + 30,
             xScale = 1,
@@ -621,7 +627,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit",
@@ -655,7 +661,7 @@ return {
           End = RM:loadAnimation('s02_0_p019_m01_End_'),
           Box = RM:loadAnimation('s02_0_p019_m01_Box_'),
           Black = RM:loadAnimation('black'),
-  
+
         },
         transitionTrigger = {
 
@@ -701,12 +707,12 @@ return {
           Box = RM:loadAnimation('s02_0_p020_m01_Box_'),
         },
         transitionTrigger = {
-           [1] = "timer",--"waitForInput",
-            [2] = 1.5,
+          [1] = "timer",--"waitForInput",
+          [2] = 1.5,
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "End",
@@ -736,12 +742,12 @@ return {
           Box = RM:loadAnimation('s02_0_p021_m01_Box_'),
         },
         transitionTrigger = {
-           [1] = "timer",--"waitForInput",
-            [2] = 5,
+          [1] = "timer",--"waitForInput",
+          [2] = 5,
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
             x = 2320/2 - 200,
             y = 1480/2 - 200 - 100,
             xScale = .9,
@@ -784,7 +790,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
             x = 2320/2 - 200,
             y = 1480/2 - 200 - 100,
             xScale = .9,
@@ -820,7 +826,7 @@ return {
       [1] = {
         sounds = {
         },
-        music = "Quit_Chill_Theme_Full",
+        music = {"Quit_Chill_Theme_Full"},
         anims = {
           Box = RM:loadAnimation('s02_0_p023_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p023_m01_Quit_'),
@@ -894,7 +900,7 @@ return {
           [3] = {
             anim = "Quit",
             alpha = 0.07, tween = {2.5, {alpha = 1}, "in-out-cubic"},
-            
+
           },
         },
       },
@@ -923,10 +929,10 @@ return {
           [2] = {
             anim = "Shadow",
           },
-         [3] = {
+          [3] = {
             anim = "Zero",
             alpha = .3, tween = {2.0, {alpha = 1}, "in-out-cubic"},
-            
+
           },
         },
       },
@@ -979,24 +985,24 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
             alpha = 1, tween = {1, { alpha = 0 }, "in-linear" },
 
           },
           [2] = {
-              anim = "Box2",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box2",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
             alpha = 0, --tween = {1, { alpha = 1 }, "in-linear" },
 
           },
           [3] = {
             anim = "End",
             alpha = 1, tween = {.46, { alpha = 0 }, "in-quart" },
-            
+
           },
           [4] = {
             anim = "End2",
             alpha = 0, tween = {.45, { alpha = 1 }, "in-quart" },
-            
+
           },
         },
       },
@@ -1020,12 +1026,12 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit_Zero",
             x = 100, y = 10, tween = {1.7, { x = 0, y = 0 }, "in-out-cubic" },
-            
+
           },
           [3] = {
             anim = "text",
@@ -1045,7 +1051,7 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit_Zero",
@@ -1068,7 +1074,7 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit_Zero",
@@ -1098,7 +1104,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit_Zero",
@@ -1117,7 +1123,7 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Frogy Laugh VN"}
+          {"Frogy Laugh VN"}
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p030_m01_Box_'),
@@ -1129,7 +1135,7 @@ return {
           [2] = .45,
         },
         drawData = {
-         
+
           [1] = {
             anim = "Quit",
           },
@@ -1150,11 +1156,11 @@ return {
                 xScale = 1,
                 yScale = 1,
                 alpha = 0,
-              }, "out-quart"
+                }, "out-quart"
             },
 
           },
-           [2] = {
+          [2] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
         },
@@ -1172,7 +1178,7 @@ return {
           [2] = .5,
         },
         drawData = {
-         
+
           [1] = {
             anim = "Quit",
           },
@@ -1192,12 +1198,12 @@ return {
                 xScale = 1,
                 yScale = 1,
                 alpha = 0,
-              }, "out-quart"
+                }, "out-quart"
             },
 
           },
-           [2] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+          [2] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
         },
       },
@@ -1214,7 +1220,7 @@ return {
           [2] = .8,
         },
         drawData = {
-        
+
           [1] = {
             anim = "Quit",
           },
@@ -1234,12 +1240,12 @@ return {
                 xScale = 1,
                 yScale = 1,
                 alpha = 0,
-              }, "out-quart"
+                }, "out-quart"
             },
 
           },
-  [2] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+          [2] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
         },
       },
@@ -1263,7 +1269,7 @@ return {
           [1] = "waitForInput",
         },
         drawData = {
-         
+
           [1] = {
             anim = "End",
             x = 0,
@@ -1272,7 +1278,7 @@ return {
           },
           [2] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
-             x = 0,
+            x = 0,
             y = 150,
           },
           [3] = {
@@ -1280,7 +1286,7 @@ return {
           },
           [4] = {
             anim = "text",
-             x = 0,
+            x = 0,
             y = 100,
           },
         },
@@ -1305,7 +1311,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "End",
@@ -1321,7 +1327,7 @@ return {
                 y = 1480/2 - 200 - 0,
                 xScale = 1,
                 yScale = 1,
-              }, "out-quart"
+                }, "out-quart"
             },
           },
           [3] = {
@@ -1348,7 +1354,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -1364,7 +1370,7 @@ return {
                 y = 1480/2 - 200 - 0,
                 xScale = 1,
                 yScale = 1,
-              }, "out-quart"
+                }, "out-quart"
             },
           },
         },
@@ -1389,7 +1395,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit_Zero",
@@ -1412,7 +1418,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit_Zero",
@@ -1431,9 +1437,9 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Earth2"},
+          {"Earth2"},
         },
-        music = "stop",
+        music = {"stop"},
         anims = {
           Box = RM:loadAnimation('s02_0_p035_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p035_m01_Quit_'),
@@ -1444,7 +1450,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit",
@@ -1463,7 +1469,7 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Wind1"},
+          {"Wind1"},
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p036_m01_Box_'),
@@ -1476,7 +1482,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Effect",
@@ -1491,7 +1497,7 @@ return {
       },
       [2] = {
         sounds = {
-			{"Telegraph Echo"},
+          {"Telegraph Echo"},
         },
         anims = {
           End = RM:loadAnimation('s02_0_p036_m02_End_'),
@@ -1526,7 +1532,7 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"High Dodge Echo"}
+          {"High Dodge Echo"}
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p037_m01_Box_'),
@@ -1537,7 +1543,7 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box", alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box", alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "End_Robot",
@@ -1554,7 +1560,7 @@ return {
       [1] = {
         sounds = {
         },
-        music = "Build_up_Theme Full",
+        music = {"Build_up_Theme Full"},
         anims = {
           Box = RM:loadAnimation('s02_0_p038_m01_Box_'),
           Robot = RM:loadAnimation('s02_0_p038_m01_Robot_'),
@@ -1564,7 +1570,7 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Robot",
@@ -1590,7 +1596,7 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Robot",
@@ -1617,7 +1623,7 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "End",
@@ -1647,7 +1653,7 @@ return {
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Quit",
@@ -1666,9 +1672,9 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Intense Moment"},
+          {"Intense Moment"},
         },
-	music = "stop",
+        music = {"stop"},
         anims = {
           Box = RM:loadAnimation('s02_0_p042_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p042_m01_Quit_'),

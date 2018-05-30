@@ -16,9 +16,9 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Final Gunshot Kill"},
+          {"Final Gunshot Kill"},
         },
-        music = "stop",
+        music = {"stop"},
         anims = {
           White = RM:loadAnimation('white'),
           Box = RM:loadAnimation('s04_2_p001_m01_Box_'),
@@ -67,7 +67,7 @@ return {
           [3] = {
             anim = "Zero",
           },
-                    [1] = {
+          [1] = {
             anim = "White",
             alpha = .63, tween = {2, { alpha = .33 }, "in-linear" },
           },
@@ -93,9 +93,9 @@ return {
           [2] = 3,
         },
         drawData = {
-                             [1] = {
+          [1] = {
             anim = "White",
-                        alpha = .63, tween = {2, { alpha = .33 }, "in-linear" },
+            alpha = .63, tween = {2, { alpha = .33 }, "in-linear" },
 
           },
           [2] = {
@@ -126,14 +126,14 @@ return {
           [2] = 2.0
         },
         drawData = {
-         [1] = {
+          [1] = {
             anim = "White",
             alpha = .63, tween = {2, { alpha = .33 }, "in-linear" },
 
           },
           [2] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
-            
+
           },
           [3] = {
             anim = "EEnd_Zero",
@@ -144,14 +144,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {2, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "out-quad"
+                }, "out-quad"
             },
           },
         },
@@ -192,14 +192,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {3, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "out-quad"
+                }, "out-quad"
             },
           },
         },
@@ -225,7 +225,7 @@ return {
           [2] = 2.0
         },
         drawData = {
-          
+
           [1] = {
             anim = "White",
             alpha = .63, tween = {2, { alpha = .63 }, "in-linear" },
@@ -234,31 +234,31 @@ return {
           [2] = {
             anim = "Box1",red=boxDarken,green=boxDarken,blue=boxDarken,
             x = -1800, y = 0, tween = {5, { x = -1160 }, "in-linear" },
-            
+
           },
           [3] = {
             anim = "Box2",red=boxDarken,green=boxDarken,blue=boxDarken,
             x = 1800, y = 0, tween = {5, { x = 1160 }, "in-linear" },
-            
+
           },
           [4] = {
             anim = "EEnd_Zero",
-            
-                        x = 2320/2 - 200 - 200,
+
+            x = 2320/2 - 200 - 200,
             y = 1480/2 - 200,
             xScale = 1.2,
             yScale = 1.2,
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {3, {
                 x = 2320/2 - 200+100,
                 y = 1480/2 - 200,
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
-              }, "out-quad"
+                }, "out-quad"
             },
           },
         },
@@ -283,22 +283,22 @@ return {
           [1] = "timer",--"waitForInput",
           [2] = 6.0,
           gotoScene = "05_0",
-          
+
         },
         drawData = {
           [2] = {
             anim = "Black",
             alpha = .2, tween = {5, { alpha = .5 }, "in-cubic" },
           },
-           [3] = {
+          [3] = {
             anim = "Box1",red=boxDarken,green=boxDarken,blue=boxDarken,
             x = -1700, y = 0, tween = {5, { x = -1160 }, "in-linear" },
-            
+
           },
           [4] = {
             anim = "Box2",red=boxDarken,green=boxDarken,blue=boxDarken,
             x = 1700, y = 0, tween = {5, { x = 1160 }, "in-linear" },
-            
+
           },
           [1] = {
             anim = "Quit",
@@ -309,14 +309,14 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
-            
+
             tween = {5, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = .6,
                 yScale = .6,
                 alpha = 1,
-              }, "out-linear"
+                }, "out-linear"
             },
           },
           [5] = {
