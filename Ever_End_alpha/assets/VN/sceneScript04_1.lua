@@ -635,6 +635,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = {"Conflict to Resolve Theme (Happy) Full", {fade = {duration = 8, rate = -1/8}}},
         anims = {
           Box1 = RM:loadAnimation('s04_1_p012_m01_Box_'),
           Box2 = RM:loadAnimation('s04_1_p013_m01_Box_'),
