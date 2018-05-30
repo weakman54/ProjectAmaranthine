@@ -222,7 +222,7 @@ return {
       [4] = {
         sounds = {
         },
-        music = "Conflict to Resolve Theme (Happy) Intro",
+        music = {"Conflict to Resolve Theme (Happy) Intro"},
         anims = {
           Box = RM:loadAnimation('s04_0_p002_m01_Box_'),
           Quit2 = RM:loadAnimation('s04_0_p002_m02_Quit_'),
@@ -247,15 +247,14 @@ return {
           },
           [4] = {
             anim = "Gun",
-            x=0,y = -230, tween = {.7, { x=0,y = 0 }, "out-expo" },
-
+            x = 0,y = -230, tween = {.7, { x=0,y = 0 }, "out-expo" },
           },
         },
       },
       [5] = {
         sounds = {
         },
-        music = "Conflict to Resolve Theme (Happy) Intro",
+        music = {"Conflict to Resolve Theme (Happy) Intro"},
         anims = {
           Box = RM:loadAnimation('s04_0_p002_m01_Box_'),
           Quit2 = RM:loadAnimation('s04_0_p002_m02_Quit_'),

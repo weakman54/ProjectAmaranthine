@@ -47,7 +47,7 @@ end
 
 function player:reset()
   self.HP = self.maxHP
-  self.SP = self.maxSP/2
+  self.SP = self.maxSP/12
 
   return self.sm:switch("idle")
 end

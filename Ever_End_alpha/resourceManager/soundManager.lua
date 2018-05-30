@@ -21,8 +21,15 @@ local function spawnNewSFX(handle, opts)
 
 --  table.insert(tfx.sources, src) -- NOTE: this might be useful, so I'll keep it here, but for now I'll do the simple solution
 
-  if opts and opts.delay then
-    HUMPTimer.after(opts.delay, function() src:play() playing[src] = src end)
+  if opts then
+    if opts.delay then
+      HUMPTimer.after(opts.delay, function() src:play() playing[src] = src end)
+
+      -- NOT TESTED (shouldn't be here anyway...)
+--    elseif opts.fade then
+--      HUMPTimer.during(opts.fade.duration, function(dt) src:setVolume(opts.fade.rate * dt) end)
+
+    end
   else
     src:play()
     playing[src] = src
@@ -102,31 +109,44 @@ function SoundManager:muteMusic()
 end
 
 
+local function doMusic(handle, opts)
+  local tMus = mus[handle]
+  tMus.handle = handle
+  local src = tMus.source
+
+  if playingMus then
+    if playingMus ~= tMus then
+      playingMus.source:stop()
+    else
+	    if opts and opts.fade then
+	      HUMPTimer.during(opts.fade.duration, function(dt) src:setVolume(src:getVolume() + opts.fade.rate * dt) end)
+	    end
+      return -- Don't do anything if already playing. HACKish, needs looking over... (doesn't set looping and so on...)
+    end
+  end
+
+
+  src:play()
+  src:setLooping(opts and opts.looping     or true)
+  src:setVolume(opts  and opts.startVolume or 1)
+
+
+  if opts and opts.fade then
+    HUMPTimer.during(opts.fade.duration, function(dt) src:setVolume(src:getVolume() + opts.fade.rate * dt) end)
+  end
+
+
+  playingMus = tMus
+end
+
+
 function SoundManager:play(handle, opts)
   if sfx[handle] then
     spawnNewSFX(handle, opts)
 
   elseif mus[handle] then
-    local tMus = mus[handle]
-    tMus.handle = handle
-    local src = tMus.source
+    doMusic(handle, opts)
 
-    if playingMus then
-      if playingMus ~= tMus then
-        playingMus.source:stop()
-      else
-        return -- Don't do anything if already playing. HACKish, needs looking over... (doesn't set looping and so on...)
-      end
-    end
-
-    src:play()
-    src:setLooping(opts and opts.looping     or true)
-    src:setVolume(opts  and opts.startVolume or 1)
-
-    tMus.targetVolume = opts and opts.targetVolume
-    tMus.rateVolume   = opts and opts.rateVolume
-
-    playingMus = tMus
   else
 
     error("SoundManager: trying to play a sound that does not exist: " .. tostring(handle))
