@@ -402,6 +402,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Flash Back IN", {delay = 0.1}},
         },
         music = {"stop"},
         anims = {
