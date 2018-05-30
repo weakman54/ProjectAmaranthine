@@ -31,8 +31,8 @@ PLAYER_CHARGE_ATTACK_DAMAGE = 3
 PLAYER_DODGE_DAMAGE = 1
 
 -- damageDealt = BASE + GRAD - GRAD * hitMultiplier (goes from 0 -> 1 -> 0, where 1 is perfect hit)
-PLAYER_PARRY_DAMAGE_BASE = 1 -- Will always do this much damage
-PLAYER_PARRY_DAMAGE_GRAD = 2 -- Does up to this much additional damage depending on how well you hit target
+PLAYER_PARRY_DAMAGE_BASE = 0.5 -- Will always do this much damage
+PLAYER_PARRY_DAMAGE_GRAD = 3 -- Does up to this much additional damage depending on how well you hit target
 
 
 ENEMY_ATTACK_HIGH_DAMAGE = 2
@@ -40,10 +40,11 @@ ENEMY_ATTACK_LOW_DAMAGE  = 2
 ENEMY_ATTACK_COUNTER_DAMAGE = 2
 
 
-PARRY_SP_COST = 1
+PARRY_SP_COST = 1.0 -- maybe put to 0.8-0.9 to make parry cost more forgiving 
 MIN_SP_TO_PARRY = PARRY_SP_COST
 
-
+SP_GAIN_FROM_DODGE_NORMAL = 0.0000001 -- is broken EKIVI -- NOTE
+SP_GAIN_FROM_DODGE_PERFECT = 0.0000001 -- is broken too EKIVI
 
 -- Enemy attack weights, these function like if you put this many in a hat and then draw one
 -- So 2, 2, 1 means put two notes with HIGH, 2 with LOW and one with TAUNT, whatever we get when we pull is what happens

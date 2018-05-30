@@ -28,7 +28,7 @@ return {
       [1] = {
         sounds = {
         },
-        music = "Ambient Cicada",
+        music = {"Ambient Cicada"},
         anims = {
           End_Quit = RM:loadAnimation('s03_0_p001_m01_End_Quit_'),
           Box = RM:loadAnimation('s03_0_p001_m01_Box_'),
@@ -403,7 +403,7 @@ return {
       [1] = {
         sounds = {
         },
-        music = "stop",
+        music = {"stop"},
         anims = {
           Box = RM:loadAnimation('s03_0_p010_m01_Box_'),
           Effect = RM:loadAnimation('s03_0_p010_m01_Effect_'),
@@ -859,6 +859,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Miss"},
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p024_m01_Zero_'),
@@ -894,6 +895,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Low Dodge"}
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p025_m01_Zero_'),
@@ -929,6 +931,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"High Dodge"}
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p026_m01_Zero_'),
@@ -997,6 +1000,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Switch Break"}
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p028_m01_Zero_'),
@@ -1228,7 +1232,7 @@ return {
       [3] = {
         sounds = {
         },
---        music = "End_Ex_Soldier",
+--        music = {"End_Ex_Soldier"},
         anims = {
           Box = RM:loadAnimation('s03_0_p032_m01_Box_'),
           End = RM:loadAnimation('s03_0_p032_m01_End_'),
@@ -1270,7 +1274,7 @@ return {
       [1] = {
         sounds = {
         },
-        music = "End_Ex_Soldier",
+        music = {"End_Ex_Soldier"},
         anims = {
           Quit = RM:loadAnimation('s03_0_p033_m01_Quit_'),
           Box = RM:loadAnimation('s03_0_p033_m01_Box_'),

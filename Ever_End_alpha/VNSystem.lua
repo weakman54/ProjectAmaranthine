@@ -198,11 +198,11 @@ function VNSystem:setMomentI(momentI)
 
   -- Start or stop any music
   if moment.music then
-    if moment.music == "stop" then
+    if moment.music[1] == "stop" then
       Sound:muteMusic()
 
     else
-      Sound:play(moment.music)
+      Sound:play(moment.music[1], moment.music[2])
     end
   end
 
