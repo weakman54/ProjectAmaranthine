@@ -64,7 +64,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+              anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -92,7 +92,7 @@ return {
         },
         drawData = {
           [1] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box", red=boxDarken, green=boxDarken, blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -159,7 +159,7 @@ return {
             anim = "End",
           },
           [2] = {
-                        anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+                        anim = "Box",red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [3] = {
             anim = "Hand",

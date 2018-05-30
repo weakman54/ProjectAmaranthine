@@ -2,8 +2,7 @@
 
           [1] = "waitForInput",
 
-          [1] = "timer",--"waitForInput",
-          [2] = 1.0,
+          [1] = "timer", [2] = 1.0, -- [1] = "waitForInput",
 
             x = 2320/2 - 200 + 0,
             y = 1480/2 - 200 - 0,
