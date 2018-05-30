@@ -14,6 +14,9 @@ local QuitRoomBackgroundBlur = RM:loadAnimation('quit_quarters_blur_')
 
 local FlashbackBG = RM:loadAnimation('FlashbackBG_')
 
+local boxDarken = 0.1
+local boxAlpha = 0.8
+
 return {
   [1] = {
     bg = {
@@ -28,6 +31,9 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+
+
+
         },
         drawData = {
           [1] = {
@@ -39,14 +45,152 @@ return {
         sounds = {
         },
         anims = {
-          ZeroHand = RM:loadAnimation('s01_0_p001_m02_ZeroHand_'),
+          TextBox = RM:loadAnimation('s01_0_p001_m02_TextBox_'),
+        },
+        transitionTrigger = {
+          [1] = "timer", [2] = 1.0,
+        },
+        drawData = {
+          [1] = {
+            anim = "TextBox",
+          },
+        },
+      },
+       [3] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s01_0_p001_m03_TextBox_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
           [1] = {
+            anim = "TextBox",
+          },
+        },
+      },
+       [2] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s01_0_p001_m04_TextBox_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "TextBox",
+          },
+        },
+      },
+       [3] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s01_0_p001_m05_TextBox_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "TextBox",
+          },
+        },
+      },
+       [4] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s01_0_p001_m06_TextBox_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "TextBox",
+          },
+        },
+      },
+      [5] = {
+        sounds = {
+        },
+        anims = {
+          TextBox = RM:loadAnimation('s01_0_p001_m07_TextBox_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "TextBox",
+          },
+        },
+      },
+      [6] = {
+        sounds = {
+        },
+        anims = {
+          ZeroHand = RM:loadAnimation('s01_0_p001_m08_ZeroHand_'),
+          ZeroHand2 = RM:loadAnimation('s01_0_p001_m09_ZeroHand_'),
+        },
+        transitionTrigger = {
+          [1] = "timer", [2] = 1.0,
+        },
+        drawData = {
+          [1] = {
             anim = "ZeroHand",
+          },
+          [2] = {
+            anim = "ZeroHand2",
+            alpha = 0, tween = {1.0, {alpha = 1 }, "in-linear"},
+            
+          },
+        },
+      },
+       [7] = {
+        sounds = {
+        },
+        anims = {
+          ZeroHand = RM:loadAnimation('s01_0_p001_m09_ZeroHand_'),
+          ZeroHand2 = RM:loadAnimation('s01_0_p001_m10_ZeroHand_'),
+        },
+        transitionTrigger = {
+          [1] = "timer", [2] = 1.0,
+        },
+        drawData = {
+          [1] = {
+            anim = "ZeroHand",
+          },
+          [2] = {
+            anim = "ZeroHand2",
+            alpha = 0, tween = {1.0, {alpha = 1 }, "in-linear"},
+            
+          },
+        },
+      },
+     [8] = {
+        sounds = {
+        },
+        anims = {
+          ZeroHand = RM:loadAnimation('s01_0_p001_m10_ZeroHand_'),
+          ZeroHand2 = RM:loadAnimation('s01_0_p001_m11_ZeroHand_'),
+        },
+        transitionTrigger = {
+          [1] = "timer", [2] = 1.0,
+        },
+        drawData = {
+          [1] = {
+            anim = "ZeroHand",
+          },
+            [2] = {
+            anim = "ZeroHand2",
+            alpha = 0, tween = {1.0, {alpha = 1 }, "in-linear"},
+            
           },
         },
       },
@@ -67,20 +211,40 @@ return {
           ElevatorLeft = RM:loadAnimation('s01_0_p002_m01_ElevatorLeft_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.45,
         },
         drawData = {
           [1] = {
             anim = "EndZero",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200 + 100,
+            xScale = .9,
+            yScale = .9,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-quad"},
           },
+         
           [2] = {
             anim = "YawnFX",
+            x = 2320/2 - 200 - 100,
+            y = 1480/2 - 200 - 50,
+            xScale = .9,
+            yScale = .9,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            alpha = 1,
+            tween = {1.7, {x = 2320/2 - 200 -200, y = 1480/2 - 200 - 85, xScale = 1.2, yScale = 1.2, alpha = 0}, "in-quad"},
           },
-          [3] = {
-            anim = "ElevatorLeft",
+           [3] = {
+            anim = "ElevatorLeft",red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 0, y = 0, tween = {2, { x = -500, y = 0 }, "out-quart" },
+            
           },
           [4] = {
-            anim = "ElevatorRight",
+            anim = "ElevatorRight",red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 0, y = 0, tween = {2, { x = 500, y = 0 }, "out-quart" },
+            
           },
         },
       },
@@ -99,14 +263,28 @@ return {
           EndZero = RM:loadAnimation('s01_0_p003_m01_EndZero_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.7,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200 + 50,
+            y = 1480/2 - 200 - 50,
+            xScale = .93,
+            yScale = .93,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "out-quad"},
           },
           [2] = {
             anim = "EndZero",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200 + 200,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200, y = 1480/2 - 200 +60, xScale = .9, yScale = .9}, "out-quad"},
           },
         },
       },
@@ -125,14 +303,29 @@ return {
           QuitPainting = RM:loadAnimation('s01_0_p004_m01_QuitPainting_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 3.0,
         },
         drawData = {
+          
           [1] = {
-            anim = "Box",
+            anim = "QuitPainting",
+            x = 2320/2 - 200 + 100,
+            y = 1480/2 - 200,
+            xScale = 1.01,
+            yScale = 1.01,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200-150, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [2] = {
-            anim = "QuitPainting",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200 + 200,
+            y = 1480/2 - 200,
+            xScale = 1.00,
+            yScale = 1.00,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.2, yScale = 1.2}, "in-out-quad"},
           },
         },
       },
@@ -151,14 +344,29 @@ return {
           Box = RM:loadAnimation('s01_0_p005_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 2.7,
         },
         drawData = {
+
           [1] = {
-            anim = "Box",
+            anim = "Trophies",
+            x = 2320/2 - 200 - 500,
+            y = 1480/2 - 200 - 20,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {2.25, {x = 2320/2 - 200 + 100, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [2] = {
-            anim = "Trophies",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.00,
+            yScale = 1.00,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {2.25, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.12, yScale = 1.12}, "in-out-quad"},
           },
         },
       },
@@ -177,14 +385,29 @@ return {
           Box = RM:loadAnimation('s01_0_p006_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 2.4,
         },
         drawData = {
+
           [1] = {
-            anim = "Box",
+            anim = "QuitPhoto",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200 + 100,
+            xScale = .9,
+            yScale = .9,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {2.25, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "out-quad"},
           },
           [2] = {
-            anim = "QuitPhoto",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200,
+            y = 1480/2 - 200 + 200,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {2.25, {x = 2320/2 - 200, y = 1480/2 - 200+100, xScale = 1.01, yScale = 1.01}, "in-out-quad"},
           },
         },
       },
@@ -208,10 +431,17 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "EndRollEyes",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.03,
+            yScale = 1.03,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [3] = {
             anim = "TextBox",
@@ -234,17 +464,31 @@ return {
           Kitty = RM:loadAnimation('s01_0_p008_m01_Kitty_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 2.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Kitty",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [3] = {
             anim = "Zero",
+                        x = 2320/2 - 200 + 100,
+            y = 1480/2 - 200,
+            xScale = 1.03,
+            yScale = 1.03,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
         },
       },
@@ -253,17 +497,24 @@ return {
         },
         anims = {
           KittyZoom = RM:loadAnimation('s01_0_p008_m02_KittyZoom_'),
-          BoxZoom = RM:loadAnimation('s01_0_p008_m02_BoxZoom_'),
+          Box = RM:loadAnimation('s01_0_p008_m02_BoxZoom_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.8,
         },
         drawData = {
           [1] = {
-            anim = "BoxZoom",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "KittyZoom",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.02, yScale = 1.02}, "in-out-quad"},
           },
         },
       },
@@ -287,7 +538,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -318,16 +569,45 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 - 20, y = 1480/2 - 200 + 25, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
           },
+      
           [2] = {
-            anim = "End",
+            anim = "ZeroKitty",
+                      x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.05,
+            yScale = 1.05,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 - 40, y = 1480/2 - 200 + 50, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
           },
           [3] = {
-            anim = "ZeroKitty",
+            anim = "End",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.00,
+            yScale = 1.00,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 100, y = 1480/2 - 200, xScale = 1.03, yScale = 1.03}, "in-out-quad"},
           },
           [4] = {
             anim = "Text",
+                               x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.05,
+            yScale = 1.05,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 - 40, y = 1480/2 - 200 + 50, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
           },
         },
       },
@@ -351,13 +631,34 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.02, yScale = 1.02}, "in-out-cubic"},
           },
           [2] = {
             anim = "End",
+            x = 2320/2 - 200 ,
+            y = 1480/2 - 200,
+            xScale = 1.07,
+            yScale = 1.07,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-cubic"},
           },
           [3] = {
             anim = "Text",
+            x = 2320/2 - 200 ,
+            y = 1480/2 - 200,
+            xScale = 1.07,
+            yScale = 1.07,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-cubic"},
           },
         },
       },
@@ -376,11 +677,11 @@ return {
           Box = RM:loadAnimation('s01_0_p012_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 2.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
@@ -402,11 +703,11 @@ return {
           Box = RM:loadAnimation('s01_0_p013_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 2.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Kitty",
@@ -418,13 +719,18 @@ return {
         },
         anims = {
           KittyEye = RM:loadAnimation('s01_0_p013_m02_KittyEye_'),
+          Box = RM:loadAnimation('s01_0_p013_m01_Box_'),
+          
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 2.0,
         },
         drawData = {
           [1] = {
             anim = "KittyEye",
+          },
+         [2] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
         },
       },
@@ -443,13 +749,13 @@ return {
           Box = RM:loadAnimation('s01_0_p014_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 2.0,
         },
         drawData = {
-          [1] = {
-            anim = "Box",
-          },
           [2] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+          },
+          [1] = {
             anim = "SoldierEye",
           },
         },
@@ -462,11 +768,11 @@ return {
           Box = RM:loadAnimation('s01_0_p014_m02_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "SoldierZoomout",
@@ -491,11 +797,11 @@ return {
           Kitty = RM:loadAnimation('s01_0_p015_m01_Kitty_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Kitty",
@@ -523,7 +829,7 @@ return {
         },
         anims = {
           Zero = RM:loadAnimation('s01_0_p016_m01_Zero_'),
-          Box = RM:loadAnimation('s01_0_p016_m01_Box_'),
+          --Box = RM:loadAnimation('s01_0_p016_m01_Box_'),
           End = RM:loadAnimation('s01_0_p017_m02_End_'), -- NOTE: other asset
           Text = RM:loadAnimation('s01_0_p016_m01_Text_'),
         },
@@ -531,16 +837,16 @@ return {
           [1] = "waitForInput",
         },
         drawData = {
+--          [1] = {
+--            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+--          },
           [1] = {
-            anim = "Box",
-          },
-          [2] = {
             anim = "End",
           },
-          [3] = {
+          [2] = {
             anim = "Zero",
           },
-          [4] = {
+          [3] = {
             anim = "Text",
           },
         },
@@ -550,24 +856,24 @@ return {
         },
         anims = {
           Zero = RM:loadAnimation('s01_0_p016_m02_Zero_'),
-          Box = RM:loadAnimation('s01_0_p016_m02_Box_'),
+          --Box = RM:loadAnimation('s01_0_p016_m02_Box_'),
           End = RM:loadAnimation('s01_0_p017_m02_End_'), -- NOTE: other asset
           Kitty = RM:loadAnimation('s01_0_p016_m02_Kitty_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
+--          [1] = {
+--            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+--          },
           [1] = {
-            anim = "Box",
-          },
-          [2] = {
             anim = "End",
           },
-          [3] = {
+          [2] = {
             anim = "Kitty",
           },
-          [4] = {
+          [3] = {
             anim = "Zero",
           },
         },
@@ -589,19 +895,19 @@ return {
           Kitty = RM:loadAnimation('s01_0_p017_m01_Kitty_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
+--          [1] = {
+--            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+--          },
           [1] = {
-            anim = "Box",
-          },
-          [2] = {
             anim = "End",
           },
-          [3] = {
+          [2] = {
             anim = "Kitty",
           },
-          [4] = {
+          [3] = {
             anim = "Zero",
           },
         },
@@ -615,16 +921,16 @@ return {
           Zero = RM:loadAnimation('s01_0_p017_m02_Zero_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
+--          [1] = {
+--            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+--          },
           [1] = {
-            anim = "Box",
-          },
-          [2] = {
             anim = "End",
           },
-          [3] = {
+          [2] = {
             anim = "Zero",
           },
         },
@@ -642,14 +948,14 @@ return {
         anims = {
           EndFlashback = RM:loadAnimation('s01_0_p018_m01_EndFlashback_'),
           End = RM:loadAnimation('s01_0_p018_m01_End_'),
-          Box = RM:loadAnimation('s01_0_p018_m01_Box_'),
+          Box = RM:loadAnimation('s01_0_p013_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "EndFlashback",
@@ -670,19 +976,26 @@ return {
         sounds = {
         },
         anims = {
-          Box = RM:loadAnimation('s01_0_p019_m01_Box_'),
+          Box = RM:loadAnimation('s01_0_p014_m01_Box_'),
           Effect = RM:loadAnimation('s01_0_p019_m01_Effect_'),
           Zero = RM:loadAnimation('s01_0_p019_m01_Zero_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
+            x = 2320/2 - 200 ,
+            y = 1480/2 - 200 + 200,
+            xScale = 1.07,
+            yScale = 1.07,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.1, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "out-quart"},
           },
           [3] = {
             anim = "Effect",
@@ -709,13 +1022,27 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "EndZero",
+            x = 2320/2 - 200 ,
+            y = 1480/2 - 200 + 200,
+            xScale = 1.07,
+            yScale = 1.07,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {2.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-linear"},
           },
           [3] = {
             anim = "Text",
+            x = 2320/2 - 200 ,
+            y = 1480/2 - 200 + 200,
+            xScale = 1.07,
+            yScale = 1.07,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {2.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-linear"},
           },
         },
       },
@@ -741,7 +1068,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "EndPullingZero",
@@ -777,7 +1104,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "ZeroAngry",
@@ -802,11 +1129,11 @@ return {
           Box = RM:loadAnimation('s01_0_p023_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "End",
@@ -833,7 +1160,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "ZeroCrying",
@@ -859,11 +1186,11 @@ return {
           Box = RM:loadAnimation('s01_0_p025_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "ZeroBiting",
@@ -895,19 +1222,42 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
-            anim = "EndPullingAway",
+            anim = "ZeroPullingAway",
+                        x = 2320/2 - 200 + 100,
+            y = 1480/2 - 200,
+            xScale = 1.03,
+            yScale = 1.03,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.0, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [3] = {
-            anim = "ZeroPullingAway",
+            anim = "EndPullingAway",
+            x = 2320/2 - 200 - 100,
+            y = 1480/2 - 200,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.0, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.05, yScale = 1.05}, "in-out-quad"},
           },
           [4] = {
             anim = "PullFX",
+            alpha = 1,
+            tween = {.7, {alpha = 0}, "in-quart"},
           },
           [5] = {
             anim = "Text",
+            x = 2320/2 - 200 - 100,
+            y = 1480/2 - 200,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.0, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.05, yScale = 1.05}, "in-out-quad"},
           },
         },
       },
@@ -931,10 +1281,17 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "ZeroShouting",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200 + 100,
+            xScale = 1.05,
+            yScale = 1.05,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.33, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [3] = {
             anim = "Text",
@@ -961,13 +1318,34 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200 - 100,
+            y = 1480/2 - 200 + 30,
+            xScale = .93,
+            yScale = .93,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
           },
           [2] = {
             anim = "End",
+            x = 2320/2 - 200 - 100,
+            y = 1480/2 - 200 + 30,
+            xScale = .9,
+            yScale = .9,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.5, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
           },
           [3] = {
             anim = "Text",
+            x = 2320/2 - 200 - 100,
+            y = 1480/2 - 200 + 30,
+            xScale = .9,
+            yScale = .9,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.5, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
           },
         },
       },
@@ -982,6 +1360,7 @@ return {
         sounds = {
         },
         anims = {
+          Box = RM:loadAnimation('s01_0_p028_m01_Box_'),
           End = RM:loadAnimation('s01_0_p029_m01_End_'),
           Text = RM:loadAnimation('s01_0_p029_m01_Text_'),
         },
@@ -990,9 +1369,19 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "End",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+
           },
           [2] = {
+            anim = "End",
+            x = 2320/2 - 200 - 100,
+            y = 1480/2 - 200 + 30,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+          },
+          [3] = {
             anim = "Text",
           },
         },
@@ -1008,14 +1397,28 @@ return {
         sounds = {
         },
         anims = {
+          Box = RM:loadAnimation('s01_0_p028_m01_Box_'),
+          
           ZeroCry = RM:loadAnimation('s01_0_p030_m01_ZeroCry_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.8,
         },
         drawData = {
-          [1] = {
+                    [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+
+          },
+          [2] = {
             anim = "ZeroCry",
+            x = 2320/2 - 200 + 100,
+            y = 1480/2 - 200 - 30,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
+
           },
         },
       },
@@ -1040,13 +1443,27 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "EndHolding",
+            x = 2320/2 - 200 - 10,
+            y = 1480/2 - 200 ,
+            xScale = 1.01,
+            yScale = 1.01,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
           [3] = {
             anim = "ZeroWalkAway",
+            x = 2320/2 - 200 + 100,
+            y = 1480/2 - 200 ,
+            xScale = 1.01,
+            yScale = 1.01,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
           [4] = {
             anim = "Text",
@@ -1074,16 +1491,34 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200 - 10,
+            y = 1480/2 - 200 ,
+            xScale = .99,
+            yScale = .99,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
           [2] = {
             anim = "End",
+            x = 2320/2 - 200 - 10,
+            y = 1480/2 - 200 ,
+            xScale = 1.01,
+            yScale = 1.01,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
           [3] = {
-            anim = "Zero",
-          },
-          [4] = {
             anim = "Text",
+            x = 2320/2 - 200 - 10,
+            y = 1480/2 - 200 ,
+            xScale = 1.01,
+            yScale = 1.01,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
         },
       },
@@ -1107,13 +1542,27 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "ZeroShouting",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.05,
+            yScale = 1.05,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
           [3] = {
             anim = "Text",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.03,
+            yScale = 1.03,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
         },
       },
@@ -1126,17 +1575,17 @@ return {
           ZeroKicking = RM:loadAnimation('s01_0_p033_m01_ZeroKicking_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
-            anim = "EndKicked",
+            anim = "ZeroKicking",
           },
           [3] = {
-            anim = "ZeroKicking",
+            anim = "EndKicked",
           },
         },
       },
@@ -1161,7 +1610,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "EndSurprised",
@@ -1194,13 +1643,34 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.2,
+            yScale = 1.2,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.2, {x = 2320/2 - 200 + 100, y = 1480/2 - 200, xScale = .92, yScale = .92}, "out-quart"},
           },
           [2] = {
             anim = "EndShouting",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.2, {x = 2320/2 - 200 + 100, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
           [3] = {
             anim = "Text",
+            x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.2, {x = 2320/2 - 200 + 100, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
         },
       },
@@ -1220,11 +1690,11 @@ return {
           ZeroRunning = RM:loadAnimation('s01_0_p036_m01_ZeroRunning_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.0,
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "End",
@@ -1256,7 +1726,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "Box",
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "EndChasing",
