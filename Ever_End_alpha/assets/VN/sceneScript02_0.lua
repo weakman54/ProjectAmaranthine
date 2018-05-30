@@ -29,7 +29,6 @@ return {
           "Conflict Theme Placeholder",
           {
             startVolume = 1,
-            fade = {duration = 10, rate = -0.1},
           },
         },
         anims = {
@@ -356,7 +355,7 @@ return {
       [1] = {
         sounds = {
         },
-        music = {"stop"},
+		music = {"Conflict Theme Placeholder", {fade = {duration = 4, rate = -1/4}}},
         anims = {
           Zero = RM:loadAnimation('s02_0_p011_m01_Zero_'),
           Box = RM:loadAnimation('s02_0_p011_m01_Box_'),
@@ -473,6 +472,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = {"stop"},
         anims = {
           Kitty = RM:loadAnimation('s02_0_p014_m01_Kitty_'),
           Box = RM:loadAnimation('s02_0_p014_m01_Box_'),
