@@ -108,6 +108,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Table Slide"}
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p004_m01_Box_'),
@@ -1116,6 +1117,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Frogy Laugh VN"}
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p030_m01_Box_'),
@@ -1429,6 +1431,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Earth2"},
         },
         music = "stop",
         anims = {
@@ -1460,6 +1463,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Wind1"},
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p036_m01_Box_'),
@@ -1487,6 +1491,7 @@ return {
       },
       [2] = {
         sounds = {
+			{"Telegraph Echo"},
         },
         anims = {
           End = RM:loadAnimation('s02_0_p036_m02_End_'),
@@ -1521,6 +1526,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"High Dodge Echo"}
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p037_m01_Box_'),
@@ -1660,6 +1666,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Intense Moment"},
         },
 	music = "stop",
         anims = {
