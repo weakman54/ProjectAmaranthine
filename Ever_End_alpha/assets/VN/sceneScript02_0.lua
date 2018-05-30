@@ -1116,6 +1116,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Frogy Laugh VN"}
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p030_m01_Box_'),
@@ -1429,6 +1430,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Earth2"},
         },
         music = "stop",
         anims = {
