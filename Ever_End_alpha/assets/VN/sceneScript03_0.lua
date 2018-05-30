@@ -859,6 +859,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Miss"},
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p024_m01_Zero_'),
@@ -894,6 +895,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Low Dodge"}
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p025_m01_Zero_'),
@@ -929,6 +931,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"High Dodge"}
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p026_m01_Zero_'),
@@ -997,6 +1000,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Switch Break"}
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p028_m01_Zero_'),
