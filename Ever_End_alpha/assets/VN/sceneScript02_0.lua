@@ -222,7 +222,8 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p007_m01_Box_'),
-          Zero_Table = RM:loadAnimation('s02_0_p007_m01_Zero_Table_'),
+          Zero = RM:loadAnimation('s02_0_p007_m01_Zero_'),
+          Table = RM:loadAnimation('s02_0_p007_m01_Table_'),
           End = RM:loadAnimation('s02_0_p007_m01_End_'),
 
         },
@@ -245,7 +246,10 @@ return {
             tween = {2, {x = 2320/2 - 200-700, y = 1480/2 - 200, alpha = 0, xScale = .5, yScale = .5}, "out-linear"},
           },
           [3] = {
-            anim = "Zero_Table",
+            anim = "Table",
+          },
+          [4] = {
+            anim = "Zero",
           },
         },
       },
