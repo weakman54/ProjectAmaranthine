@@ -222,7 +222,7 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p007_m01_Box_'),
-          Zero = RM:loadAnimation('s02_0_p007_m01_Zero'),
+          Zero = RM:loadAnimation('s02_0_p007_m01_Zero_'),
           Table = RM:loadAnimation('s02_0_p007_m01_Table_'),
           End = RM:loadAnimation('s02_0_p007_m01_End_'),
 
