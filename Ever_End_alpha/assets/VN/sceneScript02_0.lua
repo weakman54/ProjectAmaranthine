@@ -108,6 +108,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Table Slide"}
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p004_m01_Box_'),
