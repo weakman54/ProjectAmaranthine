@@ -18,7 +18,7 @@ return {
         sounds = {
           {"Final Gunshot Spare"},
         },
-        music = "Conflict to Resolve Theme (Happy) Full",
+        music = {"Conflict to Resolve Theme (Happy) Full"},
         anims = {
           White = RM:loadAnimation('white'),
           Box = RM:loadAnimation('s04_1_p001_m01_Box_'),

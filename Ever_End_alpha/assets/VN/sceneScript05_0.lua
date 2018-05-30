@@ -25,7 +25,7 @@ return {
       [1] = {
         sounds = {
         },
-        music = "Stars From Another World",
+        music = {"Stars From Another World"},
         anims = {
         },
         transitionTrigger = {
@@ -41,7 +41,7 @@ return {
       [2] = {
         sounds = {
         },
-        music = "stop",
+        music = {"stop"},
         anims = {
         },
         transitionTrigger = {
