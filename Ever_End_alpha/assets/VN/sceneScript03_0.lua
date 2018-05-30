@@ -462,6 +462,7 @@ return {
       [1] = {
         sounds = {
         },
+		 music = {"stop"},
         anims = {
           End = RM:loadAnimation('s03_0_p012_m01_End_'),
           White = RM:loadAnimation('white'),
@@ -665,6 +666,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Flash Back OUT"},
         },
         anims = {
           Box = RM:loadAnimation('s03_0_p020_m01_Box_'),
@@ -757,6 +759,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Intense Moment"}
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p021_m01_Zero_'),
@@ -896,7 +899,6 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Low Dodge"}
         },
         anims = {
           Zero = RM:loadAnimation('s03_0_p025_m01_Zero_'),
