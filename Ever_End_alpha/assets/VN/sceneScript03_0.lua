@@ -365,6 +365,7 @@ return {
         sounds = {
 			{"Player Fall by Kick"},
         },
+		music = {"Ambient Cicada", {fade = {duration = 3, rate = -1/3}}},
         anims = {
           End = RM:loadAnimation('s03_0_p008_m01_End_'),
           Box = RM:loadAnimation('s03_0_p008_m01_Box_'),
@@ -404,7 +405,6 @@ return {
         sounds = {
 			{"Flash Back IN", {delay = 0.1}},
         },
-        music = {"stop"},
         anims = {
           Box = RM:loadAnimation('s03_0_p010_m01_Box_'),
           Effect = RM:loadAnimation('s03_0_p010_m01_Effect_'),

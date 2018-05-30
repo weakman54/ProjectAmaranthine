@@ -118,6 +118,9 @@ local function doMusic(handle, opts)
     if playingMus ~= tMus then
       playingMus.source:stop()
     else
+	    if opts and opts.fade then
+	      HUMPTimer.during(opts.fade.duration, function(dt) src:setVolume(src:getVolume() + opts.fade.rate * dt) end)
+	    end
       return -- Don't do anything if already playing. HACKish, needs looking over... (doesn't set looping and so on...)
     end
   end
