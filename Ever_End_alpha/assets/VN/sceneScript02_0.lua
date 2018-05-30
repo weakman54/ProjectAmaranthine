@@ -29,7 +29,6 @@ return {
           "Conflict Theme Placeholder",
           {
             startVolume = 1,
-            fade = {duration = 10, rate = -0.1},
           },
         },
         anims = {
@@ -222,7 +221,8 @@ return {
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p007_m01_Box_'),
-          Zero_Table = RM:loadAnimation('s02_0_p007_m01_Zero_Table_'),
+          Zero = RM:loadAnimation('s02_0_p007_m01_Zero_'),
+          Table = RM:loadAnimation('s02_0_p007_m01_Table_'),
           End = RM:loadAnimation('s02_0_p007_m01_End_'),
 
         },
@@ -245,7 +245,10 @@ return {
             tween = {2, {x = 2320/2 - 200-700, y = 1480/2 - 200, alpha = 0, xScale = .5, yScale = .5}, "out-linear"},
           },
           [3] = {
-            anim = "Zero_Table",
+            anim = "Table",
+          },
+          [4] = {
+            anim = "Zero",
           },
         },
       },
@@ -352,7 +355,7 @@ return {
       [1] = {
         sounds = {
         },
-        music = {"stop"},
+		music = {"Conflict Theme Placeholder", {fade = {duration = 4, rate = -1/4}}},
         anims = {
           Zero = RM:loadAnimation('s02_0_p011_m01_Zero_'),
           Box = RM:loadAnimation('s02_0_p011_m01_Box_'),
@@ -469,6 +472,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = {"stop"},
         anims = {
           Kitty = RM:loadAnimation('s02_0_p014_m01_Kitty_'),
           Box = RM:loadAnimation('s02_0_p014_m01_Box_'),
