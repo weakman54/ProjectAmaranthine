@@ -30,8 +30,6 @@ function buildPanel(path, panelPrefix, panelNumber)
   ret.bg = {anim = string.format("$RM:loadAnimation('%s')", background:sub(1, -10))}
 
 
-  --  print(ret.bg)
-  --  ret.moments[1] = {transitionTrigger = "waitForInput"}
 
   for _, item in ipairs(panelList) do -- TODO: this entire section needs cleanup...
 

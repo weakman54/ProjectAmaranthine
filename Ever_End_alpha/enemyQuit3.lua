@@ -21,7 +21,7 @@ local dbg_render_timingCircles = false
 local RM = require "resourceManager.resourceManager"
 
 
-local enemy = {}
+local enemy = {x = 0, y = 0}
 
 enemy.dbg_trigger_offensive_action = false
 
@@ -30,7 +30,7 @@ enemy.music = "End_Ex_Soldier"
 
 function enemy:initialize()
   self.name = "Quit3" -- TODO: load properly
-  
+
   self.nextScene = "04_0"
 
   self.attackTime    = 3 -- seconds, TODO: figure better name for this
@@ -255,9 +255,9 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self, kind, nextAttack)
         enemy.dbg_trigger_offensive_action = false
-		Sound:play("Telegraph", {delay = 0.5})
-		Sound:play("Hilt Hold", {delay = 0.5})
-		Sound:play("Quit Slash 3", {delay = 0.85})
+        Sound:play("Telegraph", {delay = 0.5})
+        Sound:play("Hilt Hold", {delay = 0.5})
+        Sound:play("Quit Slash 3", {delay = 0.85})
 
 
         -- TODO: choose action #
@@ -284,10 +284,6 @@ function enemy:initializeSM()
 
           self.curAttack = enemy.attacks[choice]
         end
-
-        --        if self.curAttack.nextAttack then
-        --          print("COMBO!")
-        --        end
 
 
         -- TODO: set animation
@@ -430,11 +426,11 @@ function enemy:initializeSM()
       end,
     })
   --
-  
+
   sm:add("defeat", {
       enter = function(self, data)
         ac:setAnimation("defeat", false)
-		Sound:play("Quit Dies")
+        Sound:play("Quit Dies")
       end,
 
       update = function(self, dt)
@@ -455,6 +451,9 @@ function enemy:changeHP(offset)
 
   if offset < 0 then
     player:changeSP(math.abs(offset * DMG_TO_SP_RATIO))
+
+    local dur, intensity = 0.75, offset * 20
+    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur)
   end
 
   if self.HP <=0 then
@@ -474,7 +473,7 @@ end
 
 
 function enemy:draw()
-  self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
+  self.ac:loveDraw(self.x, self.y, r, sx, sy, 200, 200)
 
   self.sm:draw()
 end

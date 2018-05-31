@@ -21,7 +21,7 @@ local dbg_render_timingCircles = false
 local RM = require "resourceManager.resourceManager"
 
 
-local enemy = {}
+local enemy = {x = 0, y = 0}
 
 enemy.dbg_trigger_offensive_action = false
 
@@ -30,11 +30,11 @@ enemy.music = "Quit_Turn_On_Theme"
 
 function enemy:initialize()
   self.name = "Quit1" -- TODO: load properly
-  
+
   self.nextScene = "02_1"
-  
-  
-  
+
+
+
   self.attackInterval = 1.5 -- seconds, TODO: figure better name for this
   self.guardDuration  = 2
   self.hurtDuration   = 2
@@ -176,8 +176,8 @@ function enemy:initializeAC()
 
   name = "taunt"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-  
+
+
   name = "defeat"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
@@ -262,8 +262,8 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self, kind, nextAttack)
         enemy.dbg_trigger_offensive_action = false
-		Sound:play("Robot Telegraph")
-		Sound:play("Telegraph", {delay = 0.55})
+        Sound:play("Robot Telegraph")
+        Sound:play("Telegraph", {delay = 0.55})
 
 
         -- TODO: choose action #
@@ -290,10 +290,6 @@ function enemy:initializeSM()
 
           self.curAttack = enemy.attacks[choice]
         end
-
-        --        if self.curAttack.nextAttack then
-        --          print("COMBO!")
-        --        end
 
 
         -- TODO: set animation
@@ -423,7 +419,7 @@ function enemy:initializeSM()
       enter = function(self, data)
         ac:setAnimation("hurt01", false)
         Sound:play("Player Hit")
-		Sound:play("Robot Hurt")
+        Sound:play("Robot Hurt")
 
         self.timer = Timer:new()
       end,
@@ -437,11 +433,11 @@ function enemy:initializeSM()
       end,
     })
   --
-  
+
   sm:add("defeat", {
       enter = function(self, data)
         ac:setAnimation("defeat", false)
-		Sound:play("Robot Dies")
+        Sound:play("Robot Dies")
       end,
 
       update = function(self, dt)
@@ -462,13 +458,16 @@ function enemy:changeHP(offset)
 
   if offset < 0 then
     player:changeSP(math.abs(offset * DMG_TO_SP_RATIO))
+
+    local dur, intensity = 0.75, offset * 20
+    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur)
   end
 
   if self.HP <=0 then
     self.sm:switch("defeat")
     player.ac:setAnimation("idle")
     Gamestate.push(stateGameOver, {won = true})
-    
+
   end
 
 end
@@ -482,7 +481,7 @@ end
 
 
 function enemy:draw()
-  self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
+  self.ac:loveDraw(self.x, self.y, r, sx, sy, 200, 200)
 
   self.sm:draw()
 end
