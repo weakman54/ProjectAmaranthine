@@ -204,6 +204,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = {"End_Ex_Sister"},
         anims = {
           EndZero = RM:loadAnimation('s01_0_p002_m01_EndZero_'),
           YawnFX = RM:loadAnimation('s01_0_p002_m01_YawnFX_'),
@@ -672,6 +673,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = {"End_Ex_Sister", {fade = {duration = 4, rate = -1/4}}},
         anims = {
           Zero = RM:loadAnimation('s01_0_p012_m01_Zero_'),
           Box = RM:loadAnimation('s01_0_p012_m01_Box_'),
@@ -744,6 +746,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = {"stop"},
         anims = {
           SoldierEye = RM:loadAnimation('s01_0_p014_m01_SoldierEye_'),
           Box = RM:loadAnimation('s01_0_p014_m01_Box_'),
@@ -1210,6 +1213,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = {"Conflict Theme Placeholder"},
         anims = {
           ZeroPullingAway = RM:loadAnimation('s01_0_p026_m01_ZeroPullingAway_'),
           EndPullingAway = RM:loadAnimation('s01_0_p026_m01_EndPullingAway_'),
