@@ -40,7 +40,7 @@ ENEMY_ATTACK_LOW_DAMAGE  = 2
 ENEMY_ATTACK_COUNTER_DAMAGE = 2
 
 
-PARRY_SP_COST = .1 -- maybe put to 0.8-0.9 to make parry cost more forgiving 
+PARRY_SP_COST = 1.0 -- maybe put to 0.8-0.9 to make parry cost more forgiving 
 MIN_SP_TO_PARRY = PARRY_SP_COST
 
 SP_GAIN_FROM_DODGE_NORMAL = 1 -- is broken EKIVI -- NOTE FIXED?

@@ -34,7 +34,7 @@ function player:initialize()
   self.maxHP = 12 -- points
   self.maxSP = 4
 
-  self.parryCost = 1
+ -- SP cost is at PARRY_SP_COST in the file global_consts.lua
 
 
   self:initializeAC()

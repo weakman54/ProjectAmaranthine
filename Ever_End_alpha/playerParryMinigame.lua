@@ -64,7 +64,7 @@ sm:add("parryStart", {
       ac:setAnimation("parry", false)
       Sound:play("Player Parry")
       
-      player.SP = math.min(0, player.SP - PARRY_SP_COST) -- TODO: move to parry state instead, so that parry _always_ costs SP
+      player.SP = math.max(0, player.SP - PARRY_SP_COST) -- TODO: move to parry state instead, so that parry _always_ costs SP
       enemy.sm:switch("parryMinigame")
       enemy.ac:pause()
 
