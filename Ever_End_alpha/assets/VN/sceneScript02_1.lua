@@ -61,6 +61,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Intense Moment"},
         },
         anims = {
           EndDetermined = RM:loadAnimation("s02_1_p002_m01_EndDetermined_")
@@ -84,6 +85,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Intense Approach"},
         },
         anims = {
           EndRunning = RM:loadAnimation("s02_1_p003_m01_EndRunning_")
@@ -107,6 +109,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Glass Break"},
         },
         anims = {
           EndWindow = RM:loadAnimation("s02_1_p004_m01_EndWindow_")
@@ -283,6 +286,7 @@ return {
       },
       [6] = {
         sounds = {
+			{"Quit Stare"},
         },
         anims = {
           EndWindup = RM:loadAnimation("s02_1_p005_m06_EndWindup_"),
@@ -307,6 +311,7 @@ return {
       },
       [7] = {
         sounds = {
+			{"Fire1"},
         },
         anims = {
           EndWindup =  RM:loadAnimation("s02_1_p005_m06_EndWindup_"),
@@ -348,6 +353,7 @@ return {
       },
       [8] = {
         sounds = {
+			{"Slashed Barrel"},
         },
         anims = {
           EndHit = EndHit,
@@ -385,6 +391,7 @@ return {
       },
       [9] = {
         sounds = {
+			{"Earth2"},
         },
         anims = {
           EndOverlay = RM:loadAnimation('s02_1_p005_m10_EndOverlay_'),
@@ -441,6 +448,7 @@ return {
       },
       [11] = {
         sounds = {
+			{"Earth2"},
         },
         anims = {
           TextBox = RM:loadAnimation('s02_1_p005_m11_TextBox_'),
