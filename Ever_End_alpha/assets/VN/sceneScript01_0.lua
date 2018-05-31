@@ -892,7 +892,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer", [2] = 5.2,
-        }
+        },
         drawData = {
      --     [1] = {
      --       anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
@@ -908,8 +908,8 @@ return {
 			tween = {5.2, {xScale = 1.0, yScale = 1.0}, "in-linear"},
           },
         },
-      },
     },
+  },
   },
   [15] = {
     bg = {
