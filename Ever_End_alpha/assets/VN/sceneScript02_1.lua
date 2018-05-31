@@ -5,7 +5,7 @@ local RM = require 'resourceManager.resourceManager'
 RM.prefix = "assets/"
 local EndIdle   = RM:loadAnimation("Player/Player_idle_")
 --local EndAttack = RM:loadAnimation("Player/Player_attack_hit_")
-local RobotIdle = RM:loadAnimation("Quit1/Quit1_idle_")
+local RobotDead = RM:loadAnimation("Quit1/Quit1_defeat_")
 local QuitIdle  = RM:loadAnimation("Quit2/Quit2_idle_")
 
 local Gas  = RM:loadAnimation("FX/Gas_")
@@ -16,8 +16,8 @@ RM.prefix = 'assets/VN/scene02_1_quitsDirtyTrick/'
 local robotRoom = RM:loadAnimation("robot_room_")
 local robotRoomBlur = RM:loadAnimation("robot_room_blur_")
 
-local robotInside = RM:loadAnimation("inside_robot_")
-local robotInsideBlur = RM:loadAnimation("inside_robot_blur_")
+local robotInside = RM:loadAnimation("inside_robot_flipped_")
+local robotInsideBlur = RM:loadAnimation("inside_robot_blur_flipped_")
 
 local EndHit = RM:loadAnimation("Player_attack_hit_")
 EndHit.data:setLooping(false)
@@ -36,18 +36,19 @@ return {
         },
         anims = {
           EndIdle = EndIdle,
-          RobotIdle = RobotIdle,
+          RobotDead = RobotDead,
         },
         transitionTrigger = {
           [1] = "timer",
-          [2] = 1,
+          [2] = 3.4,
         },
         drawData = {
+
           [1] = {
-            anim = "EndIdle",
+            anim = "RobotDead",
           },
           [2] = {
-            anim = "RobotIdle",
+            anim = "EndIdle",
           },
         },
       },
@@ -256,11 +257,24 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",
-          [2] = 1,
+          [2] = .5,
         },
         drawData = {
           [2] = {
             anim = "EndWindup",
+            x = 2320/2 - 200 - 200,
+            y = 1480/2 - 200 + 100,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.2, {
+                x = 2320/2 - 200 ,
+                y = 1480/2 - 200 ,
+                xScale = 1,
+                yScale = 1,
+                }, "out-quart"
+            },
           },
           [1] = {
             anim = "QuitIdle",
@@ -277,7 +291,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",
-          [2] = 0.5,
+          [2] = 0.8,
         },
         drawData = {
           [1] = {
@@ -314,7 +328,21 @@ return {
             anim = "BarrelWhole",
             x = 100,
             y = 100,
-            tween = {1, {x = 0, y = 0}, "out-cubic"},
+            x = 2320/2 - 200 + 200,
+            y = 1480/2 - 200 + 100,
+            xScale = .95,
+            yScale = .95,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            --alpha = .5,
+            tween = {1.2, {
+                x = 2320/2 - 200 ,
+                y = 1480/2 - 200 ,
+                xScale = 1,
+                yScale = 1,
+                --alpha = 1,
+                }, "out-quart"
+            },
           },
         },
       },
@@ -330,7 +358,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",
-          [2] = 2
+          [2] = 1.5,
         },
         drawData = {
           [1] = {
@@ -366,7 +394,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",
-          [2] = 1,
+          [2] = 1.0,
         },
         drawData = {
           [1] = {
@@ -384,6 +412,34 @@ return {
         },
       },
       [10] = {
+        sounds = {
+        },
+        anims = {
+          ZeroOverlay = RM:loadAnimation('s02_1_p005_m12_ZeroOverlay_'),
+          EndIdle = EndIdle,
+          QuitIdle = QuitIdle,
+          Gas = Gas,
+        },
+        transitionTrigger = {
+          [1] = "timer",
+          [2] = 1.2,
+        },
+        drawData = {
+          [1] = {
+            anim = "QuitIdle",
+          },
+          [2] = {
+            anim = "EndIdle",
+          },
+          [3] = {
+            anim = "ZeroOverlay",
+          },
+          [4] = {
+            anim = "Gas",
+          },
+        },
+      },
+      [11] = {
         sounds = {
         },
         anims = {
@@ -410,34 +466,7 @@ return {
           },
         },
       },
-      [11] = {
-        sounds = {
-        },
-        anims = {
-          ZeroOverlay = RM:loadAnimation('s02_1_p005_m12_ZeroOverlay_'),
-          EndIdle = EndIdle,
-          QuitIdle = QuitIdle,
-          Gas = Gas,
-        },
-        transitionTrigger = {
-          [1] = "timer",
-          [2] = 1,
-        },
-        drawData = {
-          [1] = {
-            anim = "QuitIdle",
-          },
-          [2] = {
-            anim = "EndIdle",
-          },
-          [3] = {
-            anim = "ZeroOverlay",
-          },
-          [4] = {
-            anim = "Gas",
-          },
-        },
-      },
+      
       [12] = {
         sounds = {
         },
@@ -601,7 +630,7 @@ return {
           },
         },
       },
-            [18] = {
+      [18] = {
         sounds = {
         },
         anims = {
@@ -628,7 +657,34 @@ return {
           },
         },
       },
-            [19] = {
+      [19] = {
+        sounds = {
+        },
+        anims = {
+          Overlay = RM:loadAnimation('s02_1_p005_m20_Overlay_'),
+          EndIdle = EndIdle,
+          QuitIdle = QuitIdle,
+          Gas = Gas,
+        },
+        transitionTrigger = {
+          [1] = "timer", [2] = 1.5,
+        },
+        drawData = {
+          [1] = {
+            anim = "QuitIdle",
+          },
+          [2] = {
+            anim = "EndIdle",
+          },
+          [3] = {
+            anim = "Overlay",
+          },
+          [4] = {
+            anim = "Gas",
+          },
+        },
+      },
+      [20] = {
         sounds = {
         },
         anims = {
