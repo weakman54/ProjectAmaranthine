@@ -21,7 +21,7 @@ local dbg_render_timingCircles = false
 local RM = require "resourceManager.resourceManager"
 
 
-local enemy = {}
+local enemy = {x = 0, y = 0}
 
 enemy.dbg_trigger_offensive_action = false
 
@@ -473,7 +473,7 @@ end
 
 
 function enemy:draw()
-  self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
+  self.ac:loveDraw(self.x, self.y, r, sx, sy, 200, 200)
 
   self.sm:draw()
 end
