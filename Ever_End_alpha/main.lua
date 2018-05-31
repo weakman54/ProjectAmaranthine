@@ -50,7 +50,7 @@ require "shakeEffect"
 
 
 local baton = require "baton.baton"
-input = nil -- Global used to store a baton "player" (input mappings)
+--input = nil -- Global used to store a baton "player" (input mappings)
 
 lovebird = require "lovebird.lovebird"
 table.insert(lovebird.whitelist, "*.*.*.*") -- Still testing...
@@ -86,7 +86,7 @@ dbgSlomoFactor = .5
 -- TEST ^^^^^^^^^^^^^^^^^^
 
 
-input = baton.new {
+batonControls = {
   controls = {
     left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},
     right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
@@ -113,6 +113,8 @@ input = baton.new {
   },
   joystick = love.joystick.getJoysticks()[1],
 }
+
+input = baton.new(batonControls)
 
 
 
@@ -223,7 +225,7 @@ function GameReload()
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
   AC    = reload("animation.animationCollection")
-  
+
   Sound:muteMusic()
   Sound = reload("resourceManager.soundManager")
   Sound:init()
@@ -302,33 +304,9 @@ function love.joystickadded( joystick )
   gJoy = love.joystick.getJoysticks()[1]
 
   -- This can be simplified
-  input = baton.new { -- HACK
-    controls = {
-      left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},
-      right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
-      up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
-      down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
-      attack = {'key:space',                         'button:a','button:b'},
-      guard  = {"key:g"    ,                         "button:x"},--"button:rightshoulder", "axis:triggerright+"},
-      parry  = {"key:g"    ,                         "button:x"},--"button:rightshoulder", "axis:triggerright+"},
-      dodge  = {"key:d"    ,                         "button:x"},
-      heal   = {"key:h"    ,                         "button:y"},
-      -- TODO: choices = keys:
 
-      comboLeft    = {'key:left' ,    "key:a"    ,    "button:x"},
-      comboRight   = {'key:right',    "key:d"    ,    "button:b"},
-      comboUp      = {'key:up'   ,    "key:w"    ,    "button:y"},
-      comboDown    = {'key:down' ,    "key:s"    ,    "button:a"},
 
-      systemStart = {"key:escape",                   "button:start"},    
-      systemBack  = {"key:x"     ,                   "button:back"},               
-
-    },
-    pairs = {
-      move = {'left', 'right', 'up', 'down'}
-    },
-    joystick = love.joystick.getJoysticks()[1],
-  }
+  input = baton.new(batonControls)
 end
 
 
