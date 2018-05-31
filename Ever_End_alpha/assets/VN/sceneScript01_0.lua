@@ -182,7 +182,7 @@ return {
           ZeroHand2 = RM:loadAnimation('s01_0_p001_m11_ZeroHand_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.0,
+          [1] = "timer", [2] = 1.4,
         },
         drawData = {
           [1] = {
@@ -199,8 +199,8 @@ return {
         sounds = {
         },
         anims = {
-          ZeroHand = RM:loadAnimation('s01_0_p001_m12_Door_'),
-          ZeroHand2 = RM:loadAnimation('s01_0_p001_m13_Door_'),
+          Door = RM:loadAnimation('s01_0_p001_m12_Door_'),
+          Door2 = RM:loadAnimation('s01_0_p001_m13_Door_'),
 
         },
         transitionTrigger = {
@@ -208,10 +208,10 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "ZeroHand",
+            anim = "Door",
           },
             [2] = {
-            anim = "ZeroHand2",
+            anim = "Door2",
             alpha = 0, tween = {1.25, {alpha = 1 }, "in-linear"},
             
           },
@@ -526,6 +526,10 @@ return {
           },
           [2] = {
             anim = "EndRollEyes",
+			x = 2320/2 - 200 + 30,
+            y = 1480/2 - 200,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
           },
           [3] = {
             anim = "TextBox",
