@@ -117,7 +117,7 @@ local dodgeMinigame = {
     elseif input:pressed("comboLeft") or input:pressed("comboRight") or input:pressed("comboUp") or input:pressed("comboDown") then
       if input:pressed("combo" .. self.combo.name) then
         self.hurtI = (self.hurtI % 2) + 1
-        print("#" .. self.hurtI)
+--        print("#" .. self.hurtI)
         enemy.ac:setAnimation("hurt" .. string.format("%02d", self.hurtI))
         enemy:changeHP(-PLAYER_DODGE_DAMAGE)
 

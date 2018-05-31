@@ -3,7 +3,7 @@
 local RM = require "resourceManager.resourceManager"
 
 
-local player = {}
+local player = {x = 0, y = 0} --NOTE: Initializing variables here atm for testing, idk if there's a better place to put them
 
 function player:initialize()
   self.name = "Player"
@@ -515,8 +515,14 @@ function player:changeHP(offset)
   if gJoy and vibrationEnabled then
     gJoy:setVibration(1*scalar, 1*scalar, 1*scalar)
   end
+  
+  if offset < 0 then
+    local dur, intensity = 0.75, offset * 20
+    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur)
+  end
+    
 
-  if self.HP <=0 then
+  if self.HP <= 0 then
     self.sm:switch("defeat")
     enemy.ac:setAnimation("idle")
     Gamestate.push(stateGameOver, {won = false})
@@ -536,7 +542,7 @@ end
 
 
 function player:draw()
-  self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
+  self.ac:loveDraw(self.x, self.y, r, sx, sy, 200, 200)
   self.sm:draw()
 end
 
