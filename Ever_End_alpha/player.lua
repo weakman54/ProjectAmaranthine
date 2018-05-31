@@ -34,7 +34,7 @@ function player:initialize()
   self.maxHP = 12 -- points
   self.maxSP = 4
 
- -- SP cost is at PARRY_SP_COST in the file global_consts.lua
+  -- SP cost is at PARRY_SP_COST in the file global_consts.lua
 
 
   self:initializeAC()
@@ -252,20 +252,17 @@ function player:initializeSM()
 
         player.SP = math.max(player.SP - player.SPDrainRate * dt, 0)
       end,
-  })
+    })
   --
 
   sm:add("parry",  {      
       enter = function(self, stance)
-        
+
         if player.SP < MIN_SP_TO_PARRY then
 --          Sound:play("can'tparry") -- ADD SOUNDEFFECT HERE
           return sm:switch("idle") -- HACKish: this is here to enable sound effects to be playec ASSUMPTION: we come from idle. NOTE: might also be wierd with the animations
         end
-        
-        player.SP = math.max(0, player.SP - PARRY_SP_COST) -- TODO: move to parry state instead, so that parry _always_ costs SP
-        
-        
+
         self.stance = stance
         ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm
         -- Put parry sounds here 
@@ -380,7 +377,7 @@ function player:initializeSM()
           else
             ac:setAnimation("attack_hit", false)
           end
-          
+
           self.target = ac:curDuration() + 0.1
         end
       end,
@@ -487,7 +484,11 @@ function player:initializeSM()
           return sm:switch("idle")
         end
 
-      end
+      end,
+
+      exit = function(self)
+        player.x, player.y = 0,0
+      end,
     })
   --
 
@@ -518,12 +519,12 @@ function player:changeHP(offset)
   if gJoy and vibrationEnabled then
     gJoy:setVibration(1*scalar, 1*scalar, 1*scalar)
   end
-  
+
   if offset < 0 then
     local dur, intensity = 0.75, offset * 20
     shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur)
   end
-    
+
 
   if self.HP <= 0 then
     self.sm:switch("defeat")
