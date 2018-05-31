@@ -49,7 +49,7 @@ return {
           TextBox = RM:loadAnimation('s01_0_p001_m02_TextBox_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.0,
+       [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -72,7 +72,7 @@ return {
           },
         },
       },
-       [2] = {
+       [4] = {
         sounds = {
         },
         anims = {
@@ -87,7 +87,7 @@ return {
           },
         },
       },
-       [3] = {
+       [5] = {
         sounds = {
         },
         anims = {
@@ -102,7 +102,7 @@ return {
           },
         },
       },
-       [4] = {
+       [6] = {
         sounds = {
         },
         anims = {
@@ -117,7 +117,7 @@ return {
           },
         },
       },
-      [5] = {
+      [7] = {
         sounds = {
         },
         anims = {
@@ -132,7 +132,7 @@ return {
           },
         },
       },
-      [6] = {
+      [8] = {
         sounds = {
         },
         anims = {
@@ -153,7 +153,7 @@ return {
           },
         },
       },
-       [7] = {
+       [9] = {
         sounds = {
         },
         anims = {
@@ -174,7 +174,7 @@ return {
           },
         },
       },
-     [8] = {
+     [10] = {
         sounds = {
         },
         anims = {
@@ -195,7 +195,7 @@ return {
           },
         },
       },
-      [9] = {
+      [11] = {
         sounds = {
         },
         anims = {
@@ -212,17 +212,18 @@ return {
           },
             [2] = {
             anim = "ZeroHand2",
-            alpha = 0, tween = {1.0, {alpha = 1 }, "in-linear"},
+            alpha = 0, tween = {1.25, {alpha = 1 }, "in-linear"},
             
           },
         },
       },
-      [10] = {
+      [12] = {
         sounds = {
         },
         anims = {
-          ZeroHand = RM:loadAnimation('s01_0_p001_m13_Door_'),
-          ZeroHand2 = RM:loadAnimation('s01_0_p001_m14_Door_'),
+          Door = RM:loadAnimation('s01_0_p001_m13_Door_'),
+          Door2 = RM:loadAnimation('s01_0_p001_m14_Door_'),
+		  OpenFX = RM:loadAnimation('s01_0_p001_m14_Effect_'),
 
         },
         transitionTrigger = {
@@ -230,13 +231,16 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "ZeroHand",
+            anim = "Door",
           },
-            [2] = {
-            anim = "ZeroHand2",
-            alpha = 0, tween = {1.0, {alpha = 1 }, "in-linear"},
-            
-          },
+          [2] = {
+            anim = "Door2",
+            alpha = 0, tween = {0.3, {alpha = 1 }, "in-linear"},
+		  },
+		  [3] = {
+               anim = "OpenFX",
+			   alpha = 1, tween = {1.0, {alpha = 2 }, "out-quint"},
+		  },
         },
       },
     },
