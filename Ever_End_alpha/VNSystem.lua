@@ -171,6 +171,11 @@ function VNSystem:setMomentI(momentI)
       local dur, target, method, after = unpack(t.tween)
       HUMPTimer.tween(dur, t, target, method, after)
     end
+
+    -- Start any shake effects
+    if t.shake then
+      shakeEffect(t, unpack(t.shake))
+    end
   end
 
 

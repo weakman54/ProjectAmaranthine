@@ -171,8 +171,9 @@ function player:initializeSM()
         if player.damaged then
           return sm:switch("hurt")
 
-        elseif input:pressed("guard") then		
-          return sm:switch("guard")
+        elseif input:pressed("guard") then
+--          return sm:switch("guard") -- No more guard
+          return sm:switch("parry", "low")
 
         elseif input:pressed("down") then
           return sm:switch("dodgeMinigame", "low")
@@ -228,14 +229,14 @@ function player:initializeSM()
           end
         end
 
-        if input:pressed("down") then
-          return sm:switch("parry", "low")
-
-
-        elseif input:pressed("up") then
-          return sm:switch("parry", "high")
-        end
-
+        -- No more parry from guard
+--        if input:pressed("down") then
+--          return sm:switch("parry", "low")
+--
+--
+--        elseif input:pressed("up") then
+--          return sm:switch("parry", "high")
+--        end
 
         if ac:curName() == "guard_hit" then
           if ac:curEvent() == "ended" then
@@ -255,10 +256,15 @@ function player:initializeSM()
 
   sm:add("parry",  {      
       enter = function(self, stance)
+        print("parrying22")
+        
         if player.SP < MIN_SP_TO_PARRY then
 --          Sound:play("can'tparry") -- ADD SOUNDEFFECT HERE
           return sm:switch("idle") -- HACKish: this is here to enable sound effects to be playec ASSUMPTION: we come from idle. NOTE: might also be wierd with the animations
         end
+        
+        print("parrying")
+        
         
         self.stance = stance
         ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm

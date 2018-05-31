@@ -45,6 +45,10 @@ HUMPTimer = require "hump.timer"
 lume = require "lume.lume"
 
 
+require "shakeEffect"
+
+
+
 local baton = require "baton.baton"
 input = nil -- Global used to store a baton "player" (input mappings)
 
@@ -90,6 +94,7 @@ input = baton.new {
     down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
     attack = {'key:space',                         'button:a'},
     guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
+    parry  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
     dodge  = {"key:d"    ,                         "button:x"},
     heal   = {"key:h"    ,                         "button:y"},
     -- TODO: choices = keys:
@@ -164,7 +169,7 @@ function love.update(dt)
     HUMPTimer.update(dt)
   end
 
-  Sound:update(dt)  -- NOTE: not quite fully tested, but should work fine
+  --Sound:update(dt)  -- NOTE: not quite fully tested, but should work fine
   callOrError(Gamestate.update, dt)
 end
 
@@ -213,6 +218,7 @@ function GameReload()
   reload "util"
   reload "global_consts"
   reload "settings"
+  reload "shakeEffect"
 
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
@@ -304,6 +310,7 @@ function love.joystickadded( joystick )
       down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
       attack = {'key:space',                         'button:a','button:b'},
       guard  = {"key:g"    ,                         "button:x"},--"button:rightshoulder", "axis:triggerright+"},
+      parry  = {"key:g"    ,                         "button:x"},--"button:rightshoulder", "axis:triggerright+"},
       dodge  = {"key:d"    ,                         "button:x"},
       heal   = {"key:h"    ,                         "button:y"},
       -- TODO: choices = keys:

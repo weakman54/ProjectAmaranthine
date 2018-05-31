@@ -15,8 +15,6 @@ local fumbling = false
 local dodgeStart = {
   enter = function(self)
     ac:setAnimation("dodge_" .. data.stance .. "_start", false)
-
-
     if data.stance == "high" then 
       Sound:play("High Dodge")
     elseif data.stance == "low" then 
@@ -24,30 +22,21 @@ local dodgeStart = {
     end
 
     self.timer = Timer:new()
-
     data.timing = (enemy.timingStage >= 2) and "perfect" or "normal"
   end,
-
   update = function(self, dt)
     self.timer:update(dt)
-
-
     -- Attacked during dodge:
     if player.damaged then
       if player.damaged.attack.stance == data.stance then
         return player.sm:switch("hurt", "dodge")
-
       else
-
         data.enemyAttack = player.damaged
-
         player.damaged = false
-
         enemy.sm:switch("dodgeMinigame")
         return sm:switch("dodgeMinigame")
       end
     end
-
     -- If not attacked, just switch to the end animation. ASSUMPTION: we didn't switch state before this
     if self.timer:reached(player.dodgeStartDuration) then
       return sm:switch("dodgeEnd") 
@@ -85,13 +74,13 @@ local dodgeMinigame = {
     self.hurtI = 1
 
     self.combo = combos[math.random(4)]
-
-    player.SP = math.min(player.SP + (data.timing == "normal" and SP_GAIN_FROM_DODGE_NORMAL or SP_GAIN_FROM_DODGE_PERFECT), player.maxSP)
+    
+    local SPGained = data.timing == "normal" and SP_GAIN_FROM_DODGE_NORMAL or SP_GAIN_FROM_DODGE_PERFECT
+    player.SP = math.min(player.SP + SPGained, player.maxSP)
 
     self.timer = Timer:new()
-
-    fumbling = false
     self.fumbleTimer = Timer:new()
+    fumbling = false
   end,
   --
 
@@ -104,22 +93,20 @@ local dodgeMinigame = {
       --      enemy.sm:switch("idle") -- NOTE: not quite good yet
       return sm:switch("dodgeEnd")
     end
-
-    if fumbling then
-      self.fumbleTimer:update(dt);
-    end
-
+    
     if self.fumbleTimer:reached(player.fumbleDuration) then
       fumbling = false;
       self.fumbleTimer:reset();
     end
 
+    if fumbling then
+      self.fumbleTimer:update(dt);
+      return
+    end
 
     -- Attack stuff: -----------
     if self.attackTimer then
       self.attackTimer:update(dt)
-
-
       if self.attackTimer:reached(player.gunAttackDuration) then
         ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing)
         enemy.ac:setAnimation("idle") -- TODO: look into this 
@@ -127,8 +114,7 @@ local dodgeMinigame = {
         self.attackTimer = nil
         self.combo = combos[math.random(4)]
       end
-
-    elseif not fumbling and input:pressed("comboLeft") or input:pressed("comboRight") or input:pressed("comboUp") or input:pressed("comboDown") then
+    elseif input:pressed("comboLeft") or input:pressed("comboRight") or input:pressed("comboUp") or input:pressed("comboDown") then
       if input:pressed("combo" .. self.combo.name) then
         self.hurtI = (self.hurtI % 2) + 1
         print("#" .. self.hurtI)
@@ -139,27 +125,28 @@ local dodgeMinigame = {
         Sound:play("Gun1")
         Sound:play("Gun Wosh")
         self.attackTimer = Timer:new()
-
         self.combo = nil
-      else -- Miss click
+      else -- Here is when misclicking a combo:
         -- put sound here
         fumbling = true;
         self.fumbleTimer:reset();
       end
-
     end
   end,
-
+  exit = function(self)
+    -- Timers were fucking things up
+    self.timer = nil
+    self.fumbleTimer = nil
+    self.attackTimer = nil
+  end,
   draw = function(self)
     love.graphics.push() -- HACKY fix to remove flip effect
     love.graphics.origin()
     love.graphics.scale(scale.x, scale.y)
-
     if self.combo and not fumbling then
       local c = self.combo
       c.anim.data:loveDraw(c.x, c.y, r, sx, sy, c.ox, c.oy)
     end
-
     love.graphics.pop()
   end,
 }
