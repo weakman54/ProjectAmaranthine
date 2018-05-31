@@ -9,7 +9,7 @@ function player:initialize()
   self.name = "Player"
 
   -- durations in seconds vvv
-  self.hurtDuration  = 2 -- just works value: plays the two hurt animations pretty nicely even though they get cut off =P
+  self.hurtDuration  = 0.5 -- just works value: plays the two hurt animations pretty nicely even though they get cut off =P
   self.parryMinigameDuration = 2
   self.parryDuration = 1
 
@@ -24,7 +24,7 @@ function player:initialize()
 
   self.idleRegenDuration = .70
 
-  self.SPRegenRateIdle = .2
+  self.SPRegenRateIdle = .15
   self.SPDrainRate = 0.4 -- points per second
   self.SPChargeDrainRate = 1
 

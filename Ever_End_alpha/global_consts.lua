@@ -4,7 +4,7 @@ DEFAULT_FRAMERATE = 12
 W, H = 1920, 1080 -- pixels
 
 
-PARRY_TRESHOLD     = 0.2 -- amount of time that you can dodge / more time = more easy 
+PARRY_TRESHOLD     = 0.3 -- amount of time that you can dodge / more time = more easy 
 PERFDODGE_TRESHOLD = 0.2
 NORMDODGE_TRESHOLD = 0.4
 
@@ -26,13 +26,13 @@ PARRY3_DURATION = 1.3
 INTENSE_DAMAGE_TRESHOLD = 5  
 
 
-PLAYER_NORMAL_DAMAGE = 1
+PLAYER_NORMAL_DAMAGE = 2
 PLAYER_CHARGE_ATTACK_DAMAGE = 3
 PLAYER_DODGE_DAMAGE = 1
 
 -- damageDealt = BASE + GRAD - GRAD * hitMultiplier (goes from 0 -> 1 -> 0, where 1 is perfect hit)
 PLAYER_PARRY_DAMAGE_BASE = 0.5 -- Will always do this much damage
-PLAYER_PARRY_DAMAGE_GRAD = 3 -- Does up to this much additional damage depending on how well you hit target
+PLAYER_PARRY_DAMAGE_GRAD = 4 -- Does up to this much additional damage depending on how well you hit target
 
 
 ENEMY_ATTACK_HIGH_DAMAGE = 2
@@ -40,11 +40,11 @@ ENEMY_ATTACK_LOW_DAMAGE  = 2
 ENEMY_ATTACK_COUNTER_DAMAGE = 2
 
 
-PARRY_SP_COST = 1.0 -- maybe put to 0.8-0.9 to make parry cost more forgiving 
+PARRY_SP_COST = 9.5 -- maybe put to 0.8-0.9 to make parry cost more forgiving 
 MIN_SP_TO_PARRY = PARRY_SP_COST
 
 SP_GAIN_FROM_DODGE_NORMAL = 1 -- is broken EKIVI -- NOTE FIXED?
-SP_GAIN_FROM_DODGE_PERFECT = 2 -- is broken too EKIVI FIXED?
+SP_GAIN_FROM_DODGE_PERFECT = 1 -- is broken too EKIVI FIXED?
 
 -- Enemy attack weights, these function like if you put this many in a hat and then draw one
 -- So 2, 2, 1 means put two notes with HIGH, 2 with LOW and one with TAUNT, whatever we get when we pull is what happens
