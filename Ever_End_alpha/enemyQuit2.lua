@@ -30,7 +30,7 @@ enemy.music = "Quit_Turn_On_Theme"
 
 function enemy:initialize()
   self.name = "Quit2" -- TODO: load properly
-  
+
   self.nextScene = "03_0"
 
   self.attackTime    = 3 -- seconds, TODO: figure better name for this
@@ -166,15 +166,15 @@ function enemy:initializeAC()
 
   name = "taunt"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  
-  
+
+
   name = "defeat"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
-  
+
   -- hurt animations
-   for i=1, 5 do
-   name = string.format("hurt%02d", i)
+  for i=1, 5 do
+    name = string.format("hurt%02d", i)
     ac:addAnimation(name, RM:loadAnimation(name .. "_"))
   end
 -- name = "hurt"
@@ -255,9 +255,9 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self, kind, nextAttack)
         enemy.dbg_trigger_offensive_action = false
-		Sound:play("Telegraph", {delay = 0.35})
-		Sound:play("Quit Slash 2 Telegraph")
-		Sound:play("Quit Slash Swing 2", {delay = 0.65})
+        Sound:play("Telegraph", {delay = 0.35})
+        Sound:play("Quit Slash 2 Telegraph")
+        Sound:play("Quit Slash Swing 2", {delay = 0.65})
 
 
         -- TODO: choose action #
@@ -284,10 +284,6 @@ function enemy:initializeSM()
 
           self.curAttack = enemy.attacks[choice]
         end
-
-        --        if self.curAttack.nextAttack then
-        --          print("COMBO!")
-        --        end
 
 
         -- TODO: set animation
@@ -430,7 +426,7 @@ function enemy:initializeSM()
       end,
     })
   --
-  
+
   sm:add("defeat", {
       enter = function(self, data)
         ac:setAnimation("defeat", false)

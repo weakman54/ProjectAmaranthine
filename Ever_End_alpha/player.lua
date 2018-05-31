@@ -3,7 +3,7 @@
 local RM = require "resourceManager.resourceManager"
 
 
-local player = {}
+local player = {x = 0, y = 0} --NOTE: Initializing variables here atm for testing, idk if there's a better place to put them
 
 function player:initialize()
   self.name = "Player"
@@ -542,7 +542,7 @@ end
 
 
 function player:draw()
-  self.ac:loveDraw(x, y, r, sx, sy, 200, 200)
+  self.ac:loveDraw(self.x, self.y, r, sx, sy, 200, 200)
   self.sm:draw()
 end
 
