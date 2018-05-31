@@ -17,6 +17,7 @@ end
 
 
 function SM:update(dt)
+  -- TODO: add exists check to make the SM more generic (Actually, maybe even make a generic list of callbacks?)
   self.curState:update(dt)
 end
 
@@ -29,6 +30,7 @@ function SM:add(name, state)
   self.states[name] = state
   state.name = name
 
+  -- TODO: remove this and add to the check in switch to check against this not existing instead
   if not state.canSwitch then
     state.canSwitch = function() return true end -- This is a bit of a hack, but works, so eh
   end
@@ -42,6 +44,7 @@ function SM:switch(to, ...)
   local target = self.states[to]
   assert(target, "Statemachine:switch(): State " .. to .. " does not exist in the Statemachine")
 
+  -- TODO: add exists check (non-existing function means true)
   if not target.canSwitch() then return end
   
   
