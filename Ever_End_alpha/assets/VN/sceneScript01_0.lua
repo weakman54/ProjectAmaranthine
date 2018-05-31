@@ -227,7 +227,7 @@ return {
 
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.5,
+          [1] = "timer", [2] = 1.6,
         },
         drawData = {
           [1] = {
@@ -239,7 +239,7 @@ return {
 		  },
 		  [3] = {
                anim = "OpenFX",
-			   alpha = 1, tween = {1.0, {alpha = 2 }, "out-quint"},
+			   alpha = 1, tween = {1.4, {alpha = 0 }, "out-quint"},
 		  },
         },
       },
