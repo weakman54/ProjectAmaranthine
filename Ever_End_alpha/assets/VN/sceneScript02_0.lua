@@ -1069,7 +1069,7 @@ return {
         sounds = {
         },
         anims = {
-          Box = RM:loadAnimation('s02_0_p028_m01_Box_'),
+          Box = RM:loadAnimation('s02_0_p029_m01_Box_'),
           Quit_Zero = RM:loadAnimation('s02_0_p028_m01_Quit_Zero_'),
           Text = RM:loadAnimation('s02_0_p028_m03_Text_'),
         },
