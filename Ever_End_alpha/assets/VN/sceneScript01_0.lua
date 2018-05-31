@@ -554,7 +554,7 @@ return {
           Kitty = RM:loadAnimation('s01_0_p008_m01_Kitty_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.3,
+          [1] = "timer", [2] = 1.7,
         },
         drawData = {
           [1] = {
@@ -590,7 +590,7 @@ return {
           Box = RM:loadAnimation('s01_0_p008_m02_BoxZoom_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.6,
+          [1] = "timer", [2] = 1.4,
         },
         drawData = {
           [1] = {
@@ -634,7 +634,7 @@ return {
             anim = "Zero",
 			x = 0 - 200,
             y = 0,
-            tween = {0.6, {x = 0, y = 0,}, "in-bounce"},
+            tween = {0.3, {x = 0, y = 0,}, "in-linear"},
           },
           [3] = {
             anim = "Text",
@@ -690,7 +690,7 @@ return {
             yScale = 1.00,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.7, {x = 2320/2 - 200 + 100, y = 1480/2 - 200, xScale = 1.03, yScale = 1.03}, "in-out-quad"},
+            tween = {1.5, {x = 2320/2 - 200 + 100, y = 1480/2 - 200, xScale = 1.03, yScale = 1.03}, "in-out-quad"},
           },
           [4] = {
             anim = "Text",
@@ -771,7 +771,7 @@ return {
           Box = RM:loadAnimation('s01_0_p012_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0,
+          [1] = "timer", [2] = 2.2,
         },
         drawData = {
           [1] = {
@@ -779,6 +779,9 @@ return {
           },
           [2] = {
             anim = "Zero",
+			x = 0- 100,
+            y = 0,
+            tween = {4.0, {x = 0 + 200, y = 0}, "in-out-linear"},
           },
         },
       },
@@ -797,7 +800,7 @@ return {
           Box = RM:loadAnimation('s01_0_p013_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0,
+          [1] = "timer", [2] = 2.2,
         },
         drawData = {
           [1] = {
@@ -805,6 +808,9 @@ return {
           },
           [2] = {
             anim = "Kitty",
+			x = 0 + 100,
+            y = 0,
+            tween = {4.0, {x = 0 - 200, y = 0}, "in-out-linear"},
           },
         },
       },
@@ -818,18 +824,25 @@ return {
           
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.5,
+          [1] = "timer", [2] = 3.0,
         },
         drawData = {
           [1] = {
             anim = "KittyEye",
+			x = 2320/2 - 200 ,
+            y = 1480/2 - 200,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			tween = {3.0, {xScale = 1.2, yScale = 1.2}, "in-linear"},
           },
          [2] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
                 [3] = {
             anim = "White",
-            alpha = 0, tween = {1.5, {alpha = .8}, "in-expo"},
+            alpha = 0, tween = {3.0, {alpha = .8}, "in-expo"},
           },
         },
       },
@@ -850,7 +863,7 @@ return {
           Box = RM:loadAnimation('s01_0_p014_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.5,
+          [1] = "timer", [2] = 3.5,
         },
         drawData = {
           [2] = {
@@ -858,6 +871,13 @@ return {
           },
           [1] = {
             anim = "SoldierEye",
+			x = 2320/2 - 200 ,
+            y = 1480/2 - 200,
+            xScale = 1.2,
+            yScale = 1.2,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			tween = {3.5, {xScale = 1.0, yScale = 1.0}, "in-linear"},
           },
         },
       },
@@ -866,17 +886,24 @@ return {
         },
         anims = {
           SoldierZoomout = RM:loadAnimation('s01_0_p014_m02_SoldierZoomout_'),
-          Box = RM:loadAnimation('s01_0_p014_m02_Box_'),
+   --       Box = RM:loadAnimation('s01_0_p014_m02_Box_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0,
-        },
+          [1] = "timer", [2] = 5.2,
+        }
         drawData = {
+     --     [1] = {
+     --       anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+     --     },
           [1] = {
-            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
-          },
-          [2] = {
             anim = "SoldierZoomout",
+			x = 2320/2 - 200 ,
+            y = 1480/2 - 200,
+            xScale = 2.0,
+            yScale = 2.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			tween = {5.2, {xScale = 1.0, yScale = 1.0}, "in-linear"},
           },
         },
       },
