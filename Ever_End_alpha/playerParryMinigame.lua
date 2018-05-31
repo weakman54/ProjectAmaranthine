@@ -60,7 +60,7 @@ end
 
 
 sm:add("parryStart", {
-    enter = function(self)
+    enter = function(self, parryCost)
       ac:setAnimation("parry", false)
       Sound:play("Player Parry")
       

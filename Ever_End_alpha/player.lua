@@ -34,7 +34,7 @@ function player:initialize()
   self.maxHP = 12 -- points
   self.maxSP = 4
 
-
+  self.parryCost = 1
 
 
   self:initializeAC()
@@ -171,9 +171,11 @@ function player:initializeSM()
         if player.damaged then
           return sm:switch("hurt")
 
-        elseif input:pressed("guard") then
---          return sm:switch("guard") -- No more guard
-          return sm:switch("parry", "low")
+--          No guard according to kokake
+--        elseif input:pressed("guard") then
+--          return sm:switch("guard")
+        elseif input:pressed("parry") then
+          return sm:switch("parry","high")
 
         elseif input:pressed("down") then
           return sm:switch("dodgeMinigame", "low")
@@ -222,7 +224,6 @@ function player:initializeSM()
 
           player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
           if player.SP == 0 then
-            print("hurt")
             return sm:switch("hurt")
           else
             player.damaged = false
@@ -251,20 +252,16 @@ function player:initializeSM()
 
         player.SP = math.max(player.SP - player.SPDrainRate * dt, 0)
       end,
-    })
+  })
   --
 
   sm:add("parry",  {      
       enter = function(self, stance)
-        print("parrying22")
         
         if player.SP < MIN_SP_TO_PARRY then
 --          Sound:play("can'tparry") -- ADD SOUNDEFFECT HERE
           return sm:switch("idle") -- HACKish: this is here to enable sound effects to be playec ASSUMPTION: we come from idle. NOTE: might also be wierd with the animations
         end
-        
-        print("parrying")
-        
         
         self.stance = stance
         ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm
