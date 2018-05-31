@@ -420,6 +420,7 @@ return {
       },
       [10] = {
         sounds = {
+			{"Earth2"},
         },
         anims = {
           ZeroOverlay = RM:loadAnimation('s02_1_p005_m12_ZeroOverlay_'),
@@ -448,7 +449,6 @@ return {
       },
       [11] = {
         sounds = {
-			{"Earth2"},
         },
         anims = {
           TextBox = RM:loadAnimation('s02_1_p005_m11_TextBox_'),
