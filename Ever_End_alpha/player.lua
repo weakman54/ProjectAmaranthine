@@ -515,8 +515,14 @@ function player:changeHP(offset)
   if gJoy and vibrationEnabled then
     gJoy:setVibration(1*scalar, 1*scalar, 1*scalar)
   end
+  
+  if offset < 0 then
+    local dur, intensity = 0.75, offset * 20
+    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur)
+  end
+    
 
-  if self.HP <=0 then
+  if self.HP <= 0 then
     self.sm:switch("defeat")
     enemy.ac:setAnimation("idle")
     Gamestate.push(stateGameOver, {won = false})

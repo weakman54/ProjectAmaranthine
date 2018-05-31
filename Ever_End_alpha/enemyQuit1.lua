@@ -462,13 +462,16 @@ function enemy:changeHP(offset)
 
   if offset < 0 then
     player:changeSP(math.abs(offset * DMG_TO_SP_RATIO))
+
+    local dur, intensity = 0.75, offset * 20
+    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur)
   end
 
   if self.HP <=0 then
     self.sm:switch("defeat")
     player.ac:setAnimation("idle")
     Gamestate.push(stateGameOver, {won = true})
-    
+
   end
 
 end
