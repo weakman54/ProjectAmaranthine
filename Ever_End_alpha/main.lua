@@ -45,6 +45,10 @@ HUMPTimer = require "hump.timer"
 lume = require "lume.lume"
 
 
+require "shakeEffect"
+
+
+
 local baton = require "baton.baton"
 input = nil -- Global used to store a baton "player" (input mappings)
 
@@ -213,6 +217,7 @@ function GameReload()
   reload "util"
   reload "global_consts"
   reload "settings"
+  reload "shakeEffect"
 
   Timer = reload("timer.timer")
   SM    = reload("statemachine.statemachine")
