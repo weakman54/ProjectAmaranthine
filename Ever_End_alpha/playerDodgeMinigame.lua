@@ -86,7 +86,7 @@ local dodgeMinigame = {
 
     self.combo = combos[math.random(4)]
 
-    player.SP = math.min(player.SP + (data.timing == "normal" and 1 or 2), player.maxSP)
+    player.SP = math.min(player.SP + (data.timing == "normal" and SP_GAIN_FROM_DODGE_NORMAL or SP_GAIN_FROM_DODGE_PERFECT), player.maxSP)
 
     self.timer = Timer:new()
 
