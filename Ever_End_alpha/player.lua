@@ -280,7 +280,7 @@ function player:initializeSM()
         self.timer:update(dt)
 
         if player.damaged then
-          if self.parryTiming and player.damaged.attack.stance == self.stance then
+          if self.parryTiming then
             return sm:switch("parryMinigame", parrying)
           else
             return sm:switch("hurt")
