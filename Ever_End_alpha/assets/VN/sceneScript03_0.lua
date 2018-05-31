@@ -9,8 +9,8 @@ local Gas  = RM:loadAnimation("FX/Gas_")
 
 RM.prefix = 'assets/VN/scene03_0_midFightScene/'
 
-local background = RM:loadAnimation('inside_robot_')
-local background_blur = RM:loadAnimation('inside_robot_blur_')
+local background = RM:loadAnimation('inside_robot_flipped_')
+local background_blur = RM:loadAnimation('inside_robot_blur_flipped_')
 
 local boxAlpha = 0.8
 local boxDarken = 0.1
@@ -962,40 +962,41 @@ return {
       },
     },
   },
-  [27] = {
-    bg = {
-      anim = background_blur,
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          Zero = RM:loadAnimation('s03_0_p027_m01_Zero_'),
-          Box = RM:loadAnimation('s03_0_p027_m01_Box_'),
-          Gas = Gas,
-        },
-        transitionTrigger = {
-          [1] = "waitForInput",
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",
-            alpha = boxAlpha,
-            red = boxDarken,
-            green = boxDarken, 
-            blue = boxDarken
-          },
-          [2] = {
-            anim = "Zero",
-          },
-          [3] = {
-            anim = "Gas",
-          },
-        },
-      },
-    },
-  },
+-- Scrapped
+--  [27] = {
+--    bg = {
+--      anim = background_blur,
+--    },
+--    moments = {
+--      [1] = {
+--        sounds = {
+--        },
+--        anims = {
+--          Zero = RM:loadAnimation('s03_0_p027_m01_Zero_'),
+--          Box = RM:loadAnimation('s03_0_p027_m01_Box_'),
+--          Gas = Gas,
+--        },
+--        transitionTrigger = {
+--          [1] = "waitForInput",
+--        },
+--        drawData = {
+--          [1] = {
+--            anim = "Box",
+--            alpha = boxAlpha,
+--            red = boxDarken,
+--            green = boxDarken, 
+--            blue = boxDarken
+--          },
+--          [2] = {
+--            anim = "Zero",
+--          },
+--          [3] = {
+--            anim = "Gas",
+--          },
+--        },
+--      },
+--    },
+--  },
   [28] = {
     bg = {
       anim = background_blur,
