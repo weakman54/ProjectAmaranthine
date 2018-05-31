@@ -1280,6 +1280,8 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Slash2"},
+			{"Absorb1"},
         },
         anims = {
           ZeroBiteFX = RM:loadAnimation('s01_0_p025_m01_ZeroBiteFX_'),
