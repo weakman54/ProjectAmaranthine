@@ -219,6 +219,7 @@ return {
       },
       [12] = {
         sounds = {
+			{"Open2"},
         },
         anims = {
           Door = RM:loadAnimation('s01_0_p001_m13_Door_'),
@@ -252,6 +253,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Door Open"}
         },
 		music = {"End_Ex_Sister"},
         anims = {
@@ -840,6 +842,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Stare"},
         },
 		music = {"stop"},
         anims = {
@@ -886,6 +889,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Kick Echo"},
         },
         anims = {
           EndKicking = RM:loadAnimation('s01_0_p015_m01_EndKicking_'),
@@ -1072,6 +1076,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Earth2"},
         },
         anims = {
           Box = RM:loadAnimation('s01_0_p014_m01_Box_'),
@@ -1688,6 +1693,7 @@ return {
       },
       [2] = {
         sounds = {
+			{"Kick Echo"},
         },
         anims = {
           EndKicked = RM:loadAnimation('s01_0_p033_m01_EndKicked_'),
