@@ -134,6 +134,7 @@ return {
       },
       [8] = {
         sounds = {
+			{"Magic Key"},
         },
         anims = {
           ZeroHand = RM:loadAnimation('s01_0_p001_m08_ZeroHand_'),
@@ -197,6 +198,7 @@ return {
       },
       [11] = {
         sounds = {
+			{"Switch1", {delay = 1}}
         },
         anims = {
           Door = RM:loadAnimation('s01_0_p001_m12_Door_'),
