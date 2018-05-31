@@ -263,6 +263,9 @@ function player:initializeSM()
           return sm:switch("idle") -- HACKish: this is here to enable sound effects to be playec ASSUMPTION: we come from idle. NOTE: might also be wierd with the animations
         end
         
+        player.SP = math.max(0, player.SP - PARRY_SP_COST) -- TODO: move to parry state instead, so that parry _always_ costs SP
+        
+        
         self.stance = stance
         ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm
         -- Put parry sounds here 

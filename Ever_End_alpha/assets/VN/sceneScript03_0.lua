@@ -174,7 +174,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = 1.0
+          [2] = 2.0
         },
         drawData = {
           [1] = {
@@ -189,10 +189,9 @@ return {
           },
           [3] = {
             anim = "Quit_Zero",
-            alpha = 1,
-            tween = {.43, {alpha = 0}, "in-quart"}
+            alpha = 1, tween = {.43, {alpha = 0}, "in-quart"}
           },
-          [3] = {
+          [4] = {
             anim = "Gas",
           },
         },
