@@ -314,7 +314,7 @@ return {
           EndZero = RM:loadAnimation('s01_0_p003_m01_EndZero_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 4,
+          [1] = "waitForInput"
         },
         drawData = {
            [1] = {
@@ -502,7 +502,7 @@ return {
             yScale = 1.03,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
+            tween = {0.9, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [3] = {
             anim = "TextBox",
@@ -552,7 +552,7 @@ return {
           Kitty = RM:loadAnimation('s01_0_p008_m01_Kitty_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0,
+          [1] = "timer", [2] = 2.3,
         },
         drawData = {
           [1] = {
@@ -566,7 +566,7 @@ return {
             yScale = 1,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
+            tween = {2.1, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [3] = {
             anim = "Zero",
@@ -576,7 +576,7 @@ return {
             yScale = 1.03,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
+            tween = {2.0, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
         },
       },
@@ -598,11 +598,11 @@ return {
             anim = "KittyZoom",
             x = 2320/2 - 200,
             y = 1480/2 - 200,
-            xScale = 1,
-            yScale = 1,
+            xScale = 0.9,
+            yScale = 0.9,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.7, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.02, yScale = 1.02}, "in-out-quad"},
+            tween = {2.1, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.02, yScale = 1.02}, "in-out-quart"},
           },
         },
       },
@@ -630,6 +630,9 @@ return {
           },
           [2] = {
             anim = "Zero",
+			x = 0 - 200,
+            y = 0,
+            tween = {0.6, {x = 0, y = 0,}, "in-bounce"},
           },
           [3] = {
             anim = "Text",
@@ -736,7 +739,7 @@ return {
             yScale = 1.07,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-cubic"},
+            tween = {3.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "out-cubic"},
           },
           [3] = {
             anim = "Text",
@@ -746,7 +749,7 @@ return {
             yScale = 1.07,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-cubic"},
+            tween = {3.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-cubic"},
           },
         },
       },

@@ -37,7 +37,7 @@ function enemy:initialize()
   
   self.attackInterval = 1.5 -- seconds, TODO: figure better name for this
   self.guardDuration  = 2
-  self.hurtDuration   = 2
+  self.hurtDuration   = 1.5
   self.tauntDuration  = 1.2
 
 
