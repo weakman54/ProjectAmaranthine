@@ -304,9 +304,6 @@ end
 function love.joystickadded( joystick )
   gJoy = love.joystick.getJoysticks()[1]
 
-  -- This can be simplified
-
-
   input = baton.new(batonControls)
 end
 
