@@ -42,6 +42,7 @@ function stateMain:init()
       enter = function (self)
         self.text = "Press start"
         self.textY = H - 200 -- TODO: tween the start text up, together with the logo
+		Sound:play("End_Ex_Sister")
 
         HUMPTimer.tween(0.5, stateMain, {guiAlpha = 0}, "out-quad", function() self.text = nil end)
 
@@ -92,6 +93,10 @@ function stateMain:enter()
   Sound:muteMusic()
 
   self.sm:switch("logo")
+end
+
+function stateMain:leave()
+  Sound:muteMusic()
 end
 
 

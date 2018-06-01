@@ -768,6 +768,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Door Walls Closing"},
         },
         anims = {
           End = RM:loadAnimation('s02_0_p021_m01_End_'),
