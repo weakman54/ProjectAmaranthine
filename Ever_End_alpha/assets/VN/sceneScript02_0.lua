@@ -1752,7 +1752,6 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
-          enemyToGoTo = "enemyQuit1",
         },
         drawData = { 
           [1] = {
@@ -1768,4 +1767,27 @@ return {
       },
     },
   },
+  [44] = {
+    bg = {
+      anim = blur3,
+    },
+    moments = {
+      [1] = {
+        sounds = {
+        },
+        anims = {
+          ProTip = RM:loadAnimation('s02_0_p043_m01_Tips_'),
+		  },
+        transitionTrigger = {
+          [1] = "waitForInput",
+          enemyToGoTo = "enemyQuit1",
+        },
+        drawData = { 
+		[1] = { 
+		anim = "ProTip", 
+		},
+	  },
+	},
+  },
+ },  
 }

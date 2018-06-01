@@ -670,12 +670,13 @@ return {
         },
         anims = {
           Overlay = RM:loadAnimation('s02_1_p005_m20_Overlay_'),
-          EndIdle = EndIdle,
+          TextBox = RM:loadAnimation('s02_1_p005_m20_TextBox_'),
+		  EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.5,
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -686,8 +687,11 @@ return {
           },
           [3] = {
             anim = "Overlay",
+			},
+		  [4] = {
+		    anim = "TextBox",
           },
-          [4] = {
+          [5] = {
             anim = "Gas",
           },
         },
@@ -696,10 +700,7 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m20_TextBox_'),
-          EndIdle = EndIdle,
-          QuitIdle = QuitIdle,
-          Gas = Gas,
+          ProTip = RM:loadAnimation('s02_1_p005_m21_Tips_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -707,16 +708,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "QuitIdle",
-          },
-          [2] = {
-            anim = "EndIdle",
-          },
-          [3] = {
-            anim = "TextBox",
-          },
-          [4] = {
-            anim = "Gas",
+            anim = "ProTip",
           },
         },
       },

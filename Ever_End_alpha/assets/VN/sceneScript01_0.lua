@@ -1134,7 +1134,7 @@ return {
 		  RealityBG = RM:loadAnimation('quit_quarters_blur_'),
           },
         transitionTrigger = {
-          [1] = "timer", [2] = 4.5,
+          [1] = "timer", [2] = 5.0,
         },
         drawData = {
 --          [1] = {
@@ -1174,7 +1174,7 @@ return {
           Zero = RM:loadAnimation('s01_0_p019_m01_Zero_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.2,
         },
         drawData = {
           [1] = {
@@ -1202,7 +1202,7 @@ return {
       anim = QuitRoomBackgroundBlur
     },
     moments = {
-      [1] = {
+      [1] = {  
         sounds = {
         },
         anims = {
@@ -1211,7 +1211,7 @@ return {
           EndZero = RM:loadAnimation('s01_0_p020_m01_EndZero_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 2.5,
         },
         drawData = {
           [1] = {
@@ -1246,7 +1246,7 @@ return {
       anim = QuitRoomBackgroundBlur
     },
     moments = {
-      [1] = {
+      [1] = { 			--add screen/sprite shake to the grab
         sounds = {
         },
         anims = {
@@ -1264,13 +1264,20 @@ return {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
-            anim = "EndPullingZero",
+            anim = "EndPullingZero", 
+			x = 0,
+			y = 0,
+			shake = {0.5, {"x", "y",}, 70, 100, -100/0.5 },
           },
           [3] = {
             anim = "PullFX",
+			alpha = 1,
+			tween = {1.0, {alpha = 0}, "in-linear" },
           },
           [4] = {
             anim = "TurnFX",
+			alpha = 1,
+			tween = {0.5, {alpha = 0}, "in-linear" },
           },
           [5] = {
             anim = "Text",
@@ -1322,7 +1329,7 @@ return {
           Box = RM:loadAnimation('s01_0_p023_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = .8,
+          [1] = "timer", [2] = 1.8,
         },
         drawData = {
           [1] = {
@@ -1336,7 +1343,7 @@ return {
             yScale = 1.03,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-quad"},
+            tween = {1.8, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-quad"},
           },
         },
       },
@@ -1403,9 +1410,15 @@ return {
           },
           [2] = {
             anim = "ZeroBiting",
+			x = 0,
+			y = 0,
+			shake = {0.5, {"x", "y",}, 80, 110, -100/0.5}, 
           },
           [3] = {
             anim = "ZeroBiteFX",
+			x = 0,
+			y = 0,
+			shake = {0.5, {"x", "y",}, 80, 110, -100/0.5}, 
           },
         },
       },
@@ -1452,7 +1465,7 @@ return {
             yScale = 1.0,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.0, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.05, yScale = 1.05}, "in-out-quad"},
+            tween = {0.2, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.05, yScale = 1.05}, "in-out-quad"},
           },
           [4] = {
             anim = "PullFX",
@@ -1498,11 +1511,11 @@ return {
             anim = "ZeroShouting",
             x = 2320/2 - 200,
             y = 1480/2 - 200 + 100,
-            xScale = 1.05,
-            yScale = 1.05,
+            xScale = .7,
+            yScale = .7,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.33, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
+            tween = {0.1, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-linear"},
           },
           [3] = {
             anim = "Effect",
@@ -1527,6 +1540,7 @@ return {
           Box = RM:loadAnimation('s01_0_p028_m01_Box_'),
           End = RM:loadAnimation('s01_0_p028_m01_End_'),
           Text = RM:loadAnimation('s01_0_p028_m01_Text_'),
+		  Text2 = RM:loadAnimation('s01_0_p028_m02_Text_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1550,7 +1564,7 @@ return {
             yScale = .9,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.5, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
+            tween = {0.1, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
           },
           [3] = {
             anim = "Text",
@@ -1560,12 +1574,56 @@ return {
             yScale = .9,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.5, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
+            tween = {0.3, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "in-out-quad"},
+		},
+	},
+  },
+		
+		[2] = {
+		        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s01_0_p028_m01_Box_'),
+          End = RM:loadAnimation('s01_0_p028_m01_End_'),
+          Text = RM:loadAnimation('s01_0_p028_m01_Text_'),
+		  Text2 = RM:loadAnimation('s01_0_p028_m02_Text_'),
+		  },
+		transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+			x = 2320/2 - 200, 
+			y = 1480/2 - 200, 
+			 xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			},
+          [2] = {
+            anim = "End",
+			x = 2320/2 - 200 - 30, 
+			y = 1480/2 - 200,
+			xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,	
+			tween = {0.1, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.2, yScale = 1.2}, "in-out-quad"},			
+          },
+          [3] = {
+            anim = "Text2",
+			x = 2320/2 - 200 - 30, 
+			y = 1480/2 - 200, 
+			xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,	
+			},
           },
         },
       },
-    },
-  },
+	 },
   [28] = {
     bg = {
       anim = QuitRoomBackgroundBlur
@@ -1591,10 +1649,42 @@ return {
             anim = "End",
             x = 2320/2 - 200 - 100,
             y = 1480/2 - 200 + 30,
-            xScale = 1,
-            yScale = 1,
+            xScale = 1.2,
+            yScale = 1.2,
             xOffset = 2320/2,
             yOffset = 1480/2,
+			tween = {0.1, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.7, yScale = 1.7}, "in-out-quad"},	
+          },
+          [3] = {
+            anim = "Text",
+			},
+		},
+	},
+		[2] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s01_0_p028_m01_Box_'),
+          End = RM:loadAnimation('s01_0_p029_m01_End_'),
+          Text = RM:loadAnimation('s01_0_p029_m02_Text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+
+          },
+          [2] = {
+            anim = "End",
+            x = 2320/2 - 200 - 100,
+            y = 1480/2 - 200 + 30,
+            xScale = 1.7,
+            yScale = 1.7,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			tween = {0.1, {x = 2320/2 - 200 - 70, y = 1480/2 - 200, xScale = 2.2, yScale = 2.2}, "in-out-quad"},	
           },
           [3] = {
             anim = "Text",
@@ -1617,7 +1707,7 @@ return {
           ZeroCry = RM:loadAnimation('s01_0_p030_m01_ZeroCry_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.8,
+          [1] = "timer", [2] = 2.2,
         },
         drawData = {
                     [1] = {
@@ -1685,9 +1775,48 @@ return {
           },
         },
       },
+	  [2] = {
+        sounds = {
+        },
+        anims = {
+          EndHolding = RM:loadAnimation('s01_0_p031_m01_EndHolding_'),
+          Box = RM:loadAnimation('s01_0_p031_m01_Box_'),
+          ZeroWalkAway = RM:loadAnimation('s01_0_p031_m01_ZeroWalkAway_'),
+          Text2 = RM:loadAnimation('s01_0_p031_m02_Text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+          },
+          [2] = {
+            anim = "EndHolding",
+            x = 2320/2 - 200 + 30,
+            y = 1480/2 - 200 ,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+          },
+          [3] = {
+            anim = "ZeroWalkAway",
+            x = 2320/2 - 200 + 30,
+            y = 1480/2 - 200 ,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+          },
+          [4] = {
+            anim = "Text2",
+            },
+         },
+       },
     },
   },
-  [31] = {
+  [31] = { 
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1696,7 +1825,6 @@ return {
         sounds = {
         },
         anims = {
-          Zero = RM:loadAnimation('s01_0_p032_m01_Zero_'),
           Box = RM:loadAnimation('s01_0_p032_m01_Box_'),
           End = RM:loadAnimation('s01_0_p032_m01_End_'),
           Text = RM:loadAnimation('s01_0_p032_m01_Text_'),
@@ -1734,6 +1862,47 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
+          },
+        },
+      },
+	        [2] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s01_0_p032_m01_Box_'),
+          EndZero = RM:loadAnimation('s01_0_p032_m01_End_'),
+          Text2 = RM:loadAnimation('s01_0_p032_m02_Text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+            x = 2320/2 - 200 + 30,
+            y = 1480/2 - 200 ,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+          },
+          [2] = {
+            anim = "EndZero",
+            x = 2320/2 - 200 +30,
+            y = 1480/2 - 200,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+          },
+          [3] = {
+            anim = "Text2",
+            x = 2320/2 - 200 + 30,
+            y = 1480/2 - 200,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
           },
         },
       },
@@ -1781,7 +1950,7 @@ return {
           },
         },
       },
-      [2] = {
+      [2] = { -- ADD sprite shake to kick
         sounds = {
 			{"Kick Echo"},
         },
@@ -1789,6 +1958,7 @@ return {
           EndKicked = RM:loadAnimation('s01_0_p033_m01_EndKicked_'),
           Box = RM:loadAnimation('s01_0_p033_m01_Box_'),
           ZeroKicking = RM:loadAnimation('s01_0_p033_m01_ZeroKicking_'),
+		  Effect = RM:loadAnimation('s01_0_p027_m01_Effect_'),
         },
         transitionTrigger = {
           [1] = "timer", [2] = 1.0,
@@ -1800,7 +1970,10 @@ return {
           [2] = {
             anim = "ZeroKicking",
           },
-          [3] = {
+		  [3] = {
+		    anim = "Effect"
+		  },
+          [4] = {
             anim = "EndKicked",
           },
         },
@@ -1822,7 +1995,7 @@ return {
           EndSurprised = RM:loadAnimation('s01_0_p034_m01_EndSurprised_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer", [2] = 1.7,
         },
         drawData = {
           [1] = {
@@ -1833,6 +2006,13 @@ return {
           },
           [3] = {
             anim = "ZeroRunning",
+			x = 2320/2 - 200 + 800,
+            y = 1480/2 - 200 + 500,
+            xScale = 1.5,
+            yScale = 1.5,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 - 50, y = 1480/2 - 200 -50, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
           [4] = {
             anim = "Text",
@@ -1906,7 +2086,7 @@ return {
           ZeroRunning = RM:loadAnimation('s01_0_p036_m01_ZeroRunning_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.0,
+          [1] = "timer", [2] = 2.3,
         },
         drawData = {
           [1] = {
@@ -1917,6 +2097,13 @@ return {
           },
           [3] = {
             anim = "ZeroRunning",
+			x = 2320/2 - 200 + 200,
+            y = 1480/2 - 200,
+            xScale = 0.7,
+            yScale = 0.7,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
         },
       },
@@ -1946,9 +2133,23 @@ return {
           },
           [2] = {
             anim = "EndChasing",
+			x = 2320/2 - 200 + 200,
+            y = 1480/2 - 200 + 100,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
           [3] = {
             anim = "ZeroRunning",
+			x = 2320/2 - 200 + 800,
+            y = 1480/2 - 200 + 150,
+            xScale = 1.5,
+            yScale = 1.5,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {1.7, {x = 2320/2 - 200 - 50, y = 1480/2 - 200 -50, xScale = 1.0, yScale = 1.0}, "out-quart"},
           },
           [4] = {
             anim = "Text",
