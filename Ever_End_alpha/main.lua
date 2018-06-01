@@ -93,9 +93,9 @@ batonControls = {
     up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
     down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
     attack = {'key:space',                         'button:a'},
-    guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
-    parry  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
-    dodge  = {"key:d"    ,                         "button:x"},
+    -- guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
+    parry  = {"key:g"    ,                         "button:x"},
+    -- dodge  = {"key:d"    ,                         "button:x"},
     heal   = {"key:h"    ,                         "button:y"},
     -- TODO: choices = keys:
     combo = {"button:a", "button:b", "button:x", "button:y"},
@@ -133,7 +133,7 @@ function love.load(arg)
     debugPrint("Loading: ", 100, 100)
   end
   --
-  
+  RM:prefix = ""
   RM:loadAnimation("assets/GUI/Defeat_screen_")  
   RM:loadAnimation("assets/GUI/Victory_screen_")
 

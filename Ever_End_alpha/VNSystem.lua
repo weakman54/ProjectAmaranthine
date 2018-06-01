@@ -257,8 +257,8 @@ function VNSystem:update(dt)
     --    end
     self:incrementMomentI()
 
-  elseif input:pressed("guard") and self.curPanelI ~= 1 then
-    self:setPanelI(self.curPanelI - 1)
+  -- elseif input:pressed("parry") and self.curPanelI ~= 1 then
+--     self:setPanelI(self.curPanelI - 1)
   end
 
 

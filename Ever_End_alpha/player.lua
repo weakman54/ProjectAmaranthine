@@ -246,7 +246,7 @@ function player:initializeSM()
         end
 
 
-        if not input:down("guard") or player.SP <= 0 then
+        if not input:down("parry") or player.SP <= 0 then
           return sm:switch("idle")
         end
 
