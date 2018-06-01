@@ -643,13 +643,13 @@ return {
           Box4 = RM:loadAnimation('s04_1_p015_m01_Box_'),
           Zero = RM:loadAnimation('s04_1_p012_m01_Zero_'),
           Quit = RM:loadAnimation('s04_1_p012_m01_Quit_'),
-          Text1 = RM:loadAnimation('s04_1_p012_m01_Text_'), -- TODO: fix these texts!
+          Text1 = RM:loadAnimation('s04_1_p012_m01_Text_'),
           Text2 = RM:loadAnimation('s04_1_p012_m02_Text_'),
           Text3 = RM:loadAnimation('s04_1_p012_m03_Text_'),
         },
         transitionTrigger = {
           [1] = "timer",
-          [2] = 9,
+          [2] = 10,
 --          [1] = "waitForInput",
           gotoScene = "05_0",
         },
@@ -674,16 +674,26 @@ return {
             },
           },
           [2] = {
+            anim = "Box1",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
+          },
+          [3] = {
             anim = "Text1",
             x =  0,
             y =  270,
             alpha = 0, tween = {1, {  alpha = 1 }, "in-expo" },
           },
 
-          [3] = {
-            anim = "Box1",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
-          },
+          
+         
+
+
           [4] = {
+            anim = "Box2",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
+            alpha = 0, tween = {3, { alpha = boxAlpha }, "in-expo" },
+
+          },
+    
+          [5] = {
             anim = "Text2",
             x =  0,
             y =  270,
@@ -691,30 +701,23 @@ return {
 
           },
 
-
-          [5] = {
-            anim = "Box2",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
-            alpha = 0, tween = {3, { alpha = boxAlpha }, "in-expo" },
-
-          },
-
           [6] = {
             anim = "Text3",
             x =  0,
-            y =  270,
+            y =  0,
             alpha = 0, tween = {5, { alpha = 1 }, "in-expo" },
 
           },
 
           [7] = {
             anim = "Box3",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
-            alpha = 0, tween = {6, { alpha = boxAlpha }, "in-expo" },
+            alpha = 0, tween = {7, { alpha = boxAlpha }, "in-expo" },
 
           },
 
           [8] = {
             anim = "Box4",alpha=0,red=boxDarken,green=boxDarken,blue=boxDarken,
-            alpha = 0, tween = {8, { alpha = 1 }, "in-expo" },
+            alpha = 0, tween = {10, { alpha = 1 }, "in-expo" },
 
           },
           [9] = {

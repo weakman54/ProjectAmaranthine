@@ -1,6 +1,6 @@
 local SM = {}
 
-local NULLSTATE = {canSwitch = function() return true end}
+local NULLSTATE = {canSwitch = function() return true end, update = function() error("Statemachine: Tried to call update() on NULLSTATE, make sure to switch to an actual state before updating!") end}
 
 
 function SM:new()

@@ -72,7 +72,7 @@ end
 --
 
 
-function enemy:loadAttack(attack, framerate)
+function enemy:loadAttack(attack, framerate, attackFrame)
   -- TODO: look this over (though should finalize attack format first)
   assert(attack and attack.name, "must pass attack, attack must have name")
 
@@ -102,14 +102,15 @@ function enemy:loadAttack(attack, framerate)
   -- Load timings -------------------------------------
   local frameDuration = 1/framerate
 
-  for i, frame in ipairs(anim.data._frames) do
-    local imgData = frame.imgData
-    local r, g, b, a = imgData:getPixel(0, 0)
+  --  for i, frame in ipairs(anim.data._frames) do
+--    local imgData = frame.imgData
+--    local r, g, b, a = imgData:getPixel(0, 0)
 
-    if a == 1 and r == 1 then -- Corner marker for attack start
-      attack.damageImpact = (i - 1) * frameDuration -- Using i - 1 to account for the fact that Timer only checks wether the set time has _passed_
-    end
-  end
+--    if a == 1 and r == 1 then -- Corner marker for attack start
+--      attack.damageImpact = (i - 1) * frameDuration -- Using i - 1 to account for the fact that Timer only checks wether the set time has _passed_
+--    end
+--  end
+  attack.damageImpact = attackFrame * frameDuration
 
   assert(attack.damageImpact, "There was no marked attack frame in the attack animation: " .. attack.name)
 
@@ -131,17 +132,17 @@ function enemy:initializeAttacks()
   self.attacks = {}
   self.attackWeights = {} -- NOTE: these are hardcoded atm, should make sure to fix a better way of loading the weights
 
-  self.attacks["high_attack01"] = self:loadAttack({name = "high_attack01", animName = "high_attack01", damage = ENEMY_ATTACK_HIGH_DAMAGE, stance = "high"})
+  self.attacks["high_attack01"] = self:loadAttack({name = "high_attack01", animName = "high_attack01", damage = ENEMY_ATTACK_HIGH_DAMAGE, stance = "high"}, nil, 8)
   self.attackWeights["high_attack01"] = ENEMY_ATTACK_HIGH_WEIGHT
 
-  self.attacks["low_attack01"]  = self:loadAttack({name = "low_attack01" , animName = "low_attack01" , damage = ENEMY_ATTACK_LOW_DAMAGE, stance = "low" })
+  self.attacks["low_attack01"]  = self:loadAttack({name = "low_attack01" , animName = "low_attack01" , damage = ENEMY_ATTACK_LOW_DAMAGE, stance = "low" }, nil, 8)
   self.attackWeights["low_attack01"] =  ENEMY_ATTACK_LOW_WEIGHT
 
 
   self.attackWeights["taunt"] = ENEMY_TAUNT_WEIGHT -- Feels kindof misplaced but eh...
+  
 
-
-  self.counterAttack = self:loadAttack({name = "counterAttack", animName = "low_attack01", damage = ENEMY_ATTACK_COUNTER_DAMAGE, stance = "high"})
+  self.counterAttack = self:loadAttack({name = "counterAttack", animName = "low_attack01", damage = ENEMY_ATTACK_COUNTER_DAMAGE, stance = "high"}, nil, 8)
 end
 --
 

@@ -221,6 +221,7 @@ return {
       },
       [4] = {
         sounds = {
+			{"Gun Cock"},
         },
         music = {"Conflict to Resolve Theme (Happy) Intro"},
         anims = {
