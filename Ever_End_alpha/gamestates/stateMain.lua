@@ -69,7 +69,7 @@ function stateMain:init()
     {
       update = function(self, dt)
         if input:pressed("comboRight") then
-          Gamestate.switch(stateBattle)
+--          Gamestate.switch(stateBattle)
 
         elseif input:pressed("comboUp") then
           Gamestate.switch(stateVN)
