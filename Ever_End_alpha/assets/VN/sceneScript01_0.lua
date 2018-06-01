@@ -928,24 +928,34 @@ return {
           Kitty = RM:loadAnimation('s01_0_p015_m01_Kitty_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0,
+          [1] = "timer", [2] = 1.9,
         },
         drawData = {
           [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
+            anim = "Effect",
+		  },
+		  [3] = {
             anim = "Kitty",
-          },
-          [3] = {
-            anim = "EndKicking",
+			x = 0 + 200,
+            y = 0,
+			tween = {0.5, {x = 0 - 50, y = 0}, "out-quad"},
           },
           [4] = {
-            anim = "ZeroScared",
+            anim = "EndKicking",
+			x = 0 + 200,
+            y = 0,
+			tween = {0.3, {x = 0, y = 0}, "out-quad"},
           },
           [5] = {
-            anim = "Effect",
+            anim = "ZeroScared",
+			x = 0,
+            y = 0 + 200,
+			tween = {0.5, {x = 0, y = 0}, "in-out-bounce"},
           },
+         
         },
       },
     },
@@ -962,22 +972,39 @@ return {
           Zero = RM:loadAnimation('s01_0_p016_m01_Zero_'),
           --Box = RM:loadAnimation('s01_0_p016_m01_Box_'),
           End = RM:loadAnimation('s01_0_p017_m02_End_'), -- NOTE: other asset
+		  Kitty = RM:loadAnimation('s01_0_p016_m02_Kitty_'),
           Text = RM:loadAnimation('s01_0_p016_m01_Text_'),
+		  RealityBG = RM:loadAnimation('quit_quarters_blur_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
         },
         drawData = {
---          [1] = {
+			[1] = {
+			  anim = "RealityBG",
+			  },
+			--[1] = {
 --            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
 --          },
-          [1] = {
-            anim = "End",
-          },
           [2] = {
-            anim = "Zero",
+            anim = "End",
+			x = 0 + 80,
+			y = 0 - 2045 - 20,
+			tween = {1.4, {x = 0, y = -2045}, "in-out-quad"},
           },
-          [3] = {
+		  [3] = {
+		   anim = "Kitty",
+		   x = 0 + 100,
+		   y = 0 - 2045 - 30,
+		   tween = {1.4, {x = 0, y = -2045}, "in-out-quad"},
+		  },
+          [4] = {
+            anim = "Zero",
+			x = 0 - 200,
+			y = 0 - 2045 + 50,
+			tween = {1.5, {x = 0, y = -2045}, "in-out-quad"},
+           },
+          [5] = {
             anim = "Text",
           },
         },
@@ -986,31 +1013,88 @@ return {
         sounds = {
         },
         anims = {
-          Zero = RM:loadAnimation('s01_0_p016_m02_Zero_'),
-          --Box = RM:loadAnimation('s01_0_p016_m02_Box_'),
-          End = RM:loadAnimation('s01_0_p017_m02_End_'), -- NOTE: other asset
+		  Zero = RM:loadAnimation('s01_0_p016_m01_Zero_'),
+		  End = RM:loadAnimation('s01_0_p017_m02_End_'), 
           Kitty = RM:loadAnimation('s01_0_p016_m02_Kitty_'),
+          Text = RM:loadAnimation('s01_0_p016_m01_Text_'),
+		  RealityBG = RM:loadAnimation('quit_quarters_blur_'),          
+          --Box = RM:loadAnimation('s01_0_p016_m02_Box_'),
+		  White = White,
+
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.0,
+          [1] = "timer", [2] = 1.5,
         },
         drawData = {
 --          [1] = {
 --            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
 --          },
-          [1] = {
-            anim = "End",
-          },
+		  [1] = {
+		    anim = "RealityBG",
+		    },
           [2] = {
-            anim = "Kitty",
+            anim = "End",
+			x = 0,
+			y = 0 - 2045,
+			--alpha = 1
+			--tween = {3.0, {x = 0, y = -2045 - }, "in-quad"},
           },
-          [3] = {
+		  [3] = {
+		   anim = "Kitty",
+		   x = 0,
+		   y = 0 - 2045,
+		   --alpha = 1
+		   --tween = {1.4, {x = 0, y = -2045}, "in-out-quad"},
+		  },
+          [4] = {
             anim = "Zero",
+			x = 0,
+			y = 0 - 2045,
+			--tween = {1.5, {x = 0, y = -2045}, "in-out-quad"},
+           },
+          [5] = {
+            anim = "Text",
+			},
+		  [6] = {
+		    anim = "White",
+            alpha = 0, tween = {0.9, {alpha = 1}, "in-expo"},
+			},
+		},
+	},		
+[3] = { 
+        sounds = {
+        },
+        anims = {
+          ZeroFlash = RM:loadAnimation('s01_0_p016_m02_Zero_'),
+		  EndFlash = RM:loadAnimation('s01_0_p017_m02_EndFlashback_'), -- NOTE: other asset
+		  Soldier = RM:loadAnimation('s01_0_p016_m02_Soldier_'), 
+        },
+        transitionTrigger = {
+          [1] = "timer", [2] = 6.0,
+        },
+        drawData = {	
+			[1] = {
+			anim = "EndFlash",
+			x = 0,
+			y = 0 - 2045,
+			tween = {5.0, {x = 0, y = 0}, "in-out-quart" }, 
           },
+		  [2] = {
+			anim = "Soldier",
+			x = 0,
+			y = 0 - 2045,
+			tween = {5.5, {x = 0, y = 0 + 0}, "in-out-quart" }, 
+          },		  
+		  [3] =  {
+			anim = "ZeroFlash",
+			x = 0,
+			y = 0 - 2045,
+			tween = {5.0, {x = 0, y = 0}, "in-quad" }, 
+		  },
         },
       },
+	 },
     },
-  },
   [17] = {
     bg = {
       anim = FlashbackBG,
@@ -1020,10 +1104,7 @@ return {
         sounds = {
         },
         anims = {
-          Zero = RM:loadAnimation('s01_0_p017_m01_Zero_'),
-          Box = RM:loadAnimation('s01_0_p017_m01_Box_'),
-          End = RM:loadAnimation('s01_0_p017_m02_EndFlashback_'), -- NOTE: other asset
-          Kitty = RM:loadAnimation('s01_0_p017_m01_Kitty_'),
+          End = RM:loadAnimation('s01_0_p017_m02_EndFlashback_'),
         },
         transitionTrigger = {
           [1] = "timer", [2] = 1.0,
@@ -1034,12 +1115,13 @@ return {
 --          },
           [1] = {
             anim = "End",
-          },
-          [2] = {
-            anim = "Kitty",
-          },
-          [3] = {
-            anim = "Zero",
+			x = 2320/2 - 200 ,
+            y = 1480/2 - 200,
+            xScale = 1.0,
+            yScale = 1.0,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			tween = {1.0, {x = 2320/2 - 200 - 50, y = 1480/2 - 200, xScale = 1.2, yScale = 1.2}, "in-expo" },	
           },
         },
       },
@@ -1047,58 +1129,37 @@ return {
         sounds = {
         },
         anims = {
-          Box = RM:loadAnimation('s01_0_p017_m02_Box_'),
-          End = RM:loadAnimation('s01_0_p017_m02_EndFlashback_'), -- NOTE: other asset
-          Zero = RM:loadAnimation('s01_0_p017_m02_Zero_'),
-        },
+          EndFlash = RM:loadAnimation('s01_0_p018_m01_EndFlashback_'),
+		  End = RM:loadAnimation('s01_0_p018_m01_End_'),
+		  RealityBG = RM:loadAnimation('quit_quarters_blur_'),
+          },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.0,
+          [1] = "timer", [2] = 4.5,
         },
         drawData = {
 --          [1] = {
 --            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
 --          },
           [1] = {
-            anim = "End",
-          },
-          [2] = {
-            anim = "Zero",
+			anim = "RealityBG",
+			alpha = 0,
+			tween = {4.0, {alpha = 1}, "in-expo" },
+			},
+		  [2] = {
+			anim = "End",
+			alpha = 0,
+			tween = {4.0, {alpha = 1}, "in-expo" },
+			},
+		  [3] = {
+            anim = "EndFlash",
+			alpha = 1,
+			tween = {4.0, {alpha = 0}, "in-expo" },
+			},
           },
         },
       },
     },
-  },
   [18] = {
-    bg = {
-      anim = QuitRoomBackgroundBlur
-    },
-    moments = {
-      [1] = {
-        sounds = {
-        },
-        anims = {
-          EndFlashback = RM:loadAnimation('s01_0_p018_m01_EndFlashback_'),
-          End = RM:loadAnimation('s01_0_p018_m01_End_'),
-          Box = RM:loadAnimation('s01_0_p013_m01_Box_'),
-        },
-        transitionTrigger = {
-          [1] = "timer", [2] = 1.0,
-        },
-        drawData = {
-          [1] = {
-            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
-          },
-          [2] = {
-            anim = "EndFlashback",
-          },
-          [3] = {
-            anim = "End",
-          },
-        },
-      },
-    },
-  },
-  [19] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1113,7 +1174,7 @@ return {
           Zero = RM:loadAnimation('s01_0_p019_m01_Zero_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.0,
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -1136,7 +1197,7 @@ return {
       },
     },
   },
-  [20] = {
+  [19] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1180,7 +1241,7 @@ return {
       },
     },
   },
-  [21] = {
+  [20] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1218,7 +1279,7 @@ return {
       },
     },
   },
-  [22] = {
+  [21] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1248,7 +1309,7 @@ return {
       },
     },
   },
-  [23] = {
+  [22] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1281,7 +1342,7 @@ return {
       },
     },
   },
-  [24] = {
+  [23] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1318,7 +1379,7 @@ return {
       },
     },
   },
-  [25] = {
+  [24] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1350,7 +1411,7 @@ return {
       },
     },
   },
-  [26] = {
+  [25] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1412,7 +1473,7 @@ return {
       },
     },
   },
-  [27] = {
+  [26] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1454,7 +1515,7 @@ return {
       },
     },
   },
-  [28] = {
+  [27] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1505,7 +1566,7 @@ return {
       },
     },
   },
-  [29] = {
+  [28] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1542,7 +1603,7 @@ return {
       },
     },
   },
-  [30] = {
+  [29] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1578,7 +1639,7 @@ return {
       },
     },
   },
-  [31] = {
+  [30] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1626,7 +1687,7 @@ return {
       },
     },
   },
-  [32] = {
+  [31] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1678,7 +1739,7 @@ return {
       },
     },
   },
-  [33] = {
+  [32] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1746,7 +1807,7 @@ return {
       },
     },
   },
-  [34] = {
+  [33] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1780,7 +1841,7 @@ return {
       },
     },
   },
-  [35] = {
+  [34] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1831,7 +1892,7 @@ return {
       },
     },
   },
-  [36] = {
+  [35] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
@@ -1861,7 +1922,7 @@ return {
       },
     },
   },
-  [37] = {
+  [36] = {
     bg = {
       anim = QuitRoomBackgroundBlur
     },
