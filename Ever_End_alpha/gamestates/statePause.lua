@@ -1,9 +1,18 @@
 
 
+local RM = require "resourceManager.resourceManager"
+
+
 local statePause = {}
 
 
 local printScreenMode = false
+
+
+function statePause:init()
+  RM.prefix = ""
+  self.GUI = RM:loadAnimation("assets/GUI/pause_screen_")
+end
 
 
 function statePause:enter(from)
@@ -13,12 +22,13 @@ end
 
 
 function statePause:update(dt)
-  if input:pressed("systemStart") then
+  if input:pressed("comboUp") then
     return Gamestate.pop()
-    
-  elseif input:pressed("systemBack") then
-    love.event.quit()
-    
+
+  elseif input:pressed("comboDown") then
+    Gamestate.pop()
+    return Gamestate.switch(stateMain)
+
   end
 end
 
@@ -31,16 +41,19 @@ function statePause:draw()
     love.graphics.setColor(0, 0, 0, 0.5)
     love.graphics.rectangle('fill', 0, 0, W, H)
     love.graphics.setColor(1, 1, 1)
-    love.graphics.printf('PAUSE', 0, H/2, W, 'center')
+    
+    self.GUI.data:loveDraw(x, y, r, sx, sy, 200, 200)
+    
+--    love.graphics.printf('PAUSE', 0, H/2, W, 'center')
 
-    love.graphics.printf("escape/start - Return to game\nr - Return to main menu\nt - Toggle printscreen mode\nx/back - Exit game", 0, H/2 + 100, W, "center")
+--    love.graphics.printf("escape/start - Return to game\nr - Return to main menu\nt - Toggle printscreen mode\nx/back - Exit game", 0, H/2 + 100, W, "center")
   end
 end
 
 function statePause:keypressed(key)
   if key == "r" then
-    Gamestate.pop()
-    return Gamestate.switch(stateMain)
+--    Gamestate.pop()
+--    return Gamestate.switch(stateMain)
 
   elseif key == "t" then
     printScreenMode = not printScreenMode
