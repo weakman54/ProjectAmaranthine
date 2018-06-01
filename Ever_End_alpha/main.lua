@@ -119,6 +119,7 @@ input = baton.new(batonControls)
 
 
 function love.load(arg)
+  love.mouse.setVisible( false )
   love.window.setMode( 1920, 1080, { fullscreen = true, vsync = true, msaa = 2,} )
   reloaded = true
   do -- Starting loadscreens
