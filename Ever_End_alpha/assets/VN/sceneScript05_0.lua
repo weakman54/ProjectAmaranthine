@@ -14,6 +14,7 @@ local songDuration = 128
 creditsDuration = songDuration
 pxPerSec = endHeight / creditsDuration
 
+
 return {
   [1] = {
     bg = {
@@ -27,6 +28,7 @@ return {
         },
         music = {"Stars From Another World"},
         anims = {
+              Black = RM:loadAnimation('black'),
         },
         transitionTrigger = {
           [1] = "timer",
@@ -36,6 +38,11 @@ return {
           bg = {
             tween = {creditsDuration, {y = -endHeight}},
           },
+          [1] = {
+            anim = "Black",
+			alpha = 1, tween = {10.0, {alpha = 0}, "in-linear"}
+            
+          }
         },
       },
       [2] = {
