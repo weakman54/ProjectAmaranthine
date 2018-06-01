@@ -49,3 +49,5 @@ luac.out
 
 
 Ever_End_alpha/settings\.lua
+
+*.dds
