@@ -133,6 +133,9 @@ function love.load(arg)
     debugPrint("Loading: ", 100, 100)
   end
   --
+  
+  RM:loadAnimation("assets/GUI/Defeat_screen_")  
+  RM:loadAnimation("assets/GUI/Victory_screen_")
 
   Sound:init()  
 
