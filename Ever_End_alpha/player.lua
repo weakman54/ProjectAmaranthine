@@ -522,7 +522,7 @@ function player:changeHP(offset)
 
   if offset < 0 then
     local dur, intensity = 0.75, offset * 20
-    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur)
+    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur, function() self.x, self.y = 0, 0 end)
   end
 
 

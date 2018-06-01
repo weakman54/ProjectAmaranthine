@@ -454,7 +454,7 @@ function enemy:changeHP(offset)
     player:changeSP(math.abs(offset * DMG_TO_SP_RATIO))
 
     local dur, intensity = 0.75, offset * 20
-    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur)
+    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur, function() self.x, self.y = 0, 0 end)
   end
 
   if self.HP <=0 then
