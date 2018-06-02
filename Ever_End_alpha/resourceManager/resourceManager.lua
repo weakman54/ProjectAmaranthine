@@ -16,7 +16,8 @@ resourceManager.cache = {}
 --local cache = resourceManager.cache
 
 
-resourceManager.prefix = "assets/"
+--resourceManager.prefix = "assets/"
+resourceManager.prefix = ""
 
 
 

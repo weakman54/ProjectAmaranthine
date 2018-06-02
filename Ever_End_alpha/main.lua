@@ -133,7 +133,9 @@ function love.load(arg)
     debugPrint("Loading: ", 100, 100)
   end
   --
-  RM.prefix = ""
+  -- Elthammar note: There was a broke thing here preventing me to start
+  --RM:prefix = "" 
+  -- I killed it and changed prefix in resourceManagerd instead
   RM:loadAnimation("assets/GUI/Defeat_screen_")  
   RM:loadAnimation("assets/GUI/Victory_screen_")
 
@@ -292,7 +294,6 @@ function love.keypressed(key, scancode, isrepeat)
     end
 
   elseif key == "4" then
-
     slomo = slomo == 1 and dbgSlomoFactor or 1
   end
 end
