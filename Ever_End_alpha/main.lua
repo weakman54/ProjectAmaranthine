@@ -83,6 +83,7 @@ flipHack = false
 
 slomo = 1
 dbgSlomoFactor = .5
+speedUpFactor = 200
 -- TEST ^^^^^^^^^^^^^^^^^^
 
 
@@ -295,6 +296,9 @@ function love.keypressed(key, scancode, isrepeat)
 
   elseif key == "4" then
     slomo = slomo == 1 and dbgSlomoFactor or 1
+
+  elseif key == "5" then
+    slomo = slomo == 1 and speedUpFactor or 1
   end
 end
 

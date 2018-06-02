@@ -23,7 +23,9 @@ function stateVN:init()
 end
 
 function stateVN:enter(data)
-  
+  if data == "RESETPLZ" then --hack
+    VNSystem:loadScene(sceneToLoad, panelToLoad)
+  end
 end
 
 function stateVN:leave()
