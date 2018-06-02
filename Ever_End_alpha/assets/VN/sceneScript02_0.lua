@@ -68,8 +68,7 @@ return {
           Box = RM:loadAnimation('s02_0_p002_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "timer",--"waitForInput",
-          [2] = 1.0,
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -80,6 +79,7 @@ return {
             x = 1000, y = 0, tween = {1.0, { x = 0, y = 0 }, "in-linear" },
 
           },
+
         },
       },
     },

@@ -746,14 +746,8 @@ return {
             tween = {3.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "out-cubic"},
           },
           [3] = {
-            anim = "TextBox",
-            x = 2320/2 - 200 ,
-            y = 1480/2 - 200,
-            xScale = 1.07,
-            yScale = 1.07,
-            xOffset = 2320/2,
-            yOffset = 1480/2,
-            tween = {3.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "in-out-cubic"},
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+
           },
         },
       },
@@ -1230,14 +1224,8 @@ return {
             tween = {1.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [3] = {
-            anim = "TextBox",
-            x = 2320/2 - 200 ,
-            y = 1480/2 - 200 + 100,
-            xScale = 1.07,
-            yScale = 1.07,
-            xOffset = 2320/2,
-            yOffset = 1480/2,
-            tween = {1.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
+             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+
           },
         },
       },
