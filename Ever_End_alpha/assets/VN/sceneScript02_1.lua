@@ -669,6 +669,7 @@ return {
       },
       [19] = {
         sounds = {
+			{"Intense Moment"},
         },
         anims = {
           Overlay = RM:loadAnimation('s02_1_p005_m20_Overlay_'),
