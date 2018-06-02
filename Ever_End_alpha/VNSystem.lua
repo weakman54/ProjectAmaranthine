@@ -219,6 +219,9 @@ function VNSystem:incrementMomentI()
   -- ASSUMPTION: there is a loaded moment when running this...
   local sceneToGoto = self.curMoment.transitionTrigger.gotoScene
   if sceneToGoto then
+    if sceneToGoto == "MainMenu" then
+      return Gamestate.switch(stateMain)  
+    end
     return self:loadScene(sceneToGoto)
   end 
   -- ASSUMPTION: there is a loaded moment when running this...

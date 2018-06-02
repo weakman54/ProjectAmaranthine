@@ -54,7 +54,7 @@ return {
         transitionTrigger = {
           [1] = "timer",
           [2] = endBuffer,
-          gotoScene = "00_0" -- Kind of hack but eh
+          gotoScene = "MainMenu" -- Kind of hack but eh
         },
         drawData = {
         },

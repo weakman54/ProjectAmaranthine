@@ -76,7 +76,8 @@ function stateMain:init()
 --          Gamestate.switch(stateBattle)
 
         elseif input:pressed("comboUp") then
-          Gamestate.switch(stateVN)
+          
+          Gamestate.switch(stateVN, "RESETPLZ") --Hack
 
         elseif input:pressed("systemBack") then
           love.event.quit()
