@@ -774,7 +774,7 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Door Walls Closing"}, -- NEEDS FIX JBOB! :-)
+			{"Door Walls Closing NEW"}, -- NEEDS FIX JBOB! :-)
         },
         anims = {
           End = RM:loadAnimation('s02_0_p021_m01_End_'),
@@ -835,7 +835,6 @@ return {
       },
 	     [2] = {
         sounds = {
-			{"Door Walls Closing"},
         },
         anims = {
           End = RM:loadAnimation('s02_0_p021_m01_End_'),
