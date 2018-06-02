@@ -68,7 +68,8 @@ return {
           Box = RM:loadAnimation('s02_0_p002_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 1.0,
         },
         drawData = {
           [1] = {
@@ -130,7 +131,7 @@ return {
           Table = RM:loadAnimation('s02_0_p004_m01_Table_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "timer", [2] = 1.8,
         },
         drawData = {
           [1] = {
@@ -1713,6 +1714,48 @@ return {
           },
         },
       },
+	  [3] = {
+        sounds = {
+        },
+        anims = {
+          End = RM:loadAnimation('s02_0_p036_m02_End_'),
+          Star = RM:loadAnimation('s02_0_p036_m02_Star_'),
+          Effect = RM:loadAnimation('intenseFX_'),
+          Robot = RM:loadAnimation('s02_0_p036_m02_Robot_'),
+		  InputBox = InputBox,
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Effect",
+          },
+          [2] = {
+            anim = "End",
+          },
+          [3] = {
+            anim = "Robot",
+			x = 2320/2 - 200 - 10,
+            y = 1480/2 - 200 - 10,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			},
+          [4] = {
+            anim = "Star",
+			x = 2320/2 - 200 - 10,
+            y = 1480/2 - 200 - 10,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+          },
+		  [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+        },
+      },
     },
   },
   [37] = {
@@ -1730,7 +1773,7 @@ return {
 		  Robot = RM:loadAnimation('s02_0_p037_m01_Robot_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "timer", [2] = 2.0, 
         },
         drawData = {
           [1] = {

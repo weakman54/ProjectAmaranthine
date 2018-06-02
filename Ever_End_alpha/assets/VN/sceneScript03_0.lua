@@ -1327,7 +1327,8 @@ return {
 		  },
 		  [3] = {
 			anim = "Sword",
-			x = 1500, y = -700, tween = {1, {x=0, y = -700}, "out-cubic"}
+		    x = 0, y = 1000, tween = {1, {x=0, y = -700}, "out-cubic"}
+	--		x = 1500, y = -700, tween = {1, {x=0, y = -700}, "out-cubic"}
 		  },
 		},
 	  },
@@ -1405,7 +1406,7 @@ return {
 		  Box = RM:loadAnimation('s03_0_p038_m01_Box_'),
 		},
 		transitionTrigger = {
-		  [1] = "timer", [2] = 2.0,
+		  [1] = "timer", [2] = 1.5,
 		},
 		drawData = {
 		  [1] = {
@@ -1510,7 +1511,7 @@ return {
 		  Box = RM:loadAnimation('s03_0_p040_m01_Box_'),
 		},
 		transitionTrigger = {
-		  [1] = "timer", [2] = 1.7,
+		  [1] = "timer", [2] = 0.8,
 		},
 		drawData = {
 		  [1] = {
@@ -1552,6 +1553,9 @@ return {
 		  },
 		  [2] = {
 			anim = "Quit_End",
+			x = 150,
+			y = 0, 
+			tween = {0.7, {x = 0, y = 0}, "out-quad" },
 		  },
 		  [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -1577,7 +1581,9 @@ return {
 			anim = "Quit_End",
 		  },
 		  [3] = {
-            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+            anim = "TextBox", 
+			}, 
+			[4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
 		  },
 		},
 	  },
@@ -1715,6 +1721,36 @@ return {
 		  Quit = RM:loadAnimation('s03_0_p047_m01_Quit_'),
 		  Box = RM:loadAnimation('s03_0_p047_m01_Box_'),
 		  InputBox = InputBox, TextBox = RM:loadAnimation('s03_0_p047_m01_Text_'),
+		},
+		transitionTrigger = {
+		  [1] = "waitForInput",
+		},
+		drawData = {
+		  [1] = {
+			anim = "Box", alpha = boxAlpha, red = boxDarken, green = boxDarken, blue = boxDarken,
+		  },
+		  [2] = {
+			anim = "Quit",
+		  },
+		  [3] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+		  },
+		},
+	  },
+	  },
+	  },
+	  [48] = {
+	bg = {
+	  anim = background_blur,
+	},
+	moments = {
+	  [1] = {
+		sounds = {
+		},
+		anims = {
+		  Quit = RM:loadAnimation('s03_0_p048_m01_Quit_'),
+		  Box = RM:loadAnimation('s03_0_p047_m01_Box_'),
+		  InputBox = InputBox, TextBox = RM:loadAnimation('s03_0_p047_m02_Text_'),
 		},
 		transitionTrigger = {
 		  [1] = "waitForInput",
