@@ -359,8 +359,7 @@ return {
 		  Gas = Gas,
 		},
 		transitionTrigger = {
-		  [1] = "timer",--"waitForInput",
-		  [2] = 0.9
+		  [1] ="waitForInput",
 		},
 		drawData = {
 		  [1] = {
@@ -1110,6 +1109,7 @@ return {
 		anims = {
 		  Quit = RM:loadAnimation('s03_0_p031_m01_Quit_'),
 		  Box = RM:loadAnimation('s03_0_p031_m01_Box_'),
+          InputBox = InputBox,
 		},
 		transitionTrigger = {
 		  [1] = "timer",--"waitForInput",
@@ -1129,6 +1129,9 @@ return {
 			yScale = 1.4,
 			tween = {1.8, {y = 1480/2 - 200 ,xScale = 1, yScale = 1}, "in-out-cubic"}
 		  },
+          [3] = {
+            anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
 		},
 	  },
 	  [2] = {
@@ -1453,6 +1456,7 @@ return {
 		EndSurprised = RM:loadAnimation('s03_0_p040_m01_End_'),
 		EndNod = RM:loadAnimation('s03_0_p041_m01_End_'),
 		  Box = RM:loadAnimation('s03_0_p040_m01_Box_'),
+          InputBox = InputBox,
 		},
 		transitionTrigger = {
 		  [1] = "waitForInput",
@@ -1464,6 +1468,9 @@ return {
 		  [2] = {
 			anim = "EndSurprised",
 		  },
+          [3] = {
+            anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
 		},
 	  },
 	  [2] = {
@@ -1819,7 +1826,8 @@ return {
 		  Box = RM:loadAnimation('s03_0_p050_m01_Box_'),
 		},
 		transitionTrigger = {
-		  [1] = "waitForInput",
+		  		  [1] = "timer", [2] = 1.0,
+
 		},
 		drawData = {
 		  [1] = {
