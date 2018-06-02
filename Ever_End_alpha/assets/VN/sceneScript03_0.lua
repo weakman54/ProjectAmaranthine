@@ -1308,6 +1308,7 @@ return {
 	moments = {
 	  [1] = {
 		sounds = {
+			{"Sword Slide"},
 		},
 		anims = {
 		  Box = RM:loadAnimation('s03_0_p035_m01_Box_'),
