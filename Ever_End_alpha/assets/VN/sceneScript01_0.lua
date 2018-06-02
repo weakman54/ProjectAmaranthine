@@ -918,7 +918,7 @@ return {
           EndKicking = RM:loadAnimation('s01_0_p015_m01_EndKicking_'),
           ZeroScared = RM:loadAnimation('s01_0_p015_m01_ZeroScared_'),
           Box = RM:loadAnimation('s01_0_p015_m01_Box_'),
-          Effect = RM:loadAnimation('s01_0_p015_m01_Effect_'),
+          Effect = RM:loadAnimation('s01_0_p019_m01_Effect_'),
           Kitty = RM:loadAnimation('s01_0_p015_m01_Kitty_'),
         },
         transitionTrigger = {
@@ -930,6 +930,7 @@ return {
           },
           [2] = {
             anim = "Effect",
+			red=0, green=0, blue=0,
 		  },
 		  [3] = {
             anim = "Kitty",
@@ -1025,6 +1026,7 @@ return {
 --          },
 		  [1] = {
 		    anim = "RealityBG",
+			
 		    },
           [2] = {
             anim = "End",
@@ -1049,7 +1051,7 @@ return {
           [5] = {
             anim = "TextBox",
 			},
-		  [7] = {
+		  [6] = {
 		    anim = "White",
             alpha = 0, tween = {0.9, {alpha = 1}, "in-expo"},
 			},
@@ -1126,6 +1128,7 @@ return {
           EndFlash = RM:loadAnimation('s01_0_p018_m01_EndFlashback_'),
 		  End = RM:loadAnimation('s01_0_p018_m01_End_'),
 		  RealityBG = RM:loadAnimation('quit_quarters_blur_'),
+		  Effect = RM:loadAnimation('s01_0_p019_m01_Effect_'),
           },
         transitionTrigger = {
           [1] = "timer", [2] = 3.5,
@@ -1151,6 +1154,11 @@ return {
 			alpha = 1,
 			tween = {3.0, {alpha = 0}, "in-expo" },
 			},
+		  [4] = {
+			anim = "Effect",
+			red=0, green=0, blue=0, alpha = 0.5,
+			tween = {3.0, {alpha = 0}, "in-expo" },
+		  },
           },
         },
       },

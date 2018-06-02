@@ -1710,7 +1710,6 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
 			tween = {2.0, {x = 2320/2 - 200 - 10, y = 1480/2 - 200 - 10, xScale = 1, yScale = 1, }, "out-quart"},
-
           },
         },
       },
