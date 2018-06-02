@@ -1284,7 +1284,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = .3,
+          [2] = .4,
         },
         drawData = {
           [1] = {
@@ -1327,7 +1327,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = .3,
+          [2] = 0.4,
         },
         drawData = {
           [1] = {
@@ -1387,7 +1387,7 @@ return {
             yOffset = 1480/2,
             alpha = 1,
 
-            tween = {0.4, {
+            tween = {0.3, {
                 x = 2320/2 - 200 - 200,
                 y = 1480/2 - 200 - 400,
                 xScale = 1,
@@ -1415,7 +1415,6 @@ return {
           End = RM:loadAnimation('s02_0_p031_m01_End_'),
           Quit_Zero = RM:loadAnimation('s02_0_p031_m01_Quit_Zero_'),
           InputBox = InputBox, TextBox = RM:loadAnimation('s02_0_p031_m01_text_'),
-		  Effect = RM:loadAnimation('intenseFX_'),
         },
         transitionTrigger = {
        [1] = "waitForInput",
@@ -1435,17 +1434,17 @@ return {
             y = 150,
           },
           [3] = {
+            anim = "TextBox", 
+			alpha = 0, x = 100, y = 200, 
+			tween = {.1, {alpha = 1}, "in-linear"}, 
+			}, 
+		  [4] = {
             anim = "Quit_Zero",
 			x = 0 - 100,
 			y = 0,
 			tween = {1.0, {x = 0}, "out-quad" },
           },
-		  [4] = {
-			anim = "Effect",
-			alpha = 0.5,
-			},
-          [5] = {
-            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [6] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+			[5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -1685,7 +1684,7 @@ return {
           Robot = RM:loadAnimation('s02_0_p036_m02_Robot_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "timer", [2] = 0.1, -- [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -1702,7 +1701,7 @@ return {
             yScale = 1.1,
             xOffset = 2320/2,
             yOffset = 1480/2,
-			tween = {2.0, {x = 2320/2 - 200 - 10, y = 1480/2 - 200 - 10, xScale = 1, yScale = 1, }, "out-quart"},
+			tween = {0.1, {x = 2320/2 - 200 - 5, y = 1480/2 - 200 - 5, xScale = 1, yScale = 1, }, "out-quart"},
           },
           [4] = {
             anim = "Star",
@@ -1712,7 +1711,7 @@ return {
             yScale = 1.1,
             xOffset = 2320/2,
             yOffset = 1480/2,
-			tween = {2.0, {x = 2320/2 - 200 - 10, y = 1480/2 - 200 - 10, xScale = 1, yScale = 1, }, "out-quart"},
+			tween = {0.1, {x = 2320/2 - 200 - 5, y = 1480/2 - 200 - 5, xScale = 1, yScale = 1, }, "out-quart"},
           },
         },
       },

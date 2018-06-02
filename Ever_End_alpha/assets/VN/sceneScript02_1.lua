@@ -4,6 +4,7 @@ local RM = require 'resourceManager.resourceManager'
 
 RM.prefix = "assets/"
 local EndIdle   = RM:loadAnimation("Player/Player_idle_")
+local EndHeal   = RM:loadAnimation("Player/Player_heal_")
 --local EndAttack = RM:loadAnimation("Player/Player_attack_hit_")
 local RobotDead = RM:loadAnimation("Quit1/Quit1_defeat_")
 local QuitIdle  = RM:loadAnimation("Quit2/Quit2_idle_")
@@ -36,6 +37,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = {"Build_up_Theme Full"},
         anims = {
           EndIdle = EndIdle,
           RobotDead = RobotDead,
@@ -150,6 +152,8 @@ return {
           },
           [2] = {
             anim = "EndIdle",
+			x = - 500,
+			tween = {1.0, {x = 0}, "out-quart" },
           },
           [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -483,6 +487,7 @@ return {
         anims = {
           InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m13_TextBox_'),
           EndIdle = EndIdle,
+		  EndHeal = EndHeal,
           QuitIdle = QuitIdle,
           Gas = Gas,
         },
@@ -494,7 +499,7 @@ return {
             anim = "QuitIdle",
           },
           [2] = {
-            anim = "EndIdle",
+            anim = "EndHeal",
           },
           [4] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -701,6 +706,7 @@ return {
       [20] = {
         sounds = {
         },
+		music = {"Build_up_Theme Full", {fade = {duration = 4, rate = -1/4}}},
         anims = {
           ProTip = RM:loadAnimation('s02_1_p005_m21_Tips_'),
         },

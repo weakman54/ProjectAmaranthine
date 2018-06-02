@@ -257,10 +257,36 @@ return {
 		drawData = {
 		  [1] = {
 			anim = "Box", alpha = boxAlpha, red = boxDarken, green = boxDarken, blue = boxDarken,
+		  },
+		  [2] = {
+			anim = "EEnd",
+			x = 100,
+			tween = {1.0, {x = 0}, "out-quad"},
+		  },
+		  [3] = {
+			anim = "Gas",
+		  },
+		  [4] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+		  },
+		},
+	  },
+	   [2] = {
+		sounds = {
+		},
+		anims = {
+		  Box = RM:loadAnimation('s03_0_p006_m01_Box_'),
+		  EEnd = RM:loadAnimation('s03_0_p006_m01_End_'),
+		  Gas = Gas,
+		  InputBox = InputBox, TextBox = RM:loadAnimation('s03_0_p006_m02_Text_'),
+		},
+		transitionTrigger = {
+		  [1] = "waitForInput",
 
-
-
-
+		},
+		drawData = {
+		  [1] = {
+			anim = "Box", alpha = boxAlpha, red = boxDarken, green = boxDarken, blue = boxDarken,
 		  },
 		  [2] = {
 			anim = "EEnd",
@@ -269,7 +295,8 @@ return {
 			anim = "Gas",
 		  },
 		  [4] = {
-            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+            anim = "TextBox",  }, 
+			[5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
 		  },
 		},
 	  },
@@ -359,7 +386,7 @@ return {
 		  Gas = Gas,
 		},
 		transitionTrigger = {
-		  [1] ="waitForInput",
+		  [1] = "timer", [2] = 2.2,
 		},
 		drawData = {
 		  [1] = {
@@ -432,7 +459,7 @@ return {
 	  },
 	},
   },
-  [12] = {
+  [12] = { -- Flashback starts here <<<
 	bg = {
 	  anim = FlashbackBG,
 	},
@@ -446,17 +473,24 @@ return {
 		  White = RM:loadAnimation('white'),
 		},
 		transitionTrigger = {
-		  [1] = "timer",--"waitForInput",
-		  [2] = 3.0
+		  [1] = "timer",
+		  [2] = 4.0,
 		},
 		drawData = {
 		  [1] = {
-			anim = "EEnd",            
+			anim = "EEnd", 
+			x = 2320/2 - 200,
+            y = 1480/2 - 200 - 100,
+            xScale = 1.5,
+            yScale = 1.5,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {4.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1, }, "in-out-quad" },
 		  },
 		  [2] = {
 			anim = "White",
 			alpha = 1,
-			tween = {3.0, {alpha = 0}, "in-cubic"}
+			tween = {3.0, {alpha = 0}, "in-cubic"},
 		  },
 		},
 	  },
@@ -475,16 +509,21 @@ return {
 		  Zero = RM:loadAnimation('s03_0_p013_m01_Zero_'),
 		},
 		transitionTrigger = {
-		  [1] = "timer", [2] = 3.0,
+		  [1] = "timer", 
+		  [2] = 3.0,
 		},
 		drawData = {
 		  [1] = {
 			anim = "EEnd",
-			alpha = 1, tween = {3.0, {alpha = 0}, "in-linear"}
+			alpha = 1, 
+			tween = {1.0, {alpha = 0}, "in-linear"},
 		  },
 		  [2] = {
 			anim = "Zero",
-			alpha = 0, tween = {3.0, {alpha = 1}, "in-linear"}
+			x = 0,
+			y = 200,
+			alpha = 0, 
+			tween = {3.0, {x = 0, y = 0, alpha = 1}, "in-quad"},
 		  },
 		},
 	  },
@@ -500,9 +539,9 @@ return {
 		},
 		anims = {
 		  Zero = RM:loadAnimation('s03_0_p013_m01_Zero_'),
-
 		  Soldier = RM:loadAnimation('s03_0_p014_m01_Soldier_'),
 		  Zero2 = RM:loadAnimation('s03_0_p014_m01_Zero_'),
+		  Effect = RM:loadAnimation('intenseFX_')
 		},
 		transitionTrigger = {
 		  [1] = "timer", [2] = 3.0,
@@ -510,17 +549,26 @@ return {
 		drawData = {
 		  [1] = {
 			anim = "Zero",
-			alpha = 1, tween = {3.0, {alpha = 0}, "in-linear"}
+			alpha = 1, tween = {1.0, {alpha = 0}, "in-linear"}
 		  },
 		  [2] = {
 			anim = "Soldier",
-			alpha = 0, tween = {3.0, {alpha = 1}, "in-linear"}
-
+			alpha = 0,
+			x = 2320/2 - 200 - 20,
+            y = 1480/2 - 200 - 20,
+            xScale = 0.8,
+            yScale = 0.8,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+            tween = {3.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1, alpha = 1 }, "in-out-quad" },
 		  },
-		  [3] = {
+		   [3] = {
+			anim = "Effect",
+			alpha = 0, tween = {3.0, {alpha = 1}, "in-linear"}
+		  },
+		  [4] = {
 			anim = "Zero2",
 			alpha = 0, tween = {3.0, {alpha = 1}, "in-linear"}
-
 		  },
 		},
 	  },
@@ -546,17 +594,19 @@ return {
 		drawData = {
 		  [1] = {
 			anim = "Soldier",
-			alpha = 1, tween = {3.0, {alpha = 0}, "in-linear"}
+			alpha = 1, tween = {1.0, {alpha = 0}, "in-linear"}
 
 		  },
 		  [2] = {
 			anim = "Zero2",
-			alpha = 1, tween = {3.0, {alpha = 0}, "in-linear"}
+			alpha = 1, tween = {1.0, {alpha = 0}, "in-linear"}
 
 		  },
 		  [3] = {
 			anim = "End_Zero",
-			alpha = 0, tween = {3.0, {alpha = 1}, "in-linear"}
+			alpha = 0, 
+			x = - 200,
+			tween = {3.0, {x = 0, alpha = 1}, "in-out-quad"}
 
 		  },
 		},
@@ -574,21 +624,22 @@ return {
 		},
 		anims = {
 		End_Zero = RM:loadAnimation('s03_0_p015_m01_End_Zero_'),
-
-		  Soldier_End = RM:loadAnimation('s03_0_p016_m01_Soldier_End_'),
+		Soldier_End = RM:loadAnimation('s03_0_p016_m01_Soldier_End_'),
 		},
 		transitionTrigger = {
-		  [1] = "timer", [2] = 3.0,
+		  [1] = "timer", [2] = 3.5,
 		},
 		drawData = {
 		  [1] = {
 			anim = "End_Zero",
-			alpha = 1, tween = {3.0, {alpha = 0}, "in-linear"}
+			alpha = 1, tween = {1.0, {alpha = 0}, "in-linear"}
 
 		  },
 		  [2] = {
 			anim = "Soldier_End",
-			alpha = 0, tween = {3.0, {alpha = 1}, "in-linear"}
+			alpha = 0, 
+			x = 150,
+			tween = {1.0, {x = 0, alpha = 1}, "out-quad"}
 		  },
 		},
 	  },
@@ -608,16 +659,17 @@ return {
 		  Zero = RM:loadAnimation('s03_0_p017_m01_Zero_'),
 		},
 		transitionTrigger = {
-		  [1] = "timer", [2] = 3.0,
+		  [1] = "timer", [2] = 3.5,
 		},
 		drawData = {
 		  [1] = {
 			anim = "Soldier_End",
-			alpha = 1, tween = {3.0, {alpha = 0}, "in-linear"}
+			alpha = 1, tween = {1.0, {alpha = 0}, "in-linear"}
 		  },
 		  [2] = {
 			anim = "Zero",
-			alpha = 0, tween = {3.0, {alpha = 1}, "in-linear"}
+			x = -200,
+			alpha = 0, tween = {3.5, {x = 0, alpha = 1}, "in-out-quad"}
 
 		  },
 		},
@@ -634,22 +686,20 @@ return {
 		},
 		anims = {
 		  Zero = RM:loadAnimation('s03_0_p017_m01_Zero_'),
-
 		  EEnd = RM:loadAnimation('s03_0_p018_m01_End_'),
 		},
 		transitionTrigger = {
-		  [1] = "timer", [2] = 3.0,
+		  [1] = "timer", [2] = 3.8,
 		},
 		drawData = {
 		  [1] = {
 			anim = "Zero",
-			alpha = 1, tween = {3.0, {alpha = 0}, "in-linear"}
-
+			alpha = 1, tween = {1.0, {alpha = 0}, "in-linear"}
 		  },
 		  [2] = {
 			anim = "EEnd",
-			alpha = 0, tween = {3.0, {alpha = 1}, "in-linear"}
-
+			x = - 300,
+			alpha = 0, tween = {4.0, {x = 0, alpha = 1}, "in-out-quad"}
 		  },
 		},
 	  },
@@ -665,22 +715,21 @@ return {
 		},
 		anims = {
 		  EEnd = RM:loadAnimation('s03_0_p018_m01_End_'),
-
-
 		End2 = RM:loadAnimation('s03_0_p019_m01_End_'),
 		},
 		transitionTrigger = {
-		  [1] = "timer", [2] = 3.0,
+		  [1] = "timer", [2] = 5.0,
 		},
 		drawData = {
 		  [1] = {
 			anim = "EEnd",
-			alpha = 1, tween = {3.0, {alpha = 0}, "in-linear"}
+			alpha = 1, tween = {1.0, {alpha = 0}, "in-linear"}
 
 		  },
 		  [2] = {
 			anim = "End2",
-			alpha = 0, tween = {3.0, {alpha = 1}, "in-linear"}
+			x = - 100,
+			alpha = 0, tween = {5.0, {x = 0, alpha = 1}, "in-quad"}
 
 		  },
 		},
@@ -811,6 +860,7 @@ return {
 	  [1] = {
 		sounds = {
 		},
+		music = {"Behind_Your_Back", },
 		anims = {
 		  Quit = RM:loadAnimation('s03_0_p022_m01_Quit_'),
 		  Box = RM:loadAnimation('s03_0_p022_m01_Box_'),
@@ -922,6 +972,8 @@ return {
 		  },
 		  [2] = {
 			anim = "Zero",
+			x = 0,
+			tween = {1.2, {x = - 30}, "out-quad" },
 		  },
 		  [3] = {
 			anim = "Gas",
@@ -945,7 +997,7 @@ return {
 		  Gas = Gas,
 		},
 		transitionTrigger = {
-		  [1] = "timer", [2] = 2.0,
+		  [1] = "timer", [2] = 1.2,
 
 		},
 		drawData = {
@@ -954,6 +1006,9 @@ return {
 		  },
 		  [2] = {
 			anim = "Zero",
+			x = 0,
+			y = 0, 
+			tween = {1.2, {x = 100, y = - 40}, "out-quad" },
 		  },
 		  [3] = {
 			anim = "Gas",
@@ -1005,6 +1060,7 @@ return {
 		anims = {
 		  Zero = RM:loadAnimation('s03_0_p028_m01_Zero_'),
 		  Box = RM:loadAnimation('s03_0_p028_m01_Box_'),
+		  Effect = RM:loadAnimation('s03_0_p028_m01_Effect_'),
 		  Gas = Gas,
 		},
 		transitionTrigger = {
@@ -1019,6 +1075,11 @@ return {
 			anim = "Zero",
 		  },
 		  [3] = {
+			anim = "Effect",
+			alpha = 1,
+			tween = {0.5, {alpha = 0}, "in-linear" },
+		  },
+		  [4] = {
 			anim = "Gas",
 		  },
 		},
@@ -1033,6 +1094,7 @@ return {
 	  [1] = {
 		sounds = {
 		},
+		music = {"Behind_Your_Back", {fade = {duration = 4, rate = -1/3}}},
 		anims = {
 		  Quit_End = RM:loadAnimation('s03_0_p029_m01_Quit_End_'),
 		  Box = RM:loadAnimation('s03_0_p029_m01_Box_'),
@@ -1266,6 +1328,9 @@ return {
 		  },
 		  [2] = {
 			anim = "Quit",
+			x = 0 - 400,
+			y = 0 + 40,
+			tween = {1.0, {x = 0, y = 0}, "out-quad" },
 		  },
 		},
 	  },
@@ -1285,7 +1350,7 @@ return {
 		  InputBox = InputBox, TextBox = RM:loadAnimation('s03_0_p034_m01_Text_'),
 		},
 		transitionTrigger = {
-		  [1] = "timer", [2] = 2.0,
+		  [1] = "waitForInput"
 		},
 		drawData = {
 		  [1] = {
@@ -1642,6 +1707,8 @@ return {
 		  },
 		  [2] = {
 			anim = "EEnd",
+			x = 100,
+			tween = {1.0, {x = 0}, "out-quad" },
 		  },
 		  [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -1672,6 +1739,9 @@ return {
 		  },
 		  [2] = {
 			anim = "Quit",
+			x = 100,
+			tween = {0.9, {x = 0}, "out-quad" },
+		  
 		  },
 		  [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -1732,6 +1802,8 @@ return {
 		  },
 		  [2] = {
 			anim = "Quit",
+			x = 100,
+			tween = {0.9, {x = 0}, "out-quad" },
 		  },
 		  [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -1910,7 +1982,7 @@ return {
 			anim = "Hand",
 			x = 0,
 			y = 500,
-			tween = {.15, {y = 0}, "in-linear"}
+			tween = {.4, {y = 0}, "out-quad"}
 		  },
 		  [5] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [6] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -1988,8 +2060,34 @@ return {
   --    },
   --  },
 
-
-
+[52] = { 
+	bg = { -- I will defeat you End!
+	  anim = background_blur,
+	},
+	moments = {
+	  [1] = {
+		sounds = {
+		},
+		anims = {
+		  Quit = RM:loadAnimation('s03_0_p052_m01_Quit_'),
+		  Box = RM:loadAnimation('s03_0_p052_m01_Box_'),
+		  InputBox = InputBox, TextBox = RM:loadAnimation('s03_0_p052_m01_Text_'),
+		},
+		transitionTrigger = {
+		  [1] = "waitForInput", },
+		drawData = {
+		  [1] = {
+			anim = "Box", alpha = boxAlpha, red = boxDarken, green = boxDarken, blue = boxDarken, },
+		  [2] = {
+			anim = "Quit",
+		  },
+		  [3] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+		  },
+		  },
+		  },
+		  },
+		  },
 
   [53] = { -- 54 rearranged
 	bg = {
@@ -2014,10 +2112,6 @@ return {
 		drawData = {
 		  [1] = {
 			anim = "Box", alpha = boxAlpha, red = boxDarken, green = boxDarken, blue = boxDarken,
-
-
-
-
 		  },
 		  [2] = {
 			anim = "Quit",
