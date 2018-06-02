@@ -1630,11 +1630,11 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p036_m01_Box_'),
           End = RM:loadAnimation('s02_0_p036_m01_End_'),
-          Effect = RM:loadAnimation('s02_0_p036_m01_Effect_'),
+          Effect = RM:loadAnimation('intenseFX_'),
           Robot = RM:loadAnimation('s02_0_p036_m01_Robot_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.2, -- [1] = "waitForInput",
+          [1] = "timer", [2] = .8, -- [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -1642,14 +1642,20 @@ return {
           },
           [2] = {
             anim = "Effect",
+			red=4, green=4, blue=4,
           },
           [3] = {
             anim = "End",
           },
           [4] = {
             anim = "Robot",
-            x = 0, y = 500, tween = {.8, {y = 0,}, "out-quart"}
-
+			x = 2320/2 - 200 + 500,
+            y = 1480/2 - 200 + 500,
+            xScale = 1.6,
+            yScale = 1.6,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			tween = {0.8, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.1, yScale = 1.1, }, "out-linear"},
           },
         },
       },
@@ -1660,7 +1666,7 @@ return {
         anims = {
           End = RM:loadAnimation('s02_0_p036_m02_End_'),
           Star = RM:loadAnimation('s02_0_p036_m02_Star_'),
-          Effect = RM:loadAnimation('s02_0_p036_m02_Effect_'),
+          Effect = RM:loadAnimation('intenseFX_'),
           Robot = RM:loadAnimation('s02_0_p036_m02_Robot_'),
         },
         transitionTrigger = {
@@ -1675,9 +1681,24 @@ return {
           },
           [3] = {
             anim = "Robot",
+			x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			tween = {2.0, {x = 2320/2 - 200 - 10, y = 1480/2 - 200 - 10, xScale = 1, yScale = 1, }, "out-quart"},
           },
           [4] = {
             anim = "Star",
+			x = 2320/2 - 200,
+            y = 1480/2 - 200,
+            xScale = 1.1,
+            yScale = 1.1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+			tween = {2.0, {x = 2320/2 - 200 - 10, y = 1480/2 - 200 - 10, xScale = 1, yScale = 1, }, "out-quart"},
+
           },
         },
       },

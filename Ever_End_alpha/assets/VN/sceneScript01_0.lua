@@ -1053,7 +1053,7 @@ return {
 			--tween = {1.5, {x = 0, y = -2045}, "in-out-quad"},
            },
           [5] = {
-            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"},
+            anim = "TextBox",
 			},
 		  [6] = {
 		    anim = "White",
@@ -1134,7 +1134,7 @@ return {
 		  RealityBG = RM:loadAnimation('quit_quarters_blur_'),
           },
         transitionTrigger = {
-          [1] = "timer", [2] = 5.0,
+          [1] = "timer", [2] = 3.5,
         },
         drawData = {
 --          [1] = {
@@ -1143,17 +1143,19 @@ return {
           [1] = {
 			anim = "RealityBG",
 			alpha = 0,
-			tween = {4.0, {alpha = 1}, "in-expo" },
+			tween = {3.0, {alpha = 1}, "in-expo" },
 			},
 		  [2] = {
 			anim = "End",
+			x = 0,
+			y = 15,
 			alpha = 0,
-			tween = {4.0, {alpha = 1}, "in-expo" },
+			tween = {3.0, {alpha = 1}, "in-expo" },
 			},
 		  [3] = {
             anim = "EndFlash",
 			alpha = 1,
-			tween = {4.0, {alpha = 0}, "in-expo" },
+			tween = {3.0, {alpha = 0}, "in-expo" },
 			},
           },
         },
@@ -1265,9 +1267,9 @@ return {
           },
           [2] = {
             anim = "EndPullingZero", 
-			x = 0,
+			x = 0 - 200,
 			y = 0,
-			shake = {0.5, {"x", "y",}, 40, 20, -100/0.5 },
+			tween = {0.5, {x = 0}, "out-quad" },
           },
           [3] = {
             anim = "PullFX",
@@ -1412,13 +1414,13 @@ return {
             anim = "ZeroBiting",
 			x = 0,
 			y = 0,
-			shake = {0.5, {"x", "y",}, 80, 110, -100/0.5}, 
+			shake = {0.5, {"x", "y",}, 80, 100, -100/0.5}, 
           },
           [3] = {
             anim = "ZeroBiteFX",
 			x = 0,
 			y = 0,
-			shake = {0.5, {"x", "y",}, 80, 110, -100/0.5}, 
+			shake = {0.5, {"x", "y",}, 80, 100, -100/0.5}, 
           },
         },
       },
