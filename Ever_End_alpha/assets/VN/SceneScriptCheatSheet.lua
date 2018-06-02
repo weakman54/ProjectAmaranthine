@@ -1,8 +1,13 @@
+-- Boxes with the box alpha etc:
+
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
 
-          [1] = "waitForInput",
+-- Timer types:
 
+          [1] = "waitForInput", --[1] = "timer", [2] = 1.0,
           [1] = "timer", [2] = 1.0, -- [1] = "waitForInput",
+
+-- Default everything tween
 
             x = 2320/2 - 200 + 0,
             y = 1480/2 - 200 - 0,
@@ -20,6 +25,26 @@
                 alpha = 1,
               }, "out-quad"
             },
+
+-- Text box fixes
+
+Text = RM
+TextBox = RM
+
+anim = "Text"
+anim = "TextBox"
+
+TextBox = RM
+InputBox = InputBox, TextBox = RM
+
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"},
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+
+}, }, [4]
+^ Replace the number to relevant moment
+
+
+-- Name fixes because editor bullshit:
 
 End =
 EEnd =
@@ -41,15 +66,7 @@ EEnd_Zero =
 anim = "End_Zero",
 anim = "EEnd_Zero",
 
-linear
-quad
-cubic
-quart
-quint
-expo
 
-bounce
-elastic
 
 
 1. make sure boxes exist
@@ -60,5 +77,14 @@ elastic
 
 
 
+Tween types:
 
+linear
+quad
+cubic
+quart
+quint
+expo
 
+bounce
+elastic
