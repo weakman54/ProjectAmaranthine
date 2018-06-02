@@ -2,6 +2,8 @@
 local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene02_0_quitEncounter/'
 
+local White = RM:loadAnimation("white")
+local Black = RM:loadAnimation("black")
 
 local background1 = RM:loadAnimation('Elevator_room_')
 local background2 = RM:loadAnimation('quit_quarters_')
@@ -1806,7 +1808,8 @@ return {
         music = {"Build_up_Theme Full"},
         anims = {
           Box = RM:loadAnimation('s02_0_p038_m01_Box_'),
-          Robot = RM:loadAnimation('s02_0_p038_m01_Robot_'),
+          RobotArm = RM:loadAnimation('s02_0_p038_m01_Robot_'),
+		  Black = Black,
         },
         transitionTrigger = {
           [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
@@ -1815,8 +1818,13 @@ return {
           [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
-          [2] = {
-            anim = "Robot",
+		  [2] = {
+		    anim = "Black",
+			alpha = 1
+			tween = {3.0, {alpha = .7 }, "in-linear" },
+			},
+          [3] = {
+            anim = "RobotArm",
           },
         },
       },

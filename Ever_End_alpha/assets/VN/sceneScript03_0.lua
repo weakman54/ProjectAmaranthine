@@ -1109,7 +1109,6 @@ return {
 		anims = {
 		  Quit = RM:loadAnimation('s03_0_p031_m01_Quit_'),
 		  Box = RM:loadAnimation('s03_0_p031_m01_Box_'),
-          InputBox = InputBox,
 		},
 		transitionTrigger = {
 		  [1] = "timer",--"waitForInput",
@@ -1129,9 +1128,6 @@ return {
 			yScale = 1.4,
 			tween = {1.8, {y = 1480/2 - 200 ,xScale = 1, yScale = 1}, "in-out-cubic"}
 		  },
-          [3] = {
-            anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
-          },
 		},
 	  },
 	  [2] = {
@@ -1140,6 +1136,7 @@ return {
 		anims = {
 		  Quit = RM:loadAnimation('s03_0_p031_m01_Quit_'),
 		  Box = RM:loadAnimation('s03_0_p031_m01_Box_'),
+		  InputBox = InputBox,
 		},
 		transitionTrigger = {
 		  [1] = "waitForInput",
@@ -1151,6 +1148,9 @@ return {
 		  [2] = {
 			anim = "Quit",
 		  },
+		  [3] = {
+            anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
 		},
 	  },
 	},
