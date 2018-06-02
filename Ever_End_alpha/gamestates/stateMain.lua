@@ -23,6 +23,9 @@ function stateMain:init()
       enter = function()
         stateMain.bgPos.x, stateMain.bgPos.y = 0, 0
         stateMain.guiAlpha = 1
+        if FuckTheMainMenu then
+          Gamestate.switch(stateVN)
+        end
       end,
 
       update = function(self, dt)
