@@ -1809,53 +1809,89 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p038_m01_Box_'),
           RobotArm = RM:loadAnimation('s02_0_p038_m01_Robot_'),
+		  RobotBod = RM:loadAnimation('s02_0_p039_m01_RobBody_'),
 		  Black = Black,
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "timer", [2] =3.0, -- [1] = "waitForInput",
         },
         drawData = {
           [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
 		  [2] = {
+		    anim = "RobotBod",
+		  },
+		  [3] = {
 		    anim = "Black",
-			alpha = 1
-			tween = {3.0, {alpha = .7 }, "in-linear" },
+			alpha = 1,
+			tween = {2.5, {alpha = 0.5 }, "in-linear" },
 			},
-          [3] = {
+          [4] = {
             anim = "RobotArm",
           },
         },
       },
-    },
-  },
-  [39] = {
-    bg = {
-      anim = blur3,
-    },
-    moments = {
-      [1] = {
+	  [2] = {
         sounds = {
         },
         anims = {
-          Box = RM:loadAnimation('s02_0_p039_m01_Box_'),
-          Robot = RM:loadAnimation('s02_0_p039_m01_Robot_'),
+          Box = RM:loadAnimation('s02_0_p038_m01_Box_'),
+          RobotArm = RM:loadAnimation('s02_0_p039_m02_RobArm_'),
+		  RobotBod = RM:loadAnimation('s02_0_p039_m01_RobBody_'),
+		  Black = Black,
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "timer", [2] = 2.5, -- [1] = "waitForInput",
         },
         drawData = {
           [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
-          [2] = {
-            anim = "Robot",
+		  [2] = {
+		    anim = "RobotBod",
+		  },
+		   [3] = {
+            anim = "RobotArm",
+			x = 0,
+			y = 10,
+			tween = {1.0, {y = 0}, "out-quad" },
           },
-        },
+		  [4] = {
+		    anim = "Black",
+			alpha = 0.5, 
+			tween = {2.5, {alpha = 0 }, "in-linear" },
+			},
       },
     },
+   },
   },
+  --[39] = {
+  --  bg = {
+  --    anim = blur3,
+  --  },
+  --  moments = {
+  --    [1] = {
+  --      sounds = {
+  --      },
+  --      anims = {
+  --        Box = RM:loadAnimation('s02_0_p039_m01_Box_'),
+  --        Robot = RM:loadAnimation('s02_0_p039_m01_Robot_'),
+  --      },
+  --      transitionTrigger = {
+  --        [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+  --      },
+  --      drawData = {
+  --        [1] = {
+  --          anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+  --        },
+  --        [2] = {
+  --          anim = "Robot",
+  --        },
+  --      },
+  --    },
+  --  },
+  --},
   [40] = {
     bg = {
       anim = blur3,
@@ -1868,19 +1904,26 @@ return {
           Box = RM:loadAnimation('s02_0_p040_m01_Box_'),
           End = RM:loadAnimation('s02_0_p040_m01_End_'),
           Robot = RM:loadAnimation('s02_0_p040_m01_Robot_'),
+		  InputBox = InputBox,
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
-            anim = "End",
-          },
-          [3] = {
             anim = "Robot",
+            x = - 100,
+			tween = {1.0, {x = 0}, "out-quad"},
+		  },
+		  [3] = {
+            anim = "End",
+			x = 100,
+			tween = {1.0, {x = 0}, "out-quad"},
+          },
+		  [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
