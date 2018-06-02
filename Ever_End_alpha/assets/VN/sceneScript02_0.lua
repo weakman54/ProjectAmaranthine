@@ -67,7 +67,7 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = 2.0,
+          [2] = 1.0,
         },
         drawData = {
           [1] = {
@@ -75,7 +75,7 @@ return {
           },
           [2] = {
             anim = "Zero",
-            x = 500, y = 0, tween = {2, { x = 0, y = 0 }, "out-quart" },
+            x = 1000, y = 0, tween = {1.0, { x = 0, y = 0 }, "in-linear" },
 
           },
         },
@@ -95,7 +95,7 @@ return {
           Box = RM:loadAnimation('s02_0_p003_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+         [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -103,6 +103,7 @@ return {
           },
           [2] = {
             anim = "Zero",
+			x = 200, y = 0, tween = {1.0, { x = 0, y = 0 }, "out-quart" },
           },
         },
       },
@@ -160,15 +161,16 @@ return {
           Hand = RM:loadAnimation('s02_0_p005_m01_Hand_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "timer", [2] = 1.5, -- [1] = "waitForInput",
         },
         drawData = {
           [1] = {
             anim = "End",
+			x = -100, y = 0, tween = {1.0, { x = 0, y = 0 }, "out-quart" },
           },
           [2] = {
             anim = "Box",alpha=.95,red=boxDarken,green=boxDarken,blue=boxDarken,
-          },
+			},
           [3] = {
             anim = "Hand",
           },
@@ -190,7 +192,7 @@ return {
           Zero = RM:loadAnimation('s02_0_p006_m01_Zero_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "timer", [2] = 1.7, -- [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -269,7 +271,7 @@ return {
           Box = RM:loadAnimation('s02_0_p008_m01_Box_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -296,7 +298,7 @@ return {
           Table = RM:loadAnimation('s02_0_p009_m01_Table_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "timer", [2] = 1.4, -- [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -342,6 +344,8 @@ return {
           [2] = {
             anim = "Zero",
             x= - 200, 
+			y = 0 + 80, 
+			tween = {1.0, { x = - 200, y = 0 }, "out-quart" },
 
           },
           [3] = {
@@ -460,7 +464,7 @@ return {
 
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -586,6 +590,9 @@ return {
       },
     },
   },
+  
+-- Panel 16 doesn't exist, and that is ok.
+  
   [17] = {
     bg = {
       anim = blur2,

@@ -1070,7 +1070,7 @@ return {
 		  Soldier = RM:loadAnimation('s01_0_p016_m02_Soldier_'), 
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 6.0,
+          [1] = "timer", [2] = 5.0,
         },
         drawData = {	
 			[1] = {
@@ -1083,13 +1083,13 @@ return {
 			anim = "Soldier",
 			x = 0,
 			y = 0 - 2045,
-			tween = {5.5, {x = 0, y = 0 + 0}, "in-out-quart" }, 
+			tween = {5.0, {x = 0, y = 0 + 0}, "in-out-quart" }, 
           },		  
 		  [3] =  {
 			anim = "ZeroFlash",
 			x = 0,
 			y = 0 - 2045,
-			tween = {5.0, {x = 0, y = 0}, "in-quad" }, 
+			tween = {5.0, {x = 0, y = 0}, "in-out-quart" }, 
 		  },
         },
       },
@@ -1174,7 +1174,7 @@ return {
           Zero = RM:loadAnimation('s01_0_p019_m01_Zero_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.2,
+          [1] = "timer", [2] = 1.8,
         },
         drawData = {
           [1] = {
@@ -1211,7 +1211,7 @@ return {
           EndZero = RM:loadAnimation('s01_0_p020_m01_EndZero_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 2.5,
+          [1] = "waitForInput"
         },
         drawData = {
           [1] = {
@@ -1225,17 +1225,17 @@ return {
             yScale = 1.07,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {2.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-linear"},
+            tween = {1.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [3] = {
             anim = "TextBox",
             x = 2320/2 - 200 ,
-            y = 1480/2 - 200 + 200,
+            y = 1480/2 - 200 + 100,
             xScale = 1.07,
             yScale = 1.07,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {2.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-linear"},
+            tween = {1.0, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
         },
       },
@@ -1246,7 +1246,7 @@ return {
       anim = QuitRoomBackgroundBlur
     },
     moments = {
-      [1] = { 			--add screen/sprite shake to the grab
+      [1] = { 	
         sounds = {
         },
         anims = {
@@ -1267,7 +1267,7 @@ return {
             anim = "EndPullingZero", 
 			x = 0,
 			y = 0,
-			shake = {0.5, {"x", "y",}, 70, 100, -100/0.5 },
+			shake = {0.5, {"x", "y",}, 40, 20, -100/0.5 },
           },
           [3] = {
             anim = "PullFX",
@@ -1653,7 +1653,7 @@ return {
             yScale = 1.2,
             xOffset = 2320/2,
             yOffset = 1480/2,
-			tween = {0.1, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.7, yScale = 1.7}, "in-out-quad"},	
+			tween = {0.1, {x = 2320/2 - 200 - 30, y = 1480/2 - 200, xScale = 1.5, yScale = 1.5}, "in-out-quad"},	
           },
           [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"},
@@ -1680,12 +1680,13 @@ return {
             anim = "End",
             x = 2320/2 - 200 - 100,
             y = 1480/2 - 200 + 30,
-            xScale = 1.7,
-            yScale = 1.7,
+            xScale = 1.5,
+            yScale = 1.5,
             xOffset = 2320/2,
             yOffset = 1480/2,
-			tween = {0.1, {x = 2320/2 - 200 - 70, y = 1480/2 - 200, xScale = 2.2, yScale = 2.2}, "in-out-quad"},	
-          },
+--			tween = {0.1, {x = 2320/2 - 200 - 70, y = 1480/2 - 200, xScale = 1,7, yScale = 1,7}, "in-out-quad"},	
+            shake = {0.5, {"x", "y",}, 80, 100, -100/0.5}, 
+		  },
           [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"},
           },

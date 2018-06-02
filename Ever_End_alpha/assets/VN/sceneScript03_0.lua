@@ -2036,10 +2036,6 @@ return {
 		drawData = {
 		  [1] = {
 			anim = "Box", alpha = boxAlpha, red = boxDarken, green = boxDarken, blue = boxDarken,
-
-
-
-
 		  },
 		  [2] = {
 			anim = "Quit",
