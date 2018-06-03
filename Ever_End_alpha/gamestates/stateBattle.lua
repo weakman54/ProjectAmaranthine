@@ -31,6 +31,14 @@ GUIPlayerSP.outerColor = {153/255, 243/255, 242/255, 0}
 GUIPlayerSP.innerColor = {153/255, 243/255, 242/255}
 -- angle -8.2
 
+function GUIPlayerSP:update(dt)
+      
+        --local color = {t.red or 1, t.green or 0, t.blue or 1, t.alpha or 1}
+  GUIPlayerSP.innerColor = {1, love.math.random(), 1, 1}-- {153/255, 243/255, 242/255}
+  --love.graphics.setColor({1, 0, 1, 1})
+  
+end
+
 
 local GUIEnemyHealth  = GUIBar:new(vec(1200, 200), vec(300, 30))
 --GUIEnemyHealth.innerColor = {255, 000, 000}
@@ -145,8 +153,9 @@ function stateBattle:draw()
 
   -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
   love.graphics.translate(healtPos.x, healtPos.y)
-  love.graphics.rotate(-15.8 * math.pi/180)
+  love.graphics.rotate(-15.8 * math.pi/180)  
   GUIPlayerHealth:loveDraw()
+  
 
   -- RESET STUFF (?)
   love.graphics.origin()
@@ -155,7 +164,8 @@ function stateBattle:draw()
   love.graphics.translate(spPos.x, spPos.y)
   love.graphics.rotate(-8.2 * math.pi/180)
   GUIPlayerSP:loveDraw()
-
+  love.graphics.setColor({1, 1, 1, 1})
+  
 
   love.graphics.origin()
   love.graphics.scale(scale.x, scale.y) -- Scale hack

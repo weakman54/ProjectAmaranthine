@@ -77,7 +77,7 @@ local dodgeMinigame = {
 
     local SPGained = data.timing == "normal" and SP_GAIN_FROM_DODGE_NORMAL or SP_GAIN_FROM_DODGE_PERFECT
     player.SP = math.min(player.SP + SPGained, player.maxSP)
-
+    HUMPTimer.tween(.1, enemy, {x = -1000}, "in-quart")
     self.timer = Timer:new()
     self.fumbleTimer = Timer:new()
     fumbling = false
@@ -159,6 +159,7 @@ local dodgeMinigame = {
   end,
 
   draw = function(self)
+   
     love.graphics.push() -- HACKY fix to remove flip effect
     love.graphics.origin()
     love.graphics.scale(scale.x, scale.y)
@@ -222,6 +223,7 @@ function dodgeMain:exit()
   data = {}
 
   flipHack = not flipHack
+  enemy.x = 0
 
   if enemy.sm:is("dodgeMinigame") then
     return enemy.sm:switch("idle") -- Non-tested HACK...
