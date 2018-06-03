@@ -82,6 +82,9 @@ function stateMain:init()
         elseif input:pressed("systemBack") then
           love.event.quit()
           
+        elseif input:pressed("parry") then
+          Gamestate.switch(stateBattle) --Hack
+          
         end
       end,
 
