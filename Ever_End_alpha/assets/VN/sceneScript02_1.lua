@@ -36,6 +36,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Robot Dies"},
         },
 		music = {"Build_up_Theme Full"},
         anims = {
