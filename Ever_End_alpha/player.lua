@@ -291,7 +291,8 @@ function player:initializeSM()
         end
 
         if self.timer:reached(player.parryDuration) then
-          return player.sm:switch("guard")
+          --return player.sm:switch("guard")
+          return player.sm:switch("idle")
         end
 
       end,
