@@ -463,7 +463,7 @@ return {
             anim = "Quit",
           },
           [3] = {
-            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+            anim = "TextBox", }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
