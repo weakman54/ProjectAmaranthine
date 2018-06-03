@@ -1946,7 +1946,7 @@ return {
 			anim = "EEnd",
 			x = 20,
 			y = 5,
-			tween = {1.5, {x = 0}, "out-linear"}
+			tween = {1.0, {x = 0}, "out-linear"}
 		  },
 		},
 	  },
