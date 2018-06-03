@@ -72,21 +72,21 @@ function resourceManager:genericLoader(f, filename, ...)
     local resource = {filename = filename}
 
 
-    print("test 1 ")
-    print(nCID)
+--    print("test 1 ")
+--    print(nCID)
     
     if filename:sub(-3) == "png" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
-      print("test 1.2")
+--      print("test 1.2")
       resource.imgData = nID(nFD(filename))
     end
     
     if filename:sub(-3) == "dds" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
-      print("test 1.1")
+--      print("test 1.1")
       resource.imgData = nCID(nFD(filename))
     end
     
-    print("test 2 ")
-    print(resource.imgData)
+--    print("test 2 ")
+--    print(resource.imgData)
     
 
     resource.data = f(resource.imgData, ...)
