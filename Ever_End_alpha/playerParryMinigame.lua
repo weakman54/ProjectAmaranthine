@@ -8,11 +8,15 @@ local ac = player.ac
 local sm = parry.sm
 
 
+local damageDealt = 0
+
+
 local data = {}
 
 
 
 function parry:enter()
+  damageDealt = 0
   return self.sm:switch("parryStart")
 end
 
@@ -203,9 +207,10 @@ sm:add("parryAttack", {
       --      self.swordComboBaseDmg = 1
       --      self.swordComboGradDmg = 2
 
-      local damageDealt = PLAYER_PARRY_DAMAGE_BASE + PLAYER_PARRY_DAMAGE_GRAD - PLAYER_PARRY_DAMAGE_GRAD * normalizedDif
-
-      enemy:changeHP(-damageDealt)
+      damageDealt = damageDealt + PLAYER_PARRY_DAMAGE_BASE + PLAYER_PARRY_DAMAGE_GRAD - PLAYER_PARRY_DAMAGE_GRAD * normalizedDif
+      
+      
+--      enemy:changeHP(-damageDealt)
 
       self.timer = Timer:new()
     end,
@@ -216,6 +221,7 @@ sm:add("parryAttack", {
       if self.timer:reached(1) then -- HARDCODED for now
         local t = self.stage + 1
         if t == 4 then -- HARDCODED number of stages, also slightly HACK way to determine when to change
+          enemy:changeHP(-damageDealt)
           player.sm:switch("idle")
         else
           sm:switch("parryWindup", t)
