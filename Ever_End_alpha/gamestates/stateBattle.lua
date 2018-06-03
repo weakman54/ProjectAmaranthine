@@ -21,7 +21,7 @@ local healtPos = vec(123, 952)
 local spPos = vec(207, 990)
 
 -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
-local GUIPlayerHealth = GUIBar:new(vec() , vec(420, 70))
+local GUIPlayerHealth = GUIBar:new(vec() , vec(420, 64))
 GUIPlayerHealth.outerColor = {255/255, 109/255, 109/255, 0} -- NOTE: setting to same color just in case alpha does not work
 GUIPlayerHealth.innerColor = {255/255, 109/255, 109/255}
 -- angle -15.8
