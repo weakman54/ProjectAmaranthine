@@ -1006,6 +1006,7 @@ return {
       },
       [2] = { 
         sounds = {
+			{"Flash Back Scene 1", {delay = 0.1}},
         },
         anims = {
 		  Zero = RM:loadAnimation('s01_0_p016_m01_Zero_'),
