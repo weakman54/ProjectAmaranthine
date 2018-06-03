@@ -44,7 +44,7 @@ function enemy:initialize()
 
   -- TODO: think about how to load all of these
   --  self.HP = 0 -- Initialize in reset() ?
-  self.maxHP = 25
+  self.maxHP = 35
 
 
   self.baseGuardWeight = 5
