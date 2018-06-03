@@ -812,6 +812,7 @@ return {
       },
       [2] = {
         sounds = {
+			{"Quick Flash Back Scene 1", {delay = 2}}
         },
         anims = {
           KittyEye = RM:loadAnimation('s01_0_p013_m02_KittyEye_'),
@@ -1099,6 +1100,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Calm before the Storm", {delay = 0.1}}
         },
         anims = {
           End = RM:loadAnimation('s01_0_p017_m02_EndFlashback_'),
@@ -1124,6 +1126,8 @@ return {
       },
       [2] = {
         sounds = {
+			{"Intense Moment"},
+			{"Jumpscare"}
         },
         anims = {
           EndFlash = RM:loadAnimation('s01_0_p018_m01_EndFlashback_'),
