@@ -15,6 +15,8 @@ function player:initialize()
 
   self.dodgeStartDuration = NORMDODGE_TRESHOLD + 0.0 -- MAGIC NUMBER: additional time on dodge start
   self.dodgeDuration = 2
+  self.perfectDodgeDuration = 3
+  
 
   self.fumbleDuration = .35
 
@@ -192,11 +194,12 @@ function player:initializeSM()
         end
 
         if self.regenTimer:reached(player.idleRegenDuration) then
-          if enemy.name ~= "Quit2" then
-            player.SP = math.min(player.SP + player.SPRegenRateIdle * dt, player.maxSP)
-          else
+--          
+--          if enemy.name ~= "Quit2" then
+--            player.SP = math.min(player.SP + player.SPRegenRateIdle * dt, player.maxSP)
+--          else
             player.SP = math.max(player.SP - player.SPRegenRateIdle * dt, 0)
-          end
+--          end
         end
       end,
     })

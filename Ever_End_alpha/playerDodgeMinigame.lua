@@ -88,7 +88,13 @@ local dodgeMinigame = {
     self.timer:update(dt)
     if self.combo then self.combo.anim.data:update(dt) end -- update the combo GUI animations TODO: clean a bit?
 
-    if self.timer:reached(player.dodgeDuration) then
+    if data.timing == "normal" and self.timer:reached(player.dodgeDuration) then
+      --      enemy.ac:play() -- This will probably not be needed?
+      --      enemy.sm:switch("idle") -- NOTE: not quite good yet
+      return sm:switch("dodgeEnd")
+    end
+    
+    if data.timing == "perfect" and self.timer:reached(player.perfectDodgeDuration) then
       --      enemy.ac:play() -- This will probably not be needed?
       --      enemy.sm:switch("idle") -- NOTE: not quite good yet
       return sm:switch("dodgeEnd")
