@@ -74,7 +74,7 @@ local dodgeMinigame = {
     self.hurtI = 1
 
     self.combo = combos[math.random(4)]
-    
+
     local SPGained = data.timing == "normal" and SP_GAIN_FROM_DODGE_NORMAL or SP_GAIN_FROM_DODGE_PERFECT
     player.SP = math.min(player.SP + SPGained, player.maxSP)
 
@@ -93,13 +93,13 @@ local dodgeMinigame = {
       --      enemy.sm:switch("idle") -- NOTE: not quite good yet
       return sm:switch("dodgeEnd")
     end
-    
+
     if data.timing == "perfect" and self.timer:reached(player.perfectDodgeDuration) then
       --      enemy.ac:play() -- This will probably not be needed?
       --      enemy.sm:switch("idle") -- NOTE: not quite good yet
       return sm:switch("dodgeEnd")
     end
-    
+
     if self.fumbleTimer:reached(player.fumbleDuration) then
       fumbling = false;
       self.fumbleTimer:reset();
@@ -110,12 +110,19 @@ local dodgeMinigame = {
       return
     end
 
+
+    -- Enemy hurt
+    if self.enemyHurtTimer and self.enemyHurtTimer:reached(enemy.hurtDuration) then
+      enemy.ac:setAnimation("idle")
+      self.enemyHurtTimer = nil
+    end
+
+
     -- Attack stuff: -----------
     if self.attackTimer then
       self.attackTimer:update(dt)
       if self.attackTimer:reached(player.gunAttackDuration) then
         ac:setAnimation("dodge_" .. data.stance .. "_" .. data.timing)
-        enemy.ac:setAnimation("idle") -- TODO: look into this 
 
         self.attackTimer = nil
         self.combo = combos[math.random(4)]
@@ -128,9 +135,13 @@ local dodgeMinigame = {
         enemy:changeHP(-PLAYER_DODGE_DAMAGE)
 
         ac:setAnimation("gun_attack_" .. data.stance .. "_" .. data.timing, false)
+
         Sound:play("Gun1")
         Sound:play("Gun Wosh")
+
         self.attackTimer = Timer:new()
+        self.enemyHurtTimer = Timer:new()
+
         self.combo = nil
       else -- Here is when misclicking a combo:
         -- put sound here
@@ -139,12 +150,14 @@ local dodgeMinigame = {
       end
     end
   end,
+
   exit = function(self)
     -- Timers were fucking things up
     self.timer = nil
     self.fumbleTimer = nil
     self.attackTimer = nil
   end,
+
   draw = function(self)
     love.graphics.push() -- HACKY fix to remove flip effect
     love.graphics.origin()
