@@ -335,8 +335,8 @@ return {
       [1] = {
         sounds = {
         },
-        music = {"Conflict Theme Placeholder", {fade = {duration = 4, rate = -1/4}}},
-
+		music = {"Conflict Theme Placeholder", {fade = {duration = 6, rate = -1/6}}},
+  
         anims = {
           Zero = RM:loadAnimation('s02_0_p010_m01_Zero_'),
           Table = RM:loadAnimation('s02_0_p010_m01_Table_'),
