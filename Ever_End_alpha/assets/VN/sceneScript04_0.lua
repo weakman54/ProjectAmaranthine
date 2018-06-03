@@ -4,6 +4,8 @@ RM.prefix = 'assets/VN/scene04_0_aftermath/'
 
 local background = RM:loadAnimation('Inside_robot_')
 local background_blur = RM:loadAnimation('inside_robot_blur_')
+local background_flipped = RM:loadAnimation('inside_robot_flipped_')
+local background_blur_flipped = RM:loadAnimation('inside_robot_blur_flipped_')
 local boxDarken = 0.1
 local boxAlpha = 0.8
 
@@ -297,7 +299,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = background_blur,
+      anim = background_blur_flipped,
     },
     moments = {
       [1] = {
@@ -340,7 +342,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = background_blur,
+      anim = background_blur_flipped,
     },
     moments = {
       [1] = {
@@ -522,7 +524,7 @@ return {
   },
   [8] = {
     bg = {
-      anim = background_blur,
+      anim = background_blur_flipped,
     },
     moments = {
       [1] = {
