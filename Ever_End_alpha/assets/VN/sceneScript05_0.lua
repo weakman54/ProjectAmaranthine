@@ -10,7 +10,7 @@ local endBuffer = 5
 local pxPerSec = 100
 local creditsDuration = (endHeight / pxPerSec) + endBuffer
 
-local songDuration = 128
+local songDuration = 130
 creditsDuration = songDuration
 pxPerSec = endHeight / creditsDuration
 

@@ -14,8 +14,8 @@ function player:initialize()
   self.parryDuration = 1
 
   self.dodgeStartDuration = NORMDODGE_TRESHOLD + 0.0 -- MAGIC NUMBER: additional time on dodge start
-  self.dodgeDuration = 2
-  self.perfectDodgeDuration = 3
+  self.dodgeDuration = 1
+  self.perfectDodgeDuration = 2.5
   
 
   self.fumbleDuration = .35

@@ -134,10 +134,10 @@ function enemy:initializeAttacks()
   self.attacks = {}
   self.attackWeights = {} -- NOTE: these are hardcoded atm, should make sure to fix a better way of loading the weights
 
-  self.attacks["high_attack01"] = self:loadAttack({name = "high_attack01", animName = "high_attack01", damage = ENEMY_ATTACK_HIGH_DAMAGE, stance = "high"}, nil, 10)
+  self.attacks["high_attack01"] = self:loadAttack({name = "high_attack01", animName = "high_attack01", damage = ENEMY_ATTACK_HIGH_DAMAGE, stance = "high"}, nil, 11)
   self.attackWeights["high_attack01"] = ENEMY_ATTACK_HIGH_WEIGHT
 
-  self.attacks["low_attack01"]  = self:loadAttack({name = "low_attack01" , animName = "low_attack01" , damage = ENEMY_ATTACK_LOW_DAMAGE, stance = "low" }, nil, 10)
+  self.attacks["low_attack01"]  = self:loadAttack({name = "low_attack01" , animName = "low_attack01" , damage = ENEMY_ATTACK_LOW_DAMAGE, stance = "low" }, nil, 11)
   self.attackWeights["low_attack01"] =  ENEMY_ATTACK_LOW_WEIGHT
 
 
