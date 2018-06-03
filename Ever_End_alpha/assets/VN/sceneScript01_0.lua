@@ -1053,7 +1053,7 @@ return {
 			},
 		  [6] = {
 		    anim = "White",
-            alpha = 0, tween = {0.9, {alpha = 1}, "in-expo"},
+            alpha = 0, tween = {1.2, {alpha = 1}, "in-linear"},
 			},
 		},
 	},		

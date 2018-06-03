@@ -516,7 +516,30 @@ return {
             anim = "Quit",
           },
           [3] = {
-            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+            anim = "TextBox",  }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+        },
+      },
+	  [3] = {
+        sounds = {
+        },
+        anims = {
+          Box = RM:loadAnimation('s04_0_p007_m01_Box_'),
+          Quit = RM:loadAnimation('s04_0_p007_m01_Quit_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s04_0_p007_m03_Text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
+          },
+          [2] = {
+            anim = "Quit",
+          },
+          [3] = {
+            anim = "TextBox",  }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
