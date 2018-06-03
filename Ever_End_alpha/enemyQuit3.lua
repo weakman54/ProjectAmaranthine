@@ -256,9 +256,7 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self, kind, nextAttack)
         enemy.dbg_trigger_offensive_action = false
-        Sound:play("Telegraph", {delay = 0.5})
-        Sound:play("Hilt Hold", {delay = 0.5})
-        Sound:play("Quit Slash 3", {delay = 0.85})
+
 
 
         -- TODO: choose action #
@@ -282,7 +280,9 @@ function enemy:initializeSM()
           if choice == "taunt" then -- Still kindof hacky here, but this works better I think
             return sm:switch("taunt")
           end
-
+          Sound:play("Telegraph", {delay = 0.5})
+          Sound:play("Hilt Hold", {delay = 0.5})
+          Sound:play("Quit Slash 3", {delay = 0.85})
           self.curAttack = enemy.attacks[choice]
         end
 
