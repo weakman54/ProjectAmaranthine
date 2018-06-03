@@ -1803,6 +1803,7 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Robot Reveal 1", {delay = 0.3}}
         },
         music = {"Build_up_Theme Full"},
         anims = {
@@ -1833,6 +1834,7 @@ return {
       },
 	  [2] = {
         sounds = {
+			{"Robot Reveal 2"},
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p038_m01_Box_'),

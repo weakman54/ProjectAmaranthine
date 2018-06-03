@@ -254,10 +254,8 @@ function VNSystem:update(dt)
     end
 
   elseif input:pressed("attack") and self.curMoment.transitionTrigger[1] == "waitForInput" then 
-    --    local sceneAtKey = self.curMoment.transitionTrigger[key]
-    --    if sceneAtKey then
-    --      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
-    --    end
+    -- JBOB SOUND HERE
+    Sound:play("Click")
     self:incrementMomentI()
 
   -- elseif input:pressed("parry") and self.curPanelI ~= 1 then
