@@ -4,6 +4,8 @@ RM.prefix = 'assets/VN/scene04_1_spareOption/'
 
 local background = RM:loadAnimation('Inside_robot_')
 local background_blur = RM:loadAnimation('inside_robot_blur_')
+local background_flipped = RM:loadAnimation('inside_robot_flipped_')
+local background_blur_flipped = RM:loadAnimation('inside_robot_blur_flipped_')
 
 local boxDarken = 0.1
 local boxAlpha = 0.8
@@ -14,7 +16,7 @@ local InputBox = RM:loadAnimation('Input_Box_')
 return {
   [1] = {
     bg = {
-      anim = background_blur,
+      anim = background_blur_flipped,
     },
     moments = {
       [1] = {
@@ -105,6 +107,9 @@ return {
           },
           [2] = {
             anim = "End_Quit",
+          x= 0,y=0,
+			shake = {2.3, {"x", "y",}, 80, intensity, -intensity/0.5}, 
+          
           },
         },
       },
@@ -124,7 +129,8 @@ return {
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
-          [2] = 2.3        },
+          [2] = 2.3
+        },
         drawData = {
           [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken
@@ -138,6 +144,7 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
             alpha = 1,
+            intensity = 1,
 
             tween = {2, {
                 x = 2320/2 - 200+10,
@@ -145,8 +152,11 @@ return {
                 xScale = 1,
                 yScale = 1,
                 alpha = 1,
+                intensity =0
                 }, "in-out-quad"
             },
+			shake = {2.3, {"x", "y",}, 80, intensity, -intensity/0.5}, 
+          
           },
         },
       },
@@ -154,7 +164,7 @@ return {
   },
   [4] = {
     bg = {
-      anim = background_blur,
+      anim = background_blur_flipped,
     },
     moments = {
       [1] = {
@@ -190,6 +200,7 @@ return {
                 alpha = 1,
                 }, "out-quad"
             },
+        
           },
           [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -214,7 +225,8 @@ return {
           InputBox = InputBox, TextBox = RM:loadAnimation('s04_1_p005_m01_Text_'),
         },
         transitionTrigger = {
-          [1] = "waitForInput",
+          [1] = "timer",--"waitForInput",
+          [2] = 1.5
         },
         drawData = {
           [1] = {
@@ -226,7 +238,7 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
 
-            tween = {2, {
+            tween = {1.5, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
@@ -245,7 +257,7 @@ return {
             yOffset = 1480/2,
             alpha = 1,
 
-            tween = {2, {
+            tween = {1.5, {
                 x = 2320/2 - 200,
                 y = 1480/2 - 200,
                 xScale = 1,
@@ -264,7 +276,7 @@ return {
             yOffset = 1480/2,
             alpha = 1,
 
-            tween = {2, {
+            tween = {1.5, {
                 x = 2320/2 - 200 + 200,
                 y = 1480/2 - 200,
                 xScale = 1,
@@ -273,16 +285,45 @@ return {
                 }, "in-out-quad"
             },
           },
+        },
+      },
+     [2] = {
+        sounds = {
+        },
+        anims = {
+          Quit = RM:loadAnimation('s04_1_p005_m01_Quit_'),
+          End_End = RM:loadAnimation('s04_1_p005_m01_End_End_'),
+          Box = RM:loadAnimation('s04_1_p005_m01_Box_'),
+          Quit = RM:loadAnimation('s04_1_p005_m01_Quit_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s04_1_p005_m01_Text_'),
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+          [1] = {
+            anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
+
+          },
+          [2] = {
+            anim = "Quit",
+
+          },
+          [3] = {
+            anim = "End_End",
+                x =  200,
+
+          },
           [4] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
-        },
+        }, 
       },
     },
   },
   [6] = {
     bg = {
-      anim = background_blur,
+      anim = background_blur_flipped,
     },
     moments = {
       [1] = {
@@ -358,7 +399,7 @@ return {
   },
   [7] = {
     bg = {
-      anim = background_blur,
+      anim = background_blur_flipped,
     },
     moments = {
       [1] = {
@@ -417,8 +458,7 @@ return {
           InputBox = InputBox, TextBox = RM:loadAnimation('s04_1_p008_m01_Text_'),
         },
         transitionTrigger = {
-          [1] = "timer",--"waitForInput",
-          [2] = 2.0,
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -515,7 +555,7 @@ return {
   },
   [10] = {
     bg = {
-      anim = background_blur,
+      anim = background_blur_flipped,
     },
     moments = {
       [1] = {
@@ -574,7 +614,7 @@ return {
   },
   [11] = {
     bg = {
-      anim = background_blur,
+      anim = background_blur_flipped,
     },
     moments = {
       [1] = {

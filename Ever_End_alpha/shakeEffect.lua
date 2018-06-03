@@ -27,3 +27,4 @@ function shakeEffect(t, duration, targets, speed, intensity, intensityRate, afte
       end
     end, after)
 end
+intensity = 1

@@ -45,7 +45,7 @@ return {
   },
   [2] = {
     bg = {
-      anim = background_blur,
+      anim = background_flipped_blur,
     },
     moments = {
       [1] = {
@@ -160,7 +160,7 @@ return {
   },
   [5] = {
     bg = {
-      anim = background_blur,
+      anim = background_flipped_blur,
     },
     moments = {
       [1] = {
@@ -208,7 +208,7 @@ return {
   },
   [6] = {
     bg = {
-      anim = background_blur,
+      anim = background_flipped_blur,
     },
     moments = {
       [1] = {
@@ -267,7 +267,7 @@ return {
   },
   [7] = {
     bg = {
-      anim = background_flipped_blur,
+      anim = background_blur,
     },
     moments = {
       [1] = {
