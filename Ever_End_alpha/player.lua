@@ -27,7 +27,8 @@ function player:initialize()
   self.idleRegenDuration = .70
 
   self.SPRegenRateIdle = .15
-  self.SPDrainRate = 0.4 -- points per second
+  self.Quit2RegenRateIdle = 0.05
+--  self.SPDrainRate = 0.4 -- points per second
   self.SPChargeDrainRate = 1
 
   self.HPGainRate = 2.0
@@ -194,69 +195,67 @@ function player:initializeSM()
         end
 
         if self.regenTimer:reached(player.idleRegenDuration) then
---          
---          if enemy.name ~= "Quit2" then
---            player.SP = math.min(player.SP + player.SPRegenRateIdle * dt, player.maxSP)
---          else
-            player.SP = math.max(player.SP - player.SPRegenRateIdle * dt, 0)
---          end
+          
+          if enemy.name == "Quit2" then
+            player.SP = math.max(math.min(player.SP + player.Quit2RegenRateIdle * dt, player.maxSP), 0)
+          else
+            player.SP = math.max(math.max(player.SP + player.SPRegenRateIdle    * dt, player.maxSP), 0)
+          end
         end
       end,
     })
   --
 
 
-  sm:add("guard",  {
-      canSwitch = function(self)
-        return player.SP > 0
-      end,
+--  sm:add("guard",  {
+--      canSwitch = function(self)
+--        return player.SP > 0
+--      end,
 
-      enter = function(self)
-        ac:setAnimation("guard")
-        Sound:play("Guard Equip")
-        --Sound:play("Open1")
-        --Sound:play("Crossbow")
+--      enter = function(self)
+--        ac:setAnimation("guard")
+--        Sound:play("Guard Equip")
+--        --Sound:play("Open1")
+--        --Sound:play("Crossbow")
 
 
-      end,
+--      end,
 
-      update = function(self, dt)	
-        if player.damaged  then
-          ac:setAnimation("guard_hit", false)
-          Sound:play("Player Block")
+--      update = function(self, dt)	
+--        if player.damaged  then
+--          ac:setAnimation("guard_hit", false)
+--          Sound:play("Player Block")
 
-          player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
-          if player.SP == 0 then
-            return sm:switch("hurt")
-          else
-            player.damaged = false
-          end
-        end
-
-        -- No more parry from guard
---        if input:pressed("down") then
---          return sm:switch("parry", "low")
---
---
---        elseif input:pressed("up") then
---          return sm:switch("parry", "high")
+--          player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
+--          if player.SP == 0 then
+--            return sm:switch("hurt")
+--          else
+--            player.damaged = false
+--          end
 --        end
 
-        if ac:curName() == "guard_hit" then
-          if ac:curEvent() == "ended" then
-            ac:setAnimation("guard")
-          end
-        end
+--        -- No more parry from guard
+----        if input:pressed("down") then
+----          return sm:switch("parry", "low")
+----
+----
+----        elseif input:pressed("up") then
+----          return sm:switch("parry", "high")
+----        end
+
+--        if ac:curName() == "guard_hit" then
+--          if ac:curEvent() == "ended" then
+--            ac:setAnimation("guard")
+--          end
+--        end
 
 
-        if not input:down("parry") or player.SP <= 0 then
-          return sm:switch("idle")
-        end
-
-        player.SP = math.max(player.SP - player.SPDrainRate * dt, 0)
-      end,
-    })
-  --
+--        if not input:down("parry") or player.SP <= 0 then
+--          return sm:switch("idle")
+--        end
+--      end,
+--    })
+--  --
 
   sm:add("parry",  {      
       enter = function(self, stance)
