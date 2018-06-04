@@ -4,6 +4,7 @@ local RM = require 'resourceManager.resourceManager'
 
 RM.prefix = "assets/"
 local EndIdle   = RM:loadAnimation("Player/Player_idle_")
+local EndHeal   = RM:loadAnimation("Player/Player_heal_")
 --local EndAttack = RM:loadAnimation("Player/Player_attack_hit_")
 local RobotDead = RM:loadAnimation("Quit1/Quit1_defeat_")
 local QuitIdle  = RM:loadAnimation("Quit2/Quit2_idle_")
@@ -24,6 +25,8 @@ EndHit.data:setLooping(false)
 
 local White = RM:loadAnimation("white")
 
+local InputBox = RM:loadAnimation('Input_Box_')
+
 
 return {
   [1] = {
@@ -33,7 +36,9 @@ return {
     moments = {
       [1] = {
         sounds = {
+			{"Robot Dies"},
         },
+		music = {"Build_up_Theme Full"},
         anims = {
           EndIdle = EndIdle,
           RobotDead = RobotDead,
@@ -137,7 +142,7 @@ return {
         anims = {
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
-          TextBox = RM:loadAnimation('s02_1_p005_m01_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m01_TextBox_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -148,9 +153,11 @@ return {
           },
           [2] = {
             anim = "EndIdle",
+			x = - 500,
+			tween = {1.0, {x = 0}, "out-quart" },
           },
           [3] = {
-            anim = "TextBox",
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -161,7 +168,7 @@ return {
 --        anims = {
 --          EndIdle = EndIdle,
 --          QuitIdle = QuitIdle,
---          TextBox = RM:loadAnimation('s02_1_p005_m02_TextBox_'),
+--          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m02_TextBox_'),
 --        },
 --        transitionTrigger = {
 --          [1] = "waitForInput",
@@ -174,7 +181,7 @@ return {
 --            anim = "EndIdle",
 --          },
 --          [3] = {
---            anim = "TextBox",
+--            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
 --          },
 --        },
 --      },
@@ -188,7 +195,7 @@ return {
         anims = {
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
-          TextBox = RM:loadAnimation('s02_1_p005_m03_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m03_TextBox_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -201,7 +208,7 @@ return {
             anim = "EndIdle",
           },
           [3] = {
-            anim = "TextBox",
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -211,7 +218,7 @@ return {
         anims = {
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
-          TextBox = RM:loadAnimation('s02_1_p005_m04_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m04_TextBox_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -224,7 +231,7 @@ return {
             anim = "EndIdle",
           },
           [3] = {
-            anim = "TextBox",
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -232,7 +239,7 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m05_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m05_TextBox_'),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
         },
@@ -241,7 +248,7 @@ return {
         },
         drawData = {
           [3] = {
-            anim = "TextBox",
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
           [2] = {
             anim = "QuitIdle",
@@ -451,7 +458,7 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m11_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m11_TextBox_'),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -466,10 +473,10 @@ return {
           [2] = {
             anim = "EndIdle",
           },
-          [3] = {
-            anim = "TextBox",
-          },
           [4] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+          [3] = {
             anim = "Gas",
           },
         },
@@ -479,8 +486,9 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m13_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m13_TextBox_'),
           EndIdle = EndIdle,
+		  EndHeal = EndHeal,
           QuitIdle = QuitIdle,
           Gas = Gas,
         },
@@ -492,12 +500,12 @@ return {
             anim = "QuitIdle",
           },
           [2] = {
-            anim = "EndIdle",
-          },
-          [3] = {
-            anim = "TextBox",
+            anim = "EndHeal",
           },
           [4] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+          [3] = {
             anim = "Gas",
           },
         },
@@ -506,7 +514,7 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m14_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m14_TextBox_'),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -521,10 +529,10 @@ return {
           [2] = {
             anim = "EndIdle",
           },
-          [3] = {
-            anim = "TextBox",
-          },
           [4] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+          [3] = {
             anim = "Gas",
           },
         },
@@ -534,7 +542,7 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m15_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m15_TextBox_'),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -549,10 +557,10 @@ return {
           [2] = {
             anim = "EndIdle",
           },
-          [3] = {
-            anim = "TextBox",
-          },
           [4] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+          [3] = {
             anim = "Gas",
           },
         },
@@ -561,7 +569,7 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m16_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m16_TextBox_'),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -576,10 +584,10 @@ return {
           [2] = {
             anim = "EndIdle",
           },
-          [3] = {
-            anim = "TextBox",
-          },
           [4] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+          [3] = {
             anim = "Gas",
           },
         },
@@ -588,7 +596,7 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m17_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m17_TextBox_'),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -603,10 +611,10 @@ return {
           [2] = {
             anim = "EndIdle",
           },
-          [3] = {
-            anim = "TextBox",
-          },
           [4] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+          [3] = {
             anim = "Gas",
           },
         },
@@ -615,7 +623,7 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m18_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m18_TextBox_'),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -630,10 +638,10 @@ return {
           [2] = {
             anim = "EndIdle",
           },
-          [3] = {
-            anim = "TextBox",
-          },
           [4] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+          [3] = {
             anim = "Gas",
           },
         },
@@ -642,7 +650,7 @@ return {
         sounds = {
         },
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m19_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m19_TextBox_'),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -657,25 +665,27 @@ return {
           [2] = {
             anim = "EndIdle",
           },
-          [3] = {
-            anim = "TextBox",
-          },
           [4] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          },
+          [3] = {
             anim = "Gas",
           },
         },
       },
       [19] = {
         sounds = {
+			{"Intense Moment"},
         },
         anims = {
           Overlay = RM:loadAnimation('s02_1_p005_m20_Overlay_'),
-          EndIdle = EndIdle,
+          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m20_TextBox_'),
+		  EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.5,
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -686,7 +696,9 @@ return {
           },
           [3] = {
             anim = "Overlay",
-          },
+			},
+		  [5] = {
+            anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [6] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},          },
           [4] = {
             anim = "Gas",
           },
@@ -695,11 +707,9 @@ return {
       [20] = {
         sounds = {
         },
+		music = {"Build_up_Theme Full", {fade = {duration = 4, rate = -1/4}}},
         anims = {
-          TextBox = RM:loadAnimation('s02_1_p005_m20_TextBox_'),
-          EndIdle = EndIdle,
-          QuitIdle = QuitIdle,
-          Gas = Gas,
+          ProTip = RM:loadAnimation('s02_1_p005_m21_Tips_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -707,16 +717,7 @@ return {
         },
         drawData = {
           [1] = {
-            anim = "QuitIdle",
-          },
-          [2] = {
-            anim = "EndIdle",
-          },
-          [3] = {
-            anim = "TextBox",
-          },
-          [4] = {
-            anim = "Gas",
+            anim = "ProTip",
           },
         },
       },

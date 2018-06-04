@@ -10,7 +10,7 @@ local endBuffer = 5
 local pxPerSec = 100
 local creditsDuration = (endHeight / pxPerSec) + endBuffer
 
-local songDuration = 128
+local songDuration = 129
 creditsDuration = songDuration
 pxPerSec = endHeight / creditsDuration
 
@@ -54,7 +54,7 @@ return {
         transitionTrigger = {
           [1] = "timer",
           [2] = endBuffer,
-          gotoScene = "00_0" -- Kind of hack but eh
+          gotoScene = "MainMenu" -- Kind of hack but eh
         },
         drawData = {
         },

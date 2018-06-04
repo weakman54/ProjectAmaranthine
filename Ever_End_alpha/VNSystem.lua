@@ -3,8 +3,8 @@ local RM = require "resourceManager.resourceManager"
 
 
 
-dbg_VNSystem_DrawIndexes = true
-dbg_VNSystem_DrawAnims = true
+dbg_VNSystem_DrawIndexes = false
+dbg_VNSystem_DrawAnims = false
 
 
 
@@ -219,6 +219,9 @@ function VNSystem:incrementMomentI()
   -- ASSUMPTION: there is a loaded moment when running this...
   local sceneToGoto = self.curMoment.transitionTrigger.gotoScene
   if sceneToGoto then
+    if sceneToGoto == "MainMenu" then
+      return Gamestate.switch(stateMain)  
+    end
     return self:loadScene(sceneToGoto)
   end 
   -- ASSUMPTION: there is a loaded moment when running this...
@@ -251,14 +254,12 @@ function VNSystem:update(dt)
     end
 
   elseif input:pressed("attack") and self.curMoment.transitionTrigger[1] == "waitForInput" then 
-    --    local sceneAtKey = self.curMoment.transitionTrigger[key]
-    --    if sceneAtKey then
-    --      self.curMoment.transitionTrigger.gotoScene = sceneAtKey
-    --    end
+    -- JBOB SOUND HERE
+    Sound:play("Click")
     self:incrementMomentI()
 
-  elseif input:pressed("guard") and self.curPanelI ~= 1 then
-    self:setPanelI(self.curPanelI - 1)
+  -- elseif input:pressed("parry") and self.curPanelI ~= 1 then
+--     self:setPanelI(self.curPanelI - 1)
   end
 
 

@@ -46,7 +46,7 @@ function enemy:initialize()
 
   -- TODO: think about how to load all of these
   --  self.HP = 0 -- Initialize in reset() ?
-  self.maxHP = 20
+  self.maxHP = 30
 
 
   self.baseGuardWeight = 5
@@ -263,8 +263,7 @@ function enemy:initializeSM()
   sm:add("offensive", {
       enter = function(self, kind, nextAttack)
         enemy.dbg_trigger_offensive_action = false
-        Sound:play("Robot Telegraph")
-        Sound:play("Telegraph", {delay = 0.55})
+
 
 
         -- TODO: choose action #
@@ -288,6 +287,9 @@ function enemy:initializeSM()
           if choice == "taunt" then -- Still kindof hacky here, but this works better I think
             return sm:switch("taunt")
           end
+          
+          Sound:play("Robot Telegraph")
+          Sound:play("Telegraph", {delay = 0.55})
 
           self.curAttack = enemy.attacks[choice]
         end
@@ -460,8 +462,8 @@ function enemy:changeHP(offset)
   if offset < 0 then
     player:changeSP(math.abs(offset * DMG_TO_SP_RATIO))
 
-    local dur, intensity = 0.75, offset * 20
-    shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur, function() self.x, self.y = 0, 0 end)
+    --local dur, intensity = 0.75, offset * 20
+    --shakeEffect(self, dur, {"x", "y"}, 100, intensity, -intensity/dur, function() self.x, self.y = 0, 0 end)
   end
 
   if self.HP <=0 then

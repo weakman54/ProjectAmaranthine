@@ -14,7 +14,9 @@ function player:initialize()
   self.parryDuration = 1
 
   self.dodgeStartDuration = NORMDODGE_TRESHOLD + 0.0 -- MAGIC NUMBER: additional time on dodge start
-  self.dodgeDuration = 2
+  self.dodgeDuration = 1
+  self.perfectDodgeDuration = 2.5
+  
 
   self.fumbleDuration = .35
 
@@ -22,10 +24,11 @@ function player:initialize()
 
   self.chargeDuration = 1.0
 
-  self.idleRegenDuration = .70
+  self.idleRegenDuration = .50
 
-  self.SPRegenRateIdle = .15
-  self.SPDrainRate = 0.4 -- points per second
+  self.SPRegenRateIdle = 0.2
+  self.Quit2RegenRateIdle = 0.05
+--  self.SPDrainRate = 0.4 -- points per second
   self.SPChargeDrainRate = 1
 
   self.HPGainRate = 2.0
@@ -192,10 +195,11 @@ function player:initializeSM()
         end
 
         if self.regenTimer:reached(player.idleRegenDuration) then
-          if enemy.name ~= "Quit2" then
-            player.SP = math.min(player.SP + player.SPRegenRateIdle * dt, player.maxSP)
+          
+          if enemy.name == "Quit2" then
+            player.SP = math.max(math.min(player.SP + player.Quit2RegenRateIdle * dt, player.maxSP), 0)
           else
-            player.SP = math.max(player.SP - player.SPRegenRateIdle * dt, 0)
+            player.SP = math.max(math.min(player.SP + player.SPRegenRateIdle    * dt, player.maxSP), 0)
           end
         end
       end,
@@ -203,57 +207,55 @@ function player:initializeSM()
   --
 
 
-  sm:add("guard",  {
-      canSwitch = function(self)
-        return player.SP > 0
-      end,
+--  sm:add("guard",  {
+--      canSwitch = function(self)
+--        return player.SP > 0
+--      end,
 
-      enter = function(self)
-        ac:setAnimation("guard")
-        Sound:play("Guard Equip")
-        --Sound:play("Open1")
-        --Sound:play("Crossbow")
+--      enter = function(self)
+--        ac:setAnimation("guard")
+--        Sound:play("Guard Equip")
+--        --Sound:play("Open1")
+--        --Sound:play("Crossbow")
 
 
-      end,
+--      end,
 
-      update = function(self, dt)	
-        if player.damaged  then
-          ac:setAnimation("guard_hit", false)
-          Sound:play("Player Block")
+--      update = function(self, dt)	
+--        if player.damaged  then
+--          ac:setAnimation("guard_hit", false)
+--          Sound:play("Player Block")
 
-          player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
-          if player.SP == 0 then
-            return sm:switch("hurt")
-          else
-            player.damaged = false
-          end
-        end
-
-        -- No more parry from guard
---        if input:pressed("down") then
---          return sm:switch("parry", "low")
---
---
---        elseif input:pressed("up") then
---          return sm:switch("parry", "high")
+--          player.SP = math.max(player.SP - player.damaged.attack.damage, 0)
+--          if player.SP == 0 then
+--            return sm:switch("hurt")
+--          else
+--            player.damaged = false
+--          end
 --        end
 
-        if ac:curName() == "guard_hit" then
-          if ac:curEvent() == "ended" then
-            ac:setAnimation("guard")
-          end
-        end
+--        -- No more parry from guard
+----        if input:pressed("down") then
+----          return sm:switch("parry", "low")
+----
+----
+----        elseif input:pressed("up") then
+----          return sm:switch("parry", "high")
+----        end
+
+--        if ac:curName() == "guard_hit" then
+--          if ac:curEvent() == "ended" then
+--            ac:setAnimation("guard")
+--          end
+--        end
 
 
-        if not input:down("guard") or player.SP <= 0 then
-          return sm:switch("idle")
-        end
-
-        player.SP = math.max(player.SP - player.SPDrainRate * dt, 0)
-      end,
-    })
-  --
+--        if not input:down("parry") or player.SP <= 0 then
+--          return sm:switch("idle")
+--        end
+--      end,
+--    })
+--  --
 
   sm:add("parry",  {      
       enter = function(self, stance)
@@ -262,6 +264,8 @@ function player:initializeSM()
 --          Sound:play("can'tparry") -- ADD SOUNDEFFECT HERE
           return sm:switch("idle") -- HACKish: this is here to enable sound effects to be playec ASSUMPTION: we come from idle. NOTE: might also be wierd with the animations
         end
+        
+        player:changeSP(-PARRY_SP_COST)
 
         self.stance = stance
         ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm
@@ -288,7 +292,8 @@ function player:initializeSM()
         end
 
         if self.timer:reached(player.parryDuration) then
-          return player.sm:switch("guard")
+          --return player.sm:switch("guard")
+          return player.sm:switch("idle")
         end
 
       end,
