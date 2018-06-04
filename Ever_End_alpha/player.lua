@@ -264,6 +264,8 @@ function player:initializeSM()
 --          Sound:play("can'tparry") -- ADD SOUNDEFFECT HERE
           return sm:switch("idle") -- HACKish: this is here to enable sound effects to be playec ASSUMPTION: we come from idle. NOTE: might also be wierd with the animations
         end
+        
+        player:changeSP(-PARRY_SP_COST)
 
         self.stance = stance
         ac:setAnimation("parry_" .. stance, false) -- dont know if this does anything atm
