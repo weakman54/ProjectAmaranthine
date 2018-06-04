@@ -199,7 +199,7 @@ function player:initializeSM()
           if enemy.name == "Quit2" then
             player.SP = math.max(math.min(player.SP + player.Quit2RegenRateIdle * dt, player.maxSP), 0)
           else
-            player.SP = math.max(math.max(player.SP + player.SPRegenRateIdle    * dt, player.maxSP), 0)
+            player.SP = math.max(math.min(player.SP + player.SPRegenRateIdle    * dt, player.maxSP), 0)
           end
         end
       end,
