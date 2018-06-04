@@ -27,7 +27,7 @@ function player:initialize()
   self.idleRegenDuration = .50
 
   self.SPRegenRateIdle = 0.2
-  self.Quit2RegenRateIdle = 0.05
+  self.Quit2RegenRateIdle = 0.0.5
 --  self.SPDrainRate = 0.4 -- points per second
   self.SPChargeDrainRate = 1
 

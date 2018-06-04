@@ -43,8 +43,8 @@ ENEMY_ATTACK_COUNTER_DAMAGE = 2
 PARRY_SP_COST = 0.95
 MIN_SP_TO_PARRY = PARRY_SP_COST
 
-SP_GAIN_FROM_DODGE_NORMAL = 1 -- is broken EKIVI -- NOTE FIXED?
-SP_GAIN_FROM_DODGE_PERFECT = 1.5 -- is broken too EKIVI FIXED?
+SP_GAIN_FROM_DODGE_NORMAL = 0.5 -- is broken EKIVI -- NOTE FIXED?
+SP_GAIN_FROM_DODGE_PERFECT = 1.0 -- is broken too EKIVI FIXED?
 
 -- Enemy attack weights, these function like if you put this many in a hat and then draw one
 -- So 2, 2, 1 means put two notes with HIGH, 2 with LOW and one with TAUNT, whatever we get when we pull is what happens
