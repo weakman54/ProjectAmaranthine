@@ -31,14 +31,6 @@ GUIPlayerSP.outerColor = {153/255, 243/255, 242/255, 0}
 GUIPlayerSP.innerColor = {153/255, 243/255, 242/255}
 -- angle -8.2
 
-function GUIPlayerSP:update(dt)
-      
-        --local color = {t.red or 1, t.green or 0, t.blue or 1, t.alpha or 1}
-  GUIPlayerSP.innerColor = {1, love.math.random(), 1, 1}-- {153/255, 243/255, 242/255}
-  --love.graphics.setColor({1, 0, 1, 1})
-  
-end
-
 
 local GUIEnemyHealth  = GUIBar:new(vec(1200, 200), vec(300, 30))
 --GUIEnemyHealth.innerColor = {255, 000, 000}
@@ -95,6 +87,8 @@ function stateBattle:enter(prev, enemyString)
 end
 
 
+local blinkAcc = 0
+local blinkSpeed = 1
 
 function stateBattle:update(dt)
   self.background.data:update(dt)
@@ -110,19 +104,25 @@ function stateBattle:update(dt)
   GUIPlayerHealth:update(dt)
   GUIPlayerSP:update(dt)
 
+  
+  if enemy.name == "Quit2" then
+    blinkAcc = blinkAcc + dt
+    GUIPlayerSP.innerColor = {1, math.sin(math.pi * blinkAcc * blinkSpeed), 1, 1}
+  end
+
   GUIEnemyHealth:update(dt)
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
 function stateBattle:draw()
-  
+
   self.background.data:loveDraw(x, y, r, sx, sy, 200, 200)
-  
+
   local barPos = -2320 * GUIEnemyHealth:getPercent()
   self.enemyHealthBar.data:loveDraw(barPos, y, r, sx, sy, 200, 200)
   self.enemyHealthBox.data:loveDraw(x, y, r, sx, sy, 200, 200)
-  
-  
+
+
   -- HACK RESET BELOW
   if flipHack then
     love.graphics.origin()
@@ -155,7 +155,7 @@ function stateBattle:draw()
   love.graphics.translate(healtPos.x, healtPos.y)
   love.graphics.rotate(-15.8 * math.pi/180)  
   GUIPlayerHealth:loveDraw()
-  
+
 
   -- RESET STUFF (?)
   love.graphics.origin()
@@ -165,7 +165,7 @@ function stateBattle:draw()
   love.graphics.rotate(-8.2 * math.pi/180)
   GUIPlayerSP:loveDraw()
   love.graphics.setColor({1, 1, 1, 1})
-  
+
 
   love.graphics.origin()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
