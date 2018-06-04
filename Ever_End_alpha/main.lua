@@ -46,6 +46,8 @@ HUMPTimer = require "hump.timer"
 lume = require "lume.lume"
 
 
+VNSystem = require "VNSystem"
+
 require "shakeEffect"
 
 
@@ -87,34 +89,6 @@ dbgSlomoFactor = .5
 speedUpFactor = 200
 -- TEST ^^^^^^^^^^^^^^^^^^
 
-
-batonControls = {
-  controls = {
-    left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},
-    right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
-    up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
-    down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
-    attack = {'key:space',                         'button:a'},
-    -- guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
-    parry  = {"key:g"    ,                         "button:x"},
-    -- dodge  = {"key:d"    ,                         "button:x"},
-    heal   = {"key:h"    ,                         "button:y"},
-    -- TODO: choices = keys:
-    combo = {"button:a", "button:b", "button:x", "button:y"},
-    comboLeft    = {"key:a"    ,                   "button:x"},
-    comboRight   = {"key:d"    ,                   "button:b"},
-    comboUp      = {"key:w"    ,                   "button:y"},
-    comboDown    = {"key:s"    ,                   "button:a"},
-
-    systemStart = {"key:escape",                   "button:start"},    
-    systemBack  = {"key:x"     ,                   "button:back"},               
-
-  },
-  pairs = {
-    move = {'left', 'right', 'up', 'down'}
-  },
-  joystick = love.joystick.getJoysticks()[1],
-}
 
 input = baton.new({
     controls = {
@@ -172,6 +146,32 @@ function love.load(arg)
   math.randomseed( os.time() )
 
   if preloadEverything then
+    local enemy
+
+    enemy = require "enemyQuit1"
+    enemy:initialize()
+    
+    enemy = require "enemyQuit2"
+    enemy:initialize()
+    
+    enemy = require "enemyQuit3"
+    enemy:initialize()
+    
+    
+    VNSystem:loadScene("00_0")
+    
+    VNSystem:loadScene("01_0")
+    
+    VNSystem:loadScene("02_0")
+    VNSystem:loadScene("02_1")
+    
+    VNSystem:loadScene("03_0")
+    
+    VNSystem:loadScene("04_0")
+    VNSystem:loadScene("04_1")
+    VNSystem:loadScene("04_2")
+    
+    VNSystem:loadScene("05_0")
   end
 
 
