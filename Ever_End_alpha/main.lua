@@ -156,6 +156,8 @@ function love.load(arg)
     
     enemy = require "enemyQuit3"
     enemy:initialize()
+	
+	require("player"):initialize()
     
     
     VNSystem:loadScene("00_0")
