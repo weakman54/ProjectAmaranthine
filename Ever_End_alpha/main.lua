@@ -1,6 +1,7 @@
 
 
 local dbg_print_animation_frames = false
+local preloadEverything = true
 
 -- Reload error management stuff (should be moved) vvvvvvvv
 reloaded = true
@@ -115,7 +116,33 @@ batonControls = {
   joystick = love.joystick.getJoysticks()[1],
 }
 
-input = baton.new(batonControls)
+input = baton.new({
+    controls = {
+      left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},
+      right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
+      up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
+      down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
+      attack = {'key:space',                         'button:a'},
+      -- guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
+      parry  = {"key:g"    ,                         "button:x"},
+      -- dodge  = {"key:d"    ,                         "button:x"},
+      heal   = {"key:h"    ,                         "button:y"},
+      -- TODO: choices = keys:
+      combo = {"button:a", "button:b", "button:x", "button:y"},
+      comboLeft    = {"key:a"    ,                   "button:x"},
+      comboRight   = {"key:d"    ,                   "button:b"},
+      comboUp      = {"key:w"    ,                   "button:y"},
+      comboDown    = {"key:s"    ,                   "button:a"},
+
+      systemStart = {"key:escape",                   "button:start"},    
+      systemBack  = {"key:x"     ,                   "button:back"},               
+
+    },
+    pairs = {
+      move = {'left', 'right', 'up', 'down'}
+    },
+    joystick = love.joystick.getJoysticks()[1],
+  })
 
 
 
@@ -143,6 +170,10 @@ function love.load(arg)
   Sound:init()  
 
   math.randomseed( os.time() )
+
+  if preloadEverything then
+  end
+
 
   Gamestate.switch(stateMain)
 end
@@ -312,7 +343,33 @@ end
 function love.joystickadded( joystick )
   gJoy = love.joystick.getJoysticks()[1]
 
-  input = baton.new(batonControls)
+  input = baton.new({
+      controls = {
+        left   = {'key:left' , "key:a", 'axis:leftx-', 'button:dpleft'},
+        right  = {'key:right', "key:d", 'axis:leftx+', 'button:dpright'},
+        up     = {'key:up'   , "key:w", 'axis:lefty-', 'button:dpup'},
+        down   = {'key:down' , "key:s", 'axis:lefty+', 'button:dpdown'},
+        attack = {'key:space',                         'button:a'},
+        -- guard  = {"key:g"    ,                         "button:rightshoulder", "axis:triggerright+"},
+        parry  = {"key:g"    ,                         "button:x"},
+        -- dodge  = {"key:d"    ,                         "button:x"},
+        heal   = {"key:h"    ,                         "button:y"},
+        -- TODO: choices = keys:
+        combo = {"button:a", "button:b", "button:x", "button:y"},
+        comboLeft    = {"key:a"    ,                   "button:x"},
+        comboRight   = {"key:d"    ,                   "button:b"},
+        comboUp      = {"key:w"    ,                   "button:y"},
+        comboDown    = {"key:s"    ,                   "button:a"},
+
+        systemStart = {"key:escape",                   "button:start"},    
+        systemBack  = {"key:x"     ,                   "button:back"},               
+
+      },
+      pairs = {
+        move = {'left', 'right', 'up', 'down'}
+      },
+      joystick = love.joystick.getJoysticks()[1],
+    })
 end
 
 
