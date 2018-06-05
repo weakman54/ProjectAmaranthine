@@ -101,15 +101,15 @@ return {
           InputBox = InputBox,
         },
         transitionTrigger = {
-         [1] = "waitForInput",
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
-              anim = "Box",alpha=.93,red=boxDarken,green=boxDarken,blue=boxDarken,
+            anim = "Box",alpha=.93,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
           [2] = {
             anim = "Zero",
-			x = 200, y = 0, tween = {1.0, { x = 0, y = 0 }, "out-quart" },
+            x = 200, y = 0, tween = {1.0, { x = 0, y = 0 }, "out-quart" },
           },
           [3] = {
             anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -125,7 +125,7 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Table Slide"}
+          {"Table Slide"}
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p004_m01_Box_'),
@@ -175,11 +175,11 @@ return {
         drawData = {
           [1] = {
             anim = "End",
-			x = -100, y = 0, tween = {1.0, { x = 0, y = 0 }, "out-quart" },
+            x = -100, y = 0, tween = {1.0, { x = 0, y = 0 }, "out-quart" },
           },
           [2] = {
             anim = "Box",alpha=.95,red=boxDarken,green=boxDarken,blue=boxDarken,
-			},
+          },
           [3] = {
             anim = "Hand",
           },
@@ -290,7 +290,7 @@ return {
           [2] = {
             anim = "Zero",
           },
-              [3] = {
+          [3] = {
             anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
@@ -335,14 +335,14 @@ return {
       [1] = {
         sounds = {
         },
-		music = {"Conflict Theme Placeholder", {fade = {duration = 4, rate = -1/4}}},
-  
+        music = {"Conflict Theme Placeholder", {fade = {duration = 4, rate = -1/4}}},
+
         anims = {
           Zero = RM:loadAnimation('s02_0_p010_m01_Zero_'),
           Table = RM:loadAnimation('s02_0_p010_m01_Table_'),
 
           Box = RM:loadAnimation('s02_0_p010_m01_Box_'),
-              Black = RM:loadAnimation('black'),
+          Black = RM:loadAnimation('black'),
 
         },
         transitionTrigger = {
@@ -357,8 +357,8 @@ return {
           [2] = {
             anim = "Zero",
             x= - 200, 
-			y = 0 + 80, 
-			tween = {1.0, { x = - 200, y = 0 }, "out-quart" },
+            y = 0 + 80, 
+            tween = {1.0, { x = - 200, y = 0 }, "out-quart" },
 
           },
           [3] = {
@@ -385,8 +385,8 @@ return {
         anims = {
           Zero = RM:loadAnimation('s02_0_p011_m01_Zero_'),
           Box = RM:loadAnimation('s02_0_p011_m01_Box_'),
-              Black = RM:loadAnimation('black'),
-    
+          Black = RM:loadAnimation('black'),
+
         },
         transitionTrigger = {
           [1] = "timer", [2] = 2.8, -- [1] = "waitForInput",
@@ -398,7 +398,7 @@ return {
           [2] = {
             anim = "Zero",
             x = -10,y= 100, tween = {2.8, {x=0,y = 0}, "in-linear"},
-      
+
           },
           [3] = {
             anim = "Black",
@@ -426,7 +426,7 @@ return {
           [2] = 4.0,
         },
         drawData = {
-         [1] = {
+          [1] = {
             anim = "Background",
             x = 2320/2 - 200 - 100,
             y = 1480/2 - 200 ,
@@ -521,7 +521,7 @@ return {
       [1] = {
         sounds = {
         },
-		music = {"stop"},
+        music = {"stop"},
         anims = {
           Kitty = RM:loadAnimation('s02_0_p014_m01_Kitty_'),
           Box = RM:loadAnimation('s02_0_p014_m01_Box_'),
@@ -607,9 +607,9 @@ return {
       },
     },
   },
-  
+
 -- Panel 16 doesn't exist, and that is ok.
-  
+
   [17] = {
     bg = {
       anim = blur2,
@@ -761,7 +761,7 @@ return {
         anims = {
           End = RM:loadAnimation('s02_0_p020_m01_End_'),
           Box = RM:loadAnimation('s02_0_p020_m01_Box_'),
-		  InputBox = InputBox,
+          InputBox = InputBox,
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -781,7 +781,7 @@ return {
             alpha = 1,
             tween = {1.2, {x = 2320/2 - 200 - 50, y = 1480/2 - 200, xScale = 1, yScale = 1}, "out-quart"},
           },
-		  [3] = {
+          [3] = {
             anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
@@ -795,7 +795,7 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Door Walls Closing NEW"}, -- NEEDS FIX JBOB! :-)
+          {"Door Walls Closing NEW"}, -- NEEDS FIX JBOB! :-)
         },
         anims = {
           End = RM:loadAnimation('s02_0_p021_m01_End_'),
@@ -854,7 +854,7 @@ return {
           },
         },
       },
-	     [2] = {
+      [2] = {
         sounds = {
         },
         anims = {
@@ -862,8 +862,8 @@ return {
           Box = RM:loadAnimation('s02_0_p021_m01_Box_'),
           LeftDoor =  RM:loadAnimation('s02_0_p021_m01_LeftDoor_'),
           RightDoor =  RM:loadAnimation('s02_0_p021_m01_RightDoor_'),
-		  LeftEffect = RM:loadAnimation('s02_0_p021_m01_LeftEffect_'),
-		  RightEffect = RM:loadAnimation('s02_0_p021_m01_RightEffect_'),
+          LeftEffect = RM:loadAnimation('s02_0_p021_m01_LeftEffect_'),
+          RightEffect = RM:loadAnimation('s02_0_p021_m01_RightEffect_'),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -878,7 +878,7 @@ return {
             yScale = 1,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            },
+          },
           [2] = {
             anim = "End",
             x = 2320/2 - 200,
@@ -887,10 +887,10 @@ return {
             yScale = 1,
             xOffset = 2320/2,
             yOffset = 1480/2,
-			},
+          },
           [3] = {
             anim = "LeftDoor",
-           x = 2320/2 - 200,
+            x = 2320/2 - 200,
             y = 1480/2 - 200,
             xScale = 1,
             yScale = 1,
@@ -906,16 +906,16 @@ return {
             xOffset = 2320/2,
             yOffset = 1480/2,
           },
-		  [5] = {
-		    anim = "LeftEffect",
-			alpha = 1,
-			tween = {2.0, {alpha = 0 }, "out-expo"},
-			},
-		[6] = {
-		    anim = "RightEffect",
-			alpha = 1,
-			tween = {2.0, {alpha = 0 }, "out-expo"},
-			},	
+          [5] = {
+            anim = "LeftEffect",
+            alpha = 1,
+            tween = {2.0, {alpha = 0 }, "out-expo"},
+          },
+          [6] = {
+            anim = "RightEffect",
+            alpha = 1,
+            tween = {2.0, {alpha = 0 }, "out-expo"},
+          },	
         },
       },
     },
@@ -979,10 +979,10 @@ return {
           Box = RM:loadAnimation('s02_0_p023_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p023_m01_Quit_'),
           End = RM:loadAnimation('s02_0_p023_m01_End_'),
-		  Screen = RM:loadAnimation('s02_0_p023_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p023_m01_screen_'),
         },
         transitionTrigger = {
-           [1] = "timer", [2] = 2.6,
+          [1] = "timer", [2] = 2.6,
         },
         drawData = {
           [1] = {
@@ -996,9 +996,9 @@ return {
             alpha = 1,
             tween = {1.9, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
-		   [2] = {
+          [2] = {
             anim = "Screen",
-			x = 2320/2 - 200 + 680,
+            x = 2320/2 - 200 + 680,
             y = 1480/2 - 200,
             xScale = 1.2,
             yScale = 1.2,
@@ -1007,7 +1007,7 @@ return {
             alpha = 1,
             tween = {1.9, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.1, yScale = 1.1}, "in-out-quad"},
           },
-		  [3] = {
+          [3] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
             x = 2320/2 - 200 + 680,
             y = 1480/2 - 200,
@@ -1045,7 +1045,7 @@ return {
           Quit = RM:loadAnimation('s02_0_p024_m01_Quit_'),
           ShadowQuit = RM:loadAnimation('s02_0_p024_m01_DarkQuit_'),
           Box = RM:loadAnimation('s02_0_p024_m01_Box_'),
-		  Screen = RM:loadAnimation('s02_0_p025_m01_Screen_'),
+          Screen = RM:loadAnimation('s02_0_p025_m01_Screen_'),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -1062,10 +1062,10 @@ return {
             anim = "Quit",
             alpha = 0.07, tween = {2.5, {alpha = 1}, "in-out-cubic"},
           },
-		  [4] = {
+          [4] = {
             anim = "Screen",
-			alpha = 0.9,
-            },
+            alpha = 0.9,
+          },
         },
       },
     },
@@ -1082,7 +1082,7 @@ return {
           Box = RM:loadAnimation('s02_0_p025_m01_Box_'),
           Zero = RM:loadAnimation('s02_0_p025_m01_Zero_'),
           Shadow = RM:loadAnimation('s02_0_p025_m01_DarkZero_'),
-		  Screen = RM:loadAnimation('s02_0_p025_m01_Screen_'),
+          Screen = RM:loadAnimation('s02_0_p025_m01_Screen_'),
         },
         transitionTrigger = {
           [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
@@ -1098,10 +1098,10 @@ return {
             anim = "Zero",
             alpha = .3, tween = {2.0, {alpha = 1}, "in-out-cubic"},
           },
-		  [4] = {
+          [4] = {
             anim = "Screen",
-			alpha = 0.9,
-            },
+            alpha = 0.9,
+          },
         },
       },
     },
@@ -1188,10 +1188,10 @@ return {
           Box = RM:loadAnimation('s02_0_p028_m01_Box_'),
           Quit_Zero = RM:loadAnimation('s02_0_p028_m01_Quit_Zero_'),
           InputBox = InputBox, TextBox = RM:loadAnimation('s02_0_p028_m01_text_'),
-		  Screen = RM:loadAnimation('s02_0_p028_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p028_m01_screen_'),
         },
         transitionTrigger = {
-            [1] = "waitForInput",
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -1201,14 +1201,14 @@ return {
             anim = "Quit_Zero",
             x = 100, y = 10, tween = {1.7, { x = 0, y = 0 }, "in-out-cubic" },
           },
-		  [3] = {
-		  anim = "Screen",
-		   x = 100, y = 10, tween = {1.7, { x = 0, y = 0 }, "in-out-cubic" },
-		  },
+          [3] = {
+            anim = "Screen",
+            x = 100, y = 10, tween = {1.7, { x = 0, y = 0 }, "in-out-cubic" },
+          },
           [4] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, 
-			}, 
-		  [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          }, 
+          [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -1219,7 +1219,7 @@ return {
           Box = RM:loadAnimation('s02_0_p028_m01_Box_'),
           Quit_Zero = RM:loadAnimation('s02_0_p028_m01_Quit_Zero_'),
           InputBox = InputBox, TextBox = RM:loadAnimation('s02_0_p028_m02_Text_'),
-		  Screen = RM:loadAnimation('s02_0_p028_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p028_m01_screen_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1230,14 +1230,14 @@ return {
           },
           [2] = {
             anim = "Quit_Zero",
-			},
-		[3] = {
-		  anim = "Screen",
-		  },
+          },
+          [3] = {
+            anim = "Screen",
+          },
           [4] = {
             anim = "TextBox", 
           }, 
-		  [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -1248,7 +1248,7 @@ return {
           Box = RM:loadAnimation('s02_0_p028_m01_Box_'),
           Quit_Zero = RM:loadAnimation('s02_0_p028_m01_Quit_Zero_'),
           InputBox = InputBox, TextBox = RM:loadAnimation('s02_0_p028_m03_Text_'),
-		    Screen = RM:loadAnimation('s02_0_p028_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p028_m01_screen_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1260,12 +1260,12 @@ return {
           [2] = {
             anim = "Quit_Zero",
           },
-		  [3] = {
-		  anim = "Screen",
-		  },
+          [3] = {
+            anim = "Screen",
+          },
           [4] = {
             anim = "TextBox", 
-          }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+            }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -1283,10 +1283,10 @@ return {
           Box = RM:loadAnimation('s02_0_p029_m01_Box_'),
           Quit_Zero = RM:loadAnimation('s02_0_p029_m01_Quit_Zero_'),
           InputBox = InputBox, TextBox = RM:loadAnimation('s02_0_p029_m01_text_'),
-		  Screen = RM:loadAnimation('s02_0_p028_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p028_m01_screen_'),
         },
         transitionTrigger = {
-         [1] = "waitForInput",
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -1295,9 +1295,9 @@ return {
           [2] = {
             anim = "Quit_Zero",
           },
-		   [3] = {
-		  anim = "Screen",
-		  },
+          [3] = {
+            anim = "Screen",
+          },
           [4] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
@@ -1318,7 +1318,7 @@ return {
           Box = RM:loadAnimation('s02_0_p030_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p030_m01_Quit_'),
           laugh = RM:loadAnimation('s02_0_p030_m01_text_'),
-		   Screen = RM:loadAnimation('s02_0_p030_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p030_m01_screen_'),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -1330,11 +1330,11 @@ return {
           },
           [2] = {
             anim = "Quit",
-			alpha = 0.9
-		},
-		[3] = {
-		  anim = "Screen",
-		  },
+            alpha = 0.9
+          },
+          [3] = {
+            anim = "Screen",
+          },
           [4] = {
             anim = "laugh",
 
@@ -1366,7 +1366,7 @@ return {
           Box = RM:loadAnimation('s02_0_p030_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p030_m01_Quit_'),
           laugh = RM:loadAnimation('s02_0_p030_m02_text_'),
-		   Screen = RM:loadAnimation('s02_0_p030_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p030_m01_screen_'),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -1379,9 +1379,9 @@ return {
           [2] = {
             anim = "Quit",
           },
-		  [3] = {
-		  anim = "Screen",
-		  },
+          [3] = {
+            anim = "Screen",
+          },
           [4] = {
             anim = "laugh",
             x = 2320/2 - 200 + 00,
@@ -1412,7 +1412,7 @@ return {
           Box = RM:loadAnimation('s02_0_p030_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p030_m01_Quit_'),
           laugh = RM:loadAnimation('s02_0_p030_m03_text_'),
-		   Screen = RM:loadAnimation('s02_0_p030_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p030_m01_screen_'),
         },
         transitionTrigger = {
           [1] = "timer", [2] = 1.0,
@@ -1423,10 +1423,10 @@ return {
           },
           [2] = {
             anim = "Quit",
-		  },
-		  [3] = {
-		  anim = "Screen",
-		  },
+          },
+          [3] = {
+            anim = "Screen",
+          },
           [4] = {
             anim = "laugh",
             x = 2320/2 - 200 - 200,
@@ -1465,10 +1465,10 @@ return {
           End = RM:loadAnimation('s02_0_p031_m01_End_'),
           Quit_Zero = RM:loadAnimation('s02_0_p031_m01_Quit_Zero_'),
           InputBox = InputBox, TextBox = RM:loadAnimation('s02_0_p031_m01_text_'),
-		  Screen = RM:loadAnimation('s02_0_p031_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p031_m01_screen_'),
         },
         transitionTrigger = {
-       [1] = "waitForInput",
+          [1] = "waitForInput",
         },
         drawData = {
 
@@ -1477,11 +1477,11 @@ return {
             x = 0 + 200,
             y = 300,
             rotation = -.1,
-			tween = {1.0, {x = 0}, "out-quad" },
+            tween = {1.0, {x = 0}, "out-quad" },
           },
-		  [2] = {
-		  anim = "Screen",
-		  },
+          [2] = {
+            anim = "Screen",
+          },
           [3] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
             x = 0,
@@ -1489,16 +1489,16 @@ return {
           },
           [4] = {
             anim = "TextBox", 
-			alpha = 0, x = 100, y = 200, 
-			tween = {.1, {alpha = 1}, "in-linear"}, 
-			}, 
-		  [5] = {
+            alpha = 0, x = 100, y = 200, 
+            tween = {.1, {alpha = 1}, "in-linear"}, 
+          }, 
+          [5] = {
             anim = "Quit_Zero",
-			x = 0 - 100,
-			y = 0,
-			tween = {1.0, {x = 0}, "out-quad" },
+            x = 0 - 100,
+            y = 0,
+            tween = {1.0, {x = 0}, "out-quad" },
           },
-			[6] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          [6] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -1559,7 +1559,7 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p033_m01_Box_'),
           Zero = RM:loadAnimation('s02_0_p033_m01_Zero_'),
-		  Screen = RM:loadAnimation('s02_0_p031_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p031_m01_screen_'),
         },
         transitionTrigger = {
           [1] = "timer", [2] = 2.0, -- [1] = "waitForInput",
@@ -1584,10 +1584,13 @@ return {
                 yScale = 1,
                 }, "out-quart"
             },
+            [3] = {
+              anim = "Screen",
+            },
           },
-		   [3] = {
-		  anim = "Screen",
-		   x = 2320/2 - 200 - 0,
+          [3] = {
+            anim = "Screen",
+            x = 2320/2 - 200 - 0,
             y = 1480/2 - 200 + 20,
             xScale = .96,
             yScale = .96,
@@ -1600,10 +1603,10 @@ return {
                 xScale = 1,
                 yScale = 1,
                 }, "out-quart" },
+          },
         },
       },
     },
-  },
   },
   [34] = {
     bg = {
@@ -1631,7 +1634,7 @@ return {
           },
           [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, 
-			},
+          },
         },
       },
       [2] = {
@@ -1654,7 +1657,7 @@ return {
           [2] = {
             anim = "Quit_Zero",
             alpha = 1, tween = {.8, {alpha = 0,}, "out-linear"}
-            
+
           },
           [3] = {
             anim = "Quit_Zero2",
@@ -1681,8 +1684,8 @@ return {
           Box = RM:loadAnimation('s02_0_p035_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p035_m01_Quit_'),
           InputBox = InputBox, TextBox = RM:loadAnimation('s02_0_p035_m01_text_'),
-		  Screen = RM:loadAnimation('s02_0_p035_m01_screen_'),
-		  Effect = RM:loadAnimation('intenseFX_'),
+          Screen = RM:loadAnimation('s02_0_p035_m01_screen_'),
+          Effect = RM:loadAnimation('intenseFX_'),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1694,20 +1697,20 @@ return {
           [2] = {
             anim = "Quit",
           },
-		  [3] = {
-		  anim = "Screen",
-		  alpha = 0.8,
-		  },
-		  [4] = {
-			anim = "Effect",
-			},
+          [3] = {
+            anim = "Screen",
+            alpha = 0.8,
+          },
+          [4] = {
+            anim = "Effect",
+          },
           [5] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [6] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
     },
-	},
+  },
   [36] = {
     bg = {
       anim = blur3,
@@ -1732,20 +1735,20 @@ return {
           },
           [2] = {
             anim = "Effect",
-			red=4, green=4, blue=4,
+            red=4, green=4, blue=4,
           },
           [3] = {
             anim = "End",
           },
           [4] = {
             anim = "Robot",
-			x = 2320/2 - 200 + 500,
+            x = 2320/2 - 200 + 500,
             y = 1480/2 - 200 + 500,
             xScale = 1.6,
             yScale = 1.6,
             xOffset = 2320/2,
             yOffset = 1480/2,
-			tween = {0.8, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.1, yScale = 1.1, }, "out-linear"},
+            tween = {0.8, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.1, yScale = 1.1, }, "out-linear"},
           },
         },
       },
@@ -1771,27 +1774,27 @@ return {
           },
           [3] = {
             anim = "Robot",
-			x = 2320/2 - 200,
+            x = 2320/2 - 200,
             y = 1480/2 - 200,
             xScale = 1.1,
             yScale = 1.1,
             xOffset = 2320/2,
             yOffset = 1480/2,
-			tween = {0.1, {x = 2320/2 - 200 - 5, y = 1480/2 - 200 - 5, xScale = 1, yScale = 1, }, "out-quart"},
+            tween = {0.1, {x = 2320/2 - 200 - 5, y = 1480/2 - 200 - 5, xScale = 1, yScale = 1, }, "out-quart"},
           },
           [4] = {
             anim = "Star",
-			x = 2320/2 - 200,
+            x = 2320/2 - 200,
             y = 1480/2 - 200,
             xScale = 1.1,
             yScale = 1.1,
             xOffset = 2320/2,
             yOffset = 1480/2,
-			tween = {0.1, {x = 2320/2 - 200 - 5, y = 1480/2 - 200 - 5, xScale = 1, yScale = 1, }, "out-quart"},
+            tween = {0.1, {x = 2320/2 - 200 - 5, y = 1480/2 - 200 - 5, xScale = 1, yScale = 1, }, "out-quart"},
           },
         },
       },
-	  [3] = {
+      [3] = {
         sounds = {
         },
         anims = {
@@ -1799,7 +1802,7 @@ return {
           Star = RM:loadAnimation('s02_0_p036_m02_Star_'),
           Effect = RM:loadAnimation('intenseFX_'),
           Robot = RM:loadAnimation('s02_0_p036_m02_Robot_'),
-		  InputBox = InputBox,
+          InputBox = InputBox,
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1813,23 +1816,23 @@ return {
           },
           [3] = {
             anim = "Robot",
-			x = 2320/2 - 200 - 10,
-            y = 1480/2 - 200 - 10,
-            xScale = 1,
-            yScale = 1,
-            xOffset = 2320/2,
-            yOffset = 1480/2,
-			},
-          [4] = {
-            anim = "Star",
-			x = 2320/2 - 200 - 10,
+            x = 2320/2 - 200 - 10,
             y = 1480/2 - 200 - 10,
             xScale = 1,
             yScale = 1,
             xOffset = 2320/2,
             yOffset = 1480/2,
           },
-		  [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          [4] = {
+            anim = "Star",
+            x = 2320/2 - 200 - 10,
+            y = 1480/2 - 200 - 10,
+            xScale = 1,
+            yScale = 1,
+            xOffset = 2320/2,
+            yOffset = 1480/2,
+          },
+          [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -1847,7 +1850,7 @@ return {
         anims = {
           Box = RM:loadAnimation('s02_0_p037_m01_Box_'),
           End = RM:loadAnimation('s02_0_p037_m01_End_'),
-		  Robot = RM:loadAnimation('s02_0_p037_m01_Robot_'),
+          Robot = RM:loadAnimation('s02_0_p037_m01_Robot_'),
         },
         transitionTrigger = {
           [1] = "timer", [2] = 2.0, 
@@ -1858,15 +1861,15 @@ return {
           },
           [2] = {
             anim = "End",
-			x = 0,
-			y = 0 + 30,
-			tween = {2.0, {x = 300, y = 0}, "out-quad" }, 
+            x = 0,
+            y = 0 + 30,
+            tween = {2.0, {x = 300, y = 0}, "out-quad" }, 
           },
-		  [3] = {
+          [3] = {
             anim = "Robot",
-			x = 0 + 10,
-			y = 0,
-			tween = {2.0, {x = 0, y = 0}, "in-linear" }, 
+            x = 0 + 10,
+            y = 0,
+            tween = {2.0, {x = 0, y = 0}, "in-linear" }, 
           },
         },
       },
@@ -1879,14 +1882,14 @@ return {
     moments = {
       [1] = {
         sounds = {
-			{"Robot Reveal 1", {delay = 0.3}}
+          {"Robot Reveal 1", {delay = 0.3}}
         },
         music = {"Build_up_Theme Full"},
         anims = {
           Box = RM:loadAnimation('s02_0_p038_m01_Box_'),
           RobotArm = RM:loadAnimation('s02_0_p038_m01_Robot_'),
-		  RobotBod = RM:loadAnimation('s02_0_p039_m01_RobBody_'),
-		  Black = Black,
+          RobotBod = RM:loadAnimation('s02_0_p039_m01_RobBody_'),
+          Black = Black,
         },
         transitionTrigger = {
           [1] = "timer", [2] =3.0, -- [1] = "waitForInput",
@@ -1895,28 +1898,28 @@ return {
           [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
-		  [2] = {
-		    anim = "RobotBod",
-		  },
-		  [3] = {
-		    anim = "Black",
-			alpha = 1,
-			tween = {2.5, {alpha = 0.5 }, "in-linear" },
-			},
+          [2] = {
+            anim = "RobotBod",
+          },
+          [3] = {
+            anim = "Black",
+            alpha = 1,
+            tween = {2.5, {alpha = 0.5 }, "in-linear" },
+          },
           [4] = {
             anim = "RobotArm",
           },
         },
       },
-	  [2] = {
+      [2] = {
         sounds = {
-			{"Robot Reveal 2"},
+          {"Robot Reveal 2"},
         },
         anims = {
           Box = RM:loadAnimation('s02_0_p038_m01_Box_'),
           RobotArm = RM:loadAnimation('s02_0_p039_m02_RobArm_'),
-		  RobotBod = RM:loadAnimation('s02_0_p039_m01_RobBody_'),
-		  Black = Black,
+          RobotBod = RM:loadAnimation('s02_0_p039_m01_RobBody_'),
+          Black = Black,
         },
         transitionTrigger = {
           [1] = "timer", [2] = 2.5, -- [1] = "waitForInput",
@@ -1925,23 +1928,23 @@ return {
           [1] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
           },
-		  [2] = {
-		    anim = "RobotBod",
-		  },
-		   [3] = {
-            anim = "RobotArm",
-			x = 0,
-			y = 10,
-			tween = {1.0, {y = 0}, "out-quad" },
+          [2] = {
+            anim = "RobotBod",
           },
-		  [4] = {
-		    anim = "Black",
-			alpha = 0.5, 
-			tween = {2.5, {alpha = 0 }, "in-linear" },
-			},
+          [3] = {
+            anim = "RobotArm",
+            x = 0,
+            y = 10,
+            tween = {1.0, {y = 0}, "out-quad" },
+          },
+          [4] = {
+            anim = "Black",
+            alpha = 0.5, 
+            tween = {2.5, {alpha = 0 }, "in-linear" },
+          },
+        },
       },
     },
-   },
   },
   --[39] = {
   --  bg = {
@@ -1981,7 +1984,7 @@ return {
           Box = RM:loadAnimation('s02_0_p040_m01_Box_'),
           End = RM:loadAnimation('s02_0_p040_m01_End_'),
           Robot = RM:loadAnimation('s02_0_p040_m01_Robot_'),
-		  InputBox = InputBox,
+          InputBox = InputBox,
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -1993,14 +1996,14 @@ return {
           [2] = {
             anim = "Robot",
             x = - 100,
-			tween = {1.0, {x = 0}, "out-quad"},
-		  },
-		  [3] = {
-            anim = "End",
-			x = 100,
-			tween = {1.0, {x = 0}, "out-quad"},
+            tween = {1.0, {x = 0}, "out-quad"},
           },
-		  [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+          [3] = {
+            anim = "End",
+            x = 100,
+            tween = {1.0, {x = 0}, "out-quad"},
+          },
+          [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
       },
@@ -2018,10 +2021,10 @@ return {
           Box = RM:loadAnimation('s02_0_p041_m01_Box_'),
           Quit = RM:loadAnimation('s02_0_p041_m01_Quit_'),
           InputBox = InputBox, TextBox = RM:loadAnimation('s02_0_p041_m01_text_'),
-		  Screen = RM:loadAnimation('s02_0_p041_m01_screen_'),
+          Screen = RM:loadAnimation('s02_0_p041_m01_screen_'),
         },
         transitionTrigger = {
-           [1] = "waitForInput",
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -2041,7 +2044,7 @@ return {
                 y = 1480/2 - 200 - 0,
                 xScale = 1,
                 yScale = 1,
-                }, "out-quart"
+                }, "out-quart",
             },
           },
 		  [3] = {
@@ -2054,9 +2057,15 @@ return {
 			[5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
           },
         },
-      },
+        [3] = {
+          anim = "Screen",
+        },
+        [4] = {
+          anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [5] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+        },
       },
     },
+  },
   [42] = {
     bg = {
       anim = blur3,
@@ -2099,17 +2108,17 @@ return {
         },
         anims = {
           ProTip = RM:loadAnimation('s02_0_p043_m01_Tips_'),
-		  },
+        },
         transitionTrigger = {
           [1] = "waitForInput",
           enemyToGoTo = "enemyQuit1",
         },
         drawData = { 
-		[1] = { 
-		anim = "ProTip", 
-		},
-	  },
-	},
-  },
- },  
+          [1] = { 
+            anim = "ProTip", 
+          },
+        },
+      },
+    },
+  },  
 }

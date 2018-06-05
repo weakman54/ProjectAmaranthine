@@ -38,8 +38,9 @@ function stateGameOver:update(dt)
 
   if self.acceptInput then
     if input:pressed("comboUp") then
-      Gamestate.switch(stateBattle, "enemy" .. enemy.name) -- HACK: should switch to the correct battle better (all the global state is making this hacky...)
-
+		if not self.won then
+			Gamestate.switch(stateBattle, "enemy" .. enemy.name) -- HACK: should switch to the correct battle better (all the global state is making this hacky...)
+		end
     elseif input:pressed("comboLeft") then
       VNSystem:loadScene(enemy.nextScene, enemy.nextPanel)
       Gamestate.switch(stateVN)
