@@ -243,11 +243,11 @@ end
 function VNSystem:update(dt)
   -- ASSUMPTION: for these things in the beginning:  curMoment exists
   if self.curMoment.choice then -- HACK for current version as well
-    if input:pressed("left") then
+    if input:pressed("comboLeft") then
       self.curMoment.transitionTrigger.gotoScene = "04_1" -- Spare option
       self:incrementMomentI()
 
-    elseif input:pressed("right") then
+    elseif input:pressed("comboRight") then
       self.curMoment.transitionTrigger.gotoScene = "04_2" -- Kill option
       self:incrementMomentI()
 
