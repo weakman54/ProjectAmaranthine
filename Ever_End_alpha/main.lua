@@ -1,7 +1,7 @@
 
 
 local dbg_print_animation_frames = false
-local preloadEverything = true
+local preloadEverything = false
 
 -- Reload error management stuff (should be moved) vvvvvvvv
 reloaded = true
