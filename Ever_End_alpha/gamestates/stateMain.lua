@@ -71,13 +71,13 @@ function stateMain:init()
 
   self.sm:add("main",
     {
+
       update = function(self, dt)
-        if input:pressed("comboUp") then
+        if inputTimers.comboUp.triggered then
           Gamestate.switch(stateVN, "RESETPLZ") --Hack
-
-        elseif input:pressed("systemBack") or input:pressed("comboDown") then
+          
+        elseif  inputTimers.comboDown.triggered then
           love.event.quit()
-
         end
       end,
 

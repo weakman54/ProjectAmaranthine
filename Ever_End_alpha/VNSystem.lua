@@ -3,7 +3,7 @@ local RM = require "resourceManager.resourceManager"
 
 
 
-dbg_VNSystem_DrawIndexes = false
+dbg_VNSystem_DrawIndexes = true
 dbg_VNSystem_DrawAnims = false
 
 
@@ -239,18 +239,31 @@ function VNSystem:incrementMomentI()
 end
 
 
+local spareAcc = 0
+local killAcc = 0
 
 function VNSystem:update(dt)
   -- ASSUMPTION: for these things in the beginning:  curMoment exists
-  if self.curMoment.choice then -- HACK for current version as well
-    if input:pressed("comboLeft") then
+  if self.curMoment.choice then -- HACK for current version as well, only does kill/spare option...
+--    if input:down("comboLeft") then
+--      spareAcc = spareAcc + dt
+--    else
+--      spareAcc = 0
+--    end
+
+--    if input:down("comboRight") then
+--      killAcc = killAcc + dt
+--    else
+--      killAcc = 0
+--    end
+
+    if inputTimers.comboLeft.triggered then
       self.curMoment.transitionTrigger.gotoScene = "04_1" -- Spare option
       self:incrementMomentI()
 
-    elseif input:pressed("comboRight") then
+    elseif inputTimers.comboRight.triggered then
       self.curMoment.transitionTrigger.gotoScene = "04_2" -- Kill option
       self:incrementMomentI()
-
     end
 
   elseif input:pressed("attack") and self.curMoment.transitionTrigger[1] == "waitForInput" then 
@@ -258,7 +271,7 @@ function VNSystem:update(dt)
     Sound:play("Click")
     self:incrementMomentI()
 
-  -- elseif input:pressed("parry") and self.curPanelI ~= 1 then
+    -- elseif input:pressed("parry") and self.curPanelI ~= 1 then
 --     self:setPanelI(self.curPanelI - 1)
   end
 
