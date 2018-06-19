@@ -20,12 +20,26 @@ function statePause:enter(from)
   self.pausedSounds = love.audio.pause()
 end
 
+local returnAcc = 0
+local menuAcc = 0
 
 function statePause:update(dt)
-  if input:pressed("comboUp") then
+--  if input:down("comboUp") then
+--    returnAcc = returnAcc + dt
+--  else
+--    returnAcc = 0
+--  end
+
+--  if input:down("comboDown") then
+--    menuAcc = menuAcc + dt
+--  else
+--    menuAcc = 0
+--  end
+
+  if inputTimers.comboUp.triggered then
     return Gamestate.pop()
 
-  elseif input:pressed("comboDown") then
+  elseif inputTimers.comboDown.triggered then
     Gamestate.pop()
     return Gamestate.switch(stateMain)
 
@@ -41,9 +55,9 @@ function statePause:draw()
     love.graphics.setColor(0, 0, 0, 0.5)
     love.graphics.rectangle('fill', 0, 0, W, H)
     love.graphics.setColor(1, 1, 1)
-    
+
     self.GUI.data:loveDraw(x, y, r, sx, sy, 200, 200)
-    
+
 --    love.graphics.printf('PAUSE', 0, H/2, W, 'center')
 
 --    love.graphics.printf("escape/start - Return to game\nr - Return to main menu\nt - Toggle printscreen mode\nx/back - Exit game", 0, H/2 + 100, W, "center")

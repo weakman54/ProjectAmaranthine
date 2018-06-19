@@ -1,7 +1,8 @@
 
 
 local dbg_print_animation_frames = false
-local preloadEverything = true
+local dbg_renderInputTimers = true
+local preloadEverything = false
 
 -- Reload error management stuff (should be moved) vvvvvvvv
 reloaded = true
@@ -119,6 +120,14 @@ input = baton.new({
   })
 
 
+local dbg_inputTimerPercentage = 0
+inputTimers = {
+  comboDown = {},
+  comboUp = {},
+  comboLeft = {},
+  comboRight = {},
+}
+
 
 function love.load(arg)
   love.mouse.setVisible( false )
@@ -150,29 +159,29 @@ function love.load(arg)
 
     enemy = require "enemyQuit1"
     enemy:initialize()
-    
+
     enemy = require "enemyQuit2"
     enemy:initialize()
-    
+
     enemy = require "enemyQuit3"
     enemy:initialize()
-	
-	require("player"):initialize()
-    
-    
+
+    require("player"):initialize()
+
+
     VNSystem:loadScene("00_0")
-    
+
     VNSystem:loadScene("01_0")
-    
+
     VNSystem:loadScene("02_0")
     VNSystem:loadScene("02_1")
-    
+
     VNSystem:loadScene("03_0")
-    
+
     VNSystem:loadScene("04_0")
     VNSystem:loadScene("04_1")
     VNSystem:loadScene("04_2")
-    
+
     VNSystem:loadScene("05_0")
   end
 
@@ -200,6 +209,25 @@ function love.update(dt)
   end
 
 
+  -- Input timers
+  local largestPercentage = 0
+  for action, inputTimer in pairs(inputTimers) do
+    if input:down(action) then
+      inputTimer.acc = inputTimer.acc + dt
+    else
+      inputTimer.acc = 0
+    end
+
+    inputTimer.percentage = math.min(inputTimer.acc / GUI_TIME_FOR_INPUT, GUI_TIME_FOR_INPUT)
+    inputTimer.triggered = inputTimer.acc >= GUI_TIME_FOR_INPUT
+
+    if inputTimer.percentage > largestPercentage then
+      largestPercentage = inputTimer.percentage
+    end
+  end
+  dbg_inputTimerPercentage = largestPercentage
+
+
 
   -- TEST vvvvvvvvvvvvvv
   dt = dt * slomo
@@ -225,6 +253,11 @@ function love.draw()
 
   if dbg_print_animation_frames and player.ac and enemy.ac then
     dbgPrintAnimFrames()
+  end
+
+  if dbg_renderInputTimers then
+    love.graphics.rectangle("fill", 0, H - 50, 100 * dbg_inputTimerPercentage, 50)
+    love.graphics.line(100, H - 50, 100, H)
   end
 end
 

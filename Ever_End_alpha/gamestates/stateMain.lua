@@ -45,7 +45,7 @@ function stateMain:init()
       enter = function (self)
         self.text = "Press start"
         self.textY = H - 200 -- TODO: tween the start text up, together with the logo
-		Sound:play("End_Ex_Sister")
+        Sound:play("End_Ex_Sister")
 
         HUMPTimer.tween(0.5, stateMain, {guiAlpha = 0}, "out-quad", function() self.text = nil end)
 
@@ -71,19 +71,13 @@ function stateMain:init()
 
   self.sm:add("main",
     {
+
       update = function(self, dt)
-        if input:pressed("comboRight") then
---          Gamestate.switch(stateBattle)
-
-        elseif input:pressed("comboUp") then
+        if inputTimers.comboUp.triggered then
           Gamestate.switch(stateVN, "RESETPLZ") --Hack
-
-        elseif input:pressed("systemBack") then
+          
+        elseif  inputTimers.comboDown.triggered then
           love.event.quit()
-          
-        elseif input:pressed("parry") then
-          -- Gamestate.switch(stateBattle) --Hack
-          
         end
       end,
 

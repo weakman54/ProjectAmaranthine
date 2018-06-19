@@ -65,3 +65,7 @@ FONT_PATH = "assets/fonts/typewcond_bold.otf"
 FONT_SIZE = 48
 
 
+
+GUI_TIME_FOR_INPUT = 1 -- seconds until gui element is triggered when button is held
+
+
