@@ -87,7 +87,43 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
-          gotoScene = "01_0",
+        },
+        drawData = {
+        },
+      },
+    },
+  },
+    [6] = {
+    bg = {
+      anim = RM:loadAnimation('s00_0_p006_m01_Recap_'),
+    },
+    moments = {
+      [1] = {
+        sounds = {
+        },
+        anims = {
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+        },
+        drawData = {
+        },
+      },
+    },
+  },
+    [7] = {
+    bg = {
+      anim = RM:loadAnimation('s00_0_p007_m01_Recap_'),
+    },
+    moments = {
+      [1] = {
+        sounds = {
+        },
+        anims = {
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
+		  gotoScene = "01_0",
         },
         drawData = {
         },
