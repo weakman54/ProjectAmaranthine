@@ -259,7 +259,7 @@ return {
         sounds = {
 			{"Door Open"}
         },
-		music = {"End_Ex_Sister"},
+		--music = {"End_Ex_Sister"},
         anims = {
           EndZero = RM:loadAnimation('s01_0_p002_m01_EndZero_'),
           YawnFX = RM:loadAnimation('s01_0_p002_m01_YawnFX_'),
@@ -314,6 +314,7 @@ return {
       [1] = {
         sounds = {
         },
+		music = {"Quit_Chill_Theme_Full"},
         anims = {
           Background = QuitRoomBackground,
           Box = RM:loadAnimation('s01_0_p003_m01_Box_'),
@@ -375,7 +376,7 @@ return {
           QuitPainting = RM:loadAnimation('s01_0_p004_m01_QuitPainting_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 3.0,
+          [1] = "timer", [2] = 2.5,
         },
         drawData = {
           
@@ -387,7 +388,7 @@ return {
             yScale = 1.01,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.7, {x = 2320/2 - 200-150, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
+            tween = {2.5, {x = 2320/2 - 200-150, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [2] = {
             anim = "Box",alpha=boxAlpha,red=boxDarken,green=boxDarken,blue=boxDarken,
@@ -397,7 +398,7 @@ return {
             yScale = 1.00,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.5, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.2, yScale = 1.2}, "in-out-quad"},
+            tween = {2.3, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.2, yScale = 1.2}, "in-out-quad"},
           },
         },
       },
@@ -507,13 +508,6 @@ return {
           },
           [2] = {
             anim = "EndRollEyes",
-            x = 2320/2 - 200,
-            y = 1480/2 - 200,
-            xScale = 1.03,
-            yScale = 1.03,
-            xOffset = 2320/2,
-            yOffset = 1480/2,
-            tween = {0.9, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
           },
           [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -537,10 +531,6 @@ return {
           },
           [2] = {
             anim = "EndRollEyes",
-			x = 2320/2 - 200 + 30,
-            y = 1480/2 - 200,
-            xOffset = 2320/2,
-            yOffset = 1480/2,
           },
           [3] = {
             anim = "TextBox", alpha = 0, tween = {.1, {alpha = 1 }, "in-linear"}, }, [4] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
@@ -563,7 +553,7 @@ return {
           Kitty = RM:loadAnimation('s01_0_p008_m01_Kitty_'),
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.7,
+          [1] = "timer", [2] = 1.9,
         },
         drawData = {
           [1] = {
@@ -573,21 +563,21 @@ return {
             anim = "Kitty",
             x = 2320/2 - 200,
             y = 1480/2 - 200,
-            xScale = 1,
-            yScale = 1,
+            xScale = 0.9,
+            yScale = 0.9,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
+            tween = {1.9, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-quad"},
           },
           [3] = {
             anim = "Zero",
-                        x = 2320/2 - 200 + 100,
+            x = 2320/2 - 200,
             y = 1480/2 - 200,
-            xScale = 1.43,
-            yScale = 1.43,
+            xScale = 1.,
+            yScale = 1.,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {1.7, {x = 2320/2 - 200 + 30, y = 1480/2 - 200, xScale = 1, yScale = 1}, "in-out-quad"},
+            tween = {1.9, {x = 2320/2 - 200 + 150, y = 1480/2 - 200, xScale = 1.43, yScale = 1.43}, "in-quad"},
           },
         },
       },
@@ -597,9 +587,10 @@ return {
         anims = {
           KittyZoom = RM:loadAnimation('s01_0_p008_m02_KittyZoom_'),
           Box = RM:loadAnimation('s01_0_p008_m02_BoxZoom_'),
+		  InputBox = InputBox,
         },
         transitionTrigger = {
-          [1] = "timer", [2] = 1.4,
+          [1] = "waitForInput",
         },
         drawData = {
           [1] = {
@@ -607,14 +598,16 @@ return {
           },
           [2] = {
             anim = "KittyZoom",
-            x = 2320/2 - 200,
+            x = 2320/2 - 200 - 200,
             y = 1480/2 - 200,
             xScale = 0.9,
             yScale = 0.9,
             xOffset = 2320/2,
             yOffset = 1480/2,
-            tween = {2.1, {x = 2320/2 - 200, y = 1480/2 - 200, xScale = 1.02, yScale = 1.02}, "out-cubic"},
+            tween = {1.6, {x = 2320/2 - 200 - 100, y = 1480/2 - 200, xScale = 1.0, yScale = 1.0}, "out-quad"},
           },
+		  [3] = {anim = "InputBox", alpha = 0, tween = {.1, {alpha = 1}, "in-linear"},
+		  },
         },
       },
     },
@@ -641,7 +634,7 @@ return {
           },
           [2] = {
             anim = "Zero",
-			x = 0 - 200,
+			x = 0 - 50,
             y = 0,
             tween = {0.3, {x = 0, y = 0,}, "in-linear"},
           },
@@ -761,7 +754,7 @@ return {
       [1] = {
         sounds = {
         },
-		music = {"End_Ex_Sister", {fade = {duration = 4, rate = -1/4}}},
+		music = {"Quit_Chill_Theme_Full", {fade = {duration = 5, rate = -1/4}}},
         anims = {
           Zero = RM:loadAnimation('s01_0_p012_m01_Zero_'),
           Box = RM:loadAnimation('s01_0_p012_m01_Box_'),
