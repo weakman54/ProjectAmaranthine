@@ -32,7 +32,7 @@ PLAYER_DODGE_DAMAGE = 1
 
 -- damageDealt = BASE + GRAD - GRAD * hitMultiplier (goes from 0 -> 1 -> 0, where 1 is perfect hit)
 PLAYER_PARRY_DAMAGE_BASE = 0.5 -- Will always do this much damage
-PLAYER_PARRY_DAMAGE_GRAD = 4 -- Does up to this much additional damage depending on how well you hit target
+PLAYER_PARRY_DAMAGE_GRAD = 2.5 -- Does up to this much additional damage depending on how well you hit target
 
 
 ENEMY_ATTACK_HIGH_DAMAGE = 2
