@@ -14,7 +14,6 @@ function stateMain:init()
   self.bgPos = {x = 0, y = 0}
   self.guiAlpha = 1
 
-
   self.sm = SM:new()
   local sm = self.sm
 
@@ -82,8 +81,15 @@ function stateMain:init()
       end,
 
       draw = function(self)
+        love.graphics.setColor(1, 1, 1)
         stateMain.menuGUI.data:loveDraw(x, y, r, sx, sy, 200, 200)
---        love.graphics.printf("space/a - Start Battle\ng/right shoulder - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')  
+        
+        drawGUIOverlays()
+--        love.graphics.setColor(1, 1, 1, inputTimers.comboUp.percentage)
+--        guiOverlays.up.data:loveDraw(x, y, r, sx, sy, 200, 200)
+----        love.graphics.printf("space/a - Start Battle\ng/right shoulder - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')  
+
+--        love.graphics.setColor(1, 1, 1) -- Damn leaky colors...
       end,
     })
 end
