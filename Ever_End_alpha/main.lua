@@ -129,6 +129,21 @@ inputTimers = {
 }
 
 
+function drawGUIOverlays(disable)
+  disable = disable or {}
+  for name, overlay in pairs(guiOverlays) do
+    if disable[name] then --[[ continue ]] else
+      local inputPercentage = inputTimers[name].percentage
+
+      love.graphics.setColor(1, 1, 1, inputPercentage)
+      overlay.data:loveDraw(x, y, r, sx, sy, 200, 200)
+      love.graphics.setColor(1, 1, 1)
+    end
+  end
+end
+
+
+
 function love.load(arg)
   love.mouse.setVisible( false )
   love.window.setMode( 1920, 1080, { fullscreen = true, vsync = true, msaa = 2,} )
@@ -184,6 +199,14 @@ function love.load(arg)
 
     VNSystem:loadScene("05_0")
   end
+
+
+  guiOverlays = { -- TODO: probably move this out of global scope and such but ehss
+    comboUp = RM:loadAnimation("assets/GUI/Menu_Overlay_Up_"),
+    comboDown = RM:loadAnimation("assets/GUI/Menu_Overlay_Down_"),
+    comboLeft = RM:loadAnimation("assets/GUI/Menu_Overlay_Left_"),
+    comboRight = RM:loadAnimation("assets/GUI/Menu_Overlay_Right_"),
+  }
 
 
   Gamestate.switch(stateMain)
