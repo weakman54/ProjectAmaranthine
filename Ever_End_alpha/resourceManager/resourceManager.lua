@@ -11,6 +11,9 @@ local resourceManager = {}
 resourceManager.dbg_print = false
 resourceManager.dbg_render = true
 
+resourceManager.dbg_useHackCounter = true
+local hackLoadCounter = 0
+
 
 resourceManager.cache = {}
 --local cache = resourceManager.cache
@@ -74,20 +77,20 @@ function resourceManager:genericLoader(f, filename, ...)
 
 --    print("test 1 ")
 --    print(nCID)
-    
+
     if filename:sub(-3) == "png" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
 --      print("test 1.2")
       resource.imgData = nID(nFD(filename))
     end
-    
+
     if filename:sub(-3) == "dds" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
 --      print("test 1.1")
       resource.imgData = nCID(nFD(filename))
     end
-    
+
 --    print("test 2 ")
 --    print(resource.imgData)
-    
+
 
     resource.data = f(resource.imgData, ...)
 
@@ -120,28 +123,43 @@ function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TO
 
     if love.filesystem.getInfo(self.prefix .. filename) then -- NOTE: need prefix here as well, getting a bit cluttered..
       if self.dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
-      if self.dbg_render and not self:checkLoaded(self.prefix .. filename) then debugPrint("loading animation frame:\n[" .. self.prefix .. "]" .. filename, 100, 100) end
+      if self.dbg_render and not self:checkLoaded(self.prefix .. filename) then
+        if self.dbg_useHackCounter then
+          hackLoadCounter = hackLoadCounter + 1 
+          debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
+        else
+          debugPrint("loading animation frame:\n[" .. self.prefix .. "]" .. filename, 100, 100)        
+        end
+      end
 
       anim:_importFrame(self:loadImage(filename))
       i = i + 1
 
     else
       -- try again with png
-      
+
       local t = string.format("%05d", i)
       local filename = filenameprefix .. t .. '.png' -- hardcoded
 
 --    if self.dbg_print then print("resourceManager: trying to load frame: [" .. self.prefix .. "]" .. filename) end
-      
+
       if love.filesystem.getInfo(self.prefix .. filename) then -- NOTE: need prefix here as well, getting a bit cluttered..
         if self.dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
-        if self.dbg_render and not self:checkLoaded(self.prefix .. filename) then debugPrint("loading animation frame:\n[" .. self.prefix .. "]" .. filename, 100, 100) end
+        if self.dbg_render and not self:checkLoaded(self.prefix .. filename) then
+          if self.dbg_useHackCounter then
+            hackLoadCounter = hackLoadCounter + 1 
+            debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
+          else
+            debugPrint("loading animation frame:\n[" .. self.prefix .. "]" .. filename, 100, 100)        
+          end
+        end
+
 
         anim:_importFrame(self:loadImage(filename))
         i = i + 1
       else
         assert( i > 1, "resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename .. " at all!")
-  --      if self.dbg_print then print("resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename) end
+        --      if self.dbg_print then print("resourceManager: could not load frame: [" .. self.prefix .. "]" .. filename) end
         break
       end
     end

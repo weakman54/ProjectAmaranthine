@@ -2,6 +2,8 @@
 local dbg_print = false
 local dbg_render = true
 
+local dbg_useHackCounter = true
+local hackLoadCounter = 0
 
 local SoundManager = {}
 
@@ -55,7 +57,14 @@ function SoundManager:init()
 
 
 
-      if dbg_render then debugPrint("Loading: sfx\n" .. longname, 100, 100) end
+      if dbg_render then
+        if dbg_useHackCounter then
+          hackLoadCounter = hackLoadCounter + 1 
+          debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
+        else
+          debugPrint("Loading: sfx\n" .. longname, 100, 100)      
+        end
+      end
       if dbg_print then print("Loading: sfx: " .. longname .. " as " .. handle) end
 
       sfx[handle] = {filename = longname, sources = {}}
@@ -70,7 +79,15 @@ function SoundManager:init()
       local longname = musRoot .. "/" .. shortname
       local handle = shortname:sub(1, -5)
 
-      if dbg_render then debugPrint("Loading: mus\n" .. longname, 100, 100) end
+      if dbg_render then
+        if dbg_useHackCounter then
+          hackLoadCounter = hackLoadCounter + 1 
+          debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
+        else
+          debugPrint("Loading: mus\n" .. longname, 100, 100)
+        end
+      end
+      
       if dbg_print then print("Loading: mus: " .. longname .. " as " .. handle) end
 
       mus[handle] = {filename = longname, source = love.audio.newSource(longname, "stream")}
