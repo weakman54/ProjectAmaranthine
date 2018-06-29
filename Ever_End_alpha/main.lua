@@ -146,7 +146,7 @@ end
 
 function love.load(arg)
   love.mouse.setVisible( false )
-  love.window.setMode( 1920, 1080, { fullscreen = true, vsync = true, msaa = 2,} )
+--  love.window.setMode( 1920, 1080, { fullscreen = true, vsync = true, msaa = 2,} )
   reloaded = true
   do -- Starting loadscreens
     love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
