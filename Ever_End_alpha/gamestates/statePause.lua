@@ -16,35 +16,30 @@ end
 
 
 function statePause:enter(from)
-  self.from = from -- record previous state
-  self.pausedSounds = love.audio.pause()
+  self.from = from -- Used to draw "behind" the overlay
+  self.pausedSounds = love.audio.pause() -- Save these so we can resume them on leave
 end
 
-local returnAcc = 0
-local menuAcc = 0
+function statePause:leave()
+  love.audio.play(self.pausedSounds) 
+end
+
+
 
 function statePause:update(dt)
---  if input:down("comboUp") then
---    returnAcc = returnAcc + dt
---  else
---    returnAcc = 0
---  end
-
---  if input:down("comboDown") then
---    menuAcc = menuAcc + dt
---  else
---    menuAcc = 0
---  end
-
-  if inputTimers.comboUp.triggered then
-    return Gamestate.pop()
-
-  elseif inputTimers.comboDown.triggered then
+  if inputTimers.comboUp.triggered then 
     Gamestate.pop()
     return Gamestate.switch(stateMain)
 
+  elseif inputTimers.comboDown.triggered then
+    return Gamestate.pop()
+    
+  elseif input:pressed("systemBack") then
+    love.event.quit()
+
   end
 end
+
 
 function statePause:draw()
   -- draw previous screen
@@ -58,32 +53,19 @@ function statePause:draw()
 
     self.GUI.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
---    love.graphics.printf('PAUSE', 0, H/2, W, 'center')
-
---    love.graphics.printf("escape/start - Return to game\nr - Return to main menu\nt - Toggle printscreen mode\nx/back - Exit game", 0, H/2 + 100, W, "center")
+    drawGUIOverlays({"comboUp", "comboDown"})
   end
 end
 
-function statePause:keypressed(key)
-  if key == "r" then
---    Gamestate.pop()
---    return Gamestate.switch(stateMain)
 
-  elseif key == "t" then
+function statePause:keypressed(key)
+  if key == "t" then
     printScreenMode = not printScreenMode
 
   elseif key == "" then
 
-
   end
 end
-
-
-
-function statePause:leave()
-  love.audio.play(self.pausedSounds)
-end
-
 
 
 return statePause

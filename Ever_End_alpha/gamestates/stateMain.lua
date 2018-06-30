@@ -72,10 +72,10 @@ function stateMain:init()
     {
 
       update = function(self, dt)
-        if inputTimers.comboUp.triggered then
+        if inputTimers.comboDown.triggered then
           Gamestate.switch(stateVN, "RESETPLZ") --Hack
           
-        elseif  inputTimers.comboDown.triggered then
+        elseif  inputTimers.comboRight.triggered then
           love.event.quit()
         end
       end,
@@ -84,12 +84,7 @@ function stateMain:init()
         love.graphics.setColor(1, 1, 1)
         stateMain.menuGUI.data:loveDraw(x, y, r, sx, sy, 200, 200)
         
-        drawGUIOverlays()
---        love.graphics.setColor(1, 1, 1, inputTimers.comboUp.percentage)
---        guiOverlays.up.data:loveDraw(x, y, r, sx, sy, 200, 200)
-----        love.graphics.printf("space/a - Start Battle\ng/right shoulder - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')  
-
---        love.graphics.setColor(1, 1, 1) -- Damn leaky colors...
+        drawGUIOverlays({"comboRight", "comboDown"})
       end,
     })
 end

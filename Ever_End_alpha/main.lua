@@ -129,16 +129,16 @@ inputTimers = {
 }
 
 
-function drawGUIOverlays(disable)
-  disable = disable or {}
-  for name, overlay in pairs(guiOverlays) do
-    if disable[name] then --[[ continue ]] else
-      local inputPercentage = inputTimers[name].percentage
+function drawGUIOverlays(which)
+  if type(which) ~= "table" then error("drawGUIOverlays(): Must supply which overlays to be drawn as a table! Given: " .. tostring(which), 2) end
 
-      love.graphics.setColor(1, 1, 1, inputPercentage)
-      overlay.data:loveDraw(x, y, r, sx, sy, 200, 200)
-      love.graphics.setColor(1, 1, 1)
-    end
+  for _, name in ipairs(which) do
+    local overlay = guiOverlays[name]
+    local inputPercentage = inputTimers[name].percentage
+
+    love.graphics.setColor(1, 1, 1, inputPercentage)
+    overlay.data:loveDraw(x, y, r, sx, sy, 200, 200)
+    love.graphics.setColor(1, 1, 1)
   end
 end
 
