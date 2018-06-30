@@ -1,17 +1,45 @@
-local RM = require 'resourceManager.resourceManager'
-RM.prefix = 'assets/VN/scene04_2_killOption/'
 
-local background = RM:loadAnimation('Inside_robot_')
-local background_blur = RM:loadAnimation('inside_robot_blur_')
-local background_flipped_blur = RM:loadAnimation('inside_robot_flipped_blur_')
+
+local RM = require "resourceManager.resourceManager"
+
+
+RM.prefix = "assets/Backgrounds/"
+
+local White = RM:loadAnimation("white")
+local Black = RM:loadAnimation("black")
+
+
+--local InsideRobot = RM:loadAnimation("Inside_robot_")
+local InsideRobot_blur = RM:loadAnimation("inside_robot_blur_")
+local InsideRobot_flipped_blur = RM:loadAnimation("inside_robot_flipped_blur_")
+
+
+
+
+RM.prefix = "assets/GUI/"
+local InputBox = RM:loadAnimation("Input_Box_")
+
+
+
+
+
+
+RM.prefix = "assets/FX/"
+
+
+
+
+RM.prefix = "assets/VN/scene04_2_killOption/"
+
 
 local boxDarken = 0.1
 local boxAlpha = 0.8
 
+
 return {
   [1] = {
     bg = {
-      anim = background_blur,
+      anim = InsideRobot_blur,
     },
     moments = {
       [1] = {
@@ -20,9 +48,9 @@ return {
         },
         music = {"stop"},
         anims = {
-          White = RM:loadAnimation('white'),
-          Box = RM:loadAnimation('s04_2_p001_m01_Box_'),
-          EEnd = RM:loadAnimation('s04_2_p001_m01_End_'),
+          White = White,
+          Box = RM:loadAnimation("s04_2_p001_m01_Box_"),
+          EEnd = RM:loadAnimation("s04_2_p001_m01_End_"),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -45,16 +73,16 @@ return {
   },
   [2] = {
     bg = {
-      anim = background_flipped_blur,
+      anim = InsideRobot_flipped_blur,
     },
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          Box = RM:loadAnimation('s04_2_p002_m01_Box_'),
-          White = RM:loadAnimation('white'),
-          Zero = RM:loadAnimation('s04_2_p002_m01_Zero_'),
+          Box = RM:loadAnimation("s04_2_p002_m01_Box_"),
+          White = White,
+          Zero = RM:loadAnimation("s04_2_p002_m01_Zero_"),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -77,16 +105,16 @@ return {
   },
   [3] = {
     bg = {
-      anim = background_blur,
+      anim = InsideRobot_blur,
     },
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          Box = RM:loadAnimation('s04_2_p003_m01_Box_'),
-          White = RM:loadAnimation('white'),
-          EEnd = RM:loadAnimation('s04_2_p003_m01_End_'),
+          Box = RM:loadAnimation("s04_2_p003_m01_Box_"),
+          White = White,
+          EEnd = RM:loadAnimation("s04_2_p003_m01_End_"),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -110,16 +138,16 @@ return {
   },
   [4] = {
     bg = {
-      anim = background_blur,
+      anim = InsideRobot_blur,
     },
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          Box = RM:loadAnimation('s04_2_p004_m01_Box_'),
-          White = RM:loadAnimation('white'),
-          EEnd_Zero = RM:loadAnimation('s04_2_p004_m01_End_Zero_'),
+          Box = RM:loadAnimation("s04_2_p004_m01_Box_"),
+          White = White,
+          EEnd_Zero = RM:loadAnimation("s04_2_p004_m01_End_Zero_"),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -160,16 +188,16 @@ return {
   },
   [5] = {
     bg = {
-      anim = background_flipped_blur,
+      anim = InsideRobot_flipped_blur,
     },
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          Box = RM:loadAnimation('s04_2_p005_m01_Box_'),
-          White = RM:loadAnimation('white'),
-          EEnd_Zero = RM:loadAnimation('s04_2_p005_m01_End_Zero_'),
+          Box = RM:loadAnimation("s04_2_p005_m01_Box_"),
+          White = White,
+          EEnd_Zero = RM:loadAnimation("s04_2_p005_m01_End_Zero_"),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -208,17 +236,17 @@ return {
   },
   [6] = {
     bg = {
-      anim = background_flipped_blur,
+      anim = InsideRobot_flipped_blur,
     },
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          Box1 = RM:loadAnimation('s04_2_p009_m01_Box_'),
-          Box2 = RM:loadAnimation('s04_2_p009_m01_Box_'),
-          White = RM:loadAnimation('white'),
-          EEnd_Zero = RM:loadAnimation('s04_2_p006_m01_End_Zero_'),
+          Box1 = RM:loadAnimation("s04_2_p009_m01_Box_"),
+          Box2 = RM:loadAnimation("s04_2_p009_m01_Box_"),
+          White = White,
+          EEnd_Zero = RM:loadAnimation("s04_2_p006_m01_End_Zero_"),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",
@@ -267,17 +295,17 @@ return {
   },
   [7] = {
     bg = {
-      anim = background_blur,
+      anim = InsideRobot_blur,
     },
     moments = {
       [1] = {
         sounds = {
         },
         anims = {
-          Box1 = RM:loadAnimation('s04_2_p009_m01_Box_'),
-          Box2 = RM:loadAnimation('s04_2_p009_m01_Box_'),
-          Black = RM:loadAnimation('black'),
-          Quit = RM:loadAnimation('s04_2_p007_m01_Quit_'),
+          Box1 = RM:loadAnimation("s04_2_p009_m01_Box_"),
+          Box2 = RM:loadAnimation("s04_2_p009_m01_Box_"),
+          Black = Black,
+          Quit = RM:loadAnimation("s04_2_p007_m01_Quit_"),
         },
         transitionTrigger = {
           [1] = "timer",--"waitForInput",

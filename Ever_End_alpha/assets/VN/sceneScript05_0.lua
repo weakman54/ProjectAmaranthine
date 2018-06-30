@@ -1,9 +1,17 @@
 
-local RM = require 'resourceManager.resourceManager'
-RM.prefix = 'assets/VN/Scene05_0_credits/'
+local RM = require "resourceManager.resourceManager"
+
+
+RM.prefix = "assets/Backgrounds/"
+
+local Black = RM:loadAnimation("black")
+
+
+
+RM.prefix = "assets/VN/Scene05_0_credits/"
 
 local creditsHeight = 11594
-local endHeight = creditsHeight - H - 200 -- TODO: make sure this works with scaling HARDCODED edge offset
+local endHeight = creditsHeight - H - 200 -- TODO: make sure this works with scaling. HARDCODED: 200px edge offset
 
 local endBuffer = 5
 
@@ -18,7 +26,7 @@ pxPerSec = endHeight / creditsDuration
 return {
   [1] = {
     bg = {
-      anim = RM:loadAnimation('credits'),
+      anim = RM:loadAnimation("credits"),
       x = 0,
       y = 0,
     },
@@ -28,7 +36,7 @@ return {
         },
         music = {"Stars From Another World"},
         anims = {
-              Black = RM:loadAnimation('black'),
+          Black = Black,
         },
         transitionTrigger = {
           [1] = "timer",
@@ -40,8 +48,8 @@ return {
           },
           [1] = {
             anim = "Black",
-			alpha = 1, tween = {10.0, {alpha = 0}, "in-linear"}
-            
+            alpha = 1, tween = {10.0, {alpha = 0}, "in-linear"}
+
           }
         },
       },

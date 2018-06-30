@@ -106,17 +106,14 @@ end
 
 
 
-
-
-
 local VNSystem = {}
 
--- TODO: fix curDrawing
--- TODO: do functions
+VNSystem.Timer = HUMPTimer.new() -- TODO: fix this!
+-- vnsystem stop/cancel/dontrun:
+-- stop all sources, mute music, cancel timers
+-- pause:
+-- sounds are already paused, and update is not run on this, so should work out with timers too?
 
-
-local things = {}
-local curDrawing = {}
 
 
 function VNSystem:setPanelI(panelI, momentI)
@@ -239,24 +236,10 @@ function VNSystem:incrementMomentI()
 end
 
 
-local spareAcc = 0
-local killAcc = 0
 
 function VNSystem:update(dt)
   -- ASSUMPTION: for these things in the beginning:  curMoment exists
   if self.curMoment.choice then -- HACK for current version as well, only does kill/spare option...
---    if input:down("comboLeft") then
---      spareAcc = spareAcc + dt
---    else
---      spareAcc = 0
---    end
-
---    if input:down("comboRight") then
---      killAcc = killAcc + dt
---    else
---      killAcc = 0
---    end
-
     if inputTimers.comboLeft.triggered then
       self.curMoment.transitionTrigger.gotoScene = "04_1" -- Spare option
       self:incrementMomentI()
@@ -271,11 +254,10 @@ function VNSystem:update(dt)
     Sound:play("Click")
     self:incrementMomentI()
 
+    -- Go Back
     -- elseif input:pressed("parry") and self.curPanelI ~= 1 then
 --     self:setPanelI(self.curPanelI - 1)
   end
-
-
 
 
   self.curPanel.bg.anim.data:update(dt)
@@ -342,7 +324,6 @@ function VNSystem:loadScene(scene, panelI, momentI)
   self.curScene = t
   self:setPanelI(panelI or 1, momentI or 1)
 end
-
 
 
 
