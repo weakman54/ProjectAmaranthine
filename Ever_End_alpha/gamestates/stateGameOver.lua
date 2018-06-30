@@ -10,13 +10,6 @@ function stateGameOver:init()
   RM.prefix = ""
   self.defeatGUI  = RM:loadAnimation("assets/GUI/Defeat_screen_")  
   self.victoryGUI = RM:loadAnimation("assets/GUI/Victory_screen_")
-
---  self.sm = SM:new()
---  local sm = self.sm
-
---  sm:add("initial", {
-
---      })
 end
 
 function stateGameOver:enter(from, data)
@@ -36,20 +29,28 @@ function stateGameOver:update(dt)
   player.ac:update(dt)
 
 
-  if self.acceptInput then
-    if inputTimers.comboUp.triggered then
-      if not self.won then
-        Gamestate.switch(stateBattle, "enemy" .. enemy.name) -- HACK: should switch to the correct battle better (all the global state is making this hacky...)
-      end
-    elseif inputTimers.comboLeft.triggered then
+  if not self.acceptInput then return end -- NOTE/ASSUMPTION:  Only input code after here. if other code is added, this needs to be revised!
+
+--  if input:pressed("systemBack") then
+--    return love.event.quit()
+--  end
+
+  if self.won then
+    if inputTimers.comboDown.triggered then -- Continue
       VNSystem:loadScene(enemy.nextScene, enemy.nextPanel)
-      Gamestate.switch(stateVN)
+      return Gamestate.switch(stateVN)
+    end
 
-    elseif inputTimers.comboRight.triggered then
-      Gamestate.switch(stateMain)
+  else -- if defeated
+    if inputTimers.comboUp.triggered then -- Back to main
+      return Gamestate.switch(stateMain)
 
-    elseif input:pressed("systemBack") then
-      love.event.quit()
+    elseif inputTimers.comboLeft.triggered then -- Skip to story
+      VNSystem:loadScene(enemy.nextScene, enemy.nextPanel)
+      return Gamestate.switch(stateVN)
+
+    elseif inputTimers.comboDown.triggered then -- Retry
+      Gamestate.switch(stateBattle, "enemy" .. enemy.name) -- HACK: should switch to the correct battle better (all the global state is making this hacky...)
 
     end
   end
@@ -79,11 +80,13 @@ function stateGameOver:draw()
 
   if self.won then
     self.victoryGUI.data:loveDraw(x, y, r, sx, sy, 200, 200)
+    drawGUIOverlays({"comboDown"})
+
   else
     self.defeatGUI.data:loveDraw(x, y, r, sx, sy, 200, 200)
+    drawGUIOverlays({"comboLeft", "comboDown", "comboUp"})
+
   end
---  love.graphics.printf("Game Over", 0, 200, W,'center')
---  love.graphics.printf("left - Restart Battle\nright - Start VN\nx/back - Exit game", 0, H - 200, W, 'center')
 end
 
 
