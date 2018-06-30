@@ -141,6 +141,24 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
+        },
+        drawData = {
+        },
+      },
+    },
+  },
+  [9] = {
+    bg = {
+      anim = RM:loadAnimation('s00_0_p008_m01_Recap_'),
+    },
+    moments = {
+      [1] = {
+        sounds = {
+        },
+        anims = {
+        },
+        transitionTrigger = {
+          [1] = "waitForInput",
           gotoScene = "01_0",
         },
         drawData = {
