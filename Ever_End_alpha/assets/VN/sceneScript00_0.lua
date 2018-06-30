@@ -3,7 +3,7 @@ local RM = require 'resourceManager.resourceManager'
 RM.prefix = 'assets/VN/scene00_0_recap/'
 
 return {
- [1] = {
+  [1] = {
     bg = {
       anim = RM:loadAnimation('s00_0_p000_m01_Warning_'),
     },
@@ -111,7 +111,7 @@ return {
       },
     },
   },
-    [7] = {
+  [7] = {
     bg = {
       anim = RM:loadAnimation('s00_0_p006_m01_Recap_'),
     },
@@ -129,7 +129,7 @@ return {
       },
     },
   },
-    [8] = {
+  [8] = {
     bg = {
       anim = RM:loadAnimation('s00_0_p007_m01_Recap_'),
     },
@@ -141,7 +141,7 @@ return {
         },
         transitionTrigger = {
           [1] = "waitForInput",
-		  gotoScene = "01_0",
+          gotoScene = "01_0",
         },
         drawData = {
         },

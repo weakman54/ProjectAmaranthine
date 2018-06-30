@@ -1,37 +1,52 @@
 
 
-local RM = require 'resourceManager.resourceManager'
+local RM = require "resourceManager.resourceManager"
 
 RM.prefix = "assets/"
 local EndIdle   = RM:loadAnimation("Player/Player_idle_")
 local EndHeal   = RM:loadAnimation("Player/Player_heal_")
---local EndAttack = RM:loadAnimation("Player/Player_attack_hit_")
 local RobotDead = RM:loadAnimation("Quit1/Quit1_defeat_")
 local QuitIdle  = RM:loadAnimation("Quit2/Quit2_idle_")
 
-local Gas  = RM:loadAnimation("FX/Gas_")
 
 
-RM.prefix = 'assets/VN/scene02_1_quitsDirtyTrick/'
-
-local robotRoom = RM:loadAnimation("robot_room_")
-local robotRoomBlur = RM:loadAnimation("robot_room_blur_")
-
-local robotInside = RM:loadAnimation("inside_robot_flipped_")
-local robotInsideBlur = RM:loadAnimation("inside_robot_blur_flipped_")
-
-local EndHit = RM:loadAnimation("Player_attack_hit_")
-EndHit.data:setLooping(false)
+RM.prefix = "assets/Backgrounds/"
 
 local White = RM:loadAnimation("white")
 
-local InputBox = RM:loadAnimation('Input_Box_')
+
+local robotRoom = RM:loadAnimation("robot_room_")
+local robotRoom_blur = RM:loadAnimation("robot_room_blur_")
+
+local robotInside = RM:loadAnimation("inside_robot_flipped_")
+--local robotInside_blur = RM:loadAnimation("inside_robot_blur_flipped_")
+
+
+
+
+RM.prefix = "assets/GUI/"
+local InputBox = RM:loadAnimation("Input_Box_")
+
+
+
+
+RM.prefix = "assets/FX/"
+local Gas  = RM:loadAnimation("Gas_")
+
+
+
+
+RM.prefix = "assets/VN/scene02_1_quitsDirtyTrick/"
+
+
+local EndHit = RM:loadAnimation("Player_attack_hit_") -- NOTE: This is a modified version of the attack animation
+EndHit.data:setLooping(false)
 
 
 return {
   [1] = {
     bg = {
-      anim = robotRoomBlur
+      anim = robotRoom_blur
     },
     moments = {
       [1] = {
@@ -61,7 +76,7 @@ return {
   },
   [2] = {
     bg = {
-      anim = robotRoomBlur
+      anim = robotRoom_blur
     },
     moments = {
       [1] = {
@@ -85,7 +100,7 @@ return {
   },
   [3] = {
     bg = {
-      anim = robotRoomBlur
+      anim = robotRoom_blur
     },
     moments = {
       [1] = {
@@ -142,7 +157,7 @@ return {
         anims = {
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m01_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m01_TextBox_"),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -168,7 +183,7 @@ return {
 --        anims = {
 --          EndIdle = EndIdle,
 --          QuitIdle = QuitIdle,
---          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m02_TextBox_'),
+--          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m02_TextBox_"),
 --        },
 --        transitionTrigger = {
 --          [1] = "waitForInput",
@@ -195,7 +210,7 @@ return {
         anims = {
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m03_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m03_TextBox_"),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -218,7 +233,7 @@ return {
         anims = {
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m04_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m04_TextBox_"),
         },
         transitionTrigger = {
           [1] = "waitForInput",
@@ -239,7 +254,7 @@ return {
         sounds = {
         },
         anims = {
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m05_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m05_TextBox_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
         },
@@ -298,7 +313,7 @@ return {
         anims = {
           EndWindup = RM:loadAnimation("s02_1_p005_m06_EndWindup_"),
           QuitIdle = QuitIdle,
-          QuitOverLay = RM:loadAnimation('s02_1_p005_m07_QuitOverlay_'),
+          QuitOverLay = RM:loadAnimation("s02_1_p005_m07_QuitOverlay_"),
         },
         transitionTrigger = {
           [1] = "timer",
@@ -323,7 +338,7 @@ return {
         anims = {
           EndWindup =  RM:loadAnimation("s02_1_p005_m06_EndWindup_"),
           QuitIdle = QuitIdle,
-          BarrelWhole = RM:loadAnimation('s02_1_p005_m08_BarrelWhole_'),
+          BarrelWhole = RM:loadAnimation("s02_1_p005_m08_BarrelWhole_"),
         },
         transitionTrigger = {
           [1] = "timer",
@@ -365,7 +380,7 @@ return {
         anims = {
           EndHit = EndHit,
           QuitIdle = QuitIdle,
-          BarrelBroken = RM:loadAnimation('s02_1_p005_m09_BarrelBroken_'),
+          BarrelBroken = RM:loadAnimation("s02_1_p005_m09_BarrelBroken_"),
           Gas = Gas,
           White = White,
         },
@@ -401,7 +416,7 @@ return {
 			{"Earth2"},
         },
         anims = {
-          EndOverlay = RM:loadAnimation('s02_1_p005_m10_EndOverlay_'),
+          EndOverlay = RM:loadAnimation("s02_1_p005_m10_EndOverlay_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -430,7 +445,7 @@ return {
 			{"Earth2"},
         },
         anims = {
-          ZeroOverlay = RM:loadAnimation('s02_1_p005_m12_ZeroOverlay_'),
+          ZeroOverlay = RM:loadAnimation("s02_1_p005_m12_ZeroOverlay_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -458,7 +473,7 @@ return {
         sounds = {
         },
         anims = {
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m11_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m11_TextBox_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -486,7 +501,7 @@ return {
         sounds = {
         },
         anims = {
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m13_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m13_TextBox_"),
           EndIdle = EndIdle,
 		  EndHeal = EndHeal,
           QuitIdle = QuitIdle,
@@ -514,7 +529,7 @@ return {
         sounds = {
         },
         anims = {
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m14_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m14_TextBox_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -542,7 +557,7 @@ return {
         sounds = {
         },
         anims = {
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m15_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m15_TextBox_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -569,7 +584,7 @@ return {
         sounds = {
         },
         anims = {
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m16_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m16_TextBox_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -596,7 +611,7 @@ return {
         sounds = {
         },
         anims = {
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m17_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m17_TextBox_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -623,7 +638,7 @@ return {
         sounds = {
         },
         anims = {
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m18_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m18_TextBox_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -650,7 +665,7 @@ return {
         sounds = {
         },
         anims = {
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m19_TextBox_'),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m19_TextBox_"),
           EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -678,8 +693,8 @@ return {
 			{"Intense Moment"},
         },
         anims = {
-          Overlay = RM:loadAnimation('s02_1_p005_m20_Overlay_'),
-          InputBox = InputBox, TextBox = RM:loadAnimation('s02_1_p005_m20_TextBox_'),
+          Overlay = RM:loadAnimation("s02_1_p005_m20_Overlay_"),
+          InputBox = InputBox, TextBox = RM:loadAnimation("s02_1_p005_m20_TextBox_"),
 		  EndIdle = EndIdle,
           QuitIdle = QuitIdle,
           Gas = Gas,
@@ -709,7 +724,7 @@ return {
         },
 		music = {"Build_up_Theme Full", {fade = {duration = 4, rate = -1/4}}},
         anims = {
-          ProTip = RM:loadAnimation('s02_1_p005_m21_Tips_'),
+          ProTip = RM:loadAnimation("s02_1_p005_m21_Tips_"),
         },
         transitionTrigger = {
           [1] = "waitForInput",
