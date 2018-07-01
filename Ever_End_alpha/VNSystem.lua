@@ -3,7 +3,7 @@ local RM = require "resourceManager.resourceManager"
 
 
 
-dbg_VNSystem_DrawIndexes = true
+dbg_VNSystem_DrawIndexes = false
 dbg_VNSystem_DrawAnims = false
 
 

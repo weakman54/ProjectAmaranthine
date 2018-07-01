@@ -1,7 +1,7 @@
 
 
 local dbg_print_animation_frames = false
-local dbg_renderInputTimers = true
+local dbg_renderInputTimers = false
 local preloadEverything = false
 
 -- Reload error management stuff (should be moved) vvvvvvvv
