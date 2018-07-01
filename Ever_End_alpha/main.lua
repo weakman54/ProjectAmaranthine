@@ -206,6 +206,9 @@ function love.load(arg)
     comboDown = RM:loadAnimation("assets/GUI/Menu_Overlay_Down_"),
     comboLeft = RM:loadAnimation("assets/GUI/Menu_Overlay_Left_"),
     comboRight = RM:loadAnimation("assets/GUI/Menu_Overlay_Right_"),
+    
+    kill = RM:loadAnimation("assets/GUI/Choice_kill_"),
+    spare = RM:loadAnimation("assets/GUI/Choice_spare_"),
   }
 
 

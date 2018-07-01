@@ -287,6 +287,18 @@ function VNSystem:drawPanel(panel, momentI)
     sprite.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
   end
 
+
+  if self.curMoment.choice then
+    for _, name in ipairs{"comboLeft", "comboRight"} do
+      local overlay = (name == "comboRight") and guiOverlays["kill"] or guiOverlays["spare"]
+      local inputPercentage = inputTimers[name].percentage
+
+      love.graphics.setColor(1, 1, 1, inputPercentage)
+      overlay.data:loveDraw(x, y, r, sx, sy, 200, 200)
+      love.graphics.setColor(1, 1, 1)
+    end
+  end
+
   love.graphics.setColor(1, 1, 1, 1)
 end
 
