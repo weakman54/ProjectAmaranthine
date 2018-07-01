@@ -9,7 +9,7 @@ local White = RM:loadAnimation("white")
 --local Black = RM:loadAnimation("black")
 
 
---local InsideRobot = RM:loadAnimation("Inside_robot_")
+--local InsideRobot = RM:loadAnimation("inside_robot_")
 local InsideRobot_blur = RM:loadAnimation("inside_robot_blur_")
 --local InsideRobot_flipped = RM:loadAnimation("inside_robot_flipped_")
 local InsideRobot_blur_flipped = RM:loadAnimation("inside_robot_blur_flipped_")
