@@ -184,21 +184,33 @@ function love.load(arg)
     require("player"):initialize()
 
 
-    VNSystem:loadScene("00_0")
+    VNSystem:loadScene("00_0", nil, nil, true)
 
-    VNSystem:loadScene("01_0")
+    VNSystem:loadScene("01_0", nil, nil, true)
 
-    VNSystem:loadScene("02_0")
-    VNSystem:loadScene("02_1")
+    VNSystem:loadScene("02_0", nil, nil, true)
+    VNSystem:loadScene("02_1", nil, nil, true)
 
-    VNSystem:loadScene("03_0")
+    VNSystem:loadScene("03_0", nil, nil, true)
 
-    VNSystem:loadScene("04_0")
-    VNSystem:loadScene("04_1")
-    VNSystem:loadScene("04_2")
+    VNSystem:loadScene("04_0", nil, nil, true)
+    VNSystem:loadScene("04_1", nil, nil, true)
+    VNSystem:loadScene("04_2", nil, nil, true)
 
-    VNSystem:loadScene("05_0")
+    VNSystem:loadScene("05_0", nil, nil, true)
   end
+
+
+
+  -- Preload these so that choice is more impactful, (and credits screen really shouldn't have a load xD
+  VNSystem:loadScene("04_1", nil, nil, true)
+  VNSystem:loadScene("04_2", nil, nil, true)
+  VNSystem:loadScene("05_0", nil, nil, true)
+
+
+  RM.prefix = ""
+
+  RM:loadAnimation("assets/GUI/pause_screen_")
 
 
   guiOverlays = { -- TODO: probably move this out of global scope and such but ehss
@@ -206,7 +218,7 @@ function love.load(arg)
     comboDown = RM:loadAnimation("assets/GUI/Menu_Overlay_Down_"),
     comboLeft = RM:loadAnimation("assets/GUI/Menu_Overlay_Left_"),
     comboRight = RM:loadAnimation("assets/GUI/Menu_Overlay_Right_"),
-    
+
     kill = RM:loadAnimation("assets/GUI/Choice_kill_"),
     spare = RM:loadAnimation("assets/GUI/Choice_spare_"),
   }

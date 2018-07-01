@@ -116,7 +116,7 @@ VNSystem.Timer = HUMPTimer.new() -- TODO: fix this!
 
 
 
-function VNSystem:setPanelI(panelI, momentI)
+function VNSystem:setPanelI(panelI, momentI, supressTrigger)
   -- TODO: handle non-existant panels! (do we need to?)
   if type(panelI) ~= "number" or panelI <= 0 then error("Couldn't set panel index, wrong type or negative!", 2) end
   if not self.curScene then error("There is not scene!", 2) end
@@ -128,10 +128,10 @@ function VNSystem:setPanelI(panelI, momentI)
 
   assert(self.curPanel, "Tried to go to a non-existent panel: " .. self.curPanelI)
 
-  self:setMomentI(momentI or 1)
+  self:setMomentI(momentI or 1, supressTrigger)
 end
 
-function VNSystem:setMomentI(momentI)
+function VNSystem:setMomentI(momentI, supressTrigger)
   if self.waitTimer then  -- TODO: fix this bug (which? xD it's fixed though..)
     HUMPTimer.cancel(self.waitTimer)
   end
@@ -140,6 +140,7 @@ function VNSystem:setMomentI(momentI)
   self.curMoment = self.curPanel.moments[self.curMomentI]
 
   if not self.curMoment then return false end
+  if supressTrigger then return false end
 
   local moment = self.curMoment
 
@@ -327,14 +328,14 @@ end
 
 
 
-function VNSystem:loadScene(scene, panelI, momentI)
+function VNSystem:loadScene(scene, panelI, momentI, supressTrigger)
   assert(scene, "VNSystem: You must supply which scene to switch to!")
 
   local t = reload(("assets/VN/sceneScript%s"):format(scene)) -- NOTE: This feels pretty hack, but eh
 
   self.curSceneName = scene
   self.curScene = t
-  self:setPanelI(panelI or 1, momentI or 1)
+  self:setPanelI(panelI or 1, momentI or 1, supressTrigger)
 end
 
 
