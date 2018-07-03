@@ -1,0 +1,5 @@
+#Convert all png files to dds with dxt5 compression
+find ./ -name "*.png" -exec mogrify -define dds:compression={dxt5} -format dds {} \;
+
+#Add a folder named target and then run this to copy all dds to target folder
+find . -name '*.dds' -exec cp --parents \{\} ./target \;
