@@ -136,10 +136,15 @@ function love.keypressed(key)
 end
 
 
+function matchLocalFilename(fullname, extension)
+  return string.match(fullname, "[/\\]([%w_]*%." .. extension .. ")") 
+end
+
+
 
 function love.filedropped(file)
   local fullfname = file:getFilename()
-  local fname = string.match(fullfname, "[/\\]([%w_]*%.png)") -- TODO: make sure this match is proper
+  local fname = matchLocalFilename(fullfname, "png") -- TODO: make sure this match is proper
 
   if not fname then print("did not get proper name? " .. tostring(fullfname)) return end
 
