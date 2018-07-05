@@ -1,5 +1,7 @@
 
 
+dbg_debugEnabled = false
+
 local dbg_print_animation_frames = false
 local dbg_renderInputTimers = false
 local preloadEverything = false
@@ -56,8 +58,8 @@ require "shakeEffect"
 local baton = require "baton.baton"
 --input = nil -- Global used to store a baton "player" (input mappings)
 
-lovebird = require "lovebird.lovebird"
-table.insert(lovebird.whitelist, "*.*.*.*") -- Still testing...
+--lovebird = require "lovebird.lovebird"
+--table.insert(lovebird.whitelist, "*.*.*.*") -- Still testing...
 
 SM = require "statemachine.statemachine"
 AC = require "animation.animationCollection"
@@ -271,7 +273,7 @@ function love.update(dt)
   dt = dt * slomo
   -- TEST ^^^^^^^^^^^^^^
 
-  lovebird.update()
+--  lovebird.update()
 
   if Gamestate.current() ~= statePause then
     HUMPTimer.update(dt)
@@ -289,13 +291,17 @@ function love.draw()
   callOrError(Gamestate.draw)
 
 
-  if dbg_print_animation_frames and player.ac and enemy.ac then
-    dbgPrintAnimFrames()
-  end
+  if dbg_debugEnabled then
+    love.graphics.print("Debug Mode (toggle with 0)")
+    
+    if dbg_print_animation_frames and player.ac and enemy.ac then
+      dbgPrintAnimFrames()
+    end
 
-  if dbg_renderInputTimers then
-    love.graphics.rectangle("fill", 0, H - 50, 100 * dbg_inputTimerPercentage, 50)
-    love.graphics.line(100, H - 50, 100, H)
+    if dbg_renderInputTimers then
+      love.graphics.rectangle("fill", 0, H - 50, 100 * dbg_inputTimerPercentage, 50)
+      love.graphics.line(100, H - 50, 100, H)
+    end
   end
 end
 
@@ -369,40 +375,42 @@ function love.keypressed(key, scancode, isrepeat)
   end
 
   -- NOTE: windows specific, crashes on mac...
-  if scancode == "`" and love.system.getOS() == "Windows" then
-    love._openConsole()
+  if key == "0" then
+    dbg_debugEnabled = not dbg_debugEnabled
   end
 
 
-  if key == "t" and enemy then
-    enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
+  if dbg_debugEnabled then
+    if key == "t" and enemy then
+      enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
 
-  elseif key == "m" then
-    Sound:muteMusic()
+    elseif key == "m" then
+      Sound:muteMusic()
 
-  elseif key == "1" then
-    debugPrint("Loading: Debug", 100, 100)
-    require("mobdebug").start() 
-    print("debug ---------------")
+    elseif key == "1" then
+      debugPrint("Loading: Debug", 100, 100)
+      require("mobdebug").start() 
+      print("debug ---------------")
 
 
-  elseif key == "2" then
-    callOrError(GameReload)
+    elseif key == "2" then
+      callOrError(GameReload)
 
-  elseif key == "3" then -- Reset animations, could proably be moved
-    if player.sm then
-      player.sm:switch("idle")
+    elseif key == "3" and enemy and player then -- Reset animations, could proably be moved
+      if player.sm then
+        player.sm:switch("idle")
+      end
+
+      if enemy.sm then
+        enemy.sm:switch("idle")
+      end
+
+    elseif key == "4" then
+      slomo = slomo == 1 and dbgSlomoFactor or 1
+
+    elseif key == "5" then
+      slomo = slomo == 1 and speedUpFactor or 1
     end
-
-    if enemy.sm then
-      enemy.sm:switch("idle")
-    end
-
-  elseif key == "4" then
-    slomo = slomo == 1 and dbgSlomoFactor or 1
-
-  elseif key == "5" then
-    slomo = slomo == 1 and speedUpFactor or 1
   end
 end
 

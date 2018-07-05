@@ -3,7 +3,7 @@ local RM = require "resourceManager.resourceManager"
 
 
 
-dbg_VNSystem_DrawIndexes = false
+dbg_VNSystem_DrawIndexes = true
 dbg_VNSystem_DrawAnims = false
 
 
@@ -310,19 +310,20 @@ function VNSystem:draw()
   end
 
 
+  if dbg_debugEnabled then
+    if dbg_VNSystem_DrawIndexes then
+      love.graphics.setColor(0, 0, 0, 0.6)
+      love.graphics.rectangle("fill", 0, 0, 900, 70)
 
-  if dbg_VNSystem_DrawIndexes then
-    love.graphics.setColor(0, 0, 0, 0.6)
-    love.graphics.rectangle("fill", 0, 0, 900, 70)
+      love.graphics.setColor(1, 1, 1, 0.6)
+      love.graphics.print("scene: " .. tostring(self.curSceneName) .. "; panel: " .. (self.curPanelI) .. "; moment: " .. tostring(self.curMomentI), 5, 5)
 
-    love.graphics.setColor(1, 1, 1, 0.6)
-    love.graphics.print("scene: " .. tostring(self.curSceneName) .. "; panel: " .. (self.curPanelI) .. "; moment: " .. tostring(self.curMomentI), 5, 5)
+      love.graphics.setColor(1, 1, 1)
+    end
 
-    love.graphics.setColor(1, 1, 1)
-  end
-
-  if dbg_VNSystem_DrawAnims then
-    -- TODO: maybe not necessary
+    if dbg_VNSystem_DrawAnims then
+      -- TODO: maybe not necessary
+    end
   end
 end
 
