@@ -261,31 +261,35 @@ function VNSystem:update(dt)
   end
 
 
+  -- Update animations
   self.curPanel.bg.anim.data:update(dt)
 
   if not self.curMoment then return end
 
   for _, t in ipairs(self.curMoment.drawData) do
-    local sprite = self.curMoment.anims[t.anim]
-    sprite.data:update(dt)
+    local anim = self.curMoment.anims[t.anim]
+    anim.data:update(dt)
   end
 end
 
 
 
 function VNSystem:drawPanel(panel, momentI)
+  local anim = panel.bg.anim
   local t = panel.bg
   local c = {t.red or 1, t.green or 1, t.blue or 1, t.alpha or 1}
   love.graphics.setColor(c)
-  panel.bg.anim.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
+  anim.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
+
 
   if not self.curMoment then return end
 
+
   for _, t in ipairs(self.curMoment.drawData) do
-    local sprite = self.curMoment.anims[t.anim]
+    local anim = self.curMoment.anims[t.anim]
     local c = {t.red or 1, t.green or 1, t.blue or 1, t.alpha or 1}
     love.graphics.setColor(c)
-    sprite.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
+    anim.data:loveDraw(t.x, t.y, t.rotation, t.xScale, t.yScale, t.xOffset or 200, t.yOffset or 200)
   end
 
 
