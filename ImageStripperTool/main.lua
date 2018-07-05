@@ -18,7 +18,7 @@ function findFirstPixelLeft(ID)
   for x = 0, ID:getWidth()-1 do
     for y = 0, ID:getHeight()-1 do
       local r, g, b, a = ID:getPixel( x , y )
-      if a ~= 0 then return x - 1 end
+      if a ~= 0 then return x end
     end
   end
 end
@@ -27,7 +27,7 @@ function findFirstPixelRight(ID)
   for x = ID:getWidth()-1, 0, -1  do
     for y = 0, ID:getHeight()-1 do
       local r, g, b, a = ID:getPixel( x , y )
-      if a ~= 0 then return x + 1 end
+      if a ~= 0 then return x end
     end
   end
 end
@@ -36,7 +36,7 @@ function findFirstPixelTop(ID)
   for y = 0, ID:getHeight()-1 do
     for x = 0, ID:getWidth()-1 do
       local r, g, b, a = ID:getPixel( x , y )
-      if a ~= 0 then return y - 1 end
+      if a ~= 0 then return y end
     end
   end
 end
@@ -45,7 +45,7 @@ function findFirstPixelBottom(ID)
   for y = ID:getHeight()-1, 0, -1  do
     for x = 0, ID:getWidth()-1 do
       local r, g, b, a = ID:getPixel( x , y )
-      if a ~= 0 then return y + 1 end
+      if a ~= 0 then return y end
     end
   end
 end
@@ -58,28 +58,30 @@ end
 
 -- Convert a lua table into a lua syntactically correct string
 function table_to_string(tbl)
-    local result = "{"
-    for k, v in pairs(tbl) do
-        -- Check the key type (ignore any numerical keys - assume its an array)
-        if type(k) == "string" then
-            result = result.."[\""..k.."\"]".."="
-        end
+  local result = "{"
+  for k, v in pairs(tbl) do
+    -- Check the key type (ignore any numerical keys - assume its an array)
+    if type(k) == "string" then
+      result = result.."\n[\""..k.."\"]".." = "
+    end
 
-        -- Check the value type
-        if type(v) == "table" then
-            result = result..table_to_string(v)
-        elseif type(v) == "boolean" then
-            result = result..tostring(v)
-        else
-            result = result.."\""..v.."\""
-        end
-        result = result..","
+    -- Check the value type
+    if type(v) == "table" then
+      result = result..table_to_string(v)
+    elseif type(v) == "boolean" then
+      result = result..tostring(v)
+    elseif type(v) == "number" then
+      result = result .. v
+    else
+      result = result.."\""..v.."\""
     end
-    -- Remove leading commas from the result
-    if result ~= "{" then
-        result = result:sub(1, result:len()-1)
-    end
-    return result.."}"
+    result = result..", "
+  end
+  -- Remove leading commas from the result
+  if result ~= "{" then
+    result = result:sub(1, result:len()-1)
+  end
+  return result.."\n}"
 end
 
 
@@ -90,21 +92,21 @@ end
 
 function love.update(dt)
   lurker.update()
-  
+
   progress = #filesToProcess
   if #filesToProcess > 0 then
     local file = table.remove(filesToProcess)
-    
+
     local x1, y1, x2, y2 =  findFirstPixels(file.data)
-    local width, height = x2 - x1, y2 - y1
+    local width, height = x2 - x1 + 1, y2 - y1 + 1
     local newID = love.image.newImageData(width, height)
     newID:paste(file.data, 0, 0, x1, y1, width, height)
 
     newID:encode("png", file.filename)
-    
+
     metaData[file.filename] = {x = x1, y = y1, width = width, height = height}
   end
-    
+
 
 
 --  if currentImgT and justDropped then  -- This needs to be in update since lurker doesn't check filedropped...
@@ -138,6 +140,9 @@ end
 function love.filedropped(file)
   local fullfname = file:getFilename()
   local fname = string.match(fullfname, "[/\\]([%w_]*%.png)") -- TODO: make sure this match is proper
+
+  if not fname then print("did not get proper name? " .. tostring(fullfname)) return end
+
   print("file dropped: " .. tostring(fname))
 
 
@@ -147,11 +152,12 @@ function love.filedropped(file)
     file:close() 
   else
     print("WARNING: Could not open file: " .. tostring(fullfname))
+    --return?
   end
 
 
   local success, imageData = pcall(function() return nID(nFD(data, 'img', 'file')) end)
-  
+
   justDropped = success
   if success then 
     table.insert(filesToProcess, {data = imageData, filename = fname})
