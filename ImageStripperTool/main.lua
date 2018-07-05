@@ -1,6 +1,6 @@
 
 lurker = require("lurker")
-lurker.protected = true -- Using my own error handling, which doesn't completely neuter love to the point of non-usability
+lurker.protected = false -- Using my own error handling, which doesn't completely neuter love to the point of non-usability
 
 
 local nFD  = love.filesystem.newFileData
@@ -98,6 +98,8 @@ function love.update(dt)
     local file = table.remove(filesToProcess)
 
     local x1, y1, x2, y2 =  findFirstPixels(file.data)
+    assert(x1 and y1 and x2 and y2, "Eh? " .. file.filename)
+    
     local width, height = x2 - x1 + 1, y2 - y1 + 1
     local newID = love.image.newImageData(width, height)
     newID:paste(file.data, 0, 0, x1, y1, width, height)
@@ -131,7 +133,7 @@ end
 
 function love.keypressed(key)
   if key == "s" then
-    love.filesystem.write("test.lua", "return " .. table_to_string(metaData))
+    love.filesystem.write("metaData.lua", "return " .. table_to_string(metaData))
   end
 end
 

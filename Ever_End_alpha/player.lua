@@ -89,8 +89,8 @@ function player:initializeAC()
 
   name = "hurt_mild"
   ac:addAnimation(name, RM:loadAnimation(name .. "_"))
-  name = "hurt_intense"
-  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
+--  name = "hurt_intense"
+--  ac:addAnimation(name, RM:loadAnimation(name .. "_"))
 
 
   name = "defeat"
@@ -461,7 +461,7 @@ function player:initializeSM()
       enter = function(self, kind)
         if not kind then
           if player.damaged.attack.damage >= INTENSE_DAMAGE_TRESHOLD then
-            ac:setAnimation("hurt_intense", false)
+--            ac:setAnimation("hurt_intense", false)
             --Sound:play("Bone Break", {delay = 0.4})
             --Sound:play("Crumble #1", {delay = 0.69})
             --Sound:play("Player Fall", {delay = 1.5})

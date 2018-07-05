@@ -2,7 +2,7 @@
 
 dbg_debugEnabled = true
 
-local dbg_openConsole = true and dbg_debugEnabled
+local dbg_openConsole = false and dbg_debugEnabled
 
 local dbg_print_animation_frames = false
 local dbg_renderInputTimers = false
@@ -82,6 +82,8 @@ stateGameOver     = require "gamestates.stateGameOver"
 
 -- Other stuff:
 scale = {x = 1, y = 1} -- scale hack
+scale.x = love.graphics.getWidth()/1920  -- scale hack
+scale.y = love.graphics.getHeight()/1080 -- scale hack
 
 -- global joystick var, probably not needed...
 gJoy = love.joystick.getJoysticks()[1]
@@ -149,16 +151,16 @@ end
 
 
 function love.load(arg)  
-  
+
   if dbg_openConsole then
     dbg_openConsole = false
     love._openConsole()
   end
-  
+
   love.mouse.setVisible( false )
-  
+
   reloaded = true
-  
+
   do -- Starting loadscreens
     love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
 
@@ -233,7 +235,7 @@ function love.load(arg)
     kill = RM:loadAnimation("assets/GUI/Choice_kill_"),
     spare = RM:loadAnimation("assets/GUI/Choice_spare_"),
   }
-  
+
 
 
   Gamestate.switch(stateMain)
@@ -304,9 +306,9 @@ function love.draw()
   if dbg_debugEnabled then
     love.graphics.setColor(1, 0.75, 1, 0.75)
     love.graphics.print("Debug Mode (toggle with 0)", x, 50)
-    
+
     love.graphics.setColor(1, 1, 1, 1)
-    
+
     if dbg_print_animation_frames and player.ac and enemy.ac then
       dbgPrintAnimFrames()
     end
