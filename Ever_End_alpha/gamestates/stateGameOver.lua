@@ -31,9 +31,6 @@ function stateGameOver:update(dt)
 
   if not self.acceptInput then return end -- NOTE/ASSUMPTION:  Only input code after here. if other code is added, this needs to be revised!
 
---  if input:pressed("systemBack") then
---    return love.event.quit()
---  end
 
   if self.won then
     if inputTimers.comboDown.triggered then -- Continue

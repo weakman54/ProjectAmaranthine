@@ -46,7 +46,7 @@ function stateError:enter(prev, msg)
     end
   end
 
-  table.insert(errStr, '\n1 - start debugger\n2 - reload\n3 - propagate error (crash "properly")\nx - exit game')
+  table.insert(errStr, "\n1 - start debugger\n2 - reload" .. --[[\n3 - propagate error (crash "properly")]]"\nx - exit game")
 
 
   p = table.concat(errStr, "\n")
