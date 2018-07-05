@@ -2,7 +2,7 @@
 local dbg_print = false
 local dbg_render = true
 
-local dbg_useHackCounter = true
+local dbg_showFullLoadingNames = true and dbg_debugEnabled
 local hackLoadCounter = 0
 
 local SoundManager = {}
@@ -58,7 +58,7 @@ function SoundManager:init()
 
 
       if dbg_render then
-        if dbg_useHackCounter then
+        if not dbg_showFullLoadingNames then
           hackLoadCounter = hackLoadCounter + 1 
           debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
         else
@@ -80,7 +80,7 @@ function SoundManager:init()
       local handle = shortname:sub(1, -5)
 
       if dbg_render then
-        if dbg_useHackCounter then
+        if not dbg_showFullLoadingNames then
           hackLoadCounter = hackLoadCounter + 1 
           debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
         else

@@ -29,7 +29,7 @@ local resourceManager = {}
 resourceManager.dbg_print = false
 resourceManager.dbg_render = true
 
-resourceManager.dbg_useHackCounter = true
+resourceManager.dbg_showFullLoadingNames = true and dbg_debugEnabled
 local hackLoadCounter = 0
 
 
@@ -136,7 +136,7 @@ function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TO
 
       if self.dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
       if self.dbg_render and not self:checkLoaded(self.prefix .. filename) then
-        if self.dbg_useHackCounter then
+        if not self.dbg_showFullLoadingNames then
           hackLoadCounter = hackLoadCounter + 1 
           debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
         else
@@ -157,7 +157,7 @@ function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TO
       if love.filesystem.getInfo(self.prefix .. filename) then -- NOTE: need prefix here as well, getting a bit cluttered..
         if self.dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
         if self.dbg_render and not self:checkLoaded(self.prefix .. filename) then
-          if self.dbg_useHackCounter then
+          if not self.dbg_showFullLoadingNames then
             hackLoadCounter = hackLoadCounter + 1 
             debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
           else
