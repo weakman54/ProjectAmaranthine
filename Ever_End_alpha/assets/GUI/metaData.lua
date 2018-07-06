@@ -245,12 +245,6 @@ return {
 ["height"] = 1226, 
 ["width"] = 1617,
 }, 
-["gun_combo_left_00001.png"] = {
-["y"] = 93, 
-["x"] = 30, 
-["height"] = 326, 
-["width"] = 389,
-}, 
 ["pause_screen_A_00001.png"] = {
 ["y"] = 901, 
 ["x"] = 1031, 
@@ -431,12 +425,6 @@ return {
 ["height"] = 1091, 
 ["width"] = 1257,
 }, 
-["sword_combo_border_flash_00001.png"] = {
-["y"] = 28, 
-["x"] = 28, 
-["height"] = 969, 
-["width"] = 967,
-}, 
 ["Quit1_hurt03_00005.png"] = {
 ["y"] = 80, 
 ["x"] = 979, 
@@ -527,12 +515,6 @@ return {
 ["height"] = 1376, 
 ["width"] = 2320,
 }, 
-["gun_combo_up_00001.png"] = {
-["y"] = 30, 
-["x"] = 93, 
-["height"] = 389, 
-["width"] = 326,
-}, 
 ["Quit1_low_attack01_00020.png"] = {
 ["y"] = 220, 
 ["x"] = 803, 
@@ -586,12 +568,6 @@ return {
 ["x"] = 0, 
 ["height"] = 1450, 
 ["width"] = 2320,
-}, 
-["gun_combo_down_00001.png"] = {
-["y"] = 93, 
-["x"] = 93, 
-["height"] = 389, 
-["width"] = 326,
 }, 
 ["Quit1_taunt_00013.png"] = {
 ["y"] = 30, 
@@ -821,12 +797,6 @@ return {
 ["height"] = 1226, 
 ["width"] = 1617,
 }, 
-["sword_combo_button_00001.png"] = {
-["y"] = 190, 
-["x"] = 189, 
-["height"] = 645, 
-["width"] = 646,
-}, 
 ["Quit1_defeat_00038.png"] = {
 ["y"] = 0, 
 ["x"] = 710, 
@@ -911,12 +881,6 @@ return {
 ["height"] = 1196, 
 ["width"] = 1518,
 }, 
-["sword_combo_border_00001.png"] = {
-["y"] = 48, 
-["x"] = 47, 
-["height"] = 929, 
-["width"] = 929,
-}, 
 ["Quit1_defeat_00023.png"] = {
 ["y"] = 30, 
 ["x"] = 837, 
@@ -928,12 +892,6 @@ return {
 ["x"] = 782, 
 ["height"] = 240, 
 ["width"] = 252,
-}, 
-["gun_combo_right_00001.png"] = {
-["y"] = 93, 
-["x"] = 93, 
-["height"] = 326, 
-["width"] = 389,
 }, 
 ["Quit1_defeat_00021.png"] = {
 ["y"] = 30, 
