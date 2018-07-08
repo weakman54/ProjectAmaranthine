@@ -23,7 +23,7 @@ PARRY3_DURATION = 1.3
 
 
 -- Damage and stuff -- points (HP/SP)
-INTENSE_DAMAGE_TRESHOLD = 5  
+INTENSE_DAMAGE_TRESHOLD = 5  -- This is currently set so that intense hurt is never triggered, please notify erik if changed!
 
 
 PLAYER_NORMAL_DAMAGE = 2

@@ -46,8 +46,21 @@ function Animation:update(dt)
 end
 
 
-function Animation:loveDraw(...)
-  love.graphics.draw(self:_getCurImage(), ...)
+function Animation:loveDraw(x, y, r, sx, sy, ox, oy, kx, ky)
+  local t = self:_getCurFrame().drawData or {}
+  
+  x  = (x  or 0 ) + (t.x  or 0)
+  y  = (y  or 0 ) + (t.y  or 0)
+  r  = (r  or 0 ) + (t.r  or 0)
+  sx = (sx or 1 ) + (t.sx or 0)
+  sy = (sy or sx) + (t.sy or 0)
+  ox = (ox or 0 ) + (t.ox or 0)
+  oy = (oy or 0 ) + (t.oy or 0)
+  kx = (kx or 0 ) + (t.kx or 0)
+  ky = (ky or 0 ) + (t.ky or 0)
+  
+  love.graphics.draw(self:_getCurImage(), x, y, r, sx, sy, ox, oy, kx, ky)
+  
   if self.dbg_render then 
     local frame = self:_getCurFrame()
     love.graphics.print("Animation: " .. self._name .. ": " .. self._curFrameI .. ": " .. frame.filename)

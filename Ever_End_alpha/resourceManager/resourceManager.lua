@@ -1,9 +1,27 @@
 
 -- TODO: make it possible to load image data and so on, atm only loading through filename is possible
+local dbg_ignoreDDS = false and dbg_debugEnabled -- NOTE: This requires debugEnabled to be set from start if it should load _everything_ as png!
 
 
 
 local Animation = require "animation.animation"
+
+
+
+function getContainingFolder(fname)
+  local ret
+  for word in string.gmatch(fname, "([%w_ ]*)[\\/]") do 
+    ret = word
+  end
+  return ret
+end
+
+function splitFilename(fullname, extension)
+  return string.match(fullname, "(.*[/\\])([%w_]*)%.(.*)") 
+end
+
+
+
 
 
 local resourceManager = {}
@@ -11,49 +29,13 @@ local resourceManager = {}
 resourceManager.dbg_print = false
 resourceManager.dbg_render = true
 
-resourceManager.dbg_useHackCounter = true
+resourceManager.dbg_showFullLoadingNames = true and dbg_debugEnabled
 local hackLoadCounter = 0
 
 
 resourceManager.cache = {}
---local cache = resourceManager.cache
 
-
---resourceManager.prefix = "assets/"
 resourceManager.prefix = ""
-
-
-
-
-local function walkDirectory(path, stuff)
-  stuff = stuff or {}
-
-  local dirs = love.filesystem.getDirectoryItems(path)
-
-  for _, thing in ipairs(dirs) do
-    local targetPath = path .. "/" .. thing
-
-
-    if love.filesystem.getInfo(targetPath, "directory") then
-      walkDirectory(targetPath, stuff)
-
-    else
-      table.insert(stuff, targetPath)
-      if self.dbg_print then print(targetPath) end
-
-
-    end
-  end
-end
---
-
---walkDirectory("assets")
-
-local dir = love.filesystem.getDirectoryItems(resourceManager.prefix .. "Quit")
-
-for _, thing in ipairs(dir) do
---  print("#", thing)
-end
 
 
 
@@ -67,42 +49,70 @@ local nID = love.image.newImageData
 local nCID = love.image.newCompressedData
 
 
-function resourceManager:genericLoader(f, filename, ...)
+--function resourceManager:genericLoader(f, filename, ...)
+--  filename = self.prefix .. filename
+----  if self.dbg_print then print("GENERIC: trying to load resource: " .. filename) end
+
+--  if not self.cache[filename] then
+--    local resource = {filename = filename}
+
+
+--    if filename:sub(-3) == "png" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
+--      resource.imgData = nID(nFD(filename))
+--    end
+
+--    if filename:sub(-3) == "dds" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
+--      resource.imgData = nCID(nFD(filename))
+--    end
+
+
+--    resource.data = f(resource.imgData, ...)
+
+--    self.cache[filename] = resource
+--  end
+
+--  return self.cache[filename]
+--end
+
+
+function resourceManager:loadImage(filename) -- NOTE: moved generic loader code over here, because it wasn't generic...
   filename = self.prefix .. filename
---  if self.dbg_print then print("GENERIC: trying to load resource: " .. filename) end
+
 
   if not self.cache[filename] then
     local resource = {filename = filename}
 
 
---    print("test 1 ")
---    print(nCID)
-
     if filename:sub(-3) == "png" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
---      print("test 1.2")
       resource.imgData = nID(nFD(filename))
     end
 
     if filename:sub(-3) == "dds" then -- HACK, needed to load imageData to keep a reference, cause Love 11...
---      print("test 1.1")
       resource.imgData = nCID(nFD(filename))
     end
 
---    print("test 2 ")
---    print(resource.imgData)
+
+    resource.data = love.graphics.newImage(resource.imgData)
 
 
-    resource.data = f(resource.imgData, ...)
+    local path, file, ext = splitFilename(filename)
+    local metaDataPath = path .. "metaData.lua"
+    local drawData = {}
+
+    if love.filesystem.getInfo(metaDataPath) then
+      local shortname = file .. "." .. "png" -- ext NOTE: HARDCODED png extension regardless of image extension png/dds, since the loaded metadata uses the png filename TODO: fix so that metaData only uses extensionless filename
+      local metaData = require(path .. "metaData")
+      drawData = metaData[shortname]
+    end
+
+    resource.drawData = drawData -- TODO: load this from file!
+
 
     self.cache[filename] = resource
   end
 
   return self.cache[filename]
-end
-
-
-function resourceManager:loadImage(filename)
-  return self:genericLoader(love.graphics.newImage, filename)
+--  return self:genericLoader(love.graphics.newImage, filename)
 end
 
 function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TODO: generalize this function with patterns or something
@@ -110,7 +120,7 @@ function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TO
 
 
 --  postfix = postfix or ".png"
-  postfix = postfix or ".dds"
+  postfix = postfix or ".dds" -- Default to dds
   local i = 1
 
   if self.dbg_print then print("\nresourceManager: loading animation") end
@@ -121,10 +131,12 @@ function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TO
 
 --    if self.dbg_print then print("resourceManager: trying to load frame: [" .. self.prefix .. "]" .. filename) end
 
-    if love.filesystem.getInfo(self.prefix .. filename) then -- NOTE: need prefix here as well, getting a bit cluttered..
+    if love.filesystem.getInfo(self.prefix .. filename) and
+    not dbg_ignoreDDS then 
+
       if self.dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
       if self.dbg_render and not self:checkLoaded(self.prefix .. filename) then
-        if self.dbg_useHackCounter then
+        if not self.dbg_showFullLoadingNames then
           hackLoadCounter = hackLoadCounter + 1 
           debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
         else
@@ -135,18 +147,17 @@ function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TO
       anim:_importFrame(self:loadImage(filename))
       i = i + 1
 
-    else
-      -- try again with png
+    else -- Couldn't load default (dds), try again with png     
 
       local t = string.format("%05d", i)
-      local filename = filenameprefix .. t .. '.png' -- hardcoded
+      local filename = filenameprefix .. t .. '.png' -- hardcoded 
 
 --    if self.dbg_print then print("resourceManager: trying to load frame: [" .. self.prefix .. "]" .. filename) end
 
       if love.filesystem.getInfo(self.prefix .. filename) then -- NOTE: need prefix here as well, getting a bit cluttered..
         if self.dbg_print then print("resourceManager: loading frame: [" .. self.prefix .. "]" .. filename) end
         if self.dbg_render and not self:checkLoaded(self.prefix .. filename) then
-          if self.dbg_useHackCounter then
+          if not self.dbg_showFullLoadingNames then
             hackLoadCounter = hackLoadCounter + 1 
             debugPrint("loading" .. string.rep(".", hackLoadCounter % 4), 100, 100)
           else
@@ -170,9 +181,9 @@ function resourceManager:loadAnimation(filenameprefix, postfix, framerate) -- TO
 end
 
 
-function resourceManager:loadSource(filename)
-  return self:genericLoader(love.audio.newSource, filename)
-end
+--function resourceManager:loadSource(filename)
+--  return self:genericLoader(love.audio.newSource, filename)
+--end
 
 
 --function resourceManager:loadFont(filename) -- TODO: think about font format, to ease size changing
@@ -181,7 +192,45 @@ end
 
 
 
+do -- Stuff that should be moved
+  local function walkDirectory(path, stuff)
+    stuff = stuff or {}
+
+    local dirs = love.filesystem.getDirectoryItems(path)
+
+    for _, thing in ipairs(dirs) do
+      local targetPath = path .. "/" .. thing
+
+
+      if love.filesystem.getInfo(targetPath, "directory") then
+        walkDirectory(targetPath, stuff)
+
+      else
+        table.insert(stuff, targetPath)
+        if self.dbg_print then print(targetPath) end
+
+
+      end
+    end
+  end
+--
+
+--walkDirectory("assets")
+
+  local dir = love.filesystem.getDirectoryItems(resourceManager.prefix .. "Quit")
+
+  for _, thing in ipairs(dir) do
+--  print("#", thing)
+  end
+end
+--
+
+
 return resourceManager
+
+
+
+
 
 
 
