@@ -1,6 +1,6 @@
 
 -- TODO: make it possible to load image data and so on, atm only loading through filename is possible
-local dbg_ignoreDDS = true and dbg_debugEnabled -- NOTE: This requires debugEnabled to be set from start if it should load _everything_ as png!
+local dbg_ignoreDDS = false and dbg_debugEnabled -- NOTE: This requires debugEnabled to be set from start if it should load _everything_ as png!
 
 
 
@@ -100,7 +100,7 @@ function resourceManager:loadImage(filename) -- NOTE: moved generic loader code 
     local drawData = {}
 
     if love.filesystem.getInfo(metaDataPath) then
-      local shortname = file .. "." .. ext
+      local shortname = file .. "." .. "png" -- ext NOTE: HARDCODED png extension regardless of image extension png/dds, since the loaded metadata uses the png filename TODO: fix so that metaData only uses extensionless filename
       local metaData = require(path .. "metaData")
       drawData = metaData[shortname]
     end
