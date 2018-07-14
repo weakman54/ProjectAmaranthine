@@ -256,8 +256,8 @@ function VNSystem:update(dt)
     self:incrementMomentI()
 
     -- Go Back
-    -- elseif input:pressed("parry") and self.curPanelI ~= 1 then
---     self:setPanelI(self.curPanelI - 1)
+  elseif dbg_debugEnabled and input:pressed("parry") and self.curPanelI ~= 1 then
+    self:setPanelI(self.curPanelI - 1)
   end
 
 
