@@ -1,6 +1,6 @@
 
 
-dbg_debugEnabled = true
+dbg_debugEnabled = false
 
 local dbg_openConsole = false and dbg_debugEnabled
 
@@ -115,7 +115,7 @@ input = baton.new({
       comboUp      = {"key:w"    ,                   "button:y"},
       comboDown    = {"key:s"    ,                   "button:a"},
 
-      systemStart = {"key:escape",                   "button:start"},    
+      systemStart = {"key:escape", "key:return",     "button:start"},    
       systemBack  = {"key:x"     ,                   "button:back"},               
 
     },
@@ -457,7 +457,7 @@ function love.joystickadded( joystick )
         comboUp      = {"key:w"    ,                   "button:y"},
         comboDown    = {"key:s"    ,                   "button:a"},
 
-        systemStart = {"key:escape",                   "button:start"},    
+        systemStart = {"key:escape", "key:return",     "button:start"},    
         systemBack  = {"key:x"     ,                   "button:back"},               
 
       },
