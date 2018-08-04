@@ -17,7 +17,7 @@ stateBattle.background = nil -- TODO: check if this is useful like this
 player = reload("player")
 
 
-local healtPos = vec(123, 952)
+local healthPos = vec(123, 952)
 local spPos = vec(207, 990)
 
 -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
@@ -152,7 +152,7 @@ function stateBattle:draw()
   self.playerGUIBase.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
   -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
-  love.graphics.translate(healtPos.x, healtPos.y)
+  love.graphics.translate(healthPos.x, healthPos.y)
   love.graphics.rotate(-15.8 * math.pi/180)  
   GUIPlayerHealth:loveDraw()
 
