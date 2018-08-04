@@ -45,7 +45,7 @@ function statePause:draw()
   -- draw previous screen
   self.from:draw()
 
-  if not printScreenMode then
+  if not printScreenMode then -- TODO/NOTE: there is currently no input to toggle printscreen mode
     -- overlay with pause message
     love.graphics.setColor(0, 0, 0, 0.5)
     love.graphics.rectangle('fill', 0, 0, W, H)
@@ -54,16 +54,6 @@ function statePause:draw()
     self.GUI.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
     drawGUIOverlays({"comboUp", "comboDown"})
-  end
-end
-
-
-function statePause:keypressed(key)
-  if key == "t" then
-    printScreenMode = not printScreenMode
-
-  elseif key == "" then
-
   end
 end
 

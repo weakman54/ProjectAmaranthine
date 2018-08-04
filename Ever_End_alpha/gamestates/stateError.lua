@@ -1,8 +1,15 @@
 
 
+-- TODO: incorporate functions in each module for how to handle errors (with severity probably)
+-- NOTE for the above, this should probably be more implicit functions such as the current already used
+-- Sound:muteMusic, rather than explicit doThisWhenError() functions, but they should be designed with
+-- error handling/reset in mind as one of the use cases
+
 local stateError = {}
 
+
 local p 
+
 
 function stateError:enter(prev, msg)
   self.from = prev
@@ -54,20 +61,9 @@ function stateError:enter(prev, msg)
 
   Sound:muteMusic()
 
-
---  p = p:gsub("\t", "")
---  p = p:gsub("%[string \"(.-)\"%]", "%1")
-
-
-
-
-
--- Use the assigned button instead
---  debugPrint("Loading: Debug. Error: " .. err, 100, 100)
---  require("mobdebug").start() 
-
+  
+  
   print("Error: " .. self.err)
-
 end
 
 
@@ -92,6 +88,8 @@ function stateError:draw()
 end
 
 
+-- NOTE: this function is an exception to the rule to not use keypressed in game states, since it is the error state.
+-- TODO: that said, it should probably be looked at and cleaned up a bit
 function stateError:keypressed(key)
   if key == "3" then
     error(self.err, 2) -- propagate the error for handling outside of the app

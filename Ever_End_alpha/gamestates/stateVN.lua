@@ -42,14 +42,6 @@ function stateVN:draw()
   VNSystem:draw()
 end
 
-function stateVN:keypressed(key)
-  if key == "r" and dbg_debugEnabled then
-    VNSystem:loadScene(sceneToLoad, panelToLoad)
-  else
---    VNSystem:keypressed(key)
-  end
-end
-
 
 
 return stateVN

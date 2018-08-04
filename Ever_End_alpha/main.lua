@@ -39,6 +39,24 @@ function dbg_battleResetAnimations()
 end
 
 
+function dbg_VNResetToSetting()
+  if not VNSystem then return end
+  VNSystem:loadScene(sceneToLoad, panelToLoad)
+end
+
+
+
+function dbg_resetVNOrBattle()
+  if Gamestate.current() == stateBattle then
+    dbg_battleResetStats()
+    dbg_battleResetAnimations()
+
+  elseif Gamestate.current() == stateVN then
+    dbg_VNResetToSetting()
+  end
+end
+
+
 
 
 -- NOTE: Comment out functions that should not run, all functions prefixed with dbg_ _should_ be checked for existance before trying to run
@@ -137,8 +155,9 @@ function dbg_keypressed(key, scancode, isrepeat)
     elseif key == "t" and enemy then
       enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
 
-    elseif key == "r" and enemy and player then
-      dbg_battleResetStats()
+
+    elseif key == "r" then
+      dbg_resetVNOrBattle()
 
 
     elseif key == "4" then
@@ -568,10 +587,9 @@ end
 ------------------------------------------------------------------------------------------
 function love.keypressed(key, scancode, isrepeat)
   -- NOTE: cannot use input library in keypressed! use it in update instead!
-
-  if Gamestate.current() ~= stateError then
-    callOrError(Gamestate.keypressed, key, scancode, isrepeat) -- TODO: remove this later (why?) (so as to move all input handling to either _this_ function, or the input library
-  else
+  
+  -- NOTE: no gamestates get keypressed callbacks except stateError, since any non debug input should be handled by the input library
+  if Gamestate.current() == stateError then -- NOTE: stateError is a bit of a special case, and could probably be cleaned up a bit as well (keypress wise)
     Gamestate.keypressed(key, scancode, isrepeat)
   end
 
