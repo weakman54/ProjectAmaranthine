@@ -1,5 +1,5 @@
 
-local vec = require "hump.vector" -- TODO: change to own lib
+local vec = require "Vector"
 
 local GUIBar = {}
 

@@ -1,7 +1,7 @@
 
 flipHack = false
 
-local vec = require "hump.vector" -- TODO: replace with own vector
+local vec = require "Vector"
 local GUIBar = require "gui.bar"
 local RM = require "resourceManager.resourceManager"
 
@@ -55,15 +55,16 @@ function stateBattle:init()
   self.background.data:setLooping(true)
   self.background.data:play()
 
-  Gas  = RM:loadAnimation("assets/FX/Gas_")
-  Gas.data:play()
-  Gas.data:setLooping()
-
   self.playerGUIBase = RM:loadAnimation("assets/GUI/gui_base_")
   self.playerGUIMask = RM:loadAnimation("assets/GUI/gui_mask_")
 
   self.enemyHealthBox = RM:loadAnimation("assets/GUI/Background_Box_")
   self.enemyHealthBar = RM:loadAnimation("assets/GUI/Enemy_HPbar_")
+  
+  
+    Gas  = RM:loadAnimation("assets/FX/Gas_")
+  Gas.data:play()
+  Gas.data:setLooping()
 end
 
 function stateBattle:enter(prev, enemyString)
