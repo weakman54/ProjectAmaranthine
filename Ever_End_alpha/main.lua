@@ -18,6 +18,29 @@ local dbg_renderDtMultiplier = true and dbg_debugEnabled
 
 
 
+-- Battle state stuff ---------
+function dbg_battleResetStats()
+  if not player or not enemy then return end
+
+  enemy:reset()
+  player:reset()
+end
+
+function dbg_battleResetAnimations()
+  if not player or not enemy then return end
+
+  if player.sm then
+    player.sm:switch("idle")
+  end
+
+  if enemy.sm then
+    enemy.sm:switch("idle")
+  end
+end
+
+
+
+
 -- NOTE: Comment out functions that should not run, all functions prefixed with dbg_ _should_ be checked for existance before trying to run
 -- Preload stuff
 local dbg_loadOnlyEssentials = true and dbg_debugEnabled
@@ -93,30 +116,30 @@ function dbg_keypressed(key, scancode, isrepeat)
   end
 
 
-  if dbg_debugEnabled then
-    if key == "t" and enemy then
-      enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
-
-    elseif key == "m" then
-      Sound:muteMusic()
-
-    elseif key == "1" then
+  if dbg_debugEnabled then 
+    if key == "1" then
       debugPrint("Loading: Debug", 100, 100)
       require("mobdebug").start() 
       print("debug ---------------")
 
 
+    elseif key == "m" then
+      Sound:muteMusic()
+
+
     elseif key == "2" then
       callOrError(GameReload)
 
-    elseif key == "3" and enemy and player then -- Reset animations, could proably be moved
-      if player.sm then
-        player.sm:switch("idle")
-      end
 
-      if enemy.sm then
-        enemy.sm:switch("idle")
-      end
+    elseif key == "3" and enemy and player then -- Reset animations, could proably be moved
+      dbg_battleResetAnimations()
+
+    elseif key == "t" and enemy then
+      enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
+
+    elseif key == "r" and enemy and player then
+      dbg_battleResetStats()
+
 
     elseif key == "4" then
       dbg_dtMultiplier = dbg_dtMultiplier == 1 and dbg_dtSlowFactor or 1
@@ -433,16 +456,16 @@ flipHack = false
 -- Load ----------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 function love.load(arg)
-  
+
   if dbg_openConsole then love._openConsole() end -- TODO: ensure love running on windows? (shouldn't be needed given that this is set through code)
 
 
   math.randomseed( os.time() )
-  
-  
+
+
   reloadGlobalDataFiles() -- util and global consts special case, usages are noted below as *
-  
-  
+
+
   -- NOTE/TODO: state of these could be modified during runtime, so they should be contained in a function somewhere instead so that they could be repeated
   love.mouse.setVisible( false )
   love.graphics.setNewFont(FONT_PATH, FONT_SIZE) -- NOTE*: requires global_consts for font path and size

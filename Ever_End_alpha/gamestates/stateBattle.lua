@@ -7,11 +7,8 @@ local RM = require "resourceManager.resourceManager"
 
 
 
-
 local stateBattle = {}
 
-
-stateBattle.background = nil -- TODO: check if this is useful like this
 
 
 player = reload("player")
@@ -60,9 +57,9 @@ function stateBattle:init()
 
   self.enemyHealthBox = RM:loadAnimation("assets/GUI/Background_Box_")
   self.enemyHealthBar = RM:loadAnimation("assets/GUI/Enemy_HPbar_")
-  
-  
-    Gas  = RM:loadAnimation("assets/FX/Gas_")
+
+
+  Gas  = RM:loadAnimation("assets/FX/Gas_")
   Gas.data:play()
   Gas.data:setLooping()
 end
@@ -104,7 +101,7 @@ function stateBattle:update(dt)
   GUIPlayerHealth:update(dt)
   GUIPlayerSP:update(dt)
 
-  
+
   if enemy.name == "Quit2" then
     blinkAcc = blinkAcc + dt
     GUIPlayerSP.innerColor = {1, math.sin(math.pi * blinkAcc * blinkSpeed), 1, 1}
@@ -177,12 +174,6 @@ function stateBattle:draw()
 -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
-function stateBattle:keypressed(key) -- TODO: move to dbg_keypressed
-  if key == "r" then
-    enemy:reset()
-    player:reset()
-  end
-end
 
 
 function stateBattle:leave()
