@@ -333,14 +333,15 @@ end
 
 
 
-function VNSystem:loadScene(scene, panelI, momentI, supressTrigger)
+function VNSystem:loadScene(scene, panelI, momentI, supressTriggers)
   assert(scene, "VNSystem: You must supply which scene to switch to!")
-
+  
+  skipNextFrame = true
   local t = reload(("assets/VN/sceneScript%s"):format(scene)) -- NOTE: This feels pretty hack, but eh
 
   self.curSceneName = scene
   self.curScene = t
-  self:setPanelI(panelI or 1, momentI or 1, supressTrigger)
+  self:setPanelI(panelI or 1, momentI or 1, supressTriggers)
 end
 
 

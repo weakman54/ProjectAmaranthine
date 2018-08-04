@@ -39,11 +39,10 @@ local GUIEnemyHealth  = GUIBar:new(vec(1200, 200), vec(300, 30))
 local Gas
 
 
-local reloaded = true
 
 
 function stateBattle:init()
-  reloaded = true
+  skipNextFrame = true
 
 
   debugPrint("Loading battle...")
@@ -70,7 +69,7 @@ end
 function stateBattle:enter(prev, enemyString)
   enemy  = reload(enemyString or "enemyQuit1") -- TODO: fix default enemy here...
   enemy:initialize() -- Hack I guess
-  reloaded = true
+  skipNextFrame = true
   -- TODO: make reset conditional (or push states, not sure which atm)
   player:reset()
   enemy:reset()
@@ -177,7 +176,7 @@ function stateBattle:draw()
 -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
-function stateBattle:keypressed(key)
+function stateBattle:keypressed(key) -- TODO: move to dbg_keypressed
   if key == "r" then
     enemy:reset()
     player:reset()
