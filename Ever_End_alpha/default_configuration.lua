@@ -1,17 +1,3 @@
-
--- DO NOTE MAKE CHANGES IN THIS FILE!
--- This file contains a default setup for the configuration.lua file,
--- and is intended as a simple backup if you have managed to break the actual config.
---
--- This file is not used by the game, instead, copy the rest of this file back into
--- configuration.lua if your game is not working because of changes you made to that file.
---
--- If there is no "configuration.lua", the game will still run, using the defaults.
--- To make changes to the settings though, you will need to create a new file called "configuration.lua"
--- to do that, you can copy this file and rename it
--- (make sure to delete this top part, to avoid confusion later).
--- Copy from below here: --------------
-
 --
 -- This is the configuration file for EverEnd
 -- Here you can set options for how the game should run
@@ -20,15 +6,22 @@
 -- Some values might cause crashes (like negative window sizes for example)
 -- Make sure to double check your numbers and keep the commas at the end of the line!
 -- 
--- If your game is not working because of changes made in this file, there is a
--- backup config which can be found in "default_configuration.lua", which you can
--- use to restore the configuration back to a functioning state.
+-- If your game is not working because of changes made in this file, you can safely
+-- delete it and it will be restored to a default state next time you run the game
 --
 return {
+  -- Controller options --
+  -- Vibration
+  -- Whether or not to enable vibration for the controller
+  -- Possible values: true/false
+  -- Default: true
+  controllerVibration = true,
+  
+  
   -- Window Size: -------
   -- (Note that the game is optimized for 1920 by 1080 (full HD))
 
-  -- Height
+  -- Width
   -- The width of the window in pixels.
   -- Possible values: positive numbers
   -- Default: 1920

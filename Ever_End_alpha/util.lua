@@ -99,3 +99,63 @@ end
 --function playDelayed(sound, time)
 --  HUMPTimer.after(time, function() Sound:play(sound) end)
 --end
+
+urlUtil = {}
+
+function urlUtil.split(url)
+  return url:match("^(.+/)(.+)$")
+end
+
+function urlUtil.getBasename(url)
+  local dir, base = urlUtil.split(url)
+  
+  return base
+end
+
+function urlUtil.getDirname(url)
+  local dir, base = urlUtil.split(url)
+  
+  return dir
+end
+
+
+function urlUtil.splitExt(url)
+  return url:match("^(.+)(%..+)$")
+end
+
+function urlUtil.getExtension(url)
+  local root, ext = urlUtil.splitExt(url)
+  
+  return ext
+end
+
+function urlUtil.removeExtension(url)
+  local root, ext = urlUtil.splitExt(url)
+  
+  return root
+end
+
+
+
+
+function loadOrCreate(filename, templatename)
+  if not love.filesystem.getInfo(templatename) then error("loadOrCreate(): template was not supplied or does not exist!", 2) end
+
+  if not love.filesystem.getInfo(filename) then
+    local data = love.filesystem.read(templatename)
+    love.filesystem.write(filename, data)
+  end
+
+  return require(urlUtil.removeExtension(filename))
+end
+
+
+
+
+
+
+
+
+
+
+

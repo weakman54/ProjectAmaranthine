@@ -1,179 +1,7 @@
 
 
--- Debug stuff vvvvv
-dbg_debugEnabled = false
 
-
-if dbg_debugEnabled then
---require("mobdebug").start() -- Run this line if debug mode should be enabled (only in zerobrane)
-end
-
-
-local dbg_openConsole = false and dbg_debugEnabled
-
-local dbg_dtMultiplier = 1
-local dbg_dtSlowFactor = .5
-local dbg_dtFastFactor = 200
-local dbg_renderDtMultiplier = true and dbg_debugEnabled
-
-
-
--- Battle state stuff ---------
-function dbg_battleResetStats()
-  if not player or not enemy then return end
-
-  enemy:reset()
-  player:reset()
-end
-
-function dbg_battleResetAnimations()
-  if not player or not enemy then return end
-
-  if player.sm then
-    player.sm:switch("idle")
-  end
-
-  if enemy.sm then
-    enemy.sm:switch("idle")
-  end
-end
-
-
-function dbg_VNResetToSetting()
-  if not VNSystem then return end
-  VNSystem:loadScene(sceneToLoad, panelToLoad)
-end
-
-
-
-function dbg_resetVNOrBattle()
-  if Gamestate.current() == stateBattle then
-    dbg_battleResetStats()
-    dbg_battleResetAnimations()
-
-  elseif Gamestate.current() == stateVN then
-    dbg_VNResetToSetting()
-  end
-end
-
-
-
-
--- NOTE: Comment out functions that should not run, all functions prefixed with dbg_ _should_ be checked for existance before trying to run
--- Preload stuff
-local dbg_loadOnlyEssentials = true and dbg_debugEnabled
-
-
--- Debug draw stuff ----
-function dbg_draw()
-  love.graphics.setColor(1, 0.75, 1, 0.75)
-  love.graphics.print("Debug Mode (toggle with 0)", x, 50)
-
-
-  if dbg_renderAnimationFrames then   dbg_renderAnimationFrames()    end
-  if dbg_renderInputTimers then dbg_renderInputTimers() end
-
-
-  love.graphics.setColor(1, 1, 1, 1)
-end
---
-
---[[
-function dbg_renderAnimationFrames()
-  -- Make sure player and enemy exists and has ac so that we can actually draw them
-  local playerEnemyExists = player and enemy and player.ac and enemy.ac
-  if not playerEnemyExists then return end
-
-
-  -- Reset graphics
-  love.graphics.push()
-  love.graphics.reset() -- RESETS Font(size?) as well, not documented? might be mistaken
-  love.graphics.scale(scale.x, scale.y) -- Scale hack
-
-  love.graphics.setColor(1.0, 1.0, 1.0)
-
-
-  local topMargin = 40
-
-  love.graphics.rectangle("fill", 0, 0, W, topMargin)
-
-  love.graphics.setColor(0.0, 0.0, 0.0)
-
-  love.graphics.print("player: " .. player.ac:curName() .. ": " .. player.ac:curFrame(), 10, 10)
-
-  love.graphics.print("enemy: "  .. enemy.ac:curName()  .. ": " .. enemy.ac:curFrame(), 10, topMargin/2)
-
-
-  -- "pop" graphics
-  love.graphics.pop() -- does not re-reset font?
-  love.graphics.setNewFont(FONT_PATH, FONT_SIZE)
-  love.graphics.setColor(1.0, 1.0, 1.0)
-end
---]]
-
----[[
-local dbg_inputTimerPercentage = 0
-function dbg_renderInputTimers()
-  love.graphics.rectangle("fill", 0, H - 50, 100 * dbg_inputTimerPercentage, 50)
-  love.graphics.line(100, H - 50, 100, H)
-end
---]]
-
-
-
--- Keypressed callback ------
-function dbg_keypressed(key, scancode, isrepeat) 
-  -- TODO: make more generic? have a list of keys and corresponding callbacks maybe?
-  -- makes it easier to add new debug things close to the context where they are used,
-  -- tradeoff being that it's harder to track down all the usages of it (search all files ofc, but it's more unclear still)
-
-  -- TODO: regardless of above consideration, debug usages of keypressed need to be better marked (currently there are a bunch of gamestates that have keypress debug stuff)
-
-  if key == "0" then
-    dbg_debugEnabled = not dbg_debugEnabled
-  end
-
-
-  if dbg_debugEnabled then 
-    if key == "1" then
-      debugPrint("Loading: Debug", 100, 100)
-      require("mobdebug").start() 
-      print("debug ---------------")
-
-
-    elseif key == "m" then
-      Sound:muteMusic()
-
-
-    elseif key == "2" then
-      callOrError(GameReload)
-
-
-    elseif key == "3" and enemy and player then -- Reset animations, could proably be moved
-      dbg_battleResetAnimations()
-
-    elseif key == "t" and enemy then
-      enemy.dbg_trigger_offensive_action = not enemy.dbg_trigger_offensive_action
-
-
-    elseif key == "r" then
-      dbg_resetVNOrBattle()
-
-
-    elseif key == "4" then
-      dbg_dtMultiplier = dbg_dtMultiplier == 1 and dbg_dtSlowFactor or 1
-
-    elseif key == "5" then
-      dbg_dtMultiplier = dbg_dtMultiplier == 1 and dbg_dtFastFactor or 1
-    end
-  end
-end
--- Debug stuff ^^^^^^
-
-
-
-
-
+dbg = loadOrCreate("user_debug.lua", "default_debug.lua")
 
 -- Reload error management stuff (should be moved) vvvvvvvv
 skipNextFrame = true -- HACK: set when loading things, since dt will be large due to lag
@@ -222,7 +50,7 @@ lume = require "lume.lume"
 
 
 local RM = require "resourceManager.resourceManager" -- NOTE  bit of a special case, these are needed to load assets
-local VNSystem = require "VNSystem"
+VNSystem = require "VNSystem"
 
 
 -- Input vvvvvvvvvvvvvvvvvvv
@@ -290,7 +118,9 @@ end
 
 
 function initializeGUIOverlays()
+  skipNextFrame = true
   RM.prefix = ""
+  
   guiOverlays = { -- TODO: probably move this out of global scope and such but eh
     comboUp = RM:loadAnimation("assets/GUI/Menu_Overlay_Up_"),
     comboDown = RM:loadAnimation("assets/GUI/Menu_Overlay_Down_"),
@@ -339,6 +169,8 @@ function GameReload(opts)
   if opts then
     if opts.loadSound then
       reloadAndInitializeSound()
+    else
+      if not Sound then Sound = reload("resourceManager.soundManager") end -- make sure module exists to avoid errors (NOTE: in this state it _will_ throw errors if used before initialized)
     end
 
 
@@ -395,7 +227,6 @@ end
 function loadNormalAssets() -- TODO: think up a better name (=P)
   -- NOTE: only load stuff that is small and/or should not have a loading screen
   skipNextFrame = true
-
   RM.prefix = ""
 
   RM:loadAnimation("assets/GUI/pause_screen_")
@@ -414,7 +245,9 @@ end
 function reloadGlobalDataFiles()
   reload "util"
   reload "global_consts"
-  reload "settings"
+  
+  config = loadOrCreate("user_configuration.lua", "default_configuration.lua")
+  dbg = loadOrCreate("user_debug.lua", "default_debug.lua")
 
   reload "shakeEffect"
 end
@@ -509,8 +342,10 @@ function love.load(arg)
   local assetsToLoad = preloadEverything and "all" or "normal"
   if dbg_loadOnlyEssentials then assetsToLoad = nil end -- a bit HACKy, but is a bit more readable (?)
 
+  local loadSound = true
+  if dbg_doNotLoadSound then loadSound = false end
 
-  GameReload({isreload = false, loadSound = true, loadAssets = assetsToLoad})
+  GameReload({isreload = false, loadSound = loadSound, loadAssets = assetsToLoad})
 
 
   Gamestate.switch(stateMain)

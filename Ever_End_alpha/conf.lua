@@ -1,8 +1,13 @@
 
-local c = require "configuration"
 
-if c.vsync then c.vsync = 1 else c.vsync = 0 end
-if c.fullscreen == nil then c.fullscreen = true end
+require "util"
+
+config = loadOrCreate("user_configuration.lua", "default_configuration.lua") -- require "configuration"
+
+
+if config.vsync then config.vsync = 1 else config.vsync = 0 end
+if config.fullscreen == nil then config.fullscreen = true end
+
 
 function love.conf(t)
   t.version = "11.1"
@@ -11,13 +16,13 @@ function love.conf(t)
   t.window.icon = "assets/icon.png"
   t.window.resizable = true
 
-  t.window.width  = c.windowWidth  or 1920
-  t.window.height = c.windowHeight or 1080
+  t.window.width  = config.windowWidth  or 1920
+  t.window.height = config.windowHeight or 1080
 
-  t.window.fullscreen = c.fullscreen -- Set above
-  t.window.fullscreentype  = c.fullscreentype or "desktop"
---  t.window.borderless = c.borderless or false (This seem to fuck with the scaling for some reason...
+  t.window.fullscreen = config.fullscreen -- Set above
+  t.window.fullscreentype  = config.fullscreentype or "desktop"
+--  t.window.borderless = config.borderless or false (This seem to fuck with the scaling for some reason...
 
-  t.window.vsync = c.vsync -- Set above
-  t.window.msaa  = c.msaa  or 2
+  t.window.vsync = config.vsync -- Set above
+  t.window.msaa  = config.msaa  or 2
 end

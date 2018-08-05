@@ -1,25 +1,24 @@
 
-flipHack = false
 
 local vec = require "Vector"
 local GUIBar = require "gui.bar"
-local RM = require "resourceManager.resourceManager"
 
 
 
 local stateBattle = {}
 
 
-
-player = reload("player")
+player = reload("player") -- NOTE: player needs to reload here atm since it's being reloaded as part of stateBattle
+-- TODO: can be cleaned up probably...
 
 
 local healthPos = vec(123, 952)
 local spPos = vec(207, 990)
 
+
 -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
 local GUIPlayerHealth = GUIBar:new(vec() , vec(420, 64))
-GUIPlayerHealth.outerColor = {255/255, 109/255, 109/255, 0} -- NOTE: setting to same color just in case alpha does not work
+GUIPlayerHealth.outerColor = {255/255, 109/255, 109/255, 0} -- NOTE: setting to same color as inner just in case alpha does not work
 GUIPlayerHealth.innerColor = {255/255, 109/255, 109/255}
 -- angle -15.8
 
@@ -33,19 +32,16 @@ local GUIEnemyHealth  = GUIBar:new(vec(1200, 200), vec(300, 30))
 --GUIEnemyHealth.innerColor = {255, 000, 000}
 -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+
+-- Used for the gas in Quit2 battle, bit of a HACK atm...
 local Gas
 
 
 
-
-function stateBattle:init()
+function stateBattle:loadAssets()
+  local RM = require "resourceManager.resourceManager"
+  
   skipNextFrame = true
-
-
-  debugPrint("Loading battle...")
-  player:initialize()
-
-
   RM.prefix = ""
 
   self.background = RM:loadAnimation("assets/Battle_background/background_")
@@ -59,20 +55,38 @@ function stateBattle:init()
   self.enemyHealthBar = RM:loadAnimation("assets/GUI/Enemy_HPbar_")
 
 
+  -- QUIT2 Gas (HACKish)
   Gas  = RM:loadAnimation("assets/FX/Gas_")
   Gas.data:play()
   Gas.data:setLooping()
 end
 
+
+
+
+
+function stateBattle:init()
+  debugPrint("Loading battle...")
+  player:initialize()
+
+  self:loadAssets()
+end
+
+
 function stateBattle:enter(prev, enemyString)
+  flipHack = false
+
+
   enemy  = reload(enemyString or "enemyQuit1") -- TODO: fix default enemy here...
   enemy:initialize() -- Hack I guess
-  skipNextFrame = true
-  -- TODO: make reset conditional (or push states, not sure which atm)
-  player:reset()
-  enemy:reset()
 
   if enemy.music then Sound:play(enemy.music) end
+
+
+
+  -- TODO: make reset conditional (or push states, not sure which atm) (why?)
+  player:reset()
+  enemy:reset()
 
 
 -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
@@ -84,43 +98,53 @@ function stateBattle:enter(prev, enemyString)
 end
 
 
+
 local blinkAcc = 0
 local blinkSpeed = 1
 
 function stateBattle:update(dt)
   self.background.data:update(dt)
 
+
   player:update(dt)
   enemy:update(dt)
 
-  -- Gas hack vvvv
-  Gas.data:update(dt)
-  -- Gas hack ^^^^^^
 
   -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
   GUIPlayerHealth:update(dt)
   GUIPlayerSP:update(dt)
 
 
-  if enemy.name == "Quit2" then
+  GUIEnemyHealth:update(dt)
+
+
+  -- Quit2 HACK
+  if enemy.name == "Quit2" then 
     blinkAcc = blinkAcc + dt
     GUIPlayerSP.innerColor = {1, math.sin(math.pi * blinkAcc * blinkSpeed), 1, 1}
-  end
 
-  GUIEnemyHealth:update(dt)
+    Gas.data:update(dt)
+
+  else
+    GUIPlayerSP.innerColor = {153/255, 243/255, 242/255}
+
+  end
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
-function stateBattle:draw()
 
+
+
+function stateBattle:draw()
   self.background.data:loveDraw(x, y, r, sx, sy, 200, 200)
+
 
   local barPos = -2320 * GUIEnemyHealth:getPercent()
   self.enemyHealthBar.data:loveDraw(barPos, y, r, sx, sy, 200, 200)
   self.enemyHealthBox.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
 
-  -- HACK RESET BELOW
+  -- FlipHACK vvvvvvvv
   if flipHack then
     love.graphics.origin()
     love.graphics.scale(-scale.x, scale.y) -- Scale hack
@@ -128,49 +152,50 @@ function stateBattle:draw()
   end
 
 
-
   enemy:draw()
   player:draw()
 
--- RESET STUFF (?)
+
   love.graphics.origin()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
+  -- FlipHACK ^^^^^^^^^^^^
 
 
-
-  -- Gas hack vvvv
+  -- Quit2 Hack
   if enemy.name == "Quit2" then
     Gas.data:loveDraw()
   end
-  -- Gas hack ^^^^^^^^^^^^
 
 
 
   self.playerGUIBase.data:loveDraw(x, y, r, sx, sy, 200, 200)
+
 
   -- OLD GUIBar code, not fully revised: vvvvvvvvvvvvvvvvvvvvvvvv
   love.graphics.translate(healthPos.x, healthPos.y)
   love.graphics.rotate(-15.8 * math.pi/180)  
   GUIPlayerHealth:loveDraw()
 
-
   -- RESET STUFF (?)
   love.graphics.origin()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
+
+
 
   love.graphics.translate(spPos.x, spPos.y)
   love.graphics.rotate(-8.2 * math.pi/180)
   GUIPlayerSP:loveDraw()
   love.graphics.setColor({1, 1, 1, 1})
 
-
+  -- Reset
   love.graphics.origin()
   love.graphics.scale(scale.x, scale.y) -- Scale hack
 
 
+
   self.playerGUIMask.data:loveDraw(x, y, r, sx, sy, 200, 200)
 
---  GUIEnemyHealth:loveDraw() NOT DRAWIN THIS, just using the percentage capabilities
+--  GUIEnemyHealth:loveDraw() NOTE: this is not drawn, just using the percentage capabilities
 -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 end
 
@@ -183,3 +208,5 @@ end
 
 
 return stateBattle  
+
+

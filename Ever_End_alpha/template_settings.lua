@@ -1,8 +1,0 @@
--- TODO: make into table
-vibrationEnabled = false
-
-sceneToLoad = "00_0"
-panelToLoad = 1
-
-
--- dbg_skipMainMenu = true -- Uncomment this to skip your menu

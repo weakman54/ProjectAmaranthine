@@ -19,14 +19,16 @@ function stateVN:init()
 --  buildScene("assets/VN/", "04_1")  
 --  buildScene("assets/VN/", "04_2")
 
-  VNSystem:loadScene(sceneToLoad, panelToLoad)
+  VNSystem:loadScene(dbg_sceneToLoad, dbg_panelToLoad)
 end
+
 
 function stateVN:enter(previous, data)
   if data == "RESETPLZ" then --hack
-    VNSystem:loadScene(sceneToLoad, panelToLoad)
+    VNSystem:loadScene(dbg_sceneToLoad, dbg_panelToLoad)
   end
 end
+
 
 function stateVN:leave()
 --  Sound:muteMusic()

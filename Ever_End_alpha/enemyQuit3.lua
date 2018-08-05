@@ -81,8 +81,10 @@ function enemy:loadAttack(attack, framerate, attackFrame)
 
   -- Set animation ---------------------
   -- Load animation
-  local name = attack.name
+  skipNextFrame = true
   RM.prefix = ""
+  
+  local name = attack.name
   local anim =  RM:loadAnimation(string.format("assets/%s/%s_%s_", self.name, self.name, attack.animName), nil, framerate) -- NOTE: might as well do the "full" directory here, since this is set per attack anyway..
 
   local ac = self.ac
@@ -154,6 +156,9 @@ function enemy:initializeAC()
   local name
 
   ac:setFramerate(DEFAULT_FRAMERATE)
+  
+  
+  skipNextFrame = true
   RM.prefix = string.format("assets/%s/%s_", self.name, self.name)
 
 

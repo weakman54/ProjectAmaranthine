@@ -64,6 +64,8 @@ function player:initializeAC()
   local name
 
   ac:setFramerate(12)
+  
+  skipNextFrame = true
   RM.prefix = string.format("assets/%s/%s_", self.name, self.name)
 
 
@@ -521,7 +523,7 @@ function player:changeHP(offset)
 
   local scalar = math.abs(offset)/3
 
-  if gJoy and vibrationEnabled then
+  if gJoy and config.controllerVibration then
     gJoy:setVibration(1*scalar, 1*scalar, 1*scalar)
   end
 
@@ -557,5 +559,7 @@ end
 
 
 
-
 return player
+
+
+
